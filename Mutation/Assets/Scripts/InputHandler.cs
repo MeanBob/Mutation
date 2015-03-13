@@ -3,10 +3,13 @@ using System.Collections;
 
 public class InputHandler : MonoBehaviour {
     GameObject avatar;
-    float rotationSpeed = 1;
+    GameObject avatarPanel;
+    float rotationSpeed = 2;
+    bool avatarZoomed = false;
 	// Use this for initialization
 	void Start () {
         avatar = GameObject.Find("Avatar");
+        avatarPanel = GameObject.Find("AvatarPanel");
 	}
 	
 	// Update is called once per frame
@@ -21,6 +24,16 @@ public class InputHandler : MonoBehaviour {
                 {
                     case TouchPhase.Moved:
                         avatar.transform.Rotate(currentTouch.deltaPosition.y * rotationSpeed, -currentTouch.deltaPosition.x * rotationSpeed, 0, Space.World);
+                        break;
+                    case TouchPhase.Ended:
+                        if(currentTouch.tapCount > 1)
+                        {
+                            if (avatarZoomed)
+                                avatar.transform.position += new Vector3(0, 0, 2);
+                            else
+                                avatar.transform.position += new Vector3(0, 0, -2);
+                            avatarZoomed = !avatarZoomed;
+                        }
                         break;
                 }
             }
