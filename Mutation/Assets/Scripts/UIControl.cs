@@ -5,7 +5,7 @@ public class UIControl : MonoBehaviour {
     //If we decided we want a bit more control
     //GameObject mapPanel;
     GameObject explorationPanel;
-    //GameObject fightPanel;
+    GameObject fightPanel;
     //GameObject inventoryPanel;
     //GameObject avatarPanel;
     GameObject lastPanel;
@@ -16,7 +16,7 @@ public class UIControl : MonoBehaviour {
 	void Start () {
         //mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
-        //fightPanel = transform.FindChild("FightPanel").gameObject;
+        fightPanel = transform.FindChild("FightPanel").gameObject;
         //inventoryPanel = transform.FindChild("InventoryPanel").gameObject;
         //avatarPanel = transform.FindChild("AvatarPanel").gameObject;
         panelStack = new Stack();
@@ -69,4 +69,33 @@ public class UIControl : MonoBehaviour {
         ChangePanel(explorationPanel);
     }
 
+    public void AddPanelOnTop(GameObject newPanel)
+    {
+        if (newPanel == null)
+        {
+            return;
+        }
+        panelStack.Push(newPanel);
+        newPanel.SetActive(true);
+    }
+
+    public void RemovePanelFromTop()
+    {
+        if (panelStack.Count <= 0)
+        {
+            return;
+        }
+        GameObject oldPanel = (GameObject)panelStack.Pop();
+        oldPanel.SetActive(false);
+    }
+
+    public void InitiateCombat()
+    {
+        ChangePanel(fightPanel);
+    }
+
+    public void EndCombat()
+    {
+        ChangePanel(explorationPanel);
+    }
 }

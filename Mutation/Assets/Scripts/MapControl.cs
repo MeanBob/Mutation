@@ -87,6 +87,7 @@ public class MapControl : MonoBehaviour {
         //If we're triggering a monster, do that as well.
         if (DEBUGtriggerMonster)
         {
+            ui.InitiateCombat();
             //TriggerMonster
             DEBUGtriggerMonster = false;
         }
