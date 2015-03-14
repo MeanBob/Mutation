@@ -75,3 +75,4 @@ obj/
 ehthumbs.db
 Thumbs.db
 Mutation/AndroidBuild.apk
+*.apk
