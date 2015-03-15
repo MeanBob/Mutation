@@ -33,7 +33,7 @@ public class InputHandler : MonoBehaviour {
                         switch (currentTouch.phase)
                         {
                             case TouchPhase.Moved:
-                                avatar.transform.Rotate(currentTouch.deltaPosition.y * rotationSpeed, -currentTouch.deltaPosition.x * rotationSpeed, 0, Space.World);
+                                avatar.transform.Rotate(0, -currentTouch.deltaPosition.x * rotationSpeed, 0, Space.World);
                                 break;
                             case TouchPhase.Ended:
                                 if (currentTouch.tapCount > 1)
@@ -58,7 +58,7 @@ public class InputHandler : MonoBehaviour {
             {
                 if (Input.mousePosition.x <= avatarWidth)
                 {
-                    avatar.transform.Rotate((currentMousePosition.y - lastMousePosition.y) * rotationSpeed, (currentMousePosition.x - lastMousePosition.x) * rotationSpeed, 0, Space.World);
+                    avatar.transform.Rotate(0, (currentMousePosition.x - lastMousePosition.x) * rotationSpeed, 0, Space.World);
                 }
             }
             lastMousePosition = currentMousePosition;
