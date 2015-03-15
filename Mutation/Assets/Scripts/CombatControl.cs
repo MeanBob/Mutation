@@ -48,15 +48,15 @@ public class CombatControl : MonoBehaviour {
                 switch (choice)
                 {
                     case 0:
-                        currentMonster.RollHeadDamage();
+                        monsterDamage = currentMonster.RollHeadDamage();
                         break;
                     case 1:
                     case 2:
-                        currentMonster.RollArmDamage();
+                        monsterDamage = currentMonster.RollArmDamage();
                         break;
                     case 3:
                     case 4:
-                        currentMonster.RollLegDamage();
+                        monsterDamage = currentMonster.RollLegDamage();
                         break;
                 }
                 currentMonsterReadiness = 0;

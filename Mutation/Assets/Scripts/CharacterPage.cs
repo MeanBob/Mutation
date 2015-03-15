@@ -15,6 +15,10 @@ public class CharacterPage : MonoBehaviour {
     Mutation leftLeg;
     Mutation rightLeg;
 
+    UnityEngine.UI.Text currentHPText;
+    UnityEngine.UI.Text maxHPText;
+    UnityEngine.UI.Slider healthSlider;
+
 	// Use this for initialization
 	void Start () {
         //We'll want to have this customizeable, once character creation is in
@@ -29,7 +33,15 @@ public class CharacterPage : MonoBehaviour {
         leftArm = ScriptableObject.CreateInstance<NoMutation>();
         rightArm = ScriptableObject.CreateInstance<NoMutation>();
         leftLeg = ScriptableObject.CreateInstance<NoMutation>();
-        rightLeg = ScriptableObject.CreateInstance<NoMutation>();	
+        rightLeg = ScriptableObject.CreateInstance<NoMutation>();
+
+        currentHPText = GameObject.Find("HPCurrentText").GetComponent<UnityEngine.UI.Text>();
+        maxHPText = GameObject.Find("HPMaxText").GetComponent<UnityEngine.UI.Text>();
+        currentHPText.text = currentHP.ToString();
+        maxHPText.text = maxHP.ToString();
+        healthSlider = GameObject.Find("PlayerHealthSlider").GetComponent<UnityEngine.UI.Slider>();
+        healthSlider.maxValue = maxHP;
+        healthSlider.value = currentHP;
 	}
 	
 	// Update is called once per frame
@@ -45,6 +57,8 @@ public class CharacterPage : MonoBehaviour {
             Debug.Log("You died.");
             //trigger death
         }
+        currentHPText.text = currentHP.ToString();
+        healthSlider.value = currentHP;
     }
 
     public void HealDamage(int heal)
@@ -54,6 +68,7 @@ public class CharacterPage : MonoBehaviour {
         {
             currentHP = maxHP;
         }
+        currentHPText.text = currentHP.ToString();
     }
 
     public int AttackHead()
