@@ -46,6 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CharacterPage.cs" />
+     <Compile Include="Assets\Inventory.cs" />
+     <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\Scripts\CombatControl.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\MapControl.cs" />

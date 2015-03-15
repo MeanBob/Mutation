@@ -4,6 +4,7 @@ using System.Collections;
 public class InputHandler : MonoBehaviour {
     GameObject avatar;
     GameObject avatarPanel;
+    Vector2 lastMousePosition;
     float avatarWidth;
     float rotationSpeed = 2;
     bool avatarZoomed = false;
@@ -12,38 +13,55 @@ public class InputHandler : MonoBehaviour {
         avatar = GameObject.Find("Avatar");
         avatarPanel = GameObject.Find("AvatarPanel");
         avatarWidth = Screen.width / 3;
+        lastMousePosition = Input.mousePosition;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("Screen: " + Screen.width + ", " + Screen.height);
-        if (Input.touchCount > 0)
+
+        if (Application.platform == RuntimePlatform.Android
+            || Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            for(int i = 0; i < Input.touchCount; i++)
+            if (Input.touchCount > 0)
             {
-                Touch currentTouch = Input.GetTouch(i);
-                //Avatar rotation and zooming
-                if (currentTouch.position.x <= avatarWidth)
+                for (int i = 0; i < Input.touchCount; i++)
                 {
-                    switch (currentTouch.phase)
+                    Touch currentTouch = Input.GetTouch(i);
+                    //Avatar rotation and zooming
+                    if (currentTouch.position.x <= avatarWidth)
                     {
-                        case TouchPhase.Moved:
-                            avatar.transform.Rotate(currentTouch.deltaPosition.y * rotationSpeed, -currentTouch.deltaPosition.x * rotationSpeed, 0, Space.World);
-                            break;
-                        case TouchPhase.Ended:
-                            if (currentTouch.tapCount > 1)
-                            {
-                                if (avatarZoomed)
-                                    avatar.transform.position += new Vector3(0, 0, 2);
-                                else
-                                    avatar.transform.position += new Vector3(0, 0, -2);
-                                avatarZoomed = !avatarZoomed;
-                            }
-                            break;
+                        switch (currentTouch.phase)
+                        {
+                            case TouchPhase.Moved:
+                                avatar.transform.Rotate(currentTouch.deltaPosition.y * rotationSpeed, -currentTouch.deltaPosition.x * rotationSpeed, 0, Space.World);
+                                break;
+                            case TouchPhase.Ended:
+                                if (currentTouch.tapCount > 1)
+                                {
+                                    if (avatarZoomed)
+                                        avatar.transform.position += new Vector3(0, 0, 2);
+                                    else
+                                        avatar.transform.position += new Vector3(0, 0, -2);
+                                    avatarZoomed = !avatarZoomed;
+                                }
+                                break;
+                        }
                     }
                 }
             }
         }
-	
+
+        else
+        {
+            Vector2 currentMousePosition = Input.mousePosition;
+            if (Input.GetMouseButton(0))
+            {
+                if (Input.mousePosition.x <= avatarWidth)
+                {
+                    avatar.transform.Rotate((currentMousePosition.y - lastMousePosition.y) * rotationSpeed, (currentMousePosition.x - lastMousePosition.x) * rotationSpeed, 0, Space.World);
+                }
+            }
+            lastMousePosition = currentMousePosition;
+        }
 	}
 }
