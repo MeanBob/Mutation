@@ -11,7 +11,8 @@ public class Mutation : ScriptableObject {
     protected int legMaxDamage;
 
 	// Use this for initialization
-	void Start () {
+    public virtual void Init()
+    {
 	
 	}
 	

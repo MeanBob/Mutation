@@ -29,11 +29,17 @@ public class CharacterPage : MonoBehaviour {
         currentHP = maxHP;
 
         head = ScriptableObject.CreateInstance<NoMutation>();
+        head.Init();
         body = ScriptableObject.CreateInstance<NoMutation>();
+        body.Init();
         leftArm = ScriptableObject.CreateInstance<NoMutation>();
+        leftArm.Init();
         rightArm = ScriptableObject.CreateInstance<NoMutation>();
+        rightArm.Init();
         leftLeg = ScriptableObject.CreateInstance<NoMutation>();
+        leftLeg.Init();
         rightLeg = ScriptableObject.CreateInstance<NoMutation>();
+        rightLeg.Init();
 
         currentHPText = GameObject.Find("HPCurrentText").GetComponent<UnityEngine.UI.Text>();
         maxHPText = GameObject.Find("HPMaxText").GetComponent<UnityEngine.UI.Text>();

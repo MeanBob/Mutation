@@ -4,7 +4,7 @@ using System.Collections;
 public class NoMutation : Mutation {
 
 	// Use this for initialization
-    void Start()
+    public override void Init()
     {
         mutationName = "None";
         headMinDamage = 1;

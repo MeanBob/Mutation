@@ -29,6 +29,16 @@ public class Monster : ScriptableObject {
 	
 	}
 
+    public int GetMaxHealth()
+    {
+        return maxHP;
+    }
+
+    public int GetHealth()
+    {
+        return currentHP;
+    }
+
     public bool DoDamage(int damage)
     {
         currentHP -= damage;

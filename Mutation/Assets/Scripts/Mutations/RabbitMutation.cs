@@ -4,7 +4,7 @@ using System.Collections;
 public class RabbitMutation : Mutation {
 
 	// Use this for initialization
-	void Start () {
+	public override void Init() {
         mutationName = "Rabbit";
         headMinDamage = 1;
         headMaxDamage = 4;
