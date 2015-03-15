@@ -9,6 +9,7 @@ struct Point
 public class MapControl : MonoBehaviour {    
     bool DEBUGtriggerMonster = false;
     UIControl ui;
+    CombatControl combat;
     Point playerLocation;
     int xSize = 10;
     int ySize = 10;
@@ -19,6 +20,9 @@ public class MapControl : MonoBehaviour {
         currentZone = ScriptableObject.CreateInstance<Zone>();
         currentZone.SetZoneSize(xSize, ySize);
         ui = GetComponent<UIControl>();
+        combat = GetComponent<CombatControl>();
+
+        //Map setup that will change
         playerLocation.x = xSize / 2;
         playerLocation.y = ySize / 2;
 
@@ -91,7 +95,7 @@ public class MapControl : MonoBehaviour {
         //If we're triggering a monster, do that as well.
         if (DEBUGtriggerMonster)
         {
-            ui.InitiateCombat();
+            combat.InitiateCombat();
             //TriggerMonster
             DEBUGtriggerMonster = false;
         }

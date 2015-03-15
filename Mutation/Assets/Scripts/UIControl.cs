@@ -8,6 +8,7 @@ public class UIControl : MonoBehaviour {
     GameObject fightPanel;
     //GameObject inventoryPanel;
     //GameObject avatarPanel;
+    GameObject playerActionPanel;
     GameObject lastPanel;
     UnityEngine.UI.Text explorationDescription;
     Stack panelStack;
@@ -17,6 +18,7 @@ public class UIControl : MonoBehaviour {
         //mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
         fightPanel = transform.FindChild("FightPanel").gameObject;
+        playerActionPanel = fightPanel.transform.FindChild("ActionPanel").gameObject;
         //inventoryPanel = transform.FindChild("InventoryPanel").gameObject;
         //avatarPanel = transform.FindChild("AvatarPanel").gameObject;
         panelStack = new Stack();
@@ -97,5 +99,16 @@ public class UIControl : MonoBehaviour {
     public void EndCombat()
     {
         ChangePanel(explorationPanel);
+    }
+
+    public void EnablePlayerActionPanel()
+    {
+        AddPanelOnTop(playerActionPanel);
+    }
+
+    public void DisablePlayerActionPanel()
+    {
+        RemovePanelFromTop();
+        RemovePanelFromTop();
     }
 }
