@@ -29,6 +29,11 @@ public class Monster : ScriptableObject {
 	
 	}
 
+    public string GetName()
+    {
+        return monsterName;
+    }
+
     public int GetMaxHealth()
     {
         return maxHP;

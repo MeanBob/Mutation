@@ -79,27 +79,27 @@ public class CharacterPage : MonoBehaviour {
 
     public int AttackHead()
     {
-        return head.RollHeadDamage();
+        return head.RollHeadDamage() + strength;
     }
 
     public int AttackLeftArm()
     {
-        return leftArm.RollArmDamage();
+        return leftArm.RollArmDamage() + strength;
     }
 
     public int AttackRightArm()
     {
-        return rightArm.RollArmDamage();
+        return rightArm.RollArmDamage() + strength;
     }
 
     public int AttackLeftLeg()
     {
-        return leftLeg.RollLegDamage();
+        return leftLeg.RollLegDamage() + strength;
     }
 
     public int AttackRightLeg()
     {
-        return rightLeg.RollLegDamage();
+        return rightLeg.RollLegDamage() + strength;
     }
 
     public int GetSpeed()

@@ -10,6 +10,7 @@ public class CombatControl : MonoBehaviour {
     UnityEngine.UI.Slider enemyHealthSlider;
     UnityEngine.UI.Text enemyMaxHealthText;
     UnityEngine.UI.Text enemyCurrentHealthText;
+    UnityEngine.UI.Text combatLogText;
     float currentPlayerReadiness = 0;
     float currentMonsterReadiness = 0;
     float maxReadiness = 100;
@@ -30,6 +31,8 @@ public class CombatControl : MonoBehaviour {
         enemyCurrentHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/Handle Slide Area/EnemyHPCurrentText").GetComponent<UnityEngine.UI.Text>();
         enemyMaxHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/EnemyHPMaxText").GetComponent<UnityEngine.UI.Text>();
         enemyHealthSlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider").GetComponent<UnityEngine.UI.Slider>();
+
+        combatLogText = transform.FindChild("FightPanel/CombatLogPanel/CombatLogText/Text").GetComponent<UnityEngine.UI.Text>();
 	}
 	
 	// Update is called once per frame
@@ -52,21 +55,26 @@ public class CombatControl : MonoBehaviour {
             {
                 int monsterDamage = 0;
                 int choice = Random.Range(0, 5);
+                combatLogText.text += currentMonster.GetName() + "'s ";
                 switch (choice)
                 {
                     case 0:
+                        combatLogText.text += "bite ";
                         monsterDamage = currentMonster.RollHeadDamage();
                         break;
                     case 1:
                     case 2:
+                        combatLogText.text += "claw ";
                         monsterDamage = currentMonster.RollArmDamage();
                         break;
                     case 3:
                     case 4:
+                        combatLogText.text += "kick ";
                         monsterDamage = currentMonster.RollLegDamage();
                         break;
                 }
                 currentMonsterReadiness = 0;
+                combatLogText.text += "did " + monsterDamage + " damage.\n\n";
                 playerCharacter.DoDamage(monsterDamage);
             }
         }
@@ -82,32 +90,36 @@ public class CombatControl : MonoBehaviour {
 
     public void PlayerAttackHead()
     {
+        combatLogText.text += "Your headbutt";
         DoDamageToMonster(playerCharacter.AttackHead());
     }
 
     public void PlayerAttackLeftArm()
     {
+        combatLogText.text += "Your left punch";
         DoDamageToMonster(playerCharacter.AttackLeftArm());
     }
 
     public void PlayerAttackRightArm()
     {
+        combatLogText.text += "Your right punch";
         DoDamageToMonster(playerCharacter.AttackRightArm());
     }
 
     public void PlayerAttackLeftLeg()
     {
+        combatLogText.text += "Your left kick";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
     }
 
     public void PlayerAttackRightLeg()
     {
+        combatLogText.text += "Your right kick";
         DoDamageToMonster(playerCharacter.AttackRightLeg());
     }
 
     void DoDamageToMonster(int damage)
     {
-        Debug.Log("Damage: " + damage);
         if (currentMonster.DoDamage(damage))
         {
             combatOn = false;
@@ -117,6 +129,7 @@ public class CombatControl : MonoBehaviour {
         enemyHealthSlider.value = currentMonster.GetHealth();
         ui.DisablePlayerActionPanel();
         currentPlayerReadiness = 0;
+        combatLogText.text += " did " + damage + " damage.\n\n";
     }
 
     public void DEBUGKILLENEMY()
@@ -143,5 +156,7 @@ public class CombatControl : MonoBehaviour {
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
         enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
         enemyHealthSlider.value = currentMonster.GetHealth();
+
+        combatLogText.text = "";
     }
 }
