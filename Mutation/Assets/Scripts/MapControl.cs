@@ -14,7 +14,7 @@ public class MapControl : MonoBehaviour {
     int ySize = 10;
     Zone currentZone;
 
-	// Use this for initialization
+	// Use this for initialization poop
 	void Start () {
         currentZone = ScriptableObject.CreateInstance<Zone>();
         currentZone.SetZoneSize(xSize, ySize);
@@ -44,21 +44,25 @@ public class MapControl : MonoBehaviour {
     public void MoveNorth()
     {
         GoDirection(0, 1);
+
     }
 
     public void MoveSouth()
     {
         GoDirection(0, -1);
+
     }
 
     public void MoveEast()
     {
         GoDirection(1, 0);
+
     }
 
     public void MoveWest()
     {
         GoDirection(-1, 0);
+
     }
 
     public void DEBUGMonsterAttackNextMove()
