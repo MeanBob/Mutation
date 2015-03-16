@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BearMutation : MonoBehaviour {
+public class BearMutation : Mutation {
 
 	// Use this for initialization
 	public override void Init() {

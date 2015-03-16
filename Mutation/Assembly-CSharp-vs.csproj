@@ -60,7 +60,6 @@
      <Compile Include="Assets\Scripts\Mutations\RabbitMutation.cs" />
      <Compile Include="Assets\Scripts\Mutations\WolfMutation.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
-     <Compile Include="Assets\Scripts\TESTPUSH.cs" />
      <Compile Include="Assets\Scripts\UIControl.cs" />
      <Compile Include="Assets\Scripts\Zone.cs" />
  <Reference Include="UnityEngine.UI">

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WolfMonster : MonoBehaviour {
+public class WolfMonster : Monster {
 
 	// Use this for initialization
 	public override void Init()
