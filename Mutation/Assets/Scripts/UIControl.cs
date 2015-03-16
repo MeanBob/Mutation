@@ -3,11 +3,12 @@ using System.Collections;
 
 public class UIControl : MonoBehaviour {
     //If we decided we want a bit more control
-    //GameObject mapPanel;
+    GameObject mapPanel;
     GameObject explorationPanel;
     GameObject fightPanel;
-    //GameObject inventoryPanel;
-    //GameObject avatarPanel;
+    GameObject characterSheetPanel;
+    GameObject inventoryPanel;
+    GameObject avatarPanel;
     GameObject playerActionPanel;
     GameObject lastPanel;
     UnityEngine.UI.Text explorationDescription;
@@ -15,15 +16,22 @@ public class UIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //mapPanel = transform.FindChild("MapPanel").gameObject;
+        mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
         fightPanel = transform.FindChild("FightPanel").gameObject;
+        characterSheetPanel = transform.FindChild("CharacterSheetPanel").gameObject;
         playerActionPanel = fightPanel.transform.FindChild("ActionPanel").gameObject;
-        //inventoryPanel = transform.FindChild("InventoryPanel").gameObject;
-        //avatarPanel = transform.FindChild("AvatarPanel").gameObject;
-        panelStack = new Stack();
-        ChangePanel(explorationPanel);
+        inventoryPanel = transform.FindChild("InventoryPanel").gameObject;
+        avatarPanel = transform.FindChild("AvatarPanel").gameObject;
         explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
+        panelStack = new Stack();
+
+        //Don't turn anything off until the game is loaded or else it makes it a pain to find anything :p
+        mapPanel.SetActive(false);
+        explorationPanel.SetActive(false);
+        fightPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+        ChangePanel(characterSheetPanel);
 	}
 	
 	// Update is called once per frame
