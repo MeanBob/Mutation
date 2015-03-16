@@ -50,8 +50,10 @@
      <Compile Include="Assets\Scripts\CombatControl.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\MapControl.cs" />
+     <Compile Include="Assets\Scripts\Monsters\BearMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\Monster.cs" />
      <Compile Include="Assets\Scripts\Monsters\RabbitMonster.cs" />
+     <Compile Include="Assets\Scripts\Monsters\WolfMonster.cs" />
      <Compile Include="Assets\Scripts\Mutations\BearMutation.cs" />
      <Compile Include="Assets\Scripts\Mutations\Mutation.cs" />
      <Compile Include="Assets\Scripts\Mutations\NoMutation.cs" />
