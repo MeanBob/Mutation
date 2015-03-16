@@ -21,6 +21,11 @@ public class Mutation : ScriptableObject {
 	
 	}
 
+    public string GetName()
+    {
+        return mutationName;
+    }
+
     public int RollHeadDamage()
     {
         return RollDamage(headMinDamage, headMaxDamage);
