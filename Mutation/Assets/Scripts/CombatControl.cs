@@ -144,8 +144,14 @@ public class CombatControl : MonoBehaviour {
     void GenerateMonster()
     {
         //Randomly choose a monster in the future based on player level?
+		int rMonster = Random.Range(1,4);
+		if(rMonster == 1)
+		{
         currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
-		//currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
+		}
+		else if(rMonster == 2)
+		{currentMonster = ScriptableObject.CreateInstance<WolfMonster>();}
+		else {currentMonster = ScriptableObject.CreateInstance<BearMonster>();}
         currentMonster.Init();
 
         //If we want to introduce a "surprised" or "ambush" mechanic,
