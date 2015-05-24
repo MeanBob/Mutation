@@ -2,18 +2,31 @@
 using System.Collections;
 
 public class CharacterPage : MonoBehaviour {
-    int strength;
-    int speed;
-    int intelligence;
-    int maxHP;
-    int currentHP;
 
-    int tempStrength;
-    int tempSpeed;
-    int tempIntelligence;
-    int oldStrength;
+	//stats
+    int strength;
+	int tempStrength;
+	int oldStrength;
+	int currentHP;
+	int maxHP;
+
+	int speed;
+	int tempSpeed;
     int oldSpeed;
+
+	int accuracy;
+	int tempaccuracy;
+	int oldaccuracy;	
+
+	int intelligence;
+    int tempIntelligence;
     int oldIntelligence;
+
+	int energy;
+	int tempEnergy;
+	int oldEnergy;
+    
+
     
     Mutation head;
     Mutation body;
