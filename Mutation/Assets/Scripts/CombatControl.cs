@@ -16,6 +16,7 @@ public class CombatControl : MonoBehaviour {
     float maxReadiness = 100;
     float readinessMultiplier = 1;
 
+
     bool combatOn = false;
 
 	// Use this for initialization
@@ -39,19 +40,14 @@ public class CombatControl : MonoBehaviour {
 	void Update () {
         if (combatOn)
         {
+			ui.EnablePlayerActionPanel();
             currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
             currentMonsterReadiness += currentMonster.GetSpeed() * readinessMultiplier * Time.deltaTime;
 
             playerSlider.value = currentPlayerReadiness;
             enemySlider.value = currentMonsterReadiness;
 
-            if (currentPlayerReadiness >= maxReadiness)
-            {
-                //Enable screen
-                ui.EnablePlayerActionPanel();
-            }
-
-            if (currentMonsterReadiness >= maxReadiness)
+           if (currentMonsterReadiness >= maxReadiness)
             {
                 int monsterDamage = 0;
                 int choice = Random.Range(0, 5);
@@ -80,6 +76,7 @@ public class CombatControl : MonoBehaviour {
         }
 	}
 
+
     public void InitiateCombat()
     {
         //Generate monster
@@ -88,48 +85,114 @@ public class CombatControl : MonoBehaviour {
         combatOn = true;
     }
 
-    public void PlayerAttackHead()
+	public void CanAttack(int attackId)
+	{
+		int accuracy = playerCharacter.getPlayerAccuracy();
+		if (currentPlayerReadiness >= 100)
+		{
+			int chanceToHit = Random.Range (0,100);
+
+			switch(attackId)
+			{
+			case 0 :
+				if (chanceToHit > (30 - accuracy))
+					PlayerAttackHead();
+				else 
+					combatLogText.text += "You miss! \n \n";
+				break;
+			case 1 :
+				if (chanceToHit > (60 - accuracy))
+				PlayerAttackLeftArm();
+				else 
+					combatLogText.text += "You miss! \n \n";
+				break;
+			case 2 :
+				if (chanceToHit > (60 - accuracy))
+				PlayerAttackRightArm();
+				else 
+					combatLogText.text += "You miss! \n \n";
+				break;
+			case 3 :
+				if (chanceToHit > (40 - accuracy))
+				PlayerAttackLeftLeg();
+				else 
+					combatLogText.text += "You miss! \n \n";
+				break;
+			case 4 :
+				if (chanceToHit > (40 - accuracy))
+				PlayerAttackRightLeg();
+				else 
+					combatLogText.text += "You miss! \n \n";
+				break;
+				
+			}
+		}
+		else {combatLogText.text += "You are not ready.\n\n";}
+	}
+
+    void PlayerAttackHead()
     {
-        combatLogText.text += "Your headbutt";
+
+		combatLogText.text += "Your headbutt";
         DoDamageToMonster(playerCharacter.AttackHead());
+		currentPlayerReadiness = 30;
+		playerCharacter.DoEnergyDamage(25);
+
+
     }
 
-    public void PlayerAttackLeftArm()
+    void PlayerAttackLeftArm()
     {
-        combatLogText.text += "Your left punch";
+
+		combatLogText.text += "Your left punch";
         DoDamageToMonster(playerCharacter.AttackLeftArm());
+		currentPlayerReadiness = 70;
+		playerCharacter.DoEnergyDamage(10);
     }
 
-    public void PlayerAttackRightArm()
+    void PlayerAttackRightArm()
     {
         combatLogText.text += "Your right punch";
         DoDamageToMonster(playerCharacter.AttackRightArm());
+		currentPlayerReadiness = 70;
+		playerCharacter.DoEnergyDamage(10);
+
     }
 
-    public void PlayerAttackLeftLeg()
+    void PlayerAttackLeftLeg()
     {
         combatLogText.text += "Your left kick";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
+		currentPlayerReadiness = 50;
+		playerCharacter.DoEnergyDamage(18);
     }
 
-    public void PlayerAttackRightLeg()
+    void PlayerAttackRightLeg()
     {
         combatLogText.text += "Your right kick";
         DoDamageToMonster(playerCharacter.AttackRightLeg());
+		currentPlayerReadiness = 50;
+		playerCharacter.DoEnergyDamage(18);
     }
 
     void DoDamageToMonster(int damage)
     {
         if (currentMonster.DoDamage(damage))
         {
-            combatOn = false;
+//            combatOn = false;
             ui.EndCombat();
         }
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
+		if(currentMonster.GetHealth() <= 0){
+			playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
+			combatOn = false;
+			
+		}
         enemyHealthSlider.value = currentMonster.GetHealth();
         ui.DisablePlayerActionPanel();
-        currentPlayerReadiness = 0;
+        //currentPlayerReadiness = 0;
         combatLogText.text += " did " + damage + " damage.\n\n";
+
     }
 
     public void DEBUGKILLENEMY()

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterPage.cs" />
      <Compile Include="Assets\Scripts\CombatControl.cs" />
+     <Compile Include="Assets\Scripts\Constants.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\MapControl.cs" />
      <Compile Include="Assets\Scripts\Monsters\BearMonster.cs" />

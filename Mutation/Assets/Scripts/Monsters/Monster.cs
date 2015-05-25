@@ -16,7 +16,7 @@ public class Monster : ScriptableObject {
     protected int legMinDamage;
     protected int legMaxDamage;
     protected int bonusDamage;
-
+	protected int expPointsGained;
 	// Use this for initialization
     public virtual void Init()
     {
@@ -43,6 +43,11 @@ public class Monster : ScriptableObject {
     {
         return currentHP;
     }
+
+	public int GetExpPointsGained()
+	{
+		return expPointsGained;
+	}
 
     public bool DoDamage(int damage)
     {

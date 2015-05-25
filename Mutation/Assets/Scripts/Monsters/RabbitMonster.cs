@@ -17,6 +17,7 @@ public class RabbitMonster : Monster {
         armMaxDamage = 2;
         legMinDamage = 1;
         legMaxDamage = 6;
+		expPointsGained = 30;
 
         bonusDamage = strength;
 

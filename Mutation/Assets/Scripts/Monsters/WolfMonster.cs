@@ -7,7 +7,7 @@ public class WolfMonster : Monster {
 	public override void Init()
 	{
 		monsterName = "Wolf";
-		strength = 10;
+		strength = 2;
 		speed = 15;
 		intelligence = 5;
 		
@@ -17,7 +17,8 @@ public class WolfMonster : Monster {
 		armMaxDamage = 6;
 		legMinDamage = 1;
 		legMaxDamage = 6;
-		
+		expPointsGained = 45;
+
 		bonusDamage = strength;
 		
 		base.Init();
