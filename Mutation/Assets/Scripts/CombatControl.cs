@@ -28,12 +28,12 @@ public class CombatControl : MonoBehaviour {
         playerSlider = transform.FindChild("FightPanel/PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         enemySlider.maxValue = maxReadiness;
         playerSlider.maxValue = maxReadiness;
+		combatLogText = transform.FindChild("FightPanel/ActionPanel/CombatLogPanel/CombatLogText/Text").GetComponent<UnityEngine.UI.Text>();
 
         enemyCurrentHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/Handle Slide Area/EnemyHPCurrentText").GetComponent<UnityEngine.UI.Text>();
         enemyMaxHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/EnemyHPMaxText").GetComponent<UnityEngine.UI.Text>();
         enemyHealthSlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider").GetComponent<UnityEngine.UI.Slider>();
 
-        combatLogText = transform.FindChild("FightPanel/CombatLogPanel/CombatLogText/Text").GetComponent<UnityEngine.UI.Text>();
 	}
 	
 	// Update is called once per frame
