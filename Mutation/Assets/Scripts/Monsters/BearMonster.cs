@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BearMonster : Monster {
 
-	// Use this for initialization
 	public override void Init()
 	{
 		monsterName = "Bear";
@@ -21,10 +20,5 @@ public class BearMonster : Monster {
 		bonusDamage = strength;
 		
 		base.Init();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

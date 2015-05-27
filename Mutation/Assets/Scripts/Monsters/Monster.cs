@@ -17,16 +17,11 @@ public class Monster : ScriptableObject {
     protected int legMaxDamage;
     protected int bonusDamage;
 	protected int expPointsGained;
-	// Use this for initialization
-    public virtual void Init()
+
+	public virtual void Init()
     {
         currentHP = 10 * strength;
         maxHP = currentHP;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
     public string GetName()

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class RabbitMonster : Monster {
 
-	// Use this for initialization
     public override void Init()
     {
         monsterName = "Rabbit";
@@ -23,9 +22,5 @@ public class RabbitMonster : Monster {
 
         base.Init();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

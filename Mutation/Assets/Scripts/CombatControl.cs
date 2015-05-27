@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class CombatControl : MonoBehaviour {
-    UIControl ui;
+   
+	UIControl ui;
     CharacterPage playerCharacter;
     Monster currentMonster;
     UnityEngine.UI.Slider enemySlider;
@@ -33,7 +34,6 @@ public class CombatControl : MonoBehaviour {
         enemyCurrentHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/Handle Slide Area/EnemyHPCurrentText").GetComponent<UnityEngine.UI.Text>();
         enemyMaxHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/EnemyHPMaxText").GetComponent<UnityEngine.UI.Text>();
         enemyHealthSlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider").GetComponent<UnityEngine.UI.Slider>();
-
 	}
 	
 	// Update is called once per frame
@@ -156,7 +156,6 @@ public class CombatControl : MonoBehaviour {
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 70;
 		playerCharacter.DoEnergyDamage(10);
-
     }
 
     void PlayerAttackLeftLeg()
@@ -183,10 +182,10 @@ public class CombatControl : MonoBehaviour {
             ui.EndCombat();
         }
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
-		if(currentMonster.GetHealth() <= 0){
+		if(currentMonster.GetHealth() <= 0)
+		{
 			playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
 			combatOn = false;
-			
 		}
         enemyHealthSlider.value = currentMonster.GetHealth();
         ui.DisablePlayerActionPanel();
@@ -202,6 +201,7 @@ public class CombatControl : MonoBehaviour {
 
     public void DEBUGKILLPLAYER()
     {
+
     }
 
     void GenerateMonster()
@@ -210,11 +210,15 @@ public class CombatControl : MonoBehaviour {
 		int rMonster = Random.Range(1,4);
 		if(rMonster == 1)
 		{
-        currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+        	currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
 		}
 		else if(rMonster == 2)
-		{currentMonster = ScriptableObject.CreateInstance<WolfMonster>();}
-		else {currentMonster = ScriptableObject.CreateInstance<BearMonster>();}
+		{
+			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
+		}
+		else {
+			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
+		}
         currentMonster.Init();
 
         //If we want to introduce a "surprised" or "ambush" mechanic,

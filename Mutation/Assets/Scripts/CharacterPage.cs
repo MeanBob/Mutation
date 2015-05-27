@@ -9,8 +9,7 @@ public class CharacterPage : MonoBehaviour {
 	int oldStrength;
 	int currentHP; 
 	int maxHP;
-
-
+	
 	int energy;
 	int tempEnergy;
 	int oldEnergy;  
@@ -171,11 +170,6 @@ public class CharacterPage : MonoBehaviour {
         rightLegText.text = rightLeg.GetName();
         allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void UpdateExpPoints(int monsterExpPoints)
 	{
@@ -183,8 +177,8 @@ public class CharacterPage : MonoBehaviour {
 		currentLevel = (int)(Mathf.Sqrt(currentExpPoints) * 0.25) ;
 		nextLevelExpPoints =  (int)((currentLevel+1)*(currentLevel+1)*16.0f); 
 
-		Debug.Log("current Exp points ::::::" +currentExpPoints);
-		Debug.Log("current Level ::::::" +currentLevel);
+//		Debug.Log("current Exp points ::::::" +currentExpPoints);
+//		Debug.Log("current Level ::::::" +currentLevel);
 
 		levelText.text = currentLevel.ToString();
 		expText.text = currentExpPoints.ToString();
