@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class CharacterPage : MonoBehaviour {
 
 	//stats
@@ -71,9 +71,16 @@ public class CharacterPage : MonoBehaviour {
 
     int currentNumberOfAllocatablePoints = 10;
     int numberOfPointsPerLevel = 10;
-
+	List<Item> listOfItems = new List<Item>(2);
+	Item tempItem;
 	// Use this for initialization
 	void Start () {
+		tempItem = ScriptableObject.CreateInstance<Daffodil>();
+		tempItem.Init();
+		listOfItems.Add(tempItem);
+		tempItem = ScriptableObject.CreateInstance<Chloroform>();
+		tempItem.Init();
+		listOfItems.Add(tempItem);
 //		sample();
         //We'll want to have this customizeable, once character creation is in
 		energy = 10;
@@ -171,6 +178,10 @@ public class CharacterPage : MonoBehaviour {
         allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 	}
 
+	public List<Item> returnList()
+	{
+		return listOfItems;
+	}
 	public void UpdateExpPoints(int monsterExpPoints)
 	{
 		currentExpPoints += monsterExpPoints;
@@ -279,11 +290,7 @@ public class CharacterPage : MonoBehaviour {
         return rightLeg.RollLegDamage() + strength;
     }
 
-    public int GetSpeed()
-    {
-        return speed;
-    }
-
+ 
 	public void IncreaseEnergy()
 	{
 		if (currentNumberOfAllocatablePoints > 0)
@@ -421,6 +428,7 @@ public class CharacterPage : MonoBehaviour {
 		UpdateStats();
         UpdateHealthMeter();
 		UpdateEnergyMeter();
+
     }
 
     public void ResetPoints()
@@ -435,4 +443,77 @@ public class CharacterPage : MonoBehaviour {
         tempIntelligence = intelligence;
         UpdateStats();
     }
+	public int GetStrength()
+	{
+		return strength;
+	}
+	public void SetStrength(int offSet)
+	{
+		strength +=  offSet;
+		tempStrength = strength;
+		CommitPoints();
+	}
+	public int GetSpeed()
+	{
+		return speed;
+	}
+	public void SetSpeed(int offSet)
+	{
+		speed += offSet;
+		tempSpeed = speed;
+		CommitPoints();
+	}
+	public int GetAccuracy()
+	{
+		return accuracy;
+	}
+	public void SetAccuracy(int offSet)
+	{
+		accuracy += offSet;
+		tempAccuracy = accuracy;
+		CommitPoints();
+	}
+	public int GetIntelligence()
+	{
+		return intelligence;
+	}
+	public void SetIntelligence(int offSet)
+	{
+		intelligence += offSet;
+		tempIntelligence = intelligence;
+		CommitPoints();
+	}
+	public int GetEnergy()
+	{
+		return energy;
+	}
+	public void SetEnergy(int offSet)
+	{
+		energy += offSet;
+		tempEnergy = energy;
+		CommitPoints();
+	}
+	public int GetEnergyPoints()
+	{
+		return currentEnergy;
+	}
+	public void SetEnergyPoints(int offSet)
+	{
+		currentEnergy += offSet;
+		if (currentEnergy>maxEnergy)
+			currentEnergy=maxEnergy;
+		CommitPoints();
+	}
+
+	public int GetHitPoints()
+	{
+		return currentHP;
+	}
+	public void SetHitPoints(int offSet)
+	{
+		currentHP += offSet;
+		if (currentHP>maxHP)
+			currentHP=maxHP;
+		CommitPoints();
+	}
 }

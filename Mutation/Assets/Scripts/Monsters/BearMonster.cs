@@ -7,7 +7,7 @@ public class BearMonster : Monster {
 	{
 		monsterName = "Bear";
 		strength = 2;
-		speed = 10;
+		speed = 80;
 		intelligence = 5;
 		
 		headMinDamage = 1;
