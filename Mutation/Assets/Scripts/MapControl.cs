@@ -7,7 +7,10 @@ struct Point
 }
 
 public class MapControl : MonoBehaviour {    
-    bool DEBUGtriggerMonster = false;
+    
+	CharacterPage playerCharacter;
+
+	bool DEBUGtriggerMonster = false;
     UIControl ui;
     CombatControl combat;
     Point playerLocation;
@@ -17,7 +20,9 @@ public class MapControl : MonoBehaviour {
 
 	// Use this for initialization poop
 	void Start () {
-        currentZone = ScriptableObject.CreateInstance<Zone>();
+        
+		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
+		currentZone = ScriptableObject.CreateInstance<Zone>();
         currentZone.SetZoneSize(xSize, ySize);
         ui = GetComponent<UIControl>();
         combat = GetComponent<CombatControl>();
@@ -48,24 +53,28 @@ public class MapControl : MonoBehaviour {
     public void MoveNorth()
     {
         GoDirection(0, 1);
+		playerCharacter.DoEnergyDamage(1);
 
     }
 
     public void MoveSouth()
     {
         GoDirection(0, -1);
+		playerCharacter.DoEnergyDamage(1);
 
     }
 
     public void MoveEast()
     {
         GoDirection(1, 0);
+		playerCharacter.DoEnergyDamage(1);
 
     }
 
     public void MoveWest()
     {
         GoDirection(-1, 0);
+		playerCharacter.DoEnergyDamage(1);
 
     }
 

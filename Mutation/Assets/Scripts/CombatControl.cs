@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CombatControl : MonoBehaviour {
    
@@ -17,13 +18,20 @@ public class CombatControl : MonoBehaviour {
     float maxReadiness = 100;
     float readinessMultiplier = 1;
 
+	public Button characterButton;
+	public Button exploreButton;
+	public Button inventoryButton;
+	public Button mapButton;
+
 
     bool combatOn = false;
 
 	// Use this for initialization
 	void Start () {
         ui = GetComponent<UIControl>();
-        playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
+        
+
+		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
 
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         playerSlider = transform.FindChild("FightPanel/PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
@@ -40,6 +48,11 @@ public class CombatControl : MonoBehaviour {
 	void Update () {
         if (combatOn)
         {
+			characterButton.interactable = false;
+			exploreButton.interactable = false;
+			inventoryButton.interactable = false;
+			mapButton.interactable = false;
+
 			ui.EnablePlayerActionPanel();
             currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
             currentMonsterReadiness += currentMonster.GetSpeed() * readinessMultiplier * Time.deltaTime;
@@ -74,6 +87,13 @@ public class CombatControl : MonoBehaviour {
                 playerCharacter.DoDamage(monsterDamage);
             }
         }
+		else
+		{
+			characterButton.interactable = true;
+			exploreButton.interactable = true;
+			inventoryButton.interactable = true;
+			mapButton.interactable = true;
+		}
 	}
 
 
@@ -136,7 +156,7 @@ public class CombatControl : MonoBehaviour {
 		combatLogText.text += "Your headbutt";
         DoDamageToMonster(playerCharacter.AttackHead());
 		currentPlayerReadiness = 30;
-		playerCharacter.DoEnergyDamage(25);
+		playerCharacter.DoEnergyDamage(5);
 
 
     }
@@ -147,7 +167,7 @@ public class CombatControl : MonoBehaviour {
 		combatLogText.text += "Your left punch";
         DoDamageToMonster(playerCharacter.AttackLeftArm());
 		currentPlayerReadiness = 70;
-		playerCharacter.DoEnergyDamage(10);
+		playerCharacter.DoEnergyDamage(1);
     }
 
     void PlayerAttackRightArm()
@@ -155,7 +175,7 @@ public class CombatControl : MonoBehaviour {
         combatLogText.text += "Your right punch";
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 70;
-		playerCharacter.DoEnergyDamage(10);
+		playerCharacter.DoEnergyDamage(1);
     }
 
     void PlayerAttackLeftLeg()
@@ -163,7 +183,7 @@ public class CombatControl : MonoBehaviour {
         combatLogText.text += "Your left kick";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
 		currentPlayerReadiness = 50;
-		playerCharacter.DoEnergyDamage(18);
+		playerCharacter.DoEnergyDamage(3);
     }
 
     void PlayerAttackRightLeg()
@@ -171,7 +191,7 @@ public class CombatControl : MonoBehaviour {
         combatLogText.text += "Your right kick";
         DoDamageToMonster(playerCharacter.AttackRightLeg());
 		currentPlayerReadiness = 50;
-		playerCharacter.DoEnergyDamage(18);
+		playerCharacter.DoEnergyDamage(3);
     }
 
     void DoDamageToMonster(int damage)
