@@ -33,11 +33,6 @@ public class UIControl : MonoBehaviour {
         inventoryPanel.SetActive(false);
         ChangePanel(characterSheetPanel);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public void ChangePanel(GameObject newPanel)
     {
@@ -87,6 +82,7 @@ public class UIControl : MonoBehaviour {
         }
         panelStack.Push(newPanel);
         newPanel.SetActive(true);
+
     }
 
     public void RemovePanelFromTop()

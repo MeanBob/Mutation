@@ -24,7 +24,7 @@ public class CombatControl : MonoBehaviour {
 	public Button mapButton;
 
 
-    bool combatOn = false;
+    public bool combatOn = false;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +45,11 @@ public class CombatControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+	void InventoryPopup()
+	{
+
+	}
+
 	void Update () {
         if (combatOn)
         {
@@ -53,7 +58,7 @@ public class CombatControl : MonoBehaviour {
 			inventoryButton.interactable = false;
 			mapButton.interactable = false;
 
-			ui.EnablePlayerActionPanel();
+
             currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
             currentMonsterReadiness += currentMonster.GetSpeed() * readinessMultiplier * Time.deltaTime;
 
@@ -101,8 +106,8 @@ public class CombatControl : MonoBehaviour {
     {
         //Generate monster
         GenerateMonster();
-        ui.InitiateCombat();
-        combatOn = true;
+		combatOn = true;
+		ui.InitiateCombat();
     }
 
 	public void CanAttack(int attackId)
@@ -117,32 +122,47 @@ public class CombatControl : MonoBehaviour {
 			case 0 :
 				if (chanceToHit > (30 - accuracy))
 					PlayerAttackHead();
-				else 
+				else {
 					combatLogText.text += "You miss! \n \n";
+					currentPlayerReadiness = 80;
+					playerCharacter.DoEnergyDamage(1);
+				}
 				break;
 			case 1 :
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackLeftArm();
-				else 
+				else {
 					combatLogText.text += "You miss! \n \n";
+					currentPlayerReadiness = 80;
+					playerCharacter.DoEnergyDamage(1);
+				}
 				break;
 			case 2 :
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackRightArm();
-				else 
+				else {
 					combatLogText.text += "You miss! \n \n";
+					currentPlayerReadiness = 80;
+					playerCharacter.DoEnergyDamage(1);
+				}
 				break;
 			case 3 :
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackLeftLeg();
-				else 
+				else {
 					combatLogText.text += "You miss! \n \n";
+					currentPlayerReadiness = 80;
+					playerCharacter.DoEnergyDamage(1);
+				}
 				break;
 			case 4 :
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackRightLeg();
-				else 
+				else {
 					combatLogText.text += "You miss! \n \n";
+					currentPlayerReadiness = 80;
+					playerCharacter.DoEnergyDamage(1);
+				}
 				break;
 				
 			}

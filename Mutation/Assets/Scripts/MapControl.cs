@@ -9,18 +9,19 @@ struct Point
 public class MapControl : MonoBehaviour {    
     
 	CharacterPage playerCharacter;
-
-	bool DEBUGtriggerMonster = false;
+	ExplorationText text;
     UIControl ui;
     CombatControl combat;
     Point playerLocation;
     int xSize = 10;
-    int ySize = 10;
+    int ySize = 11;
     Zone currentZone;
-
 	// Use this for initialization poop
 	void Start () {
-        
+		text = ScriptableObject.CreateInstance<ExplorationText>();
+		text.Start();
+
+		//Debug.Log(Constants.dialogue(0,0));
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
 		currentZone = ScriptableObject.CreateInstance<Zone>();
         currentZone.SetZoneSize(xSize, ySize);
@@ -28,8 +29,8 @@ public class MapControl : MonoBehaviour {
         combat = GetComponent<CombatControl>();
 
         //Map setup that will change
-        playerLocation.x = xSize / 2;
-        playerLocation.y = ySize / 2;
+        playerLocation.x = 8;
+        playerLocation.y = 5;
 
         for (int i = 0; i < xSize; i++)
         {
@@ -37,7 +38,7 @@ public class MapControl : MonoBehaviour {
             for (int j = 0; j < ySize; j++)
             {
                 Node newNode = ScriptableObject.CreateInstance<Node>();
-                newNode.AddDescription("A dirt path is here.");
+                newNode.AddDescription(text.dialogue[i,j]);
                 tempNodeArray[j] = newNode;
             }
             currentZone.AddNodeColumn(tempNodeArray, i);
@@ -50,37 +51,43 @@ public class MapControl : MonoBehaviour {
 
     }
 
+	void CombatCheck()
+	{
+		int fightChance = Random.Range(1,4);
+		//Debug.Log(fightChance);
+		if (fightChance > 2)
+		{
+			combat.InitiateCombat();
+
+
+		}
+	}
     public void MoveNorth()
     {
-        GoDirection(0, 1);
+        GoDirection(-1, 0);
+		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
-
     }
 
     public void MoveSouth()
     {
-        GoDirection(0, -1);
+        GoDirection(1, 0);
+		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
-
     }
 
     public void MoveEast()
     {
-        GoDirection(1, 0);
+		GoDirection(0, 1);
+		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
-
     }
 
     public void MoveWest()
     {
-        GoDirection(-1, 0);
+		GoDirection(0, -1);
+		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
-
-    }
-
-    public void DEBUGMonsterAttackNextMove()
-    {
-        DEBUGtriggerMonster = true;
     }
 
     public void GoDirection(int xDir, int yDir)
@@ -97,16 +104,10 @@ public class MapControl : MonoBehaviour {
         {
             currentZone.AttemptPlayerMove(playerLocation.x, playerLocation.y, ref oldDescription);
         }
+	//	Debug.Log(playerLocation.x +","+ playerLocation.y);
 
-        nodeDescription += "\n\n" + oldDescription;
+		nodeDescription += "\n\n" + oldDescription;
         ui.GoToDescription(nodeDescription);
 
-        //If we're triggering a monster, do that as well.
-        if (DEBUGtriggerMonster)
-        {
-            combat.InitiateCombat();
-            //TriggerMonster
-            DEBUGtriggerMonster = false;
-        }
     }
 }
