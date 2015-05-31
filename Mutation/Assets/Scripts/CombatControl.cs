@@ -23,7 +23,8 @@ public class CombatControl : MonoBehaviour {
 	public Button inventoryButton;
 	public Button mapButton;
 
-
+	public bool combatPause=false;
+	public bool MonsterAttackPause = false;
     public bool combatOn = false;
 
 	// Use this for initialization
@@ -34,7 +35,7 @@ public class CombatControl : MonoBehaviour {
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
 
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
-        playerSlider = transform.FindChild("FightPanel/PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
+        playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         enemySlider.maxValue = maxReadiness;
         playerSlider.maxValue = maxReadiness;
 		combatLogText = transform.FindChild("FightPanel/ActionPanel/CombatLogPanel/CombatLogText/Text").GetComponent<UnityEngine.UI.Text>();
@@ -50,17 +51,43 @@ public class CombatControl : MonoBehaviour {
 
 	}
 
+
+	
+
 	void Update () {
+
+		//DoSpeedDamage();
+
+
+
         if (combatOn)
         {
+
 			characterButton.interactable = false;
 			exploreButton.interactable = false;
 			inventoryButton.interactable = false;
 			mapButton.interactable = false;
 
 
+			//**
+
+
+
+			if (currentPlayerReadiness > maxReadiness)
+			{
+				currentMonsterReadiness = currentMonsterReadiness;
+				return;
+			}
+
+			if (!combatPause){
             currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
             currentMonsterReadiness += currentMonster.GetSpeed() * readinessMultiplier * Time.deltaTime;
+			}
+			//**
+			if (MonsterAttackPause)
+			{
+				//yield return StartCoroutine(MonsterAttackPause());
+			}
 
             playerSlider.value = currentPlayerReadiness;
             enemySlider.value = currentMonsterReadiness;
@@ -109,6 +136,8 @@ public class CombatControl : MonoBehaviour {
 		combatOn = true;
 		ui.InitiateCombat();
     }
+
+
 
 	public void CanAttack(int attackId)
 	{
@@ -197,7 +226,7 @@ public class CombatControl : MonoBehaviour {
 		currentPlayerReadiness = 70;
 		playerCharacter.DoEnergyDamage(1);
     }
-
+	
     void PlayerAttackLeftLeg()
     {
         combatLogText.text += "Your left kick";
@@ -213,6 +242,17 @@ public class CombatControl : MonoBehaviour {
 		currentPlayerReadiness = 50;
 		playerCharacter.DoEnergyDamage(3);
     }
+
+
+	public bool DoSpeedDamageForExploring(int damage)
+	{
+		currentPlayerReadiness -= 16;
+		if (currentPlayerReadiness <= 0)
+		{
+			return true;
+		}
+		return false;
+	}
 
     void DoDamageToMonster(int damage)
     {

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIControl : MonoBehaviour {
     //If we decided we want a bit more control
-    GameObject mapPanel;
+	//GameObject explorationDescription;
+	GameObject mapPanel;
     GameObject explorationPanel;
     GameObject fightPanel;
     GameObject characterSheetPanel;
@@ -11,12 +13,20 @@ public class UIControl : MonoBehaviour {
     GameObject avatarPanel;
     GameObject playerActionPanel;
     GameObject lastPanel;
-    UnityEngine.UI.Text explorationDescription;
+
+	UnityEngine.UI.Text explorationDescription;
     Stack panelStack;
+
+	UnityEngine.UI.Slider playerSlider;
+	float currentPlayerReadiness = 0;
 
 	// Use this for initialization
 	void Start () {
-        mapPanel = transform.FindChild("MapPanel").gameObject;
+        
+		playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
+
+
+		mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
         fightPanel = transform.FindChild("FightPanel").gameObject;
         characterSheetPanel = transform.FindChild("CharacterSheetPanel").gameObject;
@@ -33,6 +43,14 @@ public class UIControl : MonoBehaviour {
         inventoryPanel.SetActive(false);
         ChangePanel(characterSheetPanel);
 	}
+
+
+	public void ExplorationPause()
+	{
+		currentPlayerReadiness -= 15;
+		playerSlider.value = currentPlayerReadiness;
+	}
+
 
     public void ChangePanel(GameObject newPanel)
     {

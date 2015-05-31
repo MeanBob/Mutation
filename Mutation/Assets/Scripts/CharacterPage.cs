@@ -83,33 +83,33 @@ public class CharacterPage : MonoBehaviour {
 		listOfItems.Add(tempItem);
 //		sample();
         //We'll want to have this customizeable, once character creation is in
-		energy = 10;
+		energy = 11;
 		maxEnergy = 10 * energy;
 		tempEnergy = energy;
-		oldEnergy = 5;
+		oldEnergy = 1;
 		currentEnergy = maxEnergy;
 
-		strength = 10;
+		strength = 7;
 		maxHP = 10 * strength;
 		tempStrength = strength;
-		oldStrength = 5;
+		oldStrength = 1;
 		currentHP = maxHP;
 
 
-		accuracy = 10;
+		accuracy = 3;
 		tempAccuracy = accuracy;
-		oldAccuracy = 5;
-		speed = 100;
+		oldAccuracy = 1;
+		speed = 25;
 		intelligence = 10;
 
 		tempSpeed = speed;
 		tempIntelligence = intelligence;
 
-		oldSpeed = 5;
-        oldIntelligence = 5;
+		oldSpeed = 1;
+        oldIntelligence = 1;
 
         currentNumberOfAllocatablePoints = numberOfPointsPerLevel;
-		currentExpPoints = 0;
+		currentExpPoints = 9;
 		currentLevel = 1;
 
         head = ScriptableObject.CreateInstance<NoMutation>();
@@ -238,10 +238,19 @@ public class CharacterPage : MonoBehaviour {
         if (currentHP <= 0)
         {
             Debug.Log("You died.");
+			Death();
             //trigger death
         }
         UpdateHealthMeter();
     }
+
+	//Death
+	IEnumerator Death()
+	{
+		yield return new WaitForSeconds(5);
+	}
+
+
 
 	public void DoEnergyDamage(int energyDamage)
 	{

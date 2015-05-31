@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Monsters\RabbitMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\WolfMonster.cs" />
      <Compile Include="Assets\Scripts\Mutations\BearMutation.cs" />
+     <Compile Include="Assets\Scripts\Mutations\FaceChange.cs" />
      <Compile Include="Assets\Scripts\Mutations\Mutation.cs" />
      <Compile Include="Assets\Scripts\Mutations\NoMutation.cs" />
      <Compile Include="Assets\Scripts\Mutations\RabbitMutation.cs" />
