@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 struct Point
 {
@@ -16,8 +17,17 @@ public class MapControl : MonoBehaviour {
     int xSize = 10;
     int ySize = 11;
     Zone currentZone;
+
+	public Button northButton;
+	public Button southButton;
+	public Button eastButton;
+	public Button westButton;
+
+
 	// Use this for initialization poop
 	void Start () {
+
+
 		text = ScriptableObject.CreateInstance<ExplorationText>();
 		text.Start();
 
@@ -45,14 +55,29 @@ public class MapControl : MonoBehaviour {
         }
         
 	}
+
+	void Update()
+	{
+		if (combat.currentPlayerReadiness < combat.maxReadiness)
+		{
+			northButton.interactable = false;
+			southButton.interactable = false;
+			eastButton.interactable = false;
+			westButton.interactable = false;
+		}
+		else {
+			northButton.interactable = true;
+			southButton.interactable = true;
+			eastButton.interactable =  true;
+			westButton.interactable =  true;
+		}
+	}
+
+
 	
-	// Update is called once per frame
-	void Update () {
-
-    }
-
 	void CombatCheck()
 	{
+		combat.currentPlayerReadiness = 50;
 		int fightChance = Random.Range(1,4);
 		//Debug.Log(fightChance);
 		if (fightChance > 2)
@@ -61,12 +86,15 @@ public class MapControl : MonoBehaviour {
 
 
 		}
+
 	}
     public void MoveNorth()
     {
+
         GoDirection(-1, 0);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
+
     }
 
     public void MoveSouth()

@@ -13,9 +13,9 @@ public class CombatControl : MonoBehaviour {
     UnityEngine.UI.Text enemyMaxHealthText;
     UnityEngine.UI.Text enemyCurrentHealthText;
     UnityEngine.UI.Text combatLogText;
-    float currentPlayerReadiness = 0;
+    public float currentPlayerReadiness = 0;
     float currentMonsterReadiness = 0;
-    float maxReadiness = 100;
+    public float maxReadiness = 100;
     float readinessMultiplier = 1;
 
 	public Button characterButton;
@@ -45,20 +45,8 @@ public class CombatControl : MonoBehaviour {
         enemyHealthSlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider").GetComponent<UnityEngine.UI.Slider>();
 	}
 	
-	// Update is called once per frame
-	void InventoryPopup()
-	{
-
-	}
-
-
-	
 
 	void Update () {
-
-		//DoSpeedDamage();
-
-
 
         if (combatOn)
         {
@@ -82,11 +70,6 @@ public class CombatControl : MonoBehaviour {
 			if (!combatPause){
             currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
             currentMonsterReadiness += currentMonster.GetSpeed() * readinessMultiplier * Time.deltaTime;
-			}
-			//**
-			if (MonsterAttackPause)
-			{
-				//yield return StartCoroutine(MonsterAttackPause());
 			}
 
             playerSlider.value = currentPlayerReadiness;
@@ -125,6 +108,12 @@ public class CombatControl : MonoBehaviour {
 			exploreButton.interactable = true;
 			inventoryButton.interactable = true;
 			mapButton.interactable = true;
+			if (currentPlayerReadiness < maxReadiness)
+			{
+			currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
+			}
+			playerSlider.value = currentPlayerReadiness;
+
 		}
 	}
 
@@ -291,26 +280,74 @@ public class CombatControl : MonoBehaviour {
 		if(rMonster == 1)
 		{
         	currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+			int rStart	= Random.Range(1,4);
+			if (rStart == 1){
+				combatLogText.text = "As you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
+				currentMonsterReadiness = 20;
+			}
+			else if (rStart ==2)
+			{
+				combatLogText.text = "While you are resting and catching your breath a small, brown bunny pops its head out of a hole. You notice its pink, twitching nose and relentless, bugging eyes. How cute!\n\n";
+				currentMonsterReadiness = 60;
+			}
+			else if (rStart == 3)
+			{
+				combatLogText.text = "Two white ears protrude from the landscapes ahead. You can’t be certain, but if you were betting, you'd be putting your money on rabbits right about now.\n\n";
+				currentMonsterReadiness = 2;
+			}
 		}
+
 		else if(rMonster == 2)
 		{
-			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
+			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+			int rStart	= Random.Range(1,4);
+			if (rStart == 1){
+				combatLogText.text = "Wolf1 \n\n";
+				currentMonsterReadiness = 20;
+			}
+			else if (rStart ==2)
+			{
+				combatLogText.text = "Wolf2\n\n";
+				currentMonsterReadiness = 60;
+			}
+			else if (rStart == 3)
+			{
+				combatLogText.text = "Wolf3\n\n";
+				currentMonsterReadiness = 2;
+			}
 		}
 		else {
-			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
+			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+			int rStart	= Random.Range(1,4);
+			if (rStart == 1){
+				combatLogText.text = "Bear1 \n\n";
+				currentMonsterReadiness = 20;
+			}
+			else if (rStart ==2)
+			{
+				combatLogText.text = "Bear2\n\n";
+				currentMonsterReadiness = 60;
+			}
+			else if (rStart == 3)
+			{
+				combatLogText.text = "Bear3\n\n";
+				currentMonsterReadiness = 2;
+			}
 		}
         currentMonster.Init();
 
         //If we want to introduce a "surprised" or "ambush" mechanic,
         //we can adjust the readiness values.
-        currentMonsterReadiness = 0;
-        currentPlayerReadiness = 0;
+        
+        
+		int rEeadiness = Random.Range (2,89);
+		currentPlayerReadiness = rEeadiness;
 
         enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
         enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
         enemyHealthSlider.value = currentMonster.GetHealth();
 
-        combatLogText.text = "";
+        //combatLogText.text = "";
     }
 }

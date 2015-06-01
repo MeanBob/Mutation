@@ -6,19 +6,19 @@ public class RabbitMonster : Monster {
     public override void Init()
     {
         monsterName = "Rabbit";
-        strength = 5;
-        speed = 80;
+        strength = Random.Range(1,5);
+        speed = Random.Range(50, 80);
         intelligence = 5;
 
-        headMinDamage = 1;
-        headMaxDamage = 4;
-        armMinDamage = 1;
-        armMaxDamage = 2;
-        legMinDamage = 1;
-        legMaxDamage = 6;
+        headMinDamage = 6;
+        headMaxDamage = 7;
+        armMinDamage = 5;
+        armMaxDamage = 6;
+        legMinDamage = 6;
+        legMaxDamage = 7;
 		expPointsGained = 30;
 
-        bonusDamage = strength;
+        bonusDamage = - strength;
 
         base.Init();
 	}

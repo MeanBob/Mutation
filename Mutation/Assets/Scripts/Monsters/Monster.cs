@@ -18,6 +18,8 @@ public class Monster : ScriptableObject {
     protected int bonusDamage;
 	protected int expPointsGained;
 
+
+
 	public virtual void Init()
     {
         currentHP = 10 * strength;
@@ -54,6 +56,8 @@ public class Monster : ScriptableObject {
         return false;
     }
 
+
+
     public void HealDamage(int heal)
     {
         currentHP += heal;
@@ -66,6 +70,8 @@ public class Monster : ScriptableObject {
     public int RollHeadDamage()
     {
         return RollDamage(headMinDamage, headMaxDamage);
+
+
     }
 
     public int RollArmDamage()

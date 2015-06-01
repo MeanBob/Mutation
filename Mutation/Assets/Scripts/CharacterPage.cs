@@ -182,19 +182,39 @@ public class CharacterPage : MonoBehaviour {
 	{
 		return listOfItems;
 	}
+
+	//bool IncreasedLevel = false;
 	public void UpdateExpPoints(int monsterExpPoints)
 	{
 		currentExpPoints += monsterExpPoints;
 		currentLevel = (int)(Mathf.Sqrt(currentExpPoints) * 0.25) ;
 		nextLevelExpPoints =  (int)((currentLevel+1)*(currentLevel+1)*16.0f); 
-
-//		Debug.Log("current Exp points ::::::" +currentExpPoints);
-//		Debug.Log("current Level ::::::" +currentLevel);
-
 		levelText.text = currentLevel.ToString();
 		expText.text = currentExpPoints.ToString();
 		nextLevelExpPointsText.text = nextLevelExpPoints.ToString();
+
+
+//		int previous = 0;
+//		if (currentLevel <= previous)
+//		{
+//			IncreasedLevel = false;
+//			previous = currentLevel;
+//		}
+//		else
+//		{IncreasedLevel = true;}
+//
+//		if (IncreasedLevel)
+//		{
+//			currentNumberOfAllocatablePoints = numberOfPointsPerLevel;
+//			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
+//			IncreasedLevel = false;
+//
+//		}
+
 	}
+
+
+
 
 //	public void sample()
 //	{
@@ -248,6 +268,7 @@ public class CharacterPage : MonoBehaviour {
 	IEnumerator Death()
 	{
 		yield return new WaitForSeconds(5);
+
 	}
 
 

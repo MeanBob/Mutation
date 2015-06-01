@@ -6,19 +6,19 @@ public class WolfMonster : Monster {
 	public override void Init()
 	{
 		monsterName = "Wolf";
-		strength = 2;
+		strength = Random.Range(9,15);
 		speed = 80;
 		intelligence = 5;
 		
-		headMinDamage = 1;
-		headMaxDamage = 8;
-		armMinDamage = 1;
-		armMaxDamage = 6;
-		legMinDamage = 1;
-		legMaxDamage = 6;
-		expPointsGained = 45;
+		headMinDamage = 15;
+		headMaxDamage =  18;
+		armMinDamage = 15;
+		armMaxDamage = 16;
+		legMinDamage = 15;
+		legMaxDamage = 16;
+		expPointsGained = 66;
 
-		bonusDamage = strength;
+		bonusDamage = - strength;
 		
 		base.Init();
 	}

@@ -3,21 +3,32 @@ using System.Collections;
 
 public class BearMonster : Monster {
 
+	CharacterPage playerCharacter;
+
+	void Start()
+	{
+		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
+	}
+
 	public override void Init()
 	{
 		monsterName = "Bear";
-		strength = 2;
-		speed = 80;
+
+
+		strength = Random.Range (40,56);
+
+
+		speed = Random.Range (14,60);
 		intelligence = 5;
 		
-		headMinDamage = 1;
-		headMaxDamage = 8;
-		armMinDamage = 1;
-		armMaxDamage = 10;
-		legMinDamage = 1;
-		legMaxDamage = 8;
-		expPointsGained = 100;
-		bonusDamage = strength;
+		headMinDamage = 57;
+		headMaxDamage = 86;
+		armMinDamage = 57;
+		armMaxDamage = 77;
+		legMinDamage = 57;
+		legMaxDamage = 59;
+		expPointsGained = 160;
+		bonusDamage = - strength;
 		
 		base.Init();
 	}
