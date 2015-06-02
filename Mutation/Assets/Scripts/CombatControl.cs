@@ -299,38 +299,38 @@ public class CombatControl : MonoBehaviour {
 
 		else if(rMonster == 2)
 		{
-			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
 			int rStart	= Random.Range(1,4);
 			if (rStart == 1){
-				combatLogText.text = "Wolf1 \n\n";
+				combatLogText.text = "You first see the patchy grey and brown fur of an animal in your path. When its eyes lite upon you you notice pointed, dripping fangs. The wolf growls and you sense the beast must be hungry. \n\n";
 				currentMonsterReadiness = 20;
 			}
 			else if (rStart ==2)
 			{
-				combatLogText.text = "Wolf2\n\n";
+				combatLogText.text = "You hear the sharp howl of a hungry wolf not far away. Before you have time to retreat, a wolf leaps onto your path and stares you straight in the eyes.\n\n";
 				currentMonsterReadiness = 60;
 			}
 			else if (rStart == 3)
 			{
-				combatLogText.text = "Wolf3\n\n";
+				combatLogText.text = "You catch two glowing, yellow gems in your site. They are quickly followed by the lurking, open-mouthed face of a true beast. This wolf’s fur is matted and patchy. You must have stumbled upon a true wolf warrior!\n\n";
 				currentMonsterReadiness = 2;
 			}
 		}
 		else {
-			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
 			int rStart	= Random.Range(1,4);
 			if (rStart == 1){
-				combatLogText.text = "Bear1 \n\n";
+				combatLogText.text = "A sudden blast of hot air and the disgusting stench of foul breath alert your senses. Before you know it, a hulking bear is standing on its hind legs, growling at you. \n\n";
 				currentMonsterReadiness = 20;
 			}
 			else if (rStart ==2)
 			{
-				combatLogText.text = "Bear2\n\n";
+				combatLogText.text = "You make out the haunches of a large beast up ahead. Suddenly the beast turns and holds you in its gaze. Its a bear, and as it rears around it stands up on its back legs.\n\n";
 				currentMonsterReadiness = 60;
 			}
 			else if (rStart == 3)
 			{
-				combatLogText.text = "Bear3\n\n";
+				combatLogText.text = "A bear stands in your path, its long sharp claws and glistening fangs make your stomach feel uneasy. When it roars at you, a blast of hot steam catches the afternoon light just so.\n\n";
 				currentMonsterReadiness = 2;
 			}
 		}
