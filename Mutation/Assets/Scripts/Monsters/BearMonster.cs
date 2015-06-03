@@ -28,7 +28,7 @@ public class BearMonster : Monster {
 		legMinDamage = 57;
 		legMaxDamage = 59;
 		expPointsGained = 160;
-		bonusDamage = - strength;
+		bonusDamage -= strength;
 		
 		base.Init();
 	}

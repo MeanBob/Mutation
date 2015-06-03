@@ -13,6 +13,7 @@ public class UIControl : MonoBehaviour {
     GameObject avatarPanel;
     GameObject playerActionPanel;
     GameObject lastPanel;
+	GameObject deathPanel;
 
 	UnityEngine.UI.Text explorationDescription;
     Stack panelStack;
@@ -24,7 +25,7 @@ public class UIControl : MonoBehaviour {
 	void Start () {
         
 		playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
-
+		deathPanel = transform.FindChild("DeathPanel").gameObject;
 
 		mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
@@ -41,8 +42,15 @@ public class UIControl : MonoBehaviour {
         explorationPanel.SetActive(false);
         fightPanel.SetActive(false);
         inventoryPanel.SetActive(false);
+		deathPanel.SetActive(false);
         ChangePanel(characterSheetPanel);
 	}
+
+	void Update()
+	{
+
+	}
+
 
 
 	public void ExplorationPause()

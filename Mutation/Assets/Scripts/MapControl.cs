@@ -88,35 +88,71 @@ public class MapControl : MonoBehaviour {
 		}
 
 	}
+
+	//
+	//  FIX ME PLEASE
+	//
+	//
+	public void Flee(int x, int y)
+	{
+		if (combat.combatOn)
+		{
+			int fleeChance = Random.Range (0,100);
+			if (playerCharacter.GetIntelligence() > fleeChance)
+			{
+				GoDirection(x, y);
+				playerCharacter.DoEnergyDamage(1);
+				ui.EndCombat();
+				
+			}
+			else {combat.combatLogText.text = "You trip as you try to run away!\n\n";
+				ui.RemovePanelFromTop();
+				combat.currentPlayerReadiness = 30;
+			}
+			return;
+		}
+
+
+	}
+
+
     public void MoveNorth()
     {
-
+		Flee(-1,0);
         GoDirection(-1, 0);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
+
 
     }
 
     public void MoveSouth()
     {
+
+		Flee(-1,0);
         GoDirection(1, 0);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
     }
 
     public void MoveEast()
-    {
+{		
+		Flee(-1,0);
 		GoDirection(0, 1);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
     }
 
     public void MoveWest()
-    {
+{		
+		Flee(-1,0);
 		GoDirection(0, -1);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
     }
+
+
+
 
     public void GoDirection(int xDir, int yDir)
     {

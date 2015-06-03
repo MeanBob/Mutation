@@ -12,7 +12,7 @@ public class CombatControl : MonoBehaviour {
     UnityEngine.UI.Slider enemyHealthSlider;
     UnityEngine.UI.Text enemyMaxHealthText;
     UnityEngine.UI.Text enemyCurrentHealthText;
-    UnityEngine.UI.Text combatLogText;
+    public UnityEngine.UI.Text combatLogText;
     public float currentPlayerReadiness = 0;
     float currentMonsterReadiness = 0;
     public float maxReadiness = 100;
@@ -55,12 +55,7 @@ public class CombatControl : MonoBehaviour {
 			exploreButton.interactable = false;
 			inventoryButton.interactable = false;
 			mapButton.interactable = false;
-
-
 			//**
-
-
-
 			if (currentPlayerReadiness > maxReadiness)
 			{
 				currentMonsterReadiness = currentMonsterReadiness;
@@ -279,7 +274,7 @@ public class CombatControl : MonoBehaviour {
 		int rMonster = Random.Range(1,4);
 		if(rMonster == 1)
 		{
-        	currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
 			int rStart	= Random.Range(1,4);
 			if (rStart == 1){
 				combatLogText.text = "As you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
@@ -299,7 +294,7 @@ public class CombatControl : MonoBehaviour {
 
 		else if(rMonster == 2)
 		{
-			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
+			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
 			int rStart	= Random.Range(1,4);
 			if (rStart == 1){
 				combatLogText.text = "You first see the patchy grey and brown fur of an animal in your path. When its eyes lite upon you you notice pointed, dripping fangs. The wolf growls and you sense the beast must be hungry. \n\n";

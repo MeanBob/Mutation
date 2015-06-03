@@ -1,0 +1,517 @@
+fileFormatVersion: 2
+guid: ecbbe26e28145f145ad72abc422ca409
+timeCreated: 1433301112
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Face - DoomGuy_0
+    21300002: Face - DoomGuy_1
+    21300004: Face - DoomGuy_2
+    21300006: Face - DoomGuy_3
+    21300008: Face - DoomGuy_4
+    21300010: Face - DoomGuy_5
+    21300012: Face - DoomGuy_6
+    21300014: Face - DoomGuy_7
+    21300016: Face - DoomGuy_8
+    21300018: Face - DoomGuy_9
+    21300020: Face - DoomGuy_10
+    21300022: Face - DoomGuy_11
+    21300024: Face - DoomGuy_12
+    21300026: Face - DoomGuy_13
+    21300028: Face - DoomGuy_14
+    21300030: Face - DoomGuy_15
+    21300032: Face - DoomGuy_16
+    21300034: Face - DoomGuy_17
+    21300036: Face - DoomGuy_18
+    21300038: Face - DoomGuy_19
+    21300040: Face - DoomGuy_20
+    21300042: Face - DoomGuy_21
+    21300044: Face - DoomGuy_22
+    21300046: Face - DoomGuy_23
+    21300048: Face - DoomGuy_24
+    21300050: Face - DoomGuy_25
+    21300052: Face - DoomGuy_26
+    21300054: Face - DoomGuy_27
+    21300056: Face - DoomGuy_28
+    21300058: Face - DoomGuy_29
+    21300060: Face - DoomGuy_30
+    21300062: Face - DoomGuy_31
+    21300064: Face - DoomGuy_32
+    21300066: Face - DoomGuy_33
+    21300068: Face - DoomGuy_34
+    21300070: Face - DoomGuy_35
+    21300072: Face - DoomGuy_36
+    21300074: Face - DoomGuy_37
+    21300076: Face - DoomGuy_38
+    21300078: Face - DoomGuy_39
+    21300080: Face - DoomGuy_40
+    21300082: Face - DoomGuy_41
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Face - DoomGuy_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 340
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 340
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 339
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 341
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_4
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 341
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_5
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 341
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_6
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 340
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_7
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 340
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 274
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_9
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 274
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_10
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 273
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_11
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 275
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_12
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 275
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_13
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 275
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_14
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 274
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_15
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 274
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_17
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_18
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 207
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_19
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_20
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_21
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_22
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 208
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_23
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 208
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_24
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 142
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_25
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 142
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_26
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_27
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_28
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_29
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_30
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 141
+        width: 58
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_31
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 142
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_32
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 76
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_33
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 76
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_34
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_35
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_36
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_37
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_38
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 75
+        width: 60
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_39
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 76
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_40
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 9
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Face - DoomGuy_41
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 11
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

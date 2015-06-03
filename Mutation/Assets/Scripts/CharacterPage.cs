@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 public class CharacterPage : MonoBehaviour {
 
+	public GameObject Death;
 	//stats
     int strength;
 	int tempStrength;
@@ -73,8 +75,11 @@ public class CharacterPage : MonoBehaviour {
     int numberOfPointsPerLevel = 10;
 	List<Item> listOfItems = new List<Item>(2);
 	Item tempItem;
-	// Use this for initialization
+	public bool YouHaveDied ;
+
 	void Start () {
+
+
 		tempItem = ScriptableObject.CreateInstance<Daffodil>();
 		tempItem.Init();
 		listOfItems.Add(tempItem);
@@ -184,39 +189,29 @@ public class CharacterPage : MonoBehaviour {
 	}
 
 	bool IncreasedLevel = false;
-	int previous;
+	int previous= 0;
 	
 	void LevelUp()
 	{
-		if (currentLevel <= previous)
+		if(currentLevel > previous)
 		{
-			IncreasedLevel = false;
+			Debug.Log("Level up");
+			currentNumberOfAllocatablePoints = numberOfPointsPerLevel;
+			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 			previous = currentLevel;
 		}
-		else
-		{IncreasedLevel = true;}
-		
-
 	}
 	public void UpdateExpPoints(int monsterExpPoints)
 	{
 		currentExpPoints += monsterExpPoints;
 		currentLevel = (int)(Mathf.Sqrt(currentExpPoints) * 0.25) ;
 		nextLevelExpPoints =  (int)((currentLevel+1)*(currentLevel+1)*16.0f); 
+
 		levelText.text = currentLevel.ToString();
 		expText.text = currentExpPoints.ToString();
 		nextLevelExpPointsText.text = nextLevelExpPoints.ToString();
 
 		LevelUp();
-		if (IncreasedLevel)
-		{
-			currentNumberOfAllocatablePoints = numberOfPointsPerLevel;
-			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
-			IncreasedLevel = false;
-			
-		}
-
-
 	}
 
 
@@ -258,25 +253,26 @@ public class CharacterPage : MonoBehaviour {
 		energySlider.value = currentEnergy;
 	}
 
+
     public void DoDamage(int damage)
     {
         currentHP -= damage;
         if (currentHP <= 0)
         {
-            Debug.Log("You died.");
-			Death();
+			Death.SetActive(true);
+
+			//StartCoroutine("Death");
+
             //trigger death
         }
         UpdateHealthMeter();
     }
 
-	//Death
-	IEnumerator Death()
+
+	public void RestartGame()
 	{
-		yield return new WaitForSeconds(5);
-
+		Application.LoadLevel(0);
 	}
-
 
 
 	public void DoEnergyDamage(int energyDamage)
@@ -284,6 +280,7 @@ public class CharacterPage : MonoBehaviour {
 		currentEnergy -= energyDamage;
 		if (currentEnergy <= 0)
 		{
+			Death.SetActive(true);
 			Debug.Log("You died.");
 			//trigger death
 		}
