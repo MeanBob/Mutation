@@ -274,7 +274,7 @@ public class CombatControl : MonoBehaviour {
 		int rMonster = Random.Range(1,4);
 		if(rMonster == 1)
 		{
-			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
+			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
 			int rStart	= Random.Range(1,4);
 			if (rStart == 1){
 				combatLogText.text = "As you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
@@ -294,7 +294,7 @@ public class CombatControl : MonoBehaviour {
 
 		else if(rMonster == 2)
 		{
-			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
+			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
 			int rStart	= Random.Range(1,4);
 			if (rStart == 1){
 				combatLogText.text = "You first see the patchy grey and brown fur of an animal in your path. When its eyes lite upon you you notice pointed, dripping fangs. The wolf growls and you sense the beast must be hungry. \n\n";

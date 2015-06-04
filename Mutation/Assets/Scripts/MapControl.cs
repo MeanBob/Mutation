@@ -83,10 +83,7 @@ public class MapControl : MonoBehaviour {
 		if (fightChance > 2)
 		{
 			combat.InitiateCombat();
-
-
 		}
-
 	}
 
 	//
@@ -100,10 +97,14 @@ public class MapControl : MonoBehaviour {
 			int fleeChance = Random.Range (0,100);
 			if (playerCharacter.GetIntelligence() > fleeChance)
 			{
+				combat.combatOn = false;
 				GoDirection(x, y);
 				playerCharacter.DoEnergyDamage(1);
-				ui.EndCombat();
-				
+				combat.characterButton.enabled = true;
+				combat.exploreButton.enabled = true;
+				combat.inventoryButton.enabled = true;
+				combat.mapButton.enabled = true;
+				ui.EndCombat();				
 			}
 			else {combat.combatLogText.text = "You trip as you try to run away!\n\n";
 				ui.RemovePanelFromTop();
@@ -111,14 +112,13 @@ public class MapControl : MonoBehaviour {
 			}
 			return;
 		}
-
-
 	}
 
 
     public void MoveNorth()
     {
-		Flee(-1,0);
+
+		//Flee(-1,0);
         GoDirection(-1, 0);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
@@ -129,7 +129,7 @@ public class MapControl : MonoBehaviour {
     public void MoveSouth()
     {
 
-		Flee(-1,0);
+		//Flee(-1,0);
         GoDirection(1, 0);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
@@ -137,7 +137,7 @@ public class MapControl : MonoBehaviour {
 
     public void MoveEast()
 {		
-		Flee(-1,0);
+		//Flee(-1,0);
 		GoDirection(0, 1);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
@@ -145,7 +145,7 @@ public class MapControl : MonoBehaviour {
 
     public void MoveWest()
 {		
-		Flee(-1,0);
+		//Flee(-1,0);
 		GoDirection(0, -1);
 		CombatCheck();
 		playerCharacter.DoEnergyDamage(1);
