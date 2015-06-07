@@ -18,6 +18,9 @@ public class WolfMonster : Monster {
 		strength = Random.Range(9,15);
 		speed = 80;
 		intelligence = 5;
+
+		energy = 10;
+
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		headMinDamage = 15;

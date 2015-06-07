@@ -4,7 +4,7 @@ using System.Collections;
 public class BearMonster : Monster {
 
 	CharacterPage playerCharacter;
-	string [] monsterText = new string[3];
+	string [] monsterText = new string[4];
 	public override void Start()
 	{
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
@@ -23,6 +23,9 @@ public class BearMonster : Monster {
 
 		speed = Random.Range (14,60);
 		intelligence = 5;
+
+		energy = 10;
+
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		headMinDamage = 57;

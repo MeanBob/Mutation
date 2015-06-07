@@ -65,7 +65,7 @@ public class MapControl : MonoBehaviour {
 			eastButton.interactable = false;
 			westButton.interactable = false;
 		}
-		else {
+		else if(!ui.hasPopUp){
 			northButton.interactable = true;
 			southButton.interactable = true;
 			eastButton.interactable =  true;
@@ -141,26 +141,40 @@ public class MapControl : MonoBehaviour {
     public void MoveSouth()
     {
 
-		//Flee(1,0);
-        GoDirection(1, 0);
-		CombatCheck();
-		playerCharacter.DoEnergyDamage(1);
+		Flee(1,0);
+		if(!tryingToFlee)
+		{
+			GoDirection(1, 0);
+			CombatCheck();
+			playerCharacter.DoEnergyDamage(1);
+		}
+		tryingToFlee = false;
+
     }
 
     public void MoveEast()
 {		
-		//Flee(0,1);
-		GoDirection(0, 1);
-		CombatCheck();
-		playerCharacter.DoEnergyDamage(1);
+		Flee(0,1);
+		if(!tryingToFlee)
+		{
+			GoDirection(0, 1);
+			CombatCheck();
+			playerCharacter.DoEnergyDamage(1);
+		}
+		tryingToFlee = false;
+
     }
 
     public void MoveWest()
 {		
-		//Flee(0,-1);
-		GoDirection(0, -1);
-		CombatCheck();
-		playerCharacter.DoEnergyDamage(1);
+		Flee(0,-1);
+		if(!tryingToFlee)
+		{
+			GoDirection(0, -1);
+			CombatCheck();
+			playerCharacter.DoEnergyDamage(1);
+		}
+		tryingToFlee = false;
     }
 
 

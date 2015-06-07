@@ -20,7 +20,7 @@ public class UIControl : MonoBehaviour {
 	GameObject temp;
 	UnityEngine.UI.Button[] explorationButtons;
 	UnityEngine.UI.Button[] avatarButtons;
-
+	public bool hasPopUp;
 	//Buttons
 	GameObject hide;
 	GameObject fight;
@@ -147,7 +147,7 @@ public class UIControl : MonoBehaviour {
 		{
 			b.interactable = false;
 		}
-
+		hasPopUp = true;
         panelStack.Push(newPanel);
         newPanel.SetActive(true);
 
@@ -161,6 +161,7 @@ public class UIControl : MonoBehaviour {
         }
         GameObject oldPanel = (GameObject)panelStack.Pop();
         oldPanel.SetActive(false);
+		hasPopUp = false;
     }
 
     public void InitiateCombat(Monster monster)

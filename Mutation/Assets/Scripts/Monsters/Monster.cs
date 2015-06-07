@@ -9,6 +9,11 @@ public class Monster : ScriptableObject {
     protected int currentHP;
     protected int maxHP;
 
+	protected int energy;
+
+	protected int currentEnergy;
+	protected int maxEnergy;
+
     protected int headMinDamage;
     protected int headMaxDamage;
     protected int armMinDamage;
@@ -27,6 +32,8 @@ public class Monster : ScriptableObject {
     {
         currentHP = 10 * strength;
         maxHP = currentHP;
+		currentEnergy = 10 * energy;
+		currentEnergy = maxEnergy;
 	}
 
 	public string GetHideDescription()
@@ -54,10 +61,23 @@ public class Monster : ScriptableObject {
         return currentHP;
     }
 
+	public int GetMaxEnergy()
+	{
+		return maxEnergy;
+	}
+	public int GetEnergy()
+	{
+		return currentEnergy;
+	}
+
+
 	public int GetExpPointsGained()
 	{
 		return expPointsGained;
 	}
+
+
+
 
     public bool DoDamage(int damage)
     {

@@ -8,7 +8,12 @@ public class CombatControl : MonoBehaviour {
     CharacterPage playerCharacter;
     Monster currentMonster;
     UnityEngine.UI.Slider enemySlider;
-    UnityEngine.UI.Slider playerSlider;
+
+	UnityEngine.UI.Slider enemyEnergySlider;
+	UnityEngine.UI.Text enemyMaxEnergyText;
+	UnityEngine.UI.Text enemyCurrentEnergyText;
+
+	UnityEngine.UI.Slider playerSlider;
     UnityEngine.UI.Slider enemyHealthSlider;
     UnityEngine.UI.Text enemyMaxHealthText;
     UnityEngine.UI.Text enemyCurrentHealthText;
@@ -34,6 +39,7 @@ public class CombatControl : MonoBehaviour {
 
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
 
+
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         enemySlider.maxValue = maxReadiness;
@@ -43,6 +49,10 @@ public class CombatControl : MonoBehaviour {
         enemyCurrentHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/Handle Slide Area/EnemyHPCurrentText").GetComponent<UnityEngine.UI.Text>();
         enemyMaxHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/EnemyHPMaxText").GetComponent<UnityEngine.UI.Text>();
         enemyHealthSlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider").GetComponent<UnityEngine.UI.Slider>();
+
+		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
+		//enemyCurrentEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/Handle Slide Area/EnergyTitleText").GetComponent<UnityEngine.UI.Text>();
+		enemyMaxEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/EnemyEnergyMaxText").GetComponent<UnityEngine.UI.Text>();
 	}
 	
 
@@ -99,10 +109,12 @@ public class CombatControl : MonoBehaviour {
 		else
 		{
 			combatLogText.text = "";
+			if(!ui.hasPopUp){
 			characterButton.interactable = true;
 			exploreButton.interactable = true;
 			inventoryButton.interactable = true;
 			mapButton.interactable = true;
+			}
 			if (currentPlayerReadiness < maxReadiness)
 			{
 			currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
@@ -251,6 +263,7 @@ public class CombatControl : MonoBehaviour {
             ui.EndCombat();
         }
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
+		//enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
 		if(currentMonster.GetHealth() <= 0)
 		{
 			playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
@@ -276,8 +289,8 @@ public class CombatControl : MonoBehaviour {
     Monster GenerateMonster()
     {
         //Randomly choose a monster in the future based on player level?
-//		int rMonster = Random.Range(1,4);
-		int rMonster = 1;
+		int rMonster = Random.Range(1,4);
+		//int rMonster = 1;
 
 		if(rMonster == 1)
 		{
