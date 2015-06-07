@@ -14,9 +14,23 @@ public class UIControl : MonoBehaviour {
     GameObject playerActionPanel;
     GameObject lastPanel;
 	GameObject deathPanel;
+	GameObject preCombatPanel;
+	Monster selectedMonster;
+	CombatControl combat;
+	GameObject temp;
+	UnityEngine.UI.Button[] explorationButtons;
+	UnityEngine.UI.Button[] avatarButtons;
+
+	//Buttons
+	GameObject hide;
+	GameObject fight;
+	GameObject close;
 
 	UnityEngine.UI.Text explorationDescription;
     Stack panelStack;
+	UnityEngine.UI.Text preCombatDescription;
+
+	UnityEngine.UI.Text chooseHideRemoveChoice;
 
 	UnityEngine.UI.Slider playerSlider;
 	float currentPlayerReadiness = 0;
@@ -24,6 +38,18 @@ public class UIControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         
+		//Buttons
+		hide = GameObject.Find("PreCombatPanel/ChooseHide").gameObject;
+		fight = GameObject.Find("PreCombatPanel/ChooseFight").gameObject;
+		close = GameObject.Find("PreCombatPanel/Close").gameObject;
+
+		explorationButtons = transform.FindChild("ExplorationPanel").GetComponentsInChildren<Button>();
+		avatarButtons = transform.FindChild("AvatarPanel").GetComponentsInChildren<Button>();
+
+		chooseHideRemoveChoice = explorationDescription = GameObject.Find("PreCombatPanel/ChoiceDescription").gameObject.GetComponent<UnityEngine.UI.Text>();
+
+		combat = GameObject.Find("Canvas").GetComponent<CombatControl>();
+		preCombatPanel = transform.FindChild("PreCombatPanel").gameObject;
 		playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
 		deathPanel = transform.FindChild("DeathPanel").gameObject;
 
@@ -35,6 +61,8 @@ public class UIControl : MonoBehaviour {
         inventoryPanel = transform.FindChild("InventoryPanel").gameObject;
         avatarPanel = transform.FindChild("AvatarPanel").gameObject;
         explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
+		preCombatDescription = GameObject.Find("PreCombatPanel/PreCombatDescriptionText").gameObject.GetComponent<UnityEngine.UI.Text>();
+
         panelStack = new Stack();
 
         //Don't turn anything off until the game is loaded or else it makes it a pain to find anything :p
@@ -44,11 +72,14 @@ public class UIControl : MonoBehaviour {
         inventoryPanel.SetActive(false);
 		deathPanel.SetActive(false);
         ChangePanel(characterSheetPanel);
+		preCombatPanel.SetActive(false);
+
+		hide.SetActive(false);
+
 	}
 
 	void Update()
 	{
-
 	}
 
 
@@ -106,6 +137,17 @@ public class UIControl : MonoBehaviour {
         {
             return;
         }
+
+		foreach(Button b in explorationButtons)
+		{
+			b.interactable = false;
+		}
+
+		foreach(Button b in avatarButtons)
+		{
+			b.interactable = false;
+		}
+
         panelStack.Push(newPanel);
         newPanel.SetActive(true);
 
@@ -121,9 +163,18 @@ public class UIControl : MonoBehaviour {
         oldPanel.SetActive(false);
     }
 
-    public void InitiateCombat()
+    public void InitiateCombat(Monster monster)
     {
-        ChangePanel(fightPanel);
+        //ChangePanel(fightPanel);
+		AddPanelOnTop(preCombatPanel);
+		selectedMonster = monster;
+		preCombatDescription.text = monster.GetDescription();
+
+		chooseHideRemoveChoice.text = "What will you do?";
+
+		hide.SetActive(true);
+		fight.SetActive(true);
+		close.SetActive(false);
     }
 
     public void EndCombat()
@@ -135,6 +186,24 @@ public class UIControl : MonoBehaviour {
     {
         AddPanelOnTop(playerActionPanel);
     }
+
+	public void ChooseHide()
+	{
+		//RemovePanelFromTop();
+		combat.combatOn = false;
+		preCombatDescription.text = selectedMonster.GetHideDescription();
+		hide.SetActive(false);
+		fight.SetActive(false);
+		close.SetActive(true);
+		chooseHideRemoveChoice.text = "";
+
+	}
+
+	public void ChooseFight()
+	{
+		RemovePanelFromTop();
+		ChangePanel(fightPanel);
+	}
 
     public void DisablePlayerActionPanel()
     {

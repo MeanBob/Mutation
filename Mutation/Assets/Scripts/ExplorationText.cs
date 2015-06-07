@@ -67,7 +67,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[0,5] = "At the edge of an endless desert you look on as three turkey vultures rip scraps off a dehydrated carcass. Your foot brushes against something hard and you uncover, buried in the sand, a bottle of chloroform!";
 		dialogue[1,5] = "You trudge into the uneven sand and climb a small series of sand dunes. It’s not easy moving through this stuff.";
 		dialogue[2,5] = "Here the path turns abruptly East. Ahead there are Dunes of sand which appear to be the beginning of a dessert and to your left more grass separates you from the river.";
-		dialogue[3,5] = "To the West a patch of grass separates you from the bank of the river. To the East sand spills down a mound.";
+			dialogue[3,5] = "To the West a patch of grass separates you from the bank of the river. To the East sand spills down a mound.";
 		dialogue[4,5] = "A road sign offers directions; it reads: North - The Desert, South - Fourwood Castle, West - The River.";
 		dialogue[5,5] = "Grass grows on either side of the path.";
 		dialogue[6,5] = "The path leads away from the castle. To the West a river runs parallel along the roadway. To the East a small stream empties into a ditch beside the road.";

@@ -47,10 +47,9 @@ public class CombatControl : MonoBehaviour {
 	
 
 	void Update () {
-
+		Debug.Log("Combat on value ::::"+combatOn);
         if (combatOn)
         {
-
 			characterButton.interactable = false;
 			exploreButton.interactable = false;
 			inventoryButton.interactable = false;
@@ -99,6 +98,7 @@ public class CombatControl : MonoBehaviour {
         }
 		else
 		{
+			combatLogText.text = "";
 			characterButton.interactable = true;
 			exploreButton.interactable = true;
 			inventoryButton.interactable = true;
@@ -116,10 +116,15 @@ public class CombatControl : MonoBehaviour {
     public void InitiateCombat()
     {
         //Generate monster
-        GenerateMonster();
-		combatOn = true;
-		ui.InitiateCombat();
+       	Monster tempMonster = GenerateMonster();
+
+		ui.InitiateCombat(tempMonster);
     }
+	public void WhenFightIsPressed()
+	{
+		combatOn = true;
+		currentPlayerReadiness = playerCharacter.GetSpeed();
+	}
 
 
 
@@ -268,66 +273,38 @@ public class CombatControl : MonoBehaviour {
 
     }
 
-    void GenerateMonster()
+    Monster GenerateMonster()
     {
         //Randomly choose a monster in the future based on player level?
-		int rMonster = Random.Range(1,4);
+//		int rMonster = Random.Range(1,4);
+		int rMonster = 1;
+
 		if(rMonster == 1)
 		{
+			//Always create instance of monster and then call start
 			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
-			int rStart	= Random.Range(1,4);
-			if (rStart == 1){
-				combatLogText.text = "As you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
-				currentMonsterReadiness = 20;
-			}
-			else if (rStart ==2)
-			{
-				combatLogText.text = "While you are resting and catching your breath a small, brown bunny pops its head out of a hole. You notice its pink, twitching nose and relentless, bugging eyes. How cute!\n\n";
-				currentMonsterReadiness = 60;
-			}
-			else if (rStart == 3)
-			{
-				combatLogText.text = "Two white ears protrude from the landscapes ahead. You can’t be certain, but if you were betting, you'd be putting your money on rabbits right about now.\n\n";
-				currentMonsterReadiness = 2;
-			}
+			currentMonster.Start();
+
+			int rStart	= Random.Range(1,99);
+			currentMonsterReadiness = rStart;
 		}
 
 		else if(rMonster == 2)
 		{
+			//Always create instance of monster and then call start
 			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
-			int rStart	= Random.Range(1,4);
-			if (rStart == 1){
-				combatLogText.text = "You first see the patchy grey and brown fur of an animal in your path. When its eyes lite upon you you notice pointed, dripping fangs. The wolf growls and you sense the beast must be hungry. \n\n";
-				currentMonsterReadiness = 20;
-			}
-			else if (rStart ==2)
-			{
-				combatLogText.text = "You hear the sharp howl of a hungry wolf not far away. Before you have time to retreat, a wolf leaps onto your path and stares you straight in the eyes.\n\n";
-				currentMonsterReadiness = 60;
-			}
-			else if (rStart == 3)
-			{
-				combatLogText.text = "You catch two glowing, yellow gems in your site. They are quickly followed by the lurking, open-mouthed face of a true beast. This wolf’s fur is matted and patchy. You must have stumbled upon a true wolf warrior!\n\n";
-				currentMonsterReadiness = 2;
-			}
+			currentMonster.Start();
+			int rStart	= Random.Range(1,99);
+			currentMonsterReadiness = rStart;
+
 		}
 		else {
+			//Always create instance of monster and then call start
 			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
-			int rStart	= Random.Range(1,4);
-			if (rStart == 1){
-				combatLogText.text = "A sudden blast of hot air and the disgusting stench of foul breath alert your senses. Before you know it, a hulking bear is standing on its hind legs, growling at you. \n\n";
-				currentMonsterReadiness = 20;
-			}
-			else if (rStart ==2)
-			{
-				combatLogText.text = "You make out the haunches of a large beast up ahead. Suddenly the beast turns and holds you in its gaze. Its a bear, and as it rears around it stands up on its back legs.\n\n";
-				currentMonsterReadiness = 60;
-			}
-			else if (rStart == 3)
-			{
-				combatLogText.text = "A bear stands in your path, its long sharp claws and glistening fangs make your stomach feel uneasy. When it roars at you, a blast of hot steam catches the afternoon light just so.\n\n";
-				currentMonsterReadiness = 2;
-			}
+			currentMonster.Start();
+			int rStart	= Random.Range(1,99);
+			currentMonsterReadiness = rStart;
+
 		}
         currentMonster.Init();
 
@@ -335,14 +312,15 @@ public class CombatControl : MonoBehaviour {
         //we can adjust the readiness values.
         
         
-		int rEeadiness = Random.Range (2,89);
-		currentPlayerReadiness = rEeadiness;
+		int readiness = Random.Range (2,89);
+		currentPlayerReadiness = readiness;
 
         enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
         enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
         enemyHealthSlider.value = currentMonster.GetHealth();
 
+		return currentMonster;
         //combatLogText.text = "";
     }
 }

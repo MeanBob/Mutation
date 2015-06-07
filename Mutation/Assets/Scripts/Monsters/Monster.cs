@@ -17,13 +17,26 @@ public class Monster : ScriptableObject {
     protected int legMaxDamage;
     protected int bonusDamage;
 	protected int expPointsGained;
+	protected string monsterDescription;
+	protected string hideDescription;
 
-
-
+	public virtual void Start()
+	{
+	}
 	public virtual void Init()
     {
         currentHP = 10 * strength;
         maxHP = currentHP;
+	}
+
+	public string GetHideDescription()
+	{
+		return hideDescription;
+	}
+
+	public string GetDescription()
+	{
+		return monsterDescription;
 	}
 
     public string GetName()
@@ -66,6 +79,8 @@ public class Monster : ScriptableObject {
             currentHP = maxHP;
         }
     }
+
+
 
     public int RollHeadDamage()
     {
