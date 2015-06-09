@@ -3,16 +3,18 @@ using System.Collections;
 
 public class Monster : ScriptableObject {
     protected string monsterName;
-    protected int strength;
+    
     protected int speed;
     protected int intelligence;
-    protected int currentHP;
-    protected int maxHP;
-
+    
 	protected int energy;
-
 	protected int currentEnergy;
 	protected int maxEnergy;
+
+	protected int strength;
+	protected int currentHP;
+    protected int maxHP;
+
 
     protected int headMinDamage;
     protected int headMaxDamage;
@@ -32,8 +34,9 @@ public class Monster : ScriptableObject {
     {
         currentHP = 10 * strength;
         maxHP = currentHP;
+
 		currentEnergy = 10 * energy;
-		currentEnergy = maxEnergy;
+		maxEnergy = currentEnergy;
 	}
 
 	public string GetHideDescription()
@@ -51,15 +54,18 @@ public class Monster : ScriptableObject {
         return monsterName;
     }
 
+
+
     public int GetMaxHealth()
     {
         return maxHP;
     }
-
-    public int GetHealth()
+	public int GetHealth()
     {
         return currentHP;
     }
+
+
 
 	public int GetMaxEnergy()
 	{
@@ -69,6 +75,27 @@ public class Monster : ScriptableObject {
 	{
 		return currentEnergy;
 	}
+
+	public bool DoEnergyDamage(int energyDamage)
+	{
+		currentEnergy -= energyDamage;
+		if (currentEnergy <= 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public void HealEnergyDamage(int healEnergy)
+	{
+		currentEnergy += healEnergy;
+		if (currentEnergy >= maxEnergy)
+		{
+			currentEnergy = maxEnergy;
+		}
+	}
+
+
 
 
 	public int GetExpPointsGained()
@@ -91,6 +118,7 @@ public class Monster : ScriptableObject {
 
 
 
+
     public void HealDamage(int heal)
     {
         currentHP += heal;
@@ -105,8 +133,6 @@ public class Monster : ScriptableObject {
     public int RollHeadDamage()
     {
         return RollDamage(headMinDamage, headMaxDamage);
-
-
     }
 
     public int RollArmDamage()

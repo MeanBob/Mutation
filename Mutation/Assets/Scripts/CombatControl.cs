@@ -7,16 +7,19 @@ public class CombatControl : MonoBehaviour {
 	UIControl ui;
     CharacterPage playerCharacter;
     Monster currentMonster;
+
     UnityEngine.UI.Slider enemySlider;
+	UnityEngine.UI.Slider playerSlider;
 
 	UnityEngine.UI.Slider enemyEnergySlider;
 	UnityEngine.UI.Text enemyMaxEnergyText;
 	UnityEngine.UI.Text enemyCurrentEnergyText;
 
-	UnityEngine.UI.Slider playerSlider;
-    UnityEngine.UI.Slider enemyHealthSlider;
-    UnityEngine.UI.Text enemyMaxHealthText;
-    UnityEngine.UI.Text enemyCurrentHealthText;
+	UnityEngine.UI.Slider enemyHealthSlider;
+	UnityEngine.UI.Text enemyMaxHealthText;
+	UnityEngine.UI.Text enemyCurrentHealthText;
+
+    
     public UnityEngine.UI.Text combatLogText;
     public float currentPlayerReadiness = 0;
     float currentMonsterReadiness = 0;
@@ -31,8 +34,7 @@ public class CombatControl : MonoBehaviour {
 	public bool combatPause=false;
 	public bool MonsterAttackPause = false;
     public bool combatOn = false;
-
-	// Use this for initialization
+	
 	void Start () {
         ui = GetComponent<UIControl>();
         
@@ -50,14 +52,17 @@ public class CombatControl : MonoBehaviour {
         enemyMaxHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/EnemyHPMaxText").GetComponent<UnityEngine.UI.Text>();
         enemyHealthSlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider").GetComponent<UnityEngine.UI.Slider>();
 
-		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
-		//enemyCurrentEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/Handle Slide Area/EnergyTitleText").GetComponent<UnityEngine.UI.Text>();
+		enemyCurrentEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/HandleSlideArea/EnemyEnergyCurrentText").GetComponent<UnityEngine.UI.Text>();
 		enemyMaxEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/EnemyEnergyMaxText").GetComponent<UnityEngine.UI.Text>();
+		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
+
+
+
 	}
 	
 
 	void Update () {
-		Debug.Log("Combat on value ::::"+combatOn);
+		//Debug.Log("Combat on value ::::"+combatOn);
         if (combatOn)
         {
 			characterButton.interactable = false;
@@ -89,21 +94,33 @@ public class CombatControl : MonoBehaviour {
                     case 0:
                         combatLogText.text += "bite ";
                         monsterDamage = currentMonster.RollHeadDamage();
+						currentMonster.DoEnergyDamage(2);
+					enemyEnergySlider.value = currentMonster.GetEnergy();
+
                         break;
                     case 1:
                     case 2:
                         combatLogText.text += "claw ";
                         monsterDamage = currentMonster.RollArmDamage();
+						currentMonster.DoEnergyDamage(1);
+					enemyEnergySlider.value = currentMonster.GetEnergy();
+
+						
                         break;
                     case 3:
                     case 4:
                         combatLogText.text += "kick ";
                         monsterDamage = currentMonster.RollLegDamage();
+						currentMonster.DoEnergyDamage(1);
+					enemyEnergySlider.value = currentMonster.GetEnergy();
+
+						
                         break;
                 }
                 currentMonsterReadiness = 0;
                 combatLogText.text += "did " + monsterDamage + " damage.\n\n";
                 playerCharacter.DoDamage(monsterDamage);
+
             }
         }
 		else
@@ -259,19 +276,19 @@ public class CombatControl : MonoBehaviour {
     {
         if (currentMonster.DoDamage(damage))
         {
-//            combatOn = false;
             ui.EndCombat();
         }
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
-		//enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
-		if(currentMonster.GetHealth() <= 0)
+		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
+
+		if(currentMonster.GetHealth() <= 0 || currentMonster.GetEnergy() <=0 )
 		{
 			playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
 			combatOn = false;
 		}
         enemyHealthSlider.value = currentMonster.GetHealth();
+		enemyEnergySlider.value = currentMonster.GetEnergy();
         ui.DisablePlayerActionPanel();
-        //currentPlayerReadiness = 0;
         combatLogText.text += " did " + damage + " damage.\n\n";
 
     }
@@ -327,6 +344,11 @@ public class CombatControl : MonoBehaviour {
         
 		int readiness = Random.Range (2,89);
 		currentPlayerReadiness = readiness;
+
+		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
+		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
+		enemyMaxHealthText.text= currentMonster.GetMaxEnergy().ToString();
+		enemyEnergySlider.value=currentMonster.GetEnergy();
 
         enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
         enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();

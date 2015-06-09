@@ -16,23 +16,22 @@ public class RabbitMonster : Monster {
 	public override void Init()
     {
         monsterName = "Rabbit";
-        strength = Random.Range(1,5);
-        speed = Random.Range(50, 80);
-        intelligence = 5;
-
-		energy = 10;
-
+		expPointsGained = 30;
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
-        headMinDamage = 6;
+
+		strength = Random.Range(1,5);
+        speed = Random.Range(50, 80);
+        intelligence = 5;
+		energy = 10;
+        
+		headMinDamage = 6;
         headMaxDamage = 7;
         armMinDamage = 5;
         armMaxDamage = 6;
         legMinDamage = 6;
         legMaxDamage = 7;
-		expPointsGained = 30;
-
-        bonusDamage = - strength;
+		bonusDamage = - strength;
 
         base.Init();
 	}
