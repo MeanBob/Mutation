@@ -78,10 +78,10 @@ public class MapControl : MonoBehaviour {
 	void CombatCheck()
 	{
 		combat.currentPlayerReadiness = 50;
-		//int fightChance = Random.Range(1,4);
-		int fightChance = 3;
+		int fightChance = Random.Range(1,5);
+		//int fightChance = 3;
 
-		if (fightChance > 2 && !tryingToFlee)
+		if (fightChance > 3 && !tryingToFlee)
 		{
 			combat.InitiateCombat();
 		}
