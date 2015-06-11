@@ -12,7 +12,7 @@ public class Chloroform : Item {
 		intelligence = -5;
 		energy = 0;
 		accuracy = -5;
-		
+		count = 1;
 		base.Init();
 	}
 	

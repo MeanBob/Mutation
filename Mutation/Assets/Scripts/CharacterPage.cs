@@ -190,7 +190,10 @@ public class CharacterPage : MonoBehaviour {
 
 	bool IncreasedLevel = false;
 	int previous= 0;
-	
+
+
+
+
 	void LevelUp()
 	{
 		if(currentLevel > previous)
@@ -268,7 +271,6 @@ public class CharacterPage : MonoBehaviour {
         UpdateHealthMeter();
     }
 
-
 	public void RestartGame()
 	{
 		Application.LoadLevel(0);
@@ -322,7 +324,6 @@ public class CharacterPage : MonoBehaviour {
     {
         return rightLeg.RollLegDamage() + strength;
     }
-
  
 	public void IncreaseEnergy()
 	{
