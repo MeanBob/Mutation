@@ -28,7 +28,7 @@ public class InventoryControl : MonoBehaviour {
 			UnityEngine.UI.Text[] buttonText = button.GetComponentsInChildren<Text>();
 			buttonText[1].text = tempItem.getCount().ToString();
 		} else {
-			button.enabled = false;
+			button.enabled = false;		
 		}
 	}
 
