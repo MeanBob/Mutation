@@ -32,8 +32,7 @@ public class CharacterPage : MonoBehaviour {
 	int intelligence;
     int tempIntelligence;
     int oldIntelligence;
-
-
+	
 //	int increment = 0;
 //	int currExpPoints;
 //	int currtLevel ;
@@ -216,10 +215,7 @@ public class CharacterPage : MonoBehaviour {
 
 		LevelUp();
 	}
-
-
-
-
+	
 //	public void sample()
 //	{
 //

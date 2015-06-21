@@ -37,27 +37,18 @@ public class CombatControl : MonoBehaviour {
 	
 	void Start () {
         ui = GetComponent<UIControl>();
-        
-
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
-
-
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         enemySlider.maxValue = maxReadiness;
         playerSlider.maxValue = maxReadiness;
 		combatLogText = transform.FindChild("FightPanel/ActionPanel/CombatLogPanel/CombatLogText/Text").GetComponent<UnityEngine.UI.Text>();
-
         enemyCurrentHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/Handle Slide Area/EnemyHPCurrentText").GetComponent<UnityEngine.UI.Text>();
         enemyMaxHealthText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider/EnemyHPMaxText").GetComponent<UnityEngine.UI.Text>();
         enemyHealthSlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyHealthSlider").GetComponent<UnityEngine.UI.Slider>();
-
 		enemyCurrentEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/HandleSlideArea/EnemyEnergyCurrentText").GetComponent<UnityEngine.UI.Text>();
 		enemyMaxEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/EnemyEnergyMaxText").GetComponent<UnityEngine.UI.Text>();
 		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
-
-
-
 	}
 	
 
@@ -142,20 +133,36 @@ public class CombatControl : MonoBehaviour {
 	}
 
 
-    public void InitiateCombat()
+    public void InitiateCombat(Monster encounteredMonster)
     {
         //Generate monster
-       	Monster tempMonster = GenerateMonster();
+       //	Monster tempMonster = GenerateMonster();
+		currentMonster = encounteredMonster;
+		int readiness = Random.Range (2,89);
+		currentPlayerReadiness = readiness;
 
-		ui.InitiateCombat(tempMonster);
+		int rStart	= Random.Range(1,99);
+		currentMonsterReadiness = rStart;
+
+
+		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
+		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
+		enemyMaxHealthText.text= currentMonster.GetMaxEnergy().ToString();
+		enemyEnergySlider.value=currentMonster.GetEnergy();
+		
+		enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
+		enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
+		enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
+		enemyHealthSlider.value = currentMonster.GetHealth();
+
+
+		ui.InitiateCombat(currentMonster);
     }
 	public void WhenFightIsPressed()
 	{
 		combatOn = true;
 		currentPlayerReadiness = playerCharacter.GetSpeed();
 	}
-
-
 
 	public void CanAttack(int attackId)
 	{
@@ -219,13 +226,10 @@ public class CombatControl : MonoBehaviour {
 
     void PlayerAttackHead()
     {
-
 		combatLogText.text += "Your headbutt";
         DoDamageToMonster(playerCharacter.AttackHead());
 		currentPlayerReadiness = 30;
 		playerCharacter.DoEnergyDamage(5);
-
-
     }
 
     void PlayerAttackLeftArm()
@@ -285,6 +289,7 @@ public class CombatControl : MonoBehaviour {
 		{
 			playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
 			combatOn = false;
+			DestroyObject(currentMonster);
 		}
         enemyHealthSlider.value = currentMonster.GetHealth();
 		enemyEnergySlider.value = currentMonster.GetEnergy();
@@ -309,51 +314,51 @@ public class CombatControl : MonoBehaviour {
 		int rMonster = Random.Range(1,4);
 		//int rMonster = 1;
 
-		if(rMonster == 1)
-		{
-			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
-			currentMonster.Start();
-
-			int rStart	= Random.Range(1,99);
-			currentMonsterReadiness = rStart;
-		}
-
-		else if(rMonster == 2)
-		{
-			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
-			currentMonster.Start();
-			int rStart	= Random.Range(1,99);
-			currentMonsterReadiness = rStart;
-
-		}
-		else {
-			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
-			currentMonster.Start();
-			int rStart	= Random.Range(1,99);
-			currentMonsterReadiness = rStart;
-
-		}
+//		if(rMonster == 1)
+//		{
+//			//Always create instance of monster and then call start
+//			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+//			currentMonster.Start();
+//
+//			int rStart	= Random.Range(1,99);
+//			currentMonsterReadiness = rStart;
+//		}
+//
+//		else if(rMonster == 2)
+//		{
+//			//Always create instance of monster and then call start
+//			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
+//			currentMonster.Start();
+//			int rStart	= Random.Range(1,99);
+//			currentMonsterReadiness = rStart;
+//
+//		}
+//		else {
+//			//Always create instance of monster and then call start
+//			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
+//			currentMonster.Start();
+//			int rStart	= Random.Range(1,99);
+//			currentMonsterReadiness = rStart;
+//
+//		}
         currentMonster.Init();
 
         //If we want to introduce a "surprised" or "ambush" mechanic,
         //we can adjust the readiness values.
         
         
-		int readiness = Random.Range (2,89);
-		currentPlayerReadiness = readiness;
-
-		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
-		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
-		enemyMaxHealthText.text= currentMonster.GetMaxEnergy().ToString();
-		enemyEnergySlider.value=currentMonster.GetEnergy();
-
-        enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
-        enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
-        enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
-        enemyHealthSlider.value = currentMonster.GetHealth();
+//		int readiness = Random.Range (2,89);
+//		currentPlayerReadiness = readiness;
+//
+//		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
+//		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
+//		enemyMaxHealthText.text= currentMonster.GetMaxEnergy().ToString();
+//		enemyEnergySlider.value=currentMonster.GetEnergy();
+//
+//        enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
+//        enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
+//        enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
+//        enemyHealthSlider.value = currentMonster.GetHealth();
 
 		return currentMonster;
         //combatLogText.text = "";

@@ -3,16 +3,17 @@ using System.Collections;
 
 public class Node : ScriptableObject {
     string description;
+	Monster nodeMonster;
     //Special event?
     //Random chance?
 
-	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 
@@ -21,6 +22,23 @@ public class Node : ScriptableObject {
         description = newDescription;
     }
 
+	public void AddMonster(Monster monster)
+	{
+		nodeMonster = monster;
+	}
+
+//	public bool DoesMonsterExistAtIndex(int i)
+//	{
+//		if(nodeMonster != null)
+//			return true;
+//		else
+//			return false;
+//	}
+
+	public Monster getMonster()
+	{
+		return nodeMonster;
+	}
     public string GetDescription()
     {
         return description;

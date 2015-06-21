@@ -12,6 +12,7 @@ public class Zone : ScriptableObject {
 	
     public void AddNodeColumn(Node[] nodeColumn, int xCoordinate)
     {
+		//Boundary check
         if(xCoordinate >= 0 && xCoordinate < nodeArray.Length)
             nodeArray[xCoordinate] = nodeColumn;
     }
@@ -30,4 +31,31 @@ public class Zone : ScriptableObject {
             return true;
         }
     }
+
+	public bool doesMonsterExist(int i, int j)
+	{
+		if (i < 0 || i > nodeArray.Length - 1
+		    || j < 0 || 	j > nodeArray[i].Length - 1)
+		{
+			return false;
+		}
+		else {
+			if(nodeArray[i][j].getMonster())
+				return true;
+			else 
+				return false;
+		}
+	}
+
+	public void AddMonster(int i, int j, Monster nodeMonster)
+	{
+		nodeArray[i][j].AddMonster(nodeMonster);
+		nodeMonster.Start();
+		nodeMonster.Init();
+	}
+
+	public Monster returnMonsterAtLocation(int i, int j)
+	{
+		return nodeArray[i][j].getMonster();
+	}
 }

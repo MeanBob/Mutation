@@ -27,7 +27,9 @@ public class UIControl : MonoBehaviour {
 	GameObject close;
 
 	UnityEngine.UI.Text explorationDescription;
-    Stack panelStack;
+	UnityEngine.UI.Text sensesText;
+
+	Stack panelStack;
 	UnityEngine.UI.Text preCombatDescription;
 
 	UnityEngine.UI.Text chooseHideRemoveChoice;
@@ -60,7 +62,8 @@ public class UIControl : MonoBehaviour {
         playerActionPanel = fightPanel.transform.FindChild("ActionPanel").gameObject;
         inventoryPanel = transform.FindChild("InventoryPanel").gameObject;
         avatarPanel = transform.FindChild("AvatarPanel").gameObject;
-        explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
+		sensesText =  GameObject.Find("DescriptionPanel/TextSense").gameObject.GetComponent<UnityEngine.UI.Text>();
+		explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
 		preCombatDescription = GameObject.Find("PreCombatPanel/PreCombatDescriptionText").gameObject.GetComponent<UnityEngine.UI.Text>();
 
         panelStack = new Stack();
@@ -125,9 +128,10 @@ public class UIControl : MonoBehaviour {
         //panelStack.Push(newPanel);
     }
 
-    public void GoToDescription(string description)
+    public void GoToDescription(string description,string sensoryDescription)
     {
         explorationDescription.text = description;
+		sensesText.text = sensoryDescription;
         ChangePanel(explorationPanel);
     }
 
