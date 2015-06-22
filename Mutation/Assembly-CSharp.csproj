@@ -51,9 +51,12 @@
      <Compile Include="Assets\Scripts\CombatControl.cs" />
      <Compile Include="Assets\Scripts\ExplorationText.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
+     <Compile Include="Assets\Scripts\Items\BearMeat.cs" />
      <Compile Include="Assets\Scripts\Items\Chloroform.cs" />
      <Compile Include="Assets\Scripts\Items\Daffodil.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
+     <Compile Include="Assets\Scripts\Items\RabbitMeat.cs" />
+     <Compile Include="Assets\Scripts\Items\WolfMeat.cs" />
      <Compile Include="Assets\Scripts\MapControl.cs" />
      <Compile Include="Assets\Scripts\Monsters\BearMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\Monster.cs" />

@@ -18,8 +18,7 @@ public class CombatControl : MonoBehaviour {
 	UnityEngine.UI.Slider enemyHealthSlider;
 	UnityEngine.UI.Text enemyMaxHealthText;
 	UnityEngine.UI.Text enemyCurrentHealthText;
-
-    
+	
     public UnityEngine.UI.Text combatLogText;
     public float currentPlayerReadiness = 0;
     float currentMonsterReadiness = 0;
@@ -35,7 +34,8 @@ public class CombatControl : MonoBehaviour {
 	public bool MonsterAttackPause = false;
     public bool combatOn = false;
 	
-	void Start () {
+	void Start () 
+	{
         ui = GetComponent<UIControl>();
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();

@@ -85,7 +85,10 @@ public class UIControl : MonoBehaviour {
 	{
 	}
 
+	public void CloseInventory()
+	{ inventoryPanel.SetActive(false);
 
+	}
 
 	public void ExplorationPause()
 	{

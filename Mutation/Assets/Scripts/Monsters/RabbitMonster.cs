@@ -12,6 +12,7 @@ public class RabbitMonster : Monster {
 		monsterText[2] = "Two white ears protrude from the landscapes ahead. You can’t be certain, but if you were betting, you'd be putting your money on rabbits right about now.\n\n";
 		// index 3 is for hiding
 		monsterText[3] = " I dodged the fucking rabbit and hid amazingly";
+		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()
     {
@@ -25,6 +26,7 @@ public class RabbitMonster : Monster {
         intelligence = 5;
 		energy = 10;
         
+		itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 6;
         headMaxDamage = 7;
         armMinDamage = 5;

@@ -26,6 +26,9 @@ public class Monster : ScriptableObject {
 	protected int expPointsGained;
 	protected string monsterDescription;
 	protected string hideDescription;
+	protected Item[] droppedItemsList;
+	protected Item itemReleased;
+
 
 	public virtual void Start()
 	{
