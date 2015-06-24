@@ -73,6 +73,25 @@ public class MapControl : MonoBehaviour {
 		currentZone.AddMonster(7,6,ScriptableObject.CreateInstance<RabbitMonster>());
 
 		currentZone.AddMonster(6,2,ScriptableObject.CreateInstance<WolfMonster>());
+		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<WolfMonster>());
+
+		currentZone.AddMonster(5,1,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(5,4,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(5,7,ScriptableObject.CreateInstance<WolfMonster>());
+
+		currentZone.AddMonster(4,6,ScriptableObject.CreateInstance<BearMonster>());
+
+		currentZone.AddMonster(3,1,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(3,1,ScriptableObject.CreateInstance<RabbitMonster>());
+
+		currentZone.AddMonster(2,8,ScriptableObject.CreateInstance<WolfMonster>());
+		currentZone.AddMonster(2,2,ScriptableObject.CreateInstance<WolfMonster>());
+
+		currentZone.AddMonster(1,2,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<RabbitMonster>());
+
+		currentZone.AddMonster(0,5,ScriptableObject.CreateInstance<BearMonster>());
+
 
 
 
