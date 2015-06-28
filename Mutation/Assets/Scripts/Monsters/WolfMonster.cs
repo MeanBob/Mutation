@@ -15,23 +15,27 @@ public class WolfMonster : Monster {
 	public override void Init()
 	{
 		monsterName = "Wolf";
-		strength = Random.Range(9,15);
-		speed = 80;
+		strength = Random.Range(15,42);
+		speed = Random.Range (40,75);
 		intelligence = 5;
 
 		energy = 10;
 
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
-		headMinDamage = 15;
-		headMaxDamage =  18;
-		armMinDamage = 15;
-		armMaxDamage = 16;
-		legMinDamage = 15;
-		legMaxDamage = 16;
-		expPointsGained = 66;
 
-		bonusDamage = - strength;
+		headMinDamage = 1;
+		headMaxDamage =  25;
+
+		armMinDamage = 5;
+		armMaxDamage = 16;
+
+		legMinDamage = 5;
+		legMaxDamage = 20;
+
+		expPointsGained = Random.Range(26, 94);
+
+		bonusDamage = 0;
 		
 		base.Init();
 	}

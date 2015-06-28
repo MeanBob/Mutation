@@ -3,15 +3,20 @@ using System.Collections;
 
 public class RabbitMonster : Monster {
 
-	string[] monsterText = new string[4];
+	string[] monsterText = new string[5];
 
 	public override void Start()
 	{
+		//used to initiate combat
 		monsterText[0] = "As you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
 		monsterText[1] = "While you are resting and catching your breath a small, brown bunny pops its head out of a hole. You notice its pink, twitching nose and relentless, bugging eyes. How cute!\n\n";
 		monsterText[2] = "Two white ears protrude from the landscapes ahead. You can’t be certain, but if you were betting, you'd be putting your money on rabbits right about now.\n\n";
 		// index 3 is for hiding
 		monsterText[3] = "You avoid getting too close to the bunny.";
+
+		//index 4 is for victory
+		monsterText [4] = "The rabbit’s eyes roll up into its head and it goes limp. Good night.";
+	
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()

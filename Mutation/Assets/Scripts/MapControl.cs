@@ -63,14 +63,16 @@ public class MapControl : MonoBehaviour {
 	{
 		Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
 		currentZone.AddMonster(9,4,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(9,9, ScriptableObject.CreateInstance<GoatMonster>());
+		currentZone.AddMonster(9,9,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(8,3,ScriptableObject.CreateInstance<RabbitMonster>());
 		currentZone.AddMonster(8,4,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(8,3,ScriptableObject.CreateInstance<RabbitMonster>());
 		currentZone.AddMonster(8,2,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(8,1,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(8,0,ScriptableObject.CreateInstance<RabbitMonster>());
 
 		currentZone.AddMonster(7,8,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(7,6,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(7,5,ScriptableObject.CreateInstance<SkunkMonster>());
 
 		currentZone.AddMonster(6,2,ScriptableObject.CreateInstance<WolfMonster>());
 		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<WolfMonster>());

@@ -2,11 +2,24 @@
 using System.Collections;
 
 public class Monster : ScriptableObject {
-    protected string monsterName;
-    
+
+	//used in combat
+	protected string monsterName;
+
+	//used in victory
+	protected int expPointsGained;
+	protected Item[] droppedItemsList;
+	protected Item itemReleased;
+	protected string victoryText;
+
+	//used in initiation
+	protected string monsterDescription;
+	protected string hideDescription;
+
+    //monsters combat stats
     protected int speed;
     protected int intelligence;
-    
+   
 	protected int energy;
 	protected int currentEnergy;
 	protected int maxEnergy;
@@ -15,24 +28,21 @@ public class Monster : ScriptableObject {
 	protected int currentHP;
     protected int maxHP;
 
-
     protected int headMinDamage;
     protected int headMaxDamage;
     protected int armMinDamage;
     protected int armMaxDamage;
     protected int legMinDamage;
     protected int legMaxDamage;
-    protected int bonusDamage;
-	protected int expPointsGained;
-	protected string monsterDescription;
-	protected string hideDescription;
-	protected Item[] droppedItemsList;
-	protected Item itemReleased;
+    
+	protected int bonusDamage;
+
 
 
 	public virtual void Start()
 	{
 	}
+
 	public virtual void Init()
     {
         currentHP = 10 * strength;
@@ -56,6 +66,17 @@ public class Monster : ScriptableObject {
     {
         return monsterName;
     }
+
+	
+	public int GetExpPointsGained()
+	{
+		return expPointsGained;
+	}
+
+	public string GetVictoryText()
+	{
+		return victoryText;
+	}
 
 
 
@@ -101,10 +122,6 @@ public class Monster : ScriptableObject {
 
 
 
-	public int GetExpPointsGained()
-	{
-		return expPointsGained;
-	}
 
 
 

@@ -3,9 +3,7 @@ using System.Collections;
 
 public class SkunkMonster : Monster {
 	
-	string[] monsterText = new string[4];
-	
-	Sprite monsterImage = new Sprite();
+	string[] monsterText = new string[5];
 	
 	public override void Start()
 	{
@@ -17,29 +15,39 @@ public class SkunkMonster : Monster {
 		
 		// index 3 is for hiding
 		monsterText[3] = "You play a round of your favorite game Stand Still, knowing that skunks probably only detect movement.";
+
+		//index 4 is for victory
+		monsterText [4] = "The skunk shrieks as only skunks can. You have definitely killed it!";
+
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()
 	{
 		
 		monsterName = "Skunk";
-		expPointsGained = 30;
+		expPointsGained = Random.Range(20,44);
+		itemReleased = droppedItemsList[Random.Range(0,3)];
+		victoryText = monsterText[4];
+
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		
-		strength = Random.Range(1,5);
-		speed = Random.Range(50, 80);
+		strength = Random.Range(4,11);
+		speed = Random.Range(10, 35);
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 6;
-		headMaxDamage = 7;
-		armMinDamage = 5;
-		armMaxDamage = 6;
-		legMinDamage = 6;
-		legMaxDamage = 7;
-		bonusDamage = - strength;
+
+		headMinDamage = 3;
+		headMaxDamage = 6;
+
+		armMinDamage = 1;
+		armMaxDamage = 3;
+
+		legMinDamage = 1;
+		legMaxDamage = 4;
+
+		bonusDamage = 0;
 		
 		base.Init();
 	}

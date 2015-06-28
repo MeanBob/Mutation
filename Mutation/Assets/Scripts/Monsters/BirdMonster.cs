@@ -16,7 +16,7 @@ public class BirdMonster : Monster {
 		monsterText[2] = "Up high in the sky you notice a bird circling. You feel like it’s watching you. Suddenly the large beast is diving right at you! Its hook-shaped beak looks terribly sharp!\n\n";
 		
 		// index 3 is for hiding
-		monsterText[3] = "You lay flat on your back and kick and scream like a baby.\nThe bird flaps out of there in disgust.";
+		monsterText[3] = "You lay flat on your back and kick and scream like a baby. \nThe bird is noticeably disgusted by your actions. It flaps away.";
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()
