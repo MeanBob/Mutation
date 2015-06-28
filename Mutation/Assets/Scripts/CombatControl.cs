@@ -237,6 +237,18 @@ public class CombatControl : MonoBehaviour {
 	}
 	}
 
+
+	//special attacks
+	void LifeSteal()
+	{
+		int lifeStealChance = Random.Range (1, 2);
+		if (lifeStealChance == 1) {
+			playerCharacter.DoEnergyDamage (1);
+			playerCharacter.HealDamage (2);
+			combatLogText.text += "\n\nYour punch steals some life!\n\n";
+		}
+	}
+
     void PlayerAttackHead()
     {
 		combatLogText.text += "Your headbutt";
@@ -247,15 +259,16 @@ public class CombatControl : MonoBehaviour {
 
     void PlayerAttackLeftArm()
     {
-
+		LifeSteal ();
 		combatLogText.text += "Your left punch";
         DoDamageToMonster(playerCharacter.AttackLeftArm());
 		currentPlayerReadiness = 70;
-		playerCharacter.DoEnergyDamage(1);
+
     }
 
     void PlayerAttackRightArm()
     {
+		LifeSteal ();
         combatLogText.text += "Your right punch";
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 70;

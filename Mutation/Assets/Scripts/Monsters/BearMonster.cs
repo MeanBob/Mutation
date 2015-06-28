@@ -38,7 +38,7 @@ public class BearMonster : Monster {
 		legMinDamage = 15;
 		legMaxDamage = 20;
 
-		expPointsGained = 160;
+		expPointsGained = Random.Range(94, 140);
 
 		bonusDamage = 0;
 		

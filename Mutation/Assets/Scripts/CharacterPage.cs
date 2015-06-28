@@ -294,6 +294,7 @@ public class CharacterPage : MonoBehaviour {
             currentHP = maxHP;
         }
         currentHPText.text = currentHP.ToString();
+		UpdateHealthMeter ();
     }
 
     public int AttackHead()
