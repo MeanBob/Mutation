@@ -198,7 +198,7 @@ public class CharacterPage : MonoBehaviour {
 		if(currentLevel > previous)
 		{
 			Debug.Log("Level up");
-			currentNumberOfAllocatablePoints = numberOfPointsPerLevel;
+			currentNumberOfAllocatablePoints += numberOfPointsPerLevel;
 			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 			previous = currentLevel;
 		}
