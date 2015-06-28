@@ -11,6 +11,8 @@ public class CombatControl : MonoBehaviour {
     UnityEngine.UI.Slider enemySlider;
 	UnityEngine.UI.Slider playerSlider;
 
+	UnityEngine.UI.Image monsterImage;
+
 	UnityEngine.UI.Slider enemyEnergySlider;
 	UnityEngine.UI.Text enemyMaxEnergyText;
 	UnityEngine.UI.Text enemyCurrentEnergyText;
@@ -49,6 +51,7 @@ public class CombatControl : MonoBehaviour {
 		enemyCurrentEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/HandleSlideArea/EnemyEnergyCurrentText").GetComponent<UnityEngine.UI.Text>();
 		enemyMaxEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/EnemyEnergyMaxText").GetComponent<UnityEngine.UI.Text>();
 		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
+		monsterImage = transform.FindChild("FightPanel/EnemyScenePanel/EnemyImage").GetComponent<UnityEngine.UI.Image>();
 	}
 	
 
@@ -144,6 +147,9 @@ public class CombatControl : MonoBehaviour {
 		int rStart	= Random.Range(1,99);
 		currentMonsterReadiness = rStart;
 
+//		monsterImage = 
+//		monsterImage.LoadImage(currentMonster.GetMonsterImage());
+		monsterImage.sprite = currentMonster.GetMonsterImage();
 
 		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
 		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
@@ -160,6 +166,7 @@ public class CombatControl : MonoBehaviour {
     }
 	public void WhenFightIsPressed()
 	{
+
 		combatOn = true;
 		currentPlayerReadiness = playerCharacter.GetSpeed();
 	}

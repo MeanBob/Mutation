@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WolfMonster : Monster {
-	string[] monsterText = new string[4];
+	string[] monsterText = new string[5];
 	
 	public override void Start()
 	{
@@ -11,10 +11,14 @@ public class WolfMonster : Monster {
 		monsterText[2] = "You hear the sharp howl of a hungry wolf not far away. Before you have time to retreat, a wolf leaps onto your path and stares you straight in the eyes.\n\n";
 
 		monsterText[3] = "You jump into the nearest ruffage and cover yourself with the natural debris.";
+
+		//used for victory
+		monsterText[4] = "The wolf’s eyes grow dim and absent as his life is depleted! Victory is yours!";
 	}
 	public override void Init()
 	{
 		monsterName = "Wolf";
+
 		strength = Random.Range(15,42);
 		speed = Random.Range (40,75);
 		intelligence = 5;
@@ -23,6 +27,7 @@ public class WolfMonster : Monster {
 
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
+		victoryText = monsterText[4];
 
 		headMinDamage = 1;
 		headMaxDamage =  25;

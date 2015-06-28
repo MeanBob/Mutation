@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Monster : ScriptableObject {
+
+	protected Sprite monsterImage;
 
 	//used in combat
 	protected string monsterName;
@@ -47,14 +50,26 @@ public class Monster : ScriptableObject {
     {
         currentHP = 10 * strength;
         maxHP = currentHP;
-
+		//monsterImage = Enemy;
 		currentEnergy = 10 * energy;
 		maxEnergy = currentEnergy;
+	}
+
+	public Sprite GetMonsterImage()
+	{
+		return monsterImage;
 	}
 
 	public string GetHideDescription()
 	{
 		return hideDescription;
+	}
+
+	public void setMonsterImage(Sprite Enemy)
+	{
+
+		monsterImage = Enemy; 
+
 	}
 
 	public string GetDescription()

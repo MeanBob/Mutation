@@ -4,7 +4,7 @@ using System.Collections;
 public class BearMonster : Monster {
 
 	CharacterPage playerCharacter;
-	string [] monsterText = new string[4];
+	string [] monsterText = new string[5];
 
 
 
@@ -17,6 +17,8 @@ public class BearMonster : Monster {
 		monsterText[2] = "A bear stands in your path, its long sharp claws and glistening fangs make your stomach feel uneasy. When it roars at you, a blast of hot steam catches the afternoon light just so.\n\n";
 		//hiding from the bear
 		monsterText[3] = " You hit the dirt and play dead, holding still until the bear loses interst and moves on.";
+
+		monsterText[4] = "The bear roars in terror as you deliver the final blow. Mighty defeat!";
 	}
 
 	public override void Init()
@@ -32,6 +34,7 @@ public class BearMonster : Monster {
 
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
+		victoryText = monsterText[4];
 
 		headMinDamage = 15;
 		headMaxDamage = 30;

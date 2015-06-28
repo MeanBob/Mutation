@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class RabbitMonster : Monster {
 
 	string[] monsterText = new string[5];
-
 	public override void Start()
 	{
+
 		//used to initiate combat
 		monsterText[0] = "As you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
 		monsterText[1] = "While you are resting and catching your breath a small, brown bunny pops its head out of a hole. You notice its pink, twitching nose and relentless, bugging eyes. How cute!\n\n";
@@ -30,7 +31,8 @@ public class RabbitMonster : Monster {
         speed = Random.Range(60, 90);
         intelligence = 5;
 		energy = 10;
-        
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+
 		itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 2;
         headMaxDamage = 4;

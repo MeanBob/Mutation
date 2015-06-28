@@ -211,6 +211,7 @@ public class UIControl : MonoBehaviour {
 	{
 		RemovePanelFromTop();
 		ChangePanel(fightPanel);
+
 	}
 
     public void DisablePlayerActionPanel()

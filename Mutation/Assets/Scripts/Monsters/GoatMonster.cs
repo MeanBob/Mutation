@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GoatMonster : Monster {
 	
-	string[] monsterText = new string[4];
+	string[] monsterText = new string[5];
 	
 	Sprite monsterImage = new Sprite();
 	
@@ -17,29 +17,36 @@ public class GoatMonster : Monster {
 		
 		// index 3 is for hiding
 		monsterText[3] = "Stomping and kicking up dirt scares off the goat.";
+
+		//used for victory
+		monsterText[4] = "The goat staggers back, blinks twice, keels over and then dies!";
+
+
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()
 	{
 		
 		monsterName = "Goat";
-		expPointsGained = 30;
+		expPointsGained = Random.Range(18,50);
+
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
-		
-		strength = Random.Range(1,5);
-		speed = Random.Range(50, 80);
+		victoryText = monsterText[4];
+
+		strength = Random.Range(8,22);
+		speed = Random.Range(35, 55);
 		intelligence = 5;
 		energy = 10;
 		
 		itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 6;
-		headMaxDamage = 7;
-		armMinDamage = 5;
-		armMaxDamage = 6;
-		legMinDamage = 6;
-		legMaxDamage = 7;
-		bonusDamage = - strength;
+		headMinDamage = 8;
+		headMaxDamage = 13;
+		armMinDamage = 2;
+		armMaxDamage = 8;
+		legMinDamage = 3;
+		legMaxDamage = 10;
+		bonusDamage = 0;
 		
 		base.Init();
 	}
