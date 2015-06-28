@@ -11,7 +11,7 @@ public class RabbitMonster : Monster {
 		monsterText[1] = "While you are resting and catching your breath a small, brown bunny pops its head out of a hole. You notice its pink, twitching nose and relentless, bugging eyes. How cute!\n\n";
 		monsterText[2] = "Two white ears protrude from the landscapes ahead. You can’t be certain, but if you were betting, you'd be putting your money on rabbits right about now.\n\n";
 		// index 3 is for hiding
-		monsterText[3] = " I dodged the fucking rabbit and hid amazingly";
+		monsterText[3] = "You avoid getting too close to the bunny.";
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()

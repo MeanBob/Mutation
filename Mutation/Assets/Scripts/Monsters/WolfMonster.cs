@@ -6,11 +6,11 @@ public class WolfMonster : Monster {
 	
 	public override void Start()
 	{
-		monsterText[0] = "wolf you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
-		monsterText[1] = "Wolf you are resting and catching your breath a small, brown bunny pops its head out of a hole. You notice its pink, twitching nose and relentless, bugging eyes. How cute!\n\n";
-		monsterText[2] = "Wolf white ears protrude from the landscapes ahead. You can’t be certain, but if you were betting, you'd be putting your money on rabbits right about now.\n\n";
+		monsterText[0] = "You first see the patchy grey and brown fur of an animal in your path. When its eyes lite upon you you notice pointed, dripping fangs. The wolf growls and you sense the beast must be hungry.\n\n";
+		monsterText[1] = "You catch two glowing, yellow gems in your site. They are quickly followed by the lurking, open-mouthed face of a true beast. This wolf’s fur is matted and patchy. You must have stumbled upon a true wolf warrior!\n\n";
+		monsterText[2] = "You hear the sharp howl of a hungry wolf not far away. Before you have time to retreat, a wolf leaps onto your path and stares you straight in the eyes.\n\n";
 
-		monsterText[3] = " I dodged the fucking rabbit and hid amazingly";
+		monsterText[3] = "You jump into the nearest ruffage and cover yourself with the natural debris.";
 	}
 	public override void Init()
 	{

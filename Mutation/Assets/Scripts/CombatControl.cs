@@ -169,6 +169,7 @@ public class CombatControl : MonoBehaviour {
 		int accuracy = playerCharacter.getPlayerAccuracy();
 		if (currentPlayerReadiness >= 100)
 		{
+			//this makes the random number we will check our stats algorithm against. It's a 1d100 system...
 			int chanceToHit = Random.Range (0,100);
 
 			switch(attackId)
@@ -221,7 +222,19 @@ public class CombatControl : MonoBehaviour {
 				
 			}
 		}
-		else {combatLogText.text += "You are not ready.\n\n";}
+
+		else {
+			int waitTextNumber = Random.Range(1,5);
+
+			if (waitTextNumber ==1){
+			combatLogText.text += "Message 1: \n\n";}
+			else if (waitTextNumber ==2){
+				combatLogText.text += "Message 2: \n\n";}
+			else if (waitTextNumber ==3){
+				combatLogText.text += "Message 3: \n\n";}
+			else{
+				combatLogText.text += "Message 4: \n\n";}
+	}
 	}
 
     void PlayerAttackHead()
@@ -268,7 +281,7 @@ public class CombatControl : MonoBehaviour {
 
 	public bool DoSpeedDamageForExploring(int damage)
 	{
-		currentPlayerReadiness -= 16;
+		currentPlayerReadiness -= 96;
 		if (currentPlayerReadiness <= 0)
 		{
 			return true;

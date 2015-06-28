@@ -12,7 +12,7 @@ public class BearMonster : Monster {
 		monsterText[1] = "You make out the haunches of a large beast up ahead. Suddenly the beast turns and holds you in its gaze. Its a bear, and as it rears around it stands up on its back legs.\n\n";
 		monsterText[2] = "A bear stands in your path, its long sharp claws and glistening fangs make your stomach feel uneasy. When it roars at you, a blast of hot steam catches the afternoon light just so.\n\n";
 
-		monsterText[3] = " I dodged the fucking rabbit and hid amazingly";
+		monsterText[3] = " You take hit the dirt and play dead, holding still until the bear loses interst and moves on.";
 	}
 
 	public override void Init()
