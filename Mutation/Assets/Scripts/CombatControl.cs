@@ -172,8 +172,11 @@ public class CombatControl : MonoBehaviour {
 			//this makes the random number we will check our stats algorithm against. It's a 1d100 system...
 			int chanceToHit = Random.Range (0,100);
 
+			//Switch is called on the Buttons Arm, Leg, Head
+			//Add better text??
 			switch(attackId)
 			{
+				//head
 			case 0 :
 				if (chanceToHit > (30 - accuracy))
 					PlayerAttackHead();
@@ -183,6 +186,7 @@ public class CombatControl : MonoBehaviour {
 					playerCharacter.DoEnergyDamage(1);
 				}
 				break;
+				//arm
 			case 1 :
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackLeftArm();
@@ -192,6 +196,7 @@ public class CombatControl : MonoBehaviour {
 					playerCharacter.DoEnergyDamage(1);
 				}
 				break;
+				//arm
 			case 2 :
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackRightArm();
@@ -201,6 +206,7 @@ public class CombatControl : MonoBehaviour {
 					playerCharacter.DoEnergyDamage(1);
 				}
 				break;
+				//leg
 			case 3 :
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackLeftLeg();
@@ -210,6 +216,7 @@ public class CombatControl : MonoBehaviour {
 					playerCharacter.DoEnergyDamage(1);
 				}
 				break;
+				//leg
 			case 4 :
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackRightLeg();
@@ -223,6 +230,7 @@ public class CombatControl : MonoBehaviour {
 			}
 		}
 
+		//ADD TEXT FOR WHEN YOU PRESS ATTACK AND YOU ARE NOT READY
 		else {
 			int waitTextNumber = Random.Range(1,5);
 
@@ -245,12 +253,25 @@ public class CombatControl : MonoBehaviour {
 		if (lifeStealChance == 1) {
 			playerCharacter.DoEnergyDamage (1);
 			playerCharacter.HealDamage (2);
-			combatLogText.text += "\n\nYour punch steals some life!\n\n";
+			combatLogText.text += "\n\nYour punch steals some life!\n";
+		}
+	}
+	void Stun()
+	{
+		int stunChance = Random.Range (1, 2);
+
+		if (stunChance == 1)
+		{
+		currentMonsterReadiness = 0;
+		enemySlider.value = currentMonsterReadiness;
+			combatLogText.text +="\nYour headbutt stuns the beast!\n";
 		}
 	}
 
+	//Basic Attacks
     void PlayerAttackHead()
     {
+		Stun ();
 		combatLogText.text += "Your headbutt";
         DoDamageToMonster(playerCharacter.AttackHead());
 		currentPlayerReadiness = 30;
@@ -292,6 +313,7 @@ public class CombatControl : MonoBehaviour {
     }
 
 
+	//Exploring
 	public bool DoSpeedDamageForExploring(int damage)
 	{
 		currentPlayerReadiness -= 96;
