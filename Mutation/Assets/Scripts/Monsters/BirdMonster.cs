@@ -3,9 +3,9 @@ using System.Collections;
 
 public class BirdMonster : Monster {
 	
-	string[] monsterText = new string[4];
+	string[] monsterText = new string[5];
 	
-	Sprite monsterImage = new Sprite();
+
 	
 	public override void Start()
 	{
@@ -16,30 +16,33 @@ public class BirdMonster : Monster {
 		monsterText[2] = "Up high in the sky you notice a bird circling. You feel like it’s watching you. Suddenly the large beast is diving right at you! Its hook-shaped beak looks terribly sharp!\n\n";
 		
 		// index 3 is for hiding
-		monsterText[3] = "You lay flat on your back and kick and scream like a baby. \nThe bird is noticeably disgusted by your actions. It flaps away.";
+		monsterText[3] = "You lay flat on your back and kick and scream. \nThe bird is noticeably disgusted by your actions. It flaps away.";
+
+		monsterText[4] = "The ball of feathers drops from the sky. It looks dead.";
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()
 	{
-		
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		monsterName = "Bird";
-		expPointsGained = 30;
+		victoryText = monsterText[4];
+		expPointsGained = Random.Range(18,39);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
-		
-		strength = Random.Range(1,5);
-		speed = Random.Range(50, 80);
+
+		strength = Random.Range(3,6);
+		speed = Random.Range(80, 90);
 		intelligence = 5;
 		energy = 10;
 		
 		itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 6;
-		headMaxDamage = 7;
-		armMinDamage = 5;
-		armMaxDamage = 6;
-		legMinDamage = 6;
-		legMaxDamage = 7;
-		bonusDamage = - strength;
+		headMaxDamage = 9;
+		armMinDamage = 1;
+		armMaxDamage = 1;
+		legMinDamage = 7;
+		legMaxDamage = 10;
+		bonusDamage = 0;
 		
 		base.Init();
 	}

@@ -28,7 +28,7 @@ public class SkunkMonster : Monster {
 		expPointsGained = Random.Range(20,44);
 		itemReleased = droppedItemsList[Random.Range(0,3)];
 		victoryText = monsterText[4];
-
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		

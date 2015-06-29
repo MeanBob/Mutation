@@ -3,9 +3,9 @@ using System.Collections;
 
 public class CatMonster : Monster {
 	
-	string[] monsterText = new string[4];
+	string[] monsterText = new string[5];
 
-	Sprite monsterImage = new Sprite();
+
 	
 	public override void Start()
 	{
@@ -17,6 +17,9 @@ public class CatMonster : Monster {
 
 		// index 3 is for hiding
 		monsterText[3] = "You scream and run in circles, confusing the cat and making a lot of noise.";
+
+		//used for victory
+		monsterText[4] = "You rend the feline’s flesh! Its life depletes before your eyes. You killed it!";
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()
@@ -26,20 +29,22 @@ public class CatMonster : Monster {
 		expPointsGained = 30;
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
-		
-		strength = Random.Range(1,5);
-		speed = Random.Range(50, 80);
+		victoryText = monsterText[4];
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+
+		strength = Random.Range(4,7);
+		speed = Random.Range(55, 85);
 		intelligence = 5;
 		energy = 10;
 		
 		itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 6;
-		headMaxDamage = 7;
-		armMinDamage = 5;
-		armMaxDamage = 6;
-		legMinDamage = 6;
-		legMaxDamage = 7;
-		bonusDamage = - strength;
+		headMinDamage = 3;
+		headMaxDamage = 8;
+		armMinDamage = 2;
+		armMaxDamage = 4;
+		legMinDamage = 2;
+		legMaxDamage = 5;
+		bonusDamage = 0;
 		
 		base.Init();
 	}

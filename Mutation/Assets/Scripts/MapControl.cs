@@ -61,38 +61,25 @@ public class MapControl : MonoBehaviour {
 	}
 	void GenerateZoneMonsters()
 	{
-		Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
-		currentZone.AddMonster(9,4,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(9,9,ScriptableObject.CreateInstance<RabbitMonster>());
+		//Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
 
-		currentZone.AddMonster(8,4,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(8,3,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(8,2,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(8,1,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(8,0,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(7,8,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(7,5,ScriptableObject.CreateInstance<SkunkMonster>());
 
-		currentZone.AddMonster(6,2,ScriptableObject.CreateInstance<WolfMonster>());
-		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<WolfMonster>());
+		currentZone.AddMonster(7,5,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(5,1,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(5,4,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(5,7,ScriptableObject.CreateInstance<WolfMonster>());
+		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<CatMonster>());
 
-		currentZone.AddMonster(4,6,ScriptableObject.CreateInstance<BearMonster>());
+		currentZone.AddMonster(5,5,ScriptableObject.CreateInstance<GoatMonster>());
 
-		currentZone.AddMonster(3,1,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(3,1,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(4,5,ScriptableObject.CreateInstance<FrogMonster>());
 
-		currentZone.AddMonster(2,8,ScriptableObject.CreateInstance<WolfMonster>());
-		currentZone.AddMonster(2,2,ScriptableObject.CreateInstance<WolfMonster>());
+		currentZone.AddMonster(3,5,ScriptableObject.CreateInstance<BeaverMonster>());
 
-		currentZone.AddMonster(1,2,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(2,5,ScriptableObject.CreateInstance<BirdMonster>());
 
-		currentZone.AddMonster(0,5,ScriptableObject.CreateInstance<BearMonster>());
+		currentZone.AddMonster(1,5,ScriptableObject.CreateInstance<SnakeMonster>());
+
+		currentZone.AddMonster(0,5,ScriptableObject.CreateInstance<MooseMonster>());
 
 
 

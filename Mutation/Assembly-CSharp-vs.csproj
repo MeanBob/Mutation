@@ -58,11 +58,11 @@
      <Compile Include="Assets\Scripts\Items\RabbitMeat.cs" />
      <Compile Include="Assets\Scripts\Items\WolfMeat.cs" />
      <Compile Include="Assets\Scripts\MapControl.cs" />
+     <Compile Include="Assets\Scripts\Monsters\AnteaterMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\BearMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\BeaverMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\BirdMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\CatMonster.cs" />
-     <Compile Include="Assets\Scripts\Monsters\ChipmunkMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\DogMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\FrogMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\GiantAntMonster.cs" />

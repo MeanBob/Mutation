@@ -3,9 +3,9 @@ using System.Collections;
 
 public class DogMonster : Monster {
 	
-	string[] monsterText = new string[4];
+	string[] monsterText = new string[5];
 	
-	Sprite monsterImage = new Sprite();
+
 	
 	public override void Start()
 	{
@@ -17,29 +17,33 @@ public class DogMonster : Monster {
 		
 		// index 3 is for hiding
 		monsterText[3] = "The dog backs off when you puff out your chest and bark ten times.";
+		//for victory
+		monsterText[4] = "The dog heaves in pain before going cross-eyed and passing out. You’ve killed it!";
 		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
 	}
 	public override void Init()
 	{
 		
 		monsterName = "Dog";
-		expPointsGained = 30;
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		expPointsGained = Random.Range(22,41);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
-		
-		strength = Random.Range(1,5);
-		speed = Random.Range(50, 80);
+		victoryText = monsterText[4];
+
+		strength = Random.Range(6,9);
+		speed = Random.Range(45, 75);
 		intelligence = 5;
 		energy = 10;
 		
 		itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 6;
-		headMaxDamage = 7;
-		armMinDamage = 5;
-		armMaxDamage = 6;
-		legMinDamage = 6;
-		legMaxDamage = 7;
-		bonusDamage = - strength;
+		headMinDamage = 5;
+		headMaxDamage = 10;
+		armMinDamage = 2;
+		armMaxDamage = 4;
+		legMinDamage = 2;
+		legMaxDamage = 5;
+		bonusDamage = 0;
 		
 		base.Init();
 	}

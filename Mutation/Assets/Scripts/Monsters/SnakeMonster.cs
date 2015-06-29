@@ -21,7 +21,7 @@ public class SnakeMonster : Monster {
 	{
 		monsterName = "Snake";
 		expPointsGained = Random.Range(18 , 36);
-
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];

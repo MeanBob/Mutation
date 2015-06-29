@@ -5,7 +5,7 @@ public class GoatMonster : Monster {
 	
 	string[] monsterText = new string[5];
 	
-	Sprite monsterImage = new Sprite();
+
 	
 	public override void Start()
 	{
@@ -29,7 +29,7 @@ public class GoatMonster : Monster {
 		
 		monsterName = "Goat";
 		expPointsGained = Random.Range(18,50);
-
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];

@@ -18,7 +18,7 @@ public class WolfMonster : Monster {
 	public override void Init()
 	{
 		monsterName = "Wolf";
-
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		strength = Random.Range(15,42);
 		speed = Random.Range (40,75);
 		intelligence = 5;

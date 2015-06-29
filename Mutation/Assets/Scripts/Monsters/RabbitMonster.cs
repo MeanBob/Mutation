@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class RabbitMonster : Monster {
 
 	string[] monsterText = new string[5];
+
 	public override void Start()
 	{
 
