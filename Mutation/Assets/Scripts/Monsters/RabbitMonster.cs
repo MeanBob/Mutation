@@ -19,7 +19,7 @@ public class RabbitMonster : Monster {
 		//index 4 is for victory
 		monsterText [4] = "The rabbit’s eyes roll up into its head and it goes limp. Good night.";
 	
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
     {
@@ -34,7 +34,7 @@ public class RabbitMonster : Monster {
 		energy = 10;
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 2;
         headMaxDamage = 4;
         armMinDamage = 1;

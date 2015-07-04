@@ -20,7 +20,7 @@ public class CatMonster : Monster {
 
 		//used for victory
 		monsterText[4] = "You rend the feline’s flesh! Its life depletes before your eyes. You killed it!";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -37,7 +37,7 @@ public class CatMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 3;
 		headMaxDamage = 8;
 		armMinDamage = 2;

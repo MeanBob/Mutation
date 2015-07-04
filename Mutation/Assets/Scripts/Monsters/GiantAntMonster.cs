@@ -19,14 +19,14 @@ public class GiantAntMonster : Monster {
 		monsterText[3] = "You casually stroll away from the ant. It ignores you as it move a fallen tree branch out of its way.";
 
 		monsterText[4] = "Squishy, green ooze emerges from the ant’s segmented body. Dead Ant Nasty!";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
 		
 		monsterName = "Giant Ant";
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		
 		expPointsGained = Random.Range(110,300);
 		monsterDescription = monsterText[Random.Range(0,3)];

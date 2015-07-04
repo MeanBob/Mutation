@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : ScriptableObject {
+public class Item : MonoBehaviour {
 
 	protected int strength;
 	protected int speed;
@@ -13,9 +13,13 @@ public class Item : ScriptableObject {
 	protected int energyHealed;
 	protected int count;
 	
-	public virtual void Init()
+//	public virtual void Init()
+//	{
+//		//hitPointsHealed = 2 * intelligence;
+//	}
+	void Start()
 	{
-		//hitPointsHealed = 2 * intelligence;
+		Debug.Log("Start for Item called");
 	}
 
 	public string getName()

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class BearMeat : Item {
 	
-	public override void Init()
+	void Awake()
 	{
 		itemName = "Bear Meat";
 		
@@ -14,7 +14,7 @@ public class BearMeat : Item {
 		energy = 0;
 		accuracy = -5;
 		count = 1;
-		base.Init();
+//		base.Init();
 	}
 	
 }

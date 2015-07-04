@@ -19,7 +19,7 @@ public class DogMonster : Monster {
 		monsterText[3] = "The dog backs off when you puff out your chest and bark ten times.";
 		//for victory
 		monsterText[4] = "The dog heaves in pain before going cross-eyed and passing out. You’ve killed it!";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -36,7 +36,7 @@ public class DogMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 5;
 		headMaxDamage = 10;
 		armMinDamage = 2;

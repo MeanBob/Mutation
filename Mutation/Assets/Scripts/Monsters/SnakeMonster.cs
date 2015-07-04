@@ -15,7 +15,7 @@ public class SnakeMonster : Monster {
 		//index 4 is for victory
 		monsterText[4] = "You mangle the poor snake! It dies. Hoo-ray!";
 
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -31,7 +31,7 @@ public class SnakeMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 10;
 		headMaxDamage = 20;
 		armMinDamage = 0;

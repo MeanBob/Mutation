@@ -19,7 +19,7 @@ public class AnteaterMonster : Monster {
 		monsterText[3] = "Knowing the value of your health, you decide it best to leave this Anteater alone.  You scurry off as quick as possible and hide under a rock.";
 
 		monsterText[4] = "The giant anteater ceases to move. You sense its life force depleted. Nice work!";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -38,7 +38,7 @@ public class AnteaterMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 8;
 		headMaxDamage = 13;
 		armMinDamage = 6;

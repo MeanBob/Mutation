@@ -22,7 +22,7 @@ public class GoatMonster : Monster {
 		monsterText[4] = "The goat staggers back, blinks twice, keels over and then dies!";
 
 
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -39,7 +39,7 @@ public class GoatMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 8;
 		headMaxDamage = 13;
 		armMinDamage = 2;

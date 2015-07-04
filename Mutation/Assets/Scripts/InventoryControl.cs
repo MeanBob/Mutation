@@ -41,7 +41,7 @@ public class InventoryControl : MonoBehaviour {
 		{
 			tempItem = listOfItems[i];
 			string tempString = string.Concat("Buttons/Inventory Item ", i);
-			button = transform.FindChild(tempString).GetComponent<UnityEngine.UI.Button>();
+			//button = transform.FindChild(tempString).GetComponent<UnityEngine.UI.Button>();
 			UnityEngine.UI.Text[] buttonText = button.GetComponentsInChildren<Text>();
 			buttonText[0].text = tempItem.getName();
 			buttonText[1].text = tempItem.getCount().ToString();

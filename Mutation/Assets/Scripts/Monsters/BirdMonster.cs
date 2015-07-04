@@ -19,7 +19,7 @@ public class BirdMonster : Monster {
 		monsterText[3] = "You lay flat on your back and kick and scream. \nThe bird is noticeably disgusted by your actions. It flaps away.";
 
 		monsterText[4] = "The ball of feathers drops from the sky. It looks dead.";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -35,7 +35,7 @@ public class BirdMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 6;
 		headMaxDamage = 9;
 		armMinDamage = 1;

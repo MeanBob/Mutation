@@ -19,14 +19,14 @@ public class SkunkMonster : Monster {
 		//index 4 is for victory
 		monsterText [4] = "The skunk shrieks as only skunks can. You have definitely killed it!";
 
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
 		
 		monsterName = "Skunk";
 		expPointsGained = Random.Range(20,44);
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		victoryText = monsterText[4];
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		monsterDescription = monsterText[Random.Range(0,3)];

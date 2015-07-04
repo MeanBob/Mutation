@@ -63,8 +63,6 @@ public class MapControl : MonoBehaviour {
 	{
 		//Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
 
-
-
 		currentZone.AddMonster(7,5,ScriptableObject.CreateInstance<RabbitMonster>());
 
 		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<CatMonster>());

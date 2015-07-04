@@ -19,7 +19,7 @@ public class MooseMonster : Monster {
 		monsterText[3] = "You turn tail and take off, zigging and zagging until you escape the moose.";
 
 		monsterText[4] = "The moose’s black nostrils flare as it succumbs to defeat! You killed it!";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -36,7 +36,7 @@ public class MooseMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 10;
 		headMaxDamage = 25;
 		armMinDamage = 2;

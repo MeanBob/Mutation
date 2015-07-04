@@ -1,15 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
 public class ScrollItem : MonoBehaviour
 {
-
-
-
     #region PUBLIC_VARIABLES
     public Text indexText;
-
+ 	public int count;
     public DynamicScrollView dynamicScrollView;
     #endregion
 
@@ -20,6 +17,7 @@ public class ScrollItem : MonoBehaviour
     void OnEnable()
     {
         indexText.text = transform.name;
+		count = 2;
     }
     #endregion
 

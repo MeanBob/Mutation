@@ -20,7 +20,7 @@ public class BeaverMonster : Monster {
 
 		//used for victory
 		monsterText[4] = "The beaver mutters something profane under its breath as its eyes shut forever";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -36,7 +36,7 @@ public class BeaverMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 6;
 		headMaxDamage = 16;
 		armMinDamage = 2;

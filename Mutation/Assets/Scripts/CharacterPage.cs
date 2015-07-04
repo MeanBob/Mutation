@@ -79,12 +79,14 @@ public class CharacterPage : MonoBehaviour {
 	void Start () {
 
 
-		tempItem = ScriptableObject.CreateInstance<Daffodil>();
-		tempItem.Init();
-		listOfItems.Add(tempItem);
-		tempItem = ScriptableObject.CreateInstance<Chloroform>();
-		tempItem.Init();
-		listOfItems.Add(tempItem);
+		//tempItem = new Daffodil();
+		//tempItem.Init();
+		//listOfItems.Add(tempItem);
+
+		//tempItem = new Chloroform();
+		//tempItem.Init();
+
+		//listOfItems.Add(tempItem);
 //		sample();
         //We'll want to have this customizeable, once character creation is in
 		energy = 11;

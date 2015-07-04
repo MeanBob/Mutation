@@ -18,7 +18,7 @@ public class PorcupineMonster : Monster {
 		monsterText[3] = "";
 
 		monsterText[4] = "You deliver the final blow and the porcupine shakes violently before dieing.";
-		droppedItemsList = new Item[]{ ScriptableObject.CreateInstance<Daffodil>(),ScriptableObject.CreateInstance<Chloroform>(),ScriptableObject.CreateInstance<RabbitMeat>()};
+		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
@@ -35,7 +35,7 @@ public class PorcupineMonster : Monster {
 		intelligence = 5;
 		energy = 10;
 		
-		itemReleased = droppedItemsList[Random.Range(0,3)];
+		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 5;
 		headMaxDamage = 10;
 		armMinDamage = 13;
