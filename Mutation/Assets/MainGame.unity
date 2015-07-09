@@ -1310,11 +1310,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 112573702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -960, y: -1706.33228, z: -60.1880875}
+  m_LocalScale: {x: 6.01880884, y: 6.01880884, z: 6.01880884}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 828394014}
+  m_RootOrder: 12
 --- !u!1 &118672979
 GameObject:
   m_ObjectHideFlags: 0
@@ -5884,6 +5884,7 @@ GameObject:
   - 114: {fileID: 828394015}
   - 114: {fileID: 828394019}
   - 114: {fileID: 828394020}
+  - 95: {fileID: 828394021}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -5913,8 +5914,9 @@ RectTransform:
   - {fileID: 1267050418}
   - {fileID: 543544391}
   - {fileID: 8563496}
+  - {fileID: 112573707}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -6022,6 +6024,23 @@ MonoBehaviour:
   combatPause: 0
   MonsterAttackPause: 0
   combatOn: 0
+--- !u!95 &828394021
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828394013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9dfe14e4de934b07b6943b2325e6de4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &836509400
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,7 +6131,7 @@ RectTransform:
   m_LocalScale: {x: 1.59062505, y: 1.59062505, z: .530208349}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -246.53833, y: 122.559265}
@@ -7506,7 +7525,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &983675414
 GameObject:
   m_ObjectHideFlags: 0
@@ -9562,7 +9581,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1298127197
 GameObject:
   m_ObjectHideFlags: 0
@@ -12315,7 +12334,7 @@ Transform:
   m_Children:
   - {fileID: 1813046474}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &1680446334
 GameObject:
   m_ObjectHideFlags: 0

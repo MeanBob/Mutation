@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class CombatControl : MonoBehaviour {
    
+	Animator shake;
+
 	UIControl ui;
     CharacterPage playerCharacter;
     Monster currentMonster;
@@ -38,6 +40,7 @@ public class CombatControl : MonoBehaviour {
 	
 	void Start () 
 	{
+		shake = GetComponent<Animator> ();
         ui = GetComponent<UIControl>();
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
@@ -57,7 +60,9 @@ public class CombatControl : MonoBehaviour {
 
 	void Update () {
 		//Debug.Log("Combat on value ::::"+combatOn);
-        if (combatOn)
+		//shake.Play ("None");
+
+		if (combatOn)
         {
 			characterButton.interactable = false;
 			exploreButton.interactable = false;
@@ -91,6 +96,7 @@ public class CombatControl : MonoBehaviour {
 						currentMonster.DoEnergyDamage(2);
 					enemyEnergySlider.value = currentMonster.GetEnergy();
 
+
                         break;
                     case 1:
                     case 2:
@@ -113,6 +119,7 @@ public class CombatControl : MonoBehaviour {
                 }
                 currentMonsterReadiness = 0;
                 combatLogText.text += "did " + monsterDamage + " damage.\n\n";
+				shake.Play ("Hit");
                 playerCharacter.DoDamage(monsterDamage);
 
             }
@@ -242,13 +249,13 @@ public class CombatControl : MonoBehaviour {
 			int waitTextNumber = Random.Range(1,5);
 
 			if (waitTextNumber ==1){
-			combatLogText.text += "Message 1: \n\n";}
+			combatLogText.text += "You are not ready. \n\n";}
 			else if (waitTextNumber ==2){
-				combatLogText.text += "Message 2: \n\n";}
+				combatLogText.text += "You need more time. \n\n";}
 			else if (waitTextNumber ==3){
-				combatLogText.text += "Message 3: \n\n";}
+				combatLogText.text += "You cannot move yet. \n\n";}
 			else{
-				combatLogText.text += "Message 4: \n\n";}
+				combatLogText.text += "You are almost ready. \n\n";}
 	}
 	}
 
@@ -333,6 +340,7 @@ public class CombatControl : MonoBehaviour {
 
     void DoDamageToMonster(int damage)
     {
+		shake.Play ("Hitting");
         if (currentMonster.DoDamage(damage))
         {
             ui.EndCombat();
