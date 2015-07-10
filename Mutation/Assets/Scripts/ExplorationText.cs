@@ -67,7 +67,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[0,5] = "At the edge of an endless desert you look on as three turkey vultures rip scraps off a dehydrated carcass. Your foot brushes against something hard and you uncover, buried in the sand, a bottle of chloroform!";
 		dialogue[1,5] = "You trudge into the uneven sand and climb a small series of sand dunes. It’s not easy moving through this stuff.";
 		dialogue[2,5] = "Here the path turns abruptly East. Ahead there are Dunes of sand which appear to be the beginning of a dessert and to your left more grass separates you from the river.";
-			dialogue[3,5] = "To the West a patch of grass separates you from the bank of the river. To the East sand spills down a mound.";
+		dialogue[3,5] = "To the West a patch of grass separates you from the bank of the river. To the East sand spills down a mound.";
 		dialogue[4,5] = "A road sign offers directions; it reads: North - The Desert, South - Fourwood Castle, West - The River.";
 		dialogue[5,5] = "Grass grows on either side of the path.";
 		dialogue[6,5] = "The path leads away from the castle. To the West a river runs parallel along the roadway. To the East a small stream empties into a ditch beside the road.";
@@ -79,7 +79,8 @@ public class ExplorationText  : ScriptableObject
 		dialogue[1,6] = "Here the sand slopes down into a small bowl where a lone sequoia reaches heights of 10 feet or more.";
 		dialogue[2,6] = "The path leads East/West here providing passage across the sands of the desert.";
 		dialogue[3,6] = "Sand spills over here and collects in piles. Some grass pokes up through sandy patches but is stifled by the oppressive desert feature.";
-		dialogue[4,6] = "Through reeds and tall grasses you see a small, odd-shaped package. Upon closer inspection it appears you have found a parcel, most likely long discarded. You unwrap the paper from the forgotten gift and in an instant a spring-loaded trap closes on your limb. It’s teeth cut into your flesh and pain swells in your head and makes you feel dizzy.";
+		//too long
+		dialogue[4,6] = "Through reeds and tall grasses you see bees and insects in great detail.  You feel dizzy.";
 		dialogue[5,6] = "Here a field of grass grows with surprising ease and you begin to wonder whether there is a stream or some other source to feed this thriving vegetation.";
 		dialogue[6,6] = "You come to the head of a small creek. Its meandering flow empties at your feet and disappears into the loose gravel there.";
 		dialogue[7,6] = "The path here butts up to the main trail in the West. To the East the path appears to lead into the mountains.";
