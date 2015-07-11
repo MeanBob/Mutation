@@ -24,7 +24,7 @@ public class BearMonster : Monster {
 	public override void Init()
 	{
 		monsterName = "Bear";
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bear"));
 
 		strength = Random.Range (40,56);
 

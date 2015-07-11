@@ -30,7 +30,7 @@ public class BeaverMonster : Monster {
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Beaver"));
 		strength = Random.Range(7,17);
 		speed = Random.Range(11, 37);
 		intelligence = 5;

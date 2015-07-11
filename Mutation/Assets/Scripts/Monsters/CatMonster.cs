@@ -30,7 +30,7 @@ public class CatMonster : Monster {
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Car"));
 
 		strength = Random.Range(4,7);
 		speed = Random.Range(55, 85);

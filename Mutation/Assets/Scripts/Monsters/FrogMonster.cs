@@ -25,7 +25,7 @@ public class FrogMonster : Monster {
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Frog"));
 		strength = Random.Range(1,3);
 		speed = Random.Range(20, 40);
 		intelligence = 5;
