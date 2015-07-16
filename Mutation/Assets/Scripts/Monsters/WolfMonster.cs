@@ -17,6 +17,7 @@ public class WolfMonster : Monster {
 	}
 	public override void Init()
 	{
+		monsterMeatID = 3;
 		monsterName = "Wolf";
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		strength = Random.Range(15,42);

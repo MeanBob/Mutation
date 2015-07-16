@@ -23,6 +23,7 @@ public class BirdMonster : Monster {
 	}
 	public override void Init()
 	{
+		monsterMeatID = 12;
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		monsterName = "Bird";
 		victoryText = monsterText[4];

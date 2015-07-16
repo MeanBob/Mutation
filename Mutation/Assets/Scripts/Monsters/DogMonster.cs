@@ -23,9 +23,9 @@ public class DogMonster : Monster {
 	}
 	public override void Init()
 	{
-		
+		monsterMeatID = 11;
 		monsterName = "Dog";
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Dog"));
 		expPointsGained = Random.Range(22,41);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];

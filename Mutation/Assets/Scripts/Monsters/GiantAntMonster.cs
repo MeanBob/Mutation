@@ -23,7 +23,7 @@ public class GiantAntMonster : Monster {
 	}
 	public override void Init()
 	{
-		
+		monsterMeatID = 15;
 		monsterName = "Giant Ant";
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
 		//itemReleased = droppedItemsList[Random.Range(0,3)];

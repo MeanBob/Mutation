@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Node : ScriptableObject {
     string description;
 	Monster nodeMonster;
+	string backgroundImage;
+
     //Special event?
     //Random chance?
 
@@ -17,10 +20,24 @@ public class Node : ScriptableObject {
 	
 	}
 
+
+	public void AddBackgroundImage(string newBackgroundImage)
+	{
+		backgroundImage = newBackgroundImage; 
+	}
+
+	public string GetBackgroundImage()
+	{
+		return backgroundImage; 
+	}
+
+
     public void AddDescription(string newDescription)
     {
         description = newDescription;
     }
+
+
 
 	public void AddMonster(Monster monster)
 	{

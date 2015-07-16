@@ -13,6 +13,9 @@ public class WolfMeat : Item {
 		energy = 0;
 		accuracy = -5;
 		count = 1;
+		tag = 3;
+
+
 	}
 	
 }

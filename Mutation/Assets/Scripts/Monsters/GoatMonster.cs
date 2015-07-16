@@ -26,7 +26,7 @@ public class GoatMonster : Monster {
 	}
 	public override void Init()
 	{
-		
+		monsterMeatID = 7;
 		monsterName = "Goat";
 		expPointsGained = Random.Range(18,50);
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Goat"));

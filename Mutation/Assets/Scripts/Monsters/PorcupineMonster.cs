@@ -22,7 +22,7 @@ public class PorcupineMonster : Monster {
 	}
 	public override void Init()
 	{
-		
+		monsterMeatID = 16;
 		monsterName = "Porcupine";
 		expPointsGained = Random.Range(75,90);
 		monsterDescription = monsterText[Random.Range(0,3)];

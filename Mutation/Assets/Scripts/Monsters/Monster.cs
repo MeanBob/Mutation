@@ -6,6 +6,8 @@ public class Monster : ScriptableObject {
 
 	protected Sprite monsterImage;
 
+
+	protected int monsterMeatID;
 	//used in combat
 	protected string monsterName;
 
@@ -75,6 +77,11 @@ public class Monster : ScriptableObject {
 	public string GetDescription()
 	{
 		return monsterDescription;
+	}
+
+	public int GetMonsterMeat()
+	{
+		return monsterMeatID;
 	}
 
     public string GetName()

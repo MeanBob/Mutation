@@ -9,7 +9,7 @@ public class SnakeMonster : Monster {
 	{
 		monsterText[0] = "A rustle in the bushes grabs your attention.\n\n";
 		monsterText[1] = "Snakes are common around here. It might have something to do with all the rabbits.\n\n";
-		monsterText[2] = "You wonder if nature is evil, or if there is just a lot of death.  Is that pessimistic?\n\n";
+		monsterText[2] = "You walk and contemplate the cycles of nature... Oh! A snake!\n\n";
 		// index 3 is for hiding
 		monsterText[3] = "You sense danger. Rather than fight, you decide to run away.";
 		//index 4 is for victory
@@ -25,7 +25,7 @@ public class SnakeMonster : Monster {
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
-
+		monsterMeatID = 6;
 		strength = Random.Range(2,9);
 		speed = Random.Range(5, 20);
 		intelligence = 5;

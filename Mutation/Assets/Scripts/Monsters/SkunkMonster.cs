@@ -23,7 +23,8 @@ public class SkunkMonster : Monster {
 	}
 	public override void Init()
 	{
-		
+
+		monsterMeatID = 5;
 		monsterName = "Skunk";
 		expPointsGained = Random.Range(20,44);
 		//itemReleased = droppedItemsList[Random.Range(0,3)];

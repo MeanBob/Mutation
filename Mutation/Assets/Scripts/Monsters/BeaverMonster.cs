@@ -24,6 +24,7 @@ public class BeaverMonster : Monster {
 	}
 	public override void Init()
 	{
+		monsterMeatID = 9;
 		
 		monsterName = "Beaver";
 		expPointsGained = Random.Range(25,45);

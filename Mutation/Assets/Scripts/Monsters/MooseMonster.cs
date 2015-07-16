@@ -25,12 +25,14 @@ public class MooseMonster : Monster {
 	{
 		
 		monsterName = "Moose";
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Moose"));
 		expPointsGained = Random.Range(85,130);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
-		
+
+		monsterMeatID = 8;
+
 		strength = Random.Range(30,49);
 		speed = Random.Range(25, 60);
 		intelligence = 5;

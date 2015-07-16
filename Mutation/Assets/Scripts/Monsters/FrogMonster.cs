@@ -19,7 +19,7 @@ public class FrogMonster : Monster {
 	}
 	public override void Init()
 	{
-		
+		monsterMeatID = 13;
 		monsterName = "Frog";
 		expPointsGained = Random.Range(10 , 20);
 		monsterDescription = monsterText[Random.Range(0,3)];

@@ -13,6 +13,7 @@ public class Chloroform : Item {
 		energy = 0;
 		accuracy = -5;
 		count = 1;
+		tag = 0;
 //		base.Init();
 	}
 	

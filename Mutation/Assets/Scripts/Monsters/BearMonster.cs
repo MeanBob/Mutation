@@ -26,6 +26,8 @@ public class BearMonster : Monster {
 		monsterName = "Bear";
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Bear"));
 
+		monsterMeatID = 4;
+
 		strength = Random.Range (40,56);
 
 		speed = Random.Range (14,60);

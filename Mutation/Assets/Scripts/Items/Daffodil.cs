@@ -21,7 +21,7 @@ public class Daffodil : Item {
 	 void Awake()
 	{
 		itemName = "Daffodil";
-		
+//		setItemImage(Resources.Load <Sprite>("Enemies/Bear"));
 		strength = 0;
 		speed = 0;
 		intelligence = 0;
@@ -29,7 +29,8 @@ public class Daffodil : Item {
 		accuracy = 1;
 		energyHealed = 10;
 		hitPointsHealed = 10;
-		count = 10;
+		count = 1;
+		tag = 1;
 	}
 	
 }

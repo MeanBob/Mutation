@@ -70,9 +70,9 @@ public class CharacterPage : MonoBehaviour {
     UnityEngine.UI.Text rightLegText;
     UnityEngine.UI.Text allocatablePointsText;
 
-    int currentNumberOfAllocatablePoints = 10;
-    int numberOfPointsPerLevel = 10;
-	List<Item> listOfItems = new List<Item>(2);
+    int currentNumberOfAllocatablePoints = 5;
+    int numberOfPointsPerLevel = 5;
+
 	Item tempItem;
 	public bool YouHaveDied ;
 
@@ -183,12 +183,19 @@ public class CharacterPage : MonoBehaviour {
         rightLegText.text = rightLeg.GetName();
         allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 	}
-
-	public List<Item> returnList()
-	{
-		return listOfItems;
-	}
-
+//
+//	public List<Item> returnList()
+//	{
+//		return listOfItems;
+//	}
+//
+//	public List<Item> AddItemToList(Item item)
+//	{
+//		listOfItems.Add(item);
+//		return listOfItems;
+//	}
+//
+//
 	bool IncreasedLevel = false;
 	int previous= 0;
 

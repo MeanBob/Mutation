@@ -13,6 +13,13 @@ public class MapControl : MonoBehaviour {
 	ExplorationText explorationText;
     UIControl ui;
 
+	ExplorationImage explorationImage;
+
+	Canvas canvas;
+
+	UnityEngine.UI.Image backgroundImage;
+
+
     CombatControl combat;
     Point playerLocation;
     int xSize = 10;
@@ -29,6 +36,13 @@ public class MapControl : MonoBehaviour {
 
 	// Use this for initialization poop
 	void Start () {
+
+		canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+
+		backgroundImage = canvas.GetComponent<UnityEngine.UI.Image>();
+		explorationImage = ScriptableObject.CreateInstance<ExplorationImage>();
+		explorationImage.Start();
+		//backgroundImage.sprite = Resources.Load <Sprite>("Backgrounds/CastleWallTest");
 
 
 		explorationText = ScriptableObject.CreateInstance<ExplorationText>();
@@ -52,38 +66,59 @@ public class MapControl : MonoBehaviour {
             {
                 Node newNode = ScriptableObject.CreateInstance<Node>();
 				newNode.AddDescription(explorationText.dialogue[i,j]);
+
+				newNode.AddBackgroundImage(explorationImage.backgroundImage[i,j]);
+
+
                 tempNodeArray[j] = newNode;
             }
             currentZone.AddNodeColumn(tempNodeArray, i);
         }
 		GenerateZoneMonsters();
-        
 	}
+
+	void SetBackgroundImage(string temp)
+	{
+		backgroundImage.sprite = Resources.Load <Sprite>(temp);	
+	}
+
+
 	void GenerateZoneMonsters()
 	{
 		//Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
 
-		currentZone.AddMonster(7,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(7,4,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(7,7,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(8,1,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(3,0,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(0,1,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<SnakeMonster>());
 
-		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<CatMonster>());
+		currentZone.AddMonster(8,8,ScriptableObject.CreateInstance<GoatMonster>());
+		currentZone.AddMonster(6,10,ScriptableObject.CreateInstance<GoatMonster>());
+		currentZone.AddMonster(4,8,ScriptableObject.CreateInstance<GoatMonster>());
+		currentZone.AddMonster(2,10,ScriptableObject.CreateInstance<GoatMonster>());
 
-		currentZone.AddMonster(5,5,ScriptableObject.CreateInstance<GoatMonster>());
+		currentZone.AddMonster(6,9,ScriptableObject.CreateInstance<BearMonster>());
+		currentZone.AddMonster(1,4,ScriptableObject.CreateInstance<BearMonster>());
 
-		currentZone.AddMonster(4,5,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(5,6,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(6,7,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(7,9,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(5,2,ScriptableObject.CreateInstance<FrogMonster>());
+		
 
-		currentZone.AddMonster(3,5,ScriptableObject.CreateInstance<BeaverMonster>());
+		currentZone.AddMonster(1,3,ScriptableObject.CreateInstance<BeaverMonster>());
+		currentZone.AddMonster(2,2,ScriptableObject.CreateInstance<BeaverMonster>());
 
-		currentZone.AddMonster(2,5,ScriptableObject.CreateInstance<BirdMonster>());
+		currentZone.AddMonster(9,4,ScriptableObject.CreateInstance<CatMonster>());
+		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<CatMonster>());
+		currentZone.AddMonster(2,7,ScriptableObject.CreateInstance<CatMonster>());
 
-		currentZone.AddMonster(1,5,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(3,4,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(4,6,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(2,8,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(0,5,ScriptableObject.CreateInstance<MooseMonster>());
-
-
-
-
-//		int rStart	= Random.Range(1,99);
-//		currentMonsterReadiness = rStart;
 	}
 
 	void Update()
@@ -109,8 +144,7 @@ public class MapControl : MonoBehaviour {
 	{
 
 		combat.currentPlayerReadiness = 50;
-		//Fight chance ensures whether you will encounter a monster or not
-//		int fightChance = Random.Range(1,5);
+
 
 		if(currentZone.doesMonsterExist(playerLocation.x,playerLocation.y)){
 			Debug.Log("Monster exists at player's current location"+"("+playerLocation.x+","+playerLocation.y+")");
@@ -119,16 +153,10 @@ public class MapControl : MonoBehaviour {
 		else{
 			Debug.Log("No Monster here");
 		}
-//		if (fightChance > 3 && !tryingToFlee)
-//		{
-//			combat.InitiateCombat();
-//		}
+
 	}
 
-	//
-	//  FIX ME PLEASE
-	//
-	//
+
 	public void Flee(int x, int y)
 	{
 		if (combat.combatOn)
@@ -140,13 +168,10 @@ public class MapControl : MonoBehaviour {
 			if (playerCharacter.GetIntelligence() > fleeChance)
 			{
 				combat.combatLogText.text = "You attempted to Flee!\n\n";
-				//combat.combatOn = false;
+
 				GoDirection(x, y);
 				playerCharacter.DoEnergyDamage(1);
-//				combat.characterButton.enabled = true;
-//				combat.exploreButton.enabled = true;
-//				combat.inventoryButton.enabled = true;
-//				combat.mapButton.enabled = true;
+//				
 				combat.combatOn = false;
 				ui.RemovePanelFromTop();
 				ui.EndCombat();				
@@ -225,12 +250,16 @@ public class MapControl : MonoBehaviour {
         string oldDescription = "";
 		string sensoryDescription = "";
 
+
+
 		string direction1 = "";
 		string direction2 = "";
 		string direction3 = "";
 		string direction4 = "";
 
 		int intelligenceCategory=0;
+
+
 
 		//currentZone has the description of each position
         if (currentZone.AttemptPlayerMove(playerLocation.x + xDir, playerLocation.y + yDir, ref nodeDescription))
@@ -275,8 +304,8 @@ public class MapControl : MonoBehaviour {
 		}
 
 
-		//	Debug.Log(playerLocation.x +","+ playerLocation.y);
-		
+		string temp = currentZone.returnImageAtLocation(playerLocation.x,playerLocation.y);
+		SetBackgroundImage(temp);
 		nodeDescription += "\n\n" + oldDescription;
 		ui.GoToDescription(nodeDescription,sensoryDescription);
 

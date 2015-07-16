@@ -120,7 +120,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[8,9] = "The narrow pathway leads sharply East through this rocky environment.";
 		dialogue[9,9] = "The hills cease here where the mountain consumes them and boulders live scattered among wild flowers.";
 		//K Row
-		dialogue[0,10] = "Don’t touch. Hot lava";
+		dialogue[0,10] = "Don’t touch. Hot lava"; 
 		dialogue[1,10] = "Hot lava. Don’t touch.";
 		dialogue[2,10] = "The sharp rocks slope down here and give way to hills in the West. In the North you can see bubbling, steaming pools of hot lava.";
 		dialogue[3,10] = "At the outcropping of a massive boulder you discover the entrance to a cave. The spooky depths disappear into the cloak of darkness, but at the foot of the cave you find a small glass bottle of chloroform. Whatever this is doing here you’re sure glad this gas is contained in this bottle.";

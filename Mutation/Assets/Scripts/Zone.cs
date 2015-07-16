@@ -47,6 +47,8 @@ public class Zone : ScriptableObject {
 		}
 	}
 
+
+
 	public void AddMonster(int i, int j, Monster nodeMonster)
 	{
 		nodeArray[i][j].AddMonster(nodeMonster);
@@ -57,5 +59,11 @@ public class Zone : ScriptableObject {
 	public Monster returnMonsterAtLocation(int i, int j)
 	{
 		return nodeArray[i][j].getMonster();
+	}
+
+	public string returnImageAtLocation(int i, int j)
+	{
+		return nodeArray[i][j].GetBackgroundImage();
+
 	}
 }

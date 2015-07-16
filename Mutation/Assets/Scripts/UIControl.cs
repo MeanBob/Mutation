@@ -15,6 +15,8 @@ public class UIControl : MonoBehaviour {
     GameObject lastPanel;
 	GameObject deathPanel;
 	GameObject preCombatPanel;
+	GameObject introPanel;
+
 	Monster selectedMonster;
 	CombatControl combat;
 	GameObject temp;
@@ -54,7 +56,7 @@ public class UIControl : MonoBehaviour {
 		preCombatPanel = transform.FindChild("PreCombatPanel").gameObject;
 		playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
 		deathPanel = transform.FindChild("DeathPanel").gameObject;
-
+		mapPanel = transform.FindChild("IntroPanel").gameObject;
 		mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
         fightPanel = transform.FindChild("FightPanel").gameObject;
@@ -65,6 +67,8 @@ public class UIControl : MonoBehaviour {
 		sensesText =  GameObject.Find("DescriptionPanel/TextSense").gameObject.GetComponent<UnityEngine.UI.Text>();
 		explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
 		preCombatDescription = GameObject.Find("PreCombatPanel/PreCombatDescriptionText").gameObject.GetComponent<UnityEngine.UI.Text>();
+		introPanel = transform.FindChild("IntroPanel").gameObject;
+
 
         panelStack = new Stack();
 
@@ -74,15 +78,24 @@ public class UIControl : MonoBehaviour {
         fightPanel.SetActive(false);
         inventoryPanel.SetActive(false);
 		deathPanel.SetActive(false);
-        ChangePanel(characterSheetPanel);
 		preCombatPanel.SetActive(false);
-
 		hide.SetActive(false);
+		//true to creat character stats
+		characterSheetPanel.SetActive(true);
+
+
+		ChangePanel(introPanel);
+
 
 	}
 
 	void Update()
 	{
+	}
+
+	public void CloseProgram()
+	{
+		Application.Quit();
 	}
 
 	public void CloseInventory()

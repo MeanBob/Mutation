@@ -352,6 +352,8 @@ public class CombatControl : MonoBehaviour {
 		{
 			playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
 			combatOn = false;
+			//Update Inventory here
+			ItemToolBox.AddItem(currentMonster.GetMonsterMeat());
 			DestroyObject(currentMonster);
 		}
         enemyHealthSlider.value = currentMonster.GetHealth();

@@ -12,6 +12,10 @@ public class Item : MonoBehaviour {
 	protected int hitPointsHealed;
 	protected int energyHealed;
 	protected int count;
+	public int numberOfItemTypes;
+	public int tag;
+
+	protected string itemImage;
 	
 //	public virtual void Init()
 //	{
@@ -19,6 +23,7 @@ public class Item : MonoBehaviour {
 //	}
 	void Start()
 	{
+		numberOfItemTypes = 17;
 		Debug.Log("Start for Item called");
 	}
 
@@ -26,6 +31,21 @@ public class Item : MonoBehaviour {
 	{
 		return itemName;
 	}
+
+
+
+//	public void setItemImage(Sprite Item)
+//	{		
+//		itemImage = Item; 		
+//	}
+//
+//	public Sprite GetItemImage()
+//	{
+//		return itemImage;
+//	}
+
+
+
 
 	public int getCount()
 	{
