@@ -10,6 +10,7 @@ public class SoundControler : MonoBehaviour {
 	public AudioClip flute2;
 	public AudioClip flute3;
 	public AudioClip flute4;
+	public AudioClip levelUp;
 
 
 	public AudioClip singingLoop;
@@ -18,8 +19,12 @@ public class SoundControler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		audioPlayer = GetComponent<AudioSource>();
-		PlayVoice();
+		//PlayVoice();
 
+	}
+	public void PlayLevelUp()
+	{
+		//audioPlayer.PlayOneShot(levelUp, 0.7f);
 	}
 
 	public void PlayFlute2()

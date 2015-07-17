@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 public class CharacterPage : MonoBehaviour {
 
+
+	UIControl ui;
+	GameObject levelPanel;
+
 	public GameObject Death;
 	//stats
     int strength;
@@ -76,16 +80,19 @@ public class CharacterPage : MonoBehaviour {
 	Item tempItem;
 	public bool YouHaveDied ;
 
+
+	public bool leveledUp;
+
 	void Start () {
-
-
+		//ui = GetComponent<UIControl>();
+		//levelPanel = transform.FindChild("LevelUp").gameObject;
 		//tempItem = new Daffodil();
 		//tempItem.Init();
 		//listOfItems.Add(tempItem);
 
 		//tempItem = new Chloroform();
 		//tempItem.Init();
-
+		leveledUp = false;
 		//listOfItems.Add(tempItem);
 //		sample();
         //We'll want to have this customizeable, once character creation is in
@@ -201,12 +208,18 @@ public class CharacterPage : MonoBehaviour {
 
 
 
+	public void AwareOfLevelUp()
+	{
+		leveledUp = false;
+	}
 
 	void LevelUp()
 	{
 		if(currentLevel > previous)
 		{
-			Debug.Log("Level up");
+			leveledUp = true;
+			//Debug.Log("Level up");
+			//ui.AddPanelOnTop(levelPanel);
 			currentNumberOfAllocatablePoints += numberOfPointsPerLevel;
 			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 			previous = currentLevel;

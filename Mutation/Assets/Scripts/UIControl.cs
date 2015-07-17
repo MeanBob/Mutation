@@ -15,7 +15,11 @@ public class UIControl : MonoBehaviour {
     GameObject lastPanel;
 	GameObject deathPanel;
 	GameObject preCombatPanel;
+	GameObject levelUpPanel;
 	GameObject introPanel;
+
+	CharacterPage playerCharacter;
+	SoundControler sounds;
 
 	Monster selectedMonster;
 	CombatControl combat;
@@ -41,7 +45,7 @@ public class UIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
+		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
 		//Buttons
 		hide = GameObject.Find("PreCombatPanel/ChooseHide").gameObject;
 		fight = GameObject.Find("PreCombatPanel/ChooseFight").gameObject;
@@ -53,6 +57,7 @@ public class UIControl : MonoBehaviour {
 		chooseHideRemoveChoice = explorationDescription = GameObject.Find("PreCombatPanel/ChoiceDescription").gameObject.GetComponent<UnityEngine.UI.Text>();
 
 		combat = GameObject.Find("Canvas").GetComponent<CombatControl>();
+		sounds = GameObject.Find("Canvas").GetComponent<SoundControler>();
 		preCombatPanel = transform.FindChild("PreCombatPanel").gameObject;
 		playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
 		deathPanel = transform.FindChild("DeathPanel").gameObject;
@@ -68,6 +73,8 @@ public class UIControl : MonoBehaviour {
 		explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
 		preCombatDescription = GameObject.Find("PreCombatPanel/PreCombatDescriptionText").gameObject.GetComponent<UnityEngine.UI.Text>();
 		introPanel = transform.FindChild("IntroPanel").gameObject;
+		levelUpPanel = transform.FindChild("LevelUp").gameObject;
+
 
 
         panelStack = new Stack();
@@ -80,6 +87,7 @@ public class UIControl : MonoBehaviour {
 		deathPanel.SetActive(false);
 		preCombatPanel.SetActive(false);
 		hide.SetActive(false);
+		levelUpPanel.SetActive(false);
 		//true to creat character stats
 		characterSheetPanel.SetActive(true);
 
@@ -91,6 +99,10 @@ public class UIControl : MonoBehaviour {
 
 	void Update()
 	{
+		if (playerCharacter.leveledUp == true)
+		{
+			AddPanelOnTop(levelUpPanel);
+		}
 	}
 
 	public void CloseProgram()
