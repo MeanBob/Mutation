@@ -51,8 +51,11 @@ public class MapControl : MonoBehaviour {
 		//Debug.Log(Constants.dialogue(0,0));
 		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
 		currentZone = ScriptableObject.CreateInstance<Zone>();
+
         currentZone.SetZoneSize(xSize, ySize);
-        ui = GetComponent<UIControl>();
+        
+
+		ui = GetComponent<UIControl>();
         combat = GetComponent<CombatControl>();
 
         //Map setup that will change
@@ -161,13 +164,13 @@ public class MapControl : MonoBehaviour {
 	{
 		if (combat.combatOn)
 		{
-			combat.combatLogText.text = "You are starting your attempt to flee!\n\n";
+			combat.combatLogText.text = "You are starting your attempt to flee!\n";
 			tryingToFlee = true;
 
-			int fleeChance = Random.Range (0,9);
+			int fleeChance = Random.Range (0,99);
 			if (playerCharacter.GetIntelligence() > fleeChance)
 			{
-				combat.combatLogText.text = "You attempted to Flee!\n\n";
+				combat.combatLogText.text = "You attempted to flee!\n";
 
 				GoDirection(x, y);
 				playerCharacter.DoEnergyDamage(1);
@@ -178,7 +181,7 @@ public class MapControl : MonoBehaviour {
 			}
 			else 
 			{
-				combat.combatLogText.text = "You trip as you try to run away!\n\n";
+				combat.combatLogText.text = "You trip as you try to run away!\n";
 				ui.RemovePanelFromTop();
 				combat.currentPlayerReadiness = 30;
 			}
@@ -306,7 +309,7 @@ public class MapControl : MonoBehaviour {
 
 		string temp = currentZone.returnImageAtLocation(playerLocation.x,playerLocation.y);
 		SetBackgroundImage(temp);
-		nodeDescription += "\n\n" + oldDescription;
+		nodeDescription += "\n" + oldDescription;
 		ui.GoToDescription(nodeDescription,sensoryDescription);
 
 		

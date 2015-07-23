@@ -17,6 +17,7 @@ public class UIControl : MonoBehaviour {
 	GameObject preCombatPanel;
 	GameObject levelUpPanel;
 	GameObject introPanel;
+	GameObject introStoryPanel;
 
 	CharacterPage playerCharacter;
 	SoundControler sounds;
@@ -73,6 +74,7 @@ public class UIControl : MonoBehaviour {
 		explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
 		preCombatDescription = GameObject.Find("PreCombatPanel/PreCombatDescriptionText").gameObject.GetComponent<UnityEngine.UI.Text>();
 		introPanel = transform.FindChild("IntroPanel").gameObject;
+		introStoryPanel = transform.FindChild("IntroStoryPanel").gameObject;
 		levelUpPanel = transform.FindChild("LevelUp").gameObject;
 
 
@@ -88,8 +90,10 @@ public class UIControl : MonoBehaviour {
 		preCombatPanel.SetActive(false);
 		hide.SetActive(false);
 		levelUpPanel.SetActive(false);
+		introStoryPanel.SetActive(false);
 		//true to creat character stats
 		characterSheetPanel.SetActive(true);
+
 
 
 		ChangePanel(introPanel);
@@ -113,6 +117,11 @@ public class UIControl : MonoBehaviour {
 	public void CloseInventory()
 	{ inventoryPanel.SetActive(false);
 
+	}
+	public void CloseCharacter()
+	{ characterSheetPanel.SetActive(false);
+
+		
 	}
 
 	public void ExplorationPause()

@@ -171,6 +171,16 @@ public class CombatControl : MonoBehaviour {
 
 		ui.InitiateCombat(currentMonster);
     }
+
+	public void MutationPlay()
+	{
+		shake.Play("Mutations");
+	}
+	public void StatsPlay()
+	{
+		shake.Play("Stats");
+	}
+
 	public void WhenFightIsPressed()
 	{
 
@@ -195,7 +205,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (30 - accuracy))
 					PlayerAttackHead();
 				else {
-					combatLogText.text += "You miss! \n \n";
+					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 				}
@@ -205,7 +215,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackLeftArm();
 				else {
-					combatLogText.text += "You miss! \n \n";
+					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 				}
@@ -215,7 +225,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackRightArm();
 				else {
-					combatLogText.text += "You miss! \n \n";
+					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 				}
@@ -225,7 +235,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackLeftLeg();
 				else {
-					combatLogText.text += "You miss! \n \n";
+					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 				}
@@ -235,7 +245,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackRightLeg();
 				else {
-					combatLogText.text += "You miss! \n \n";
+					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 				}
@@ -249,13 +259,13 @@ public class CombatControl : MonoBehaviour {
 			int waitTextNumber = Random.Range(1,5);
 
 			if (waitTextNumber ==1){
-			combatLogText.text += "You are not ready. \n\n";}
+			combatLogText.text += "You are not ready. \n";}
 			else if (waitTextNumber ==2){
-				combatLogText.text += "You need more time. \n\n";}
+				combatLogText.text += "You need more time. \n";}
 			else if (waitTextNumber ==3){
-				combatLogText.text += "You cannot move yet. \n\n";}
+				combatLogText.text += "You cannot move yet. \n";}
 			else{
-				combatLogText.text += "You are almost ready. \n\n";}
+				combatLogText.text += "You are almost ready. \n";}
 	}
 	}
 
@@ -267,7 +277,7 @@ public class CombatControl : MonoBehaviour {
 		if (lifeStealChance == 1) {
 			playerCharacter.DoEnergyDamage (1);
 			playerCharacter.HealDamage (2);
-			combatLogText.text += "\n\nYour punch steals some life!\n";
+			combatLogText.text += "\nYour punch steals some life!\n";
 		}
 	}
 	void Stun()
@@ -359,7 +369,7 @@ public class CombatControl : MonoBehaviour {
         enemyHealthSlider.value = currentMonster.GetHealth();
 		enemyEnergySlider.value = currentMonster.GetEnergy();
         ui.DisablePlayerActionPanel();
-        combatLogText.text += " did " + damage + " damage.\n\n";
+        combatLogText.text += " did " + damage + " damage.\n";
 
     }
 
