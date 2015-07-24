@@ -118,7 +118,7 @@ public class CombatControl : MonoBehaviour {
                         break;
                 }
                 currentMonsterReadiness = 0;
-                combatLogText.text += "did " + monsterDamage + " damage.\n\n";
+                combatLogText.text += "did " + monsterDamage + " damage.\n";
 				shake.Play ("Hit");
                 playerCharacter.DoDamage(monsterDamage);
 
@@ -273,22 +273,26 @@ public class CombatControl : MonoBehaviour {
 	//special attacks
 	void LifeSteal()
 	{
-		int lifeStealChance = Random.Range (1, 2);
+		int lifeStealChance = Random.Range (1, 3);
 		if (lifeStealChance == 1) {
 			playerCharacter.DoEnergyDamage (1);
 			playerCharacter.HealDamage (2);
-			combatLogText.text += "\nYour punch steals some life!\n";
+			combatLogText.text += "Your punch steals some life!\n";
+		}
+		else {
+			combatLogText.text += "Your punch fails to steal any life.\n";
 		}
 	}
 	void Stun()
 	{
-		int stunChance = Random.Range (1, 2);
+		int stunChance = Random.Range (1, 3);
 
-		if (stunChance == 1)
-		{
-		currentMonsterReadiness = 0;
-		enemySlider.value = currentMonsterReadiness;
-			combatLogText.text +="\nYour headbutt stuns the beast!\n";
+		if (stunChance == 1) {
+			currentMonsterReadiness = 0;
+			enemySlider.value = currentMonsterReadiness;
+			combatLogText.text += "Your headbutt stuns the beast!\n";
+		} else {
+			combatLogText.text += "Your headbutt fails to stun.\n";
 		}
 	}
 

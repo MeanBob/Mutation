@@ -8,14 +8,19 @@ public class BearMeat : Item {
 	{
 		itemName = "Bear Meat";
 
+		itemName = "Bear Meat";
+		itemImage = "Enemies/Bear";
 		strength = 0;
-		speed = -5;
-		intelligence = -5;
+		speed = 0;
+		intelligence = 0;
 		energy = 0;
-		accuracy = -5;
+		accuracy = 1;
+		energyHealed = 10;
+		hitPointsHealed = 10;
 		count = 1;
 		tag = 4;
-//		base.Init();
+
+
 	}
 	
 }

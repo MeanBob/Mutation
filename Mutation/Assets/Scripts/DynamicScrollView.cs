@@ -11,7 +11,6 @@ public class DynamicScrollView : MonoBehaviour
 
     public GameObject item;
 
-
     public GridLayoutGroup gridLayout;
 
     public RectTransform scrollContent;
@@ -29,7 +28,6 @@ public class DynamicScrollView : MonoBehaviour
 
     void OnEnable()
     {
-		//Debug.Log("checking for inteventoryr singleton" + ItemToolBox.count);
         InitializeList();
 
     }
@@ -63,13 +61,16 @@ public class DynamicScrollView : MonoBehaviour
 		for(int i=0; i < ItemToolBox.listOfItems.Count; i++)
 		{
 			InitializeNewItem(ItemToolBox.listOfItems[i]);
-
 		}
+		
 
         SetContentHeight();
     }
 
-    private void InitializeNewItem(GameObject selectedItem)
+
+
+	
+	private void InitializeNewItem(GameObject selectedItem)
     {
 		GameObject newItem = Instantiate(item) as GameObject;
 		Item itemInsideGameObject = selectedItem.GetComponentInChildren<Item>();
@@ -304,12 +305,10 @@ public class DynamicScrollView : MonoBehaviour
 	public void useItem(Item selectedItem, ref ScrollItem selectedScrollItem)
 	{
 
-		Debug.Log ("Count of selected Scroll item :"+selectedScrollItem.count);
-		Debug.Log ("Count of Item tool box :"+ItemToolBox.count);
 		selectedScrollItem.count--;
 		ItemToolBox.count--;
 
-
+		//Applying the item to Character 
 		characterAttributes.SetStrength(selectedItem.getStrength());
 		characterAttributes.SetSpeed(selectedItem.getSpeed());
 		characterAttributes.SetAccuracy(selectedItem.getAccuracy());
@@ -318,11 +317,21 @@ public class DynamicScrollView : MonoBehaviour
 		characterAttributes.SetEnergyPoints(selectedItem.getEnergyHealed());
 		characterAttributes.SetHitPoints(selectedItem.getHitPointsHealed());
 
-
+		//Remove Item on usage
 		if (selectedScrollItem.count <= 0)
 			selectedScrollItem.OnRemoveMe ();
-		Debug.Log ("Count of selected Scroll item :"+selectedScrollItem.count);
-		Debug.Log ("Count of Item tool box :"+ItemToolBox.count);
+
+
+		foreach( GameObject o in ItemToolBox.listOfItems )
+		{
+			if(o.name == selectedItem.name){
+				Item tempItem = o.GetComponent<Item>();
+				Debug.Log("Item LLSDFL"+tempItem);
+				tempItem.setCount(tempItem.getCount()-1);
+				if(tempItem.getCount () <= 0)
+					ItemToolBox.listOfItems.Remove(o);
+			}
+		}
 	}
 
 }
