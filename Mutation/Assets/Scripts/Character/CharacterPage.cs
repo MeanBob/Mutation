@@ -237,22 +237,7 @@ public class CharacterPage : MonoBehaviour {
 
 		LevelUp();
 	}
-	
-//	public void sample()
-//	{
-//
-//		while(increment<=1000){
-//			currExpPoints += increment;
-//			currtLevel = (int)(Mathf.Sqrt(currExpPoints) * 0.25f);
-//			nextLevelExpPoints =  (int)((currtLevel+1)*(currtLevel+1)*16.0f); 
-//			Debug.Log("current Exp points ::::::" +currExpPoints);
-//			Debug.Log("current Level ::::::" +currtLevel);
-//			Debug.Log("Required Exp points to level up ::::::" +nextLevelExpPoints);
-//
-//			increment++;
-//		}
-//
-//	}
+
 
 	public int getPlayerAccuracy()
 	{

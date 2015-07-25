@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ItemToolBox : MonoBehaviour 
 {
 	public static List<GameObject> listOfItems = new List<GameObject>();
-	public static int count = 0;
 	//We make a static variable to our MusicManager instance
 	public static ItemToolBox instance { get; private set; }
 	public static GameObject gameObjectItem;
@@ -26,92 +25,116 @@ public class ItemToolBox : MonoBehaviour
 
 		case 0:
 			temp.AddComponent<Daffodil>();
-			ItemToolBox.CheckIfItemExistsAtIndex("Daffodil");
-			listOfItems.Add(temp);
 			temp.name = "Daffodil";
-
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("SnakeMeat")))
+				listOfItems.Add(temp);
 			break;
 		case 1:
 			temp.AddComponent<Chloroform>();
-			listOfItems.Add(temp);
 			temp.name = "Chloroform";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("Chloroform")))
+				listOfItems.Add(temp);
 			break;
 		case 2:
 			temp.AddComponent<RabbitMeat>();
-			listOfItems.Add(temp);
 			temp.name = "RabbitMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("RabbitMeat")))
+				listOfItems.Add(temp);
 			break;
 		case 3:
 			temp.AddComponent<WolfMeat>();
-			listOfItems.Add(temp);
 			temp.name = "WolfMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("WolfMeat")))
+				listOfItems.Add(temp);
 			break;
 		case 4:
 			temp.AddComponent<BearMeat>();
-			listOfItems.Add(temp);
 			temp.name = "BearMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("BearMeat")))
+				listOfItems.Add(temp);
 			break;
 		case 5:
 			temp.AddComponent<SkunkMeat>();
-			listOfItems.Add(temp);
 			temp.name = "SkunkMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("SkunkMeat")))
+				listOfItems.Add(temp);
 			break;
 		case 6:
 			temp.AddComponent<SnakeMeat>();
 			temp.name = "SnakeMeat";
+			//If item already exists as part of the array, then only count of the item is increased
 			if(!(ItemToolBox.CheckIfItemExistsAtIndex("SnakeMeat")))
 			   listOfItems.Add(temp);
 			break;
 		case 7:
 			temp.AddComponent<GoatMeat>();
-			listOfItems.Add(temp);
 			temp.name = "GoatMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("GoatMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 8:
 			temp.AddComponent<MooseMeat>();
-			listOfItems.Add(temp);
 			temp.name = "MooseMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("MooseMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 9:
 			temp.AddComponent<BeaverMeat>();
-			listOfItems.Add(temp);
 			temp.name = "BeaverMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("BeaverMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 10:
 			temp.AddComponent<CatMeat>();
-			listOfItems.Add(temp);
 			temp.name = "CatMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("CatMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 11:
 			temp.AddComponent<DogMeat>();
-			listOfItems.Add(temp);
 			temp.name = "DogMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("DogMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 12:
 			temp.AddComponent<BirdMeat>();
-			listOfItems.Add(temp);
 			temp.name = "BirdMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("BirdMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 13:
 			temp.AddComponent<FrogMeat>();
-//			temp.tag = "FrogMeat";
 			temp.name = "FrogMeat";
-			listOfItems.Add(temp);
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("FrogMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 14:
 			temp.AddComponent<AnteaterMeat>();
-			listOfItems.Add(temp);
 			temp.name = "AnteaterMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("AnteaterMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 15:
 			temp.AddComponent<GiantAntMeat>();
-			listOfItems.Add(temp);
 			temp.name = "GiantAntMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("GiantAntMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		case 16:
 			temp.AddComponent<PorcupineMeat>();
-			listOfItems.Add(temp);
 			temp.name = "PorcupineMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("PorcupineMeat")))
+				listOfItems.Add(temp);
+
 			break;
 		}
 	}
@@ -124,7 +147,6 @@ public class ItemToolBox : MonoBehaviour
 			{
 				Item t = o.GetComponent<Item>();
 				t.setCount(t.getCount()+1);
-				Debug.Log("Item frickin count:::::"+t.getCount());
 				return true;
 			}
 

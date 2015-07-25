@@ -306,7 +306,6 @@ public class DynamicScrollView : MonoBehaviour
 	{
 
 		selectedScrollItem.count--;
-		ItemToolBox.count--;
 
 		//Applying the item to Character 
 		characterAttributes.SetStrength(selectedItem.getStrength());
@@ -317,19 +316,16 @@ public class DynamicScrollView : MonoBehaviour
 		characterAttributes.SetEnergyPoints(selectedItem.getEnergyHealed());
 		characterAttributes.SetHitPoints(selectedItem.getHitPointsHealed());
 
-		//Remove Item on usage
-		if (selectedScrollItem.count <= 0)
-			selectedScrollItem.OnRemoveMe ();
-
-
 		foreach( GameObject o in ItemToolBox.listOfItems )
 		{
+			Debug.Log("Inside Loop");
 			if(o.name == selectedItem.name){
 				Item tempItem = o.GetComponent<Item>();
-				Debug.Log("Item LLSDFL"+tempItem);
 				tempItem.setCount(tempItem.getCount()-1);
-				if(tempItem.getCount () <= 0)
+				if(tempItem.getCount () < 0){
 					ItemToolBox.listOfItems.Remove(o);
+					selectedScrollItem.OnRemoveMe ();
+				}
 			}
 		}
 	}

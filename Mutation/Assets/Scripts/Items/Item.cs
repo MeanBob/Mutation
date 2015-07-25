@@ -54,9 +54,10 @@ public class Item : MonoBehaviour {
 
 	public void setCount(int value)
 	{
-		count = count + value;
-		if(count <= 0)
-			count = 0;
+//		count = count + value;
+//		if(count <= 0)
+//			count = 0;
+		count = value;
 	}
 
 	public int getStrength()

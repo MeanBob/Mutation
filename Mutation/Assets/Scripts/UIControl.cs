@@ -189,6 +189,7 @@ public class UIControl : MonoBehaviour {
 			b.interactable = false;
 		}
 		hasPopUp = true;
+		//Null reference here
         panelStack.Push(newPanel);
         newPanel.SetActive(true);
 

@@ -15,10 +15,8 @@ public class SnakeMeat : Item {
 		accuracy = 1;
 		energyHealed = 10;
 		hitPointsHealed = 10;
-		count = 5;
+//		count = 5;
 		tag = 6;
-
-
 	}
 	
 }
