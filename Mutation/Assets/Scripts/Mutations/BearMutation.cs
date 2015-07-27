@@ -6,12 +6,12 @@ public class BearMutation : Mutation {
 	// Use this for initialization
 	public override void Init() {
 		mutationName = "Bear";
-		headMinDamage = 1;
-		headMaxDamage = 8;
-		armMinDamage = 1;
-		armMaxDamage = 10;
-		legMinDamage = 1;
-		legMaxDamage = 8;
+
+		accuracy = 0;
+		strength = 0;
+		intelligence = 0;
+		speed = 0;
+		energy = 0;
 	}
 	
 	// Update is called once per frame

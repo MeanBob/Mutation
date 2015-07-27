@@ -29,7 +29,6 @@ public class Daffodil : Item {
 		accuracy = 1;
 		energyHealed = 10;
 		hitPointsHealed = 10;
-		count = 1;
 		tag = 1;
 	}
 	

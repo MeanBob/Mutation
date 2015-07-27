@@ -46,7 +46,7 @@ public class UIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
+		playerCharacter = GameObject.Find("Canvas").GetComponent<CharacterPage>();
 		//Buttons
 		hide = GameObject.Find("PreCombatPanel/ChooseHide").gameObject;
 		fight = GameObject.Find("PreCombatPanel/ChooseFight").gameObject;

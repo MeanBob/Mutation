@@ -49,7 +49,7 @@ public class MapControl : MonoBehaviour {
 		explorationText.Start();
 		tryingToFlee = false;
 		//Debug.Log(Constants.dialogue(0,0));
-		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
+		playerCharacter = canvas.GetComponent<CharacterPage>();
 		currentZone = ScriptableObject.CreateInstance<Zone>();
 
         currentZone.SetZoneSize(xSize, ySize);
@@ -89,45 +89,53 @@ public class MapControl : MonoBehaviour {
 	void GenerateZoneMonsters()
 	{
 		//Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
+		currentZone.AddMonster(7,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(5,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(5,5,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(7,4,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(7,7,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(8,1,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(7,8,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(6,8,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(5,8,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(4,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(3,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(2,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(1,5,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(8,7,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(8,6,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(8,5,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(7,4,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(7,7,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(8,1,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(7,8,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(6,8,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(5,8,ScriptableObject.CreateInstance<SnakeMonster>());
+//
+//		currentZone.AddMonster(8,7,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(8,6,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(8,5,ScriptableObject.CreateInstance<SnakeMonster>());
+//
+//		currentZone.AddMonster(0,1,ScriptableObject.CreateInstance<SnakeMonster>());
+//		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<SnakeMonster>());
+//
+//		currentZone.AddMonster(8,8,ScriptableObject.CreateInstance<GoatMonster>());
+//		currentZone.AddMonster(6,10,ScriptableObject.CreateInstance<GoatMonster>());
+//		currentZone.AddMonster(4,8,ScriptableObject.CreateInstance<GoatMonster>());
+//		currentZone.AddMonster(2,10,ScriptableObject.CreateInstance<GoatMonster>());
+//
+//		currentZone.AddMonster(6,9,ScriptableObject.CreateInstance<BearMonster>());
+//		currentZone.AddMonster(1,4,ScriptableObject.CreateInstance<BearMonster>());
+//
+//		currentZone.AddMonster(5,6,ScriptableObject.CreateInstance<FrogMonster>());
+//		currentZone.AddMonster(6,7,ScriptableObject.CreateInstance<FrogMonster>());
+//		currentZone.AddMonster(7,9,ScriptableObject.CreateInstance<FrogMonster>());
+//		currentZone.AddMonster(5,2,ScriptableObject.CreateInstance<FrogMonster>());
+//		
+//
+//		currentZone.AddMonster(1,3,ScriptableObject.CreateInstance<BeaverMonster>());
+//		currentZone.AddMonster(2,2,ScriptableObject.CreateInstance<BeaverMonster>());
+//
+//		currentZone.AddMonster(9,4,ScriptableObject.CreateInstance<CatMonster>());
+//		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<CatMonster>());
+//		currentZone.AddMonster(2,7,ScriptableObject.CreateInstance<CatMonster>());
 
-		currentZone.AddMonster(0,1,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<SnakeMonster>());
 
-		currentZone.AddMonster(8,8,ScriptableObject.CreateInstance<GoatMonster>());
-		currentZone.AddMonster(6,10,ScriptableObject.CreateInstance<GoatMonster>());
-		currentZone.AddMonster(4,8,ScriptableObject.CreateInstance<GoatMonster>());
-		currentZone.AddMonster(2,10,ScriptableObject.CreateInstance<GoatMonster>());
 
-		currentZone.AddMonster(6,9,ScriptableObject.CreateInstance<BearMonster>());
-		currentZone.AddMonster(1,4,ScriptableObject.CreateInstance<BearMonster>());
-
-		currentZone.AddMonster(5,6,ScriptableObject.CreateInstance<FrogMonster>());
-		currentZone.AddMonster(6,7,ScriptableObject.CreateInstance<FrogMonster>());
-		currentZone.AddMonster(7,9,ScriptableObject.CreateInstance<FrogMonster>());
-		currentZone.AddMonster(5,2,ScriptableObject.CreateInstance<FrogMonster>());
-		
-
-		currentZone.AddMonster(1,3,ScriptableObject.CreateInstance<BeaverMonster>());
-		currentZone.AddMonster(2,2,ScriptableObject.CreateInstance<BeaverMonster>());
-
-		currentZone.AddMonster(9,4,ScriptableObject.CreateInstance<CatMonster>());
-		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<CatMonster>());
-		currentZone.AddMonster(2,7,ScriptableObject.CreateInstance<CatMonster>());
-
-		currentZone.AddMonster(3,4,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(4,6,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(2,8,ScriptableObject.CreateInstance<RabbitMonster>());
 
 	}
 

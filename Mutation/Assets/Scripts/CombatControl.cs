@@ -42,7 +42,7 @@ public class CombatControl : MonoBehaviour {
 	{
 		shake = GetComponent<Animator> ();
         ui = GetComponent<UIControl>();
-		playerCharacter = GameObject.Find("Avatar").GetComponent<CharacterPage>();
+		playerCharacter = GameObject.Find("Canvas").GetComponent<CharacterPage>();
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         enemySlider.maxValue = maxReadiness;
@@ -56,7 +56,8 @@ public class CombatControl : MonoBehaviour {
 		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
 		monsterImage = transform.FindChild("FightPanel/EnemyScenePanel/EnemyImage").GetComponent<UnityEngine.UI.Image>();
 	}
-	
+
+
 
 	void Update () {
 		//Debug.Log("Combat on value ::::"+combatOn);
@@ -309,7 +310,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackLeftArm()
     {
 		LifeSteal ();
-		combatLogText.text += "Your left punch";
+		combatLogText.text += "Your punch";
         DoDamageToMonster(playerCharacter.AttackLeftArm());
 		currentPlayerReadiness = 70;
 
@@ -318,7 +319,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightArm()
     {
 		LifeSteal ();
-        combatLogText.text += "Your right punch";
+        combatLogText.text += "Your punch";
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 70;
 		playerCharacter.DoEnergyDamage(1);
@@ -326,7 +327,7 @@ public class CombatControl : MonoBehaviour {
 	
     void PlayerAttackLeftLeg()
     {
-        combatLogText.text += "Your left kick";
+        combatLogText.text += "Your kick";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
 		currentPlayerReadiness = 50;
 		playerCharacter.DoEnergyDamage(3);
@@ -334,7 +335,7 @@ public class CombatControl : MonoBehaviour {
 
     void PlayerAttackRightLeg()
     {
-        combatLogText.text += "Your right kick";
+        combatLogText.text += "Your kick";
         DoDamageToMonster(playerCharacter.AttackRightLeg());
 		currentPlayerReadiness = 50;
 		playerCharacter.DoEnergyDamage(3);

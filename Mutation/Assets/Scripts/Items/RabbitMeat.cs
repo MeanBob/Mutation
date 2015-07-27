@@ -16,8 +16,15 @@ public class RabbitMeat : Item {
 		accuracy = 1;
 		energyHealed = 10;
 		hitPointsHealed = 10;
-		count = 2;
 		tag = 2;
+
+		numberOfMutations = 4;
+
+		mutationList = new Mutation[]{ScriptableObject.CreateInstance<FloppyEars>(),ScriptableObject.CreateInstance<Whiskers>(),
+			ScriptableObject.CreateInstance<BushyTail>(), ScriptableObject.CreateInstance<RabbitLegs>(),
+			};
+
+
 	}
 	
 }

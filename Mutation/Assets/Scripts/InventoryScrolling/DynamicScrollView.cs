@@ -16,6 +16,7 @@ public class DynamicScrollView : MonoBehaviour
     public RectTransform scrollContent;
 
     public ScrollRect scrollRect;
+	static int speedCounter = 0;
 
 	public CharacterPage characterAttributes;
     #endregion
@@ -290,7 +291,7 @@ public class DynamicScrollView : MonoBehaviour
     }
     #endregion
 
-    #region DELEGATES_CALLBACKS
+	    #region DELEGATES_CALLBACKS
     #endregion
 
     #region UI_CALLBACKS
@@ -301,6 +302,99 @@ public class DynamicScrollView : MonoBehaviour
 //        StartCoroutine(MoveTowardsTarget(0.2f, scrollRect.verticalNormalizedPosition, 0));
 //    }
     #endregion
+	public void processMutation(ref ScrollItem selectedScrollItem)
+	{
+
+		Item temp = selectedScrollItem.GetComponent<Item> ();
+		Debug.Log (temp.mutationList);
+		int random = Random.Range (0, temp.getNumberOfMutations ());
+		Mutation acquiredMutation = temp.mutationList [random];
+		acquiredMutation.Init();
+
+		//Checks if mutation exists and if it already exists, the attributes are not re-added
+		if (characterAttributes.currentMutationList [acquiredMutation.getMutationType ()] != acquiredMutation) {
+			characterAttributes.SetAccuracy (acquiredMutation.GetAccuracy ());
+			characterAttributes.SetSpeed (acquiredMutation.GetSpeed ());
+
+			characterAttributes.SetEnergy (acquiredMutation.GetEnergy ());
+			characterAttributes.SetStrength (acquiredMutation.GetStrength ());
+			characterAttributes.SetIntelligence (acquiredMutation.GetIntelligence ());
+		}
+
+		//SetAccuracy(-5) ....Adds -5 with current accuracy, thus subtracting.........
+		//Subtract previous mutation attributes from the character
+		characterAttributes.SetAccuracy (-characterAttributes.currentMutationList [acquiredMutation.getMutationType ()].GetAccuracy());
+		characterAttributes.SetSpeed (-characterAttributes.currentMutationList [acquiredMutation.getMutationType ()].GetSpeed());
+		characterAttributes.SetEnergy (-characterAttributes.currentMutationList [acquiredMutation.getMutationType ()].GetEnergy());
+		characterAttributes.SetStrength (-characterAttributes.currentMutationList [acquiredMutation.getMutationType ()].GetStrength());
+		characterAttributes.SetIntelligence (-characterAttributes.currentMutationList [acquiredMutation.getMutationType ()].GetIntelligence());
+
+		//Replace Mutation of that index with new mutation
+		characterAttributes.currentMutationList [acquiredMutation.getMutationType ()] = acquiredMutation;
+		switch(acquiredMutation.getMutationType())
+		{
+			/*
+	 * mutation type
+		 * 0 - Ears
+		 * 1 - Eyes
+		 * 2 - Nose
+		 * 3 - Mouth
+		 * 4 - Crown
+		 * 5 - Chest
+		 * 6 - Tail
+		 * 7 - Hand
+		 * 8 - Foot
+		 * 9 - Leg
+		 */
+		case 0:		
+			characterAttributes.earsImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.earsText.text = acquiredMutation.GetName();
+
+			//characterAttributes.ears = 
+			break;
+		case 1:
+			characterAttributes.eyesImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.eyesText.text = acquiredMutation.GetName();
+			break;
+		case 2:
+			characterAttributes.noseImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.noseText.text = acquiredMutation.GetName();
+			break;
+		case 3:
+			characterAttributes.mouthImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.mouthText.text = acquiredMutation.GetName();
+			break;
+		case 4:
+			characterAttributes.crownImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.crownText.text = acquiredMutation.GetName();
+			break;
+		case 5:
+			characterAttributes.chestImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.chestText.text = acquiredMutation.GetName();
+			break;
+		case 6:
+			characterAttributes.tailImage.sprite = acquiredMutation.GetMutationImage();
+			characterAttributes.tailText.text = acquiredMutation.GetName();
+			break;
+		case 7:
+			characterAttributes.handsImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.handsText.text = acquiredMutation.GetName();
+			break;
+		case 8:
+			//No UIImage for Foot
+			characterAttributes.feetImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.feetText.text = acquiredMutation.GetName();
+			break;
+		case 9:
+			characterAttributes.legsImage.sprite = acquiredMutation.GetMutationImage(); 
+			characterAttributes.legsText.text = acquiredMutation.GetName();
+			break;
+		default:
+			break;
+
+		}
+	
+	}
 
 	public void useItem(Item selectedItem, ref ScrollItem selectedScrollItem)
 	{
@@ -316,6 +410,8 @@ public class DynamicScrollView : MonoBehaviour
 		characterAttributes.SetEnergyPoints(selectedItem.getEnergyHealed());
 		characterAttributes.SetHitPoints(selectedItem.getHitPointsHealed());
 
+		processMutation(ref selectedScrollItem);
+
 		foreach( GameObject o in ItemToolBox.listOfItems )
 		{
 			Debug.Log("Inside Loop");
@@ -328,6 +424,9 @@ public class DynamicScrollView : MonoBehaviour
 				}
 			}
 		}
+
+
 	}
 
 }
+

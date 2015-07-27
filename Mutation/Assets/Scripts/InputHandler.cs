@@ -10,7 +10,7 @@ public class InputHandler : MonoBehaviour {
     bool avatarZoomed = false;
 	// Use this for initialization
 	void Start () {
-        avatar = GameObject.Find("Avatar");
+        avatar = GameObject.Find("Canvas");
         avatarPanel = GameObject.Find("AvatarPanel");
         avatarWidth = Screen.width / 3;
         lastMousePosition = Input.mousePosition;

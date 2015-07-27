@@ -18,7 +18,7 @@ public class RabbitMonster : Monster {
 
 		//index 4 is for victory
 		monsterText [4] = "The rabbit’s eyes roll up into its head and it goes limp. Good night.";
-	
+
 		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()

@@ -7,12 +7,15 @@ public class NoMutation : Mutation {
     public override void Init()
     {
         mutationName = "None";
-        headMinDamage = 1;
-        headMaxDamage = 2;
-        armMinDamage = 1;
-        armMaxDamage = 6;
-        legMinDamage = 1;
-        legMaxDamage = 6;
+		accuracy = 0;
+		strength = 0;
+		intelligence = 0;
+		speed = 0;
+		energy = 0;
+
+		setMutationImage(Resources.Load <Sprite>("AvatarAndMutations/HumanBlank"));
+		
+		base.Init();
 	
 	}
 	

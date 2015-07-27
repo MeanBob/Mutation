@@ -14,7 +14,8 @@ public class Item : MonoBehaviour {
 	protected int count;
 	public int numberOfItemTypes;
 	public int tag;
-
+	public Mutation[] mutationList;
+	protected int numberOfMutations;
 	protected string itemImage;
 	
 //	public virtual void Init()
@@ -46,6 +47,10 @@ public class Item : MonoBehaviour {
 
 
 
+	public int getNumberOfMutations()
+	{
+		return numberOfMutations;
+	}
 
 	public int getCount()
 	{

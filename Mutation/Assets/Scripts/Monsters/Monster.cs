@@ -16,7 +16,7 @@ public class Monster : ScriptableObject {
 	protected Item[] droppedItemsList;
 	protected Item itemReleased;
 	protected string victoryText;
-
+	protected Mutation[] mutationList;
 	//used in initiation
 	protected string monsterDescription;
 	protected string hideDescription;

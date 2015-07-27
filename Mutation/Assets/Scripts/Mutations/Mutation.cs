@@ -3,47 +3,80 @@ using System.Collections;
 
 public class Mutation : ScriptableObject {
     protected string mutationName;
-    protected int headMinDamage;
-    protected int headMaxDamage;
-    protected int armMinDamage;
-    protected int armMaxDamage;
-    protected int legMinDamage;
-    protected int legMaxDamage;
+    protected int accuracy;
+    protected int intelligence;
+    protected int strength;
+    protected int speed;
+    protected int energy;
+	protected Sprite mutationImage;
+	protected int mutationType;
+
+	
+	/*
+	 * mutation type
+	 * 	//Each mutation should have a type to represent its body part
+
+		 * 0 - Ears
+		 * 1 - Eyes
+		 * 2 - Nose
+		 * 3 - Mouth
+		 * 4 - Crown
+		 * 5 - Chest
+		 * 6 - Tail
+		 * 7 - Hand
+		 * 8 - Foot
+		 * 9 - Leg
+		 */
 
 	// Use this for initialization
     public virtual void Init()
     {
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+
+	public Sprite GetMutationImage()
+	{
+		return mutationImage;
 	}
 
+	public void setMutationImage(Sprite MutationImage)
+	{
+		
+		mutationImage = MutationImage; 
+		
+	}
+	
     public string GetName()
     {
         return mutationName;
     }
 
-    public int RollHeadDamage()
-    {
-        return RollDamage(headMinDamage, headMaxDamage);
-    }
 
-    public int RollArmDamage()
-    {
-        return RollDamage(armMinDamage, armMaxDamage);
-    }
+	public int GetAccuracy()
+	{
+		return accuracy;
+	}
+		public int GetEnergy()
+	{
+		return energy;
+	}
+	public int GetStrength()
+	{
+		return strength;
+	}
+	public int GetIntelligence()
+	{
+		return intelligence;
+	}
+	public int GetSpeed()
+	{
+		return speed;
+	}
 
-    public int RollLegDamage()
-    {
-        return RollDamage(legMinDamage, legMaxDamage);
-    }
 
-    int RollDamage(int minDamage, int maxDamage)
-    {
-        int baseDamage = Random.Range(minDamage, maxDamage);
-        return baseDamage;
-    }
+	public int getMutationType()
+	{
+		return mutationType;
+	}
 }
