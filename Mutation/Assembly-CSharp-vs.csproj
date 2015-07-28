@@ -46,7 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Audio\SoundControler.cs" />
+     <Compile Include="Assets\Scripts\Audio\ButtonSoundControler.cs" />
+     <Compile Include="Assets\Scripts\Audio\CombatAudioController.cs" />
+     <Compile Include="Assets\Scripts\Audio\ExploreAudioController.cs" />
      <Compile Include="Assets\Scripts\AutoType.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterPage.cs" />
      <Compile Include="Assets\Scripts\CombatControl.cs" />

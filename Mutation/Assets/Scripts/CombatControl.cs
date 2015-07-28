@@ -10,6 +10,8 @@ public class CombatControl : MonoBehaviour {
     CharacterPage playerCharacter;
     Monster currentMonster;
 
+
+
     UnityEngine.UI.Slider enemySlider;
 	UnityEngine.UI.Slider playerSlider;
 
@@ -37,9 +39,19 @@ public class CombatControl : MonoBehaviour {
 	public bool combatPause=false;
 	public bool MonsterAttackPause = false;
     public bool combatOn = false;
+
+	UnityEngine.UI.Text expEarned;
+	UnityEngine.UI.Text monsterKilled;
+	UnityEngine.UI.Text lootGained;
+	public bool showVictory = false;
 	
 	void Start () 
 	{
+		expEarned = transform.Find ("VictoryPanel/ExpEarned").GetComponent<UnityEngine.UI.Text> ();
+		monsterKilled = transform.Find ("VictoryPanel/MonsterKilled").GetComponent<UnityEngine.UI.Text> ();
+		lootGained = transform.Find ("VictoryPanel/LootGained").GetComponent<UnityEngine.UI.Text> ();
+
+
 		shake = GetComponent<Animator> ();
         ui = GetComponent<UIControl>();
 		playerCharacter = GameObject.Find("Canvas").GetComponent<CharacterPage>();
@@ -55,6 +67,19 @@ public class CombatControl : MonoBehaviour {
 		enemyMaxEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/EnemyEnergyMaxText").GetComponent<UnityEngine.UI.Text>();
 		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
 		monsterImage = transform.FindChild("FightPanel/EnemyScenePanel/EnemyImage").GetComponent<UnityEngine.UI.Image>();
+	}
+
+	public void ShowVictoryState()
+	{ 
+
+		ui.victoryPanel.SetActive (true);
+			expEarned.text = "";
+			monsterKilled.text = currentMonster.GetVictoryText ();
+			lootGained.text = "You've gained some " + currentMonster.GetName () + " meat!";
+	}
+	public void CloseVictoryState()
+	{
+		ui.victoryPanel.SetActive (false);
 	}
 
 
@@ -369,7 +394,14 @@ public class CombatControl : MonoBehaviour {
 			combatOn = false;
 			//Update Inventory here
 			ItemToolBox.AddItem(currentMonster.GetMonsterMeat());
+			//VictoryWindow
+
+			ShowVictoryState();
+			//remove current monster
 			DestroyObject(currentMonster);
+
+
+
 		}
         enemyHealthSlider.value = currentMonster.GetHealth();
 		enemyEnergySlider.value = currentMonster.GetEnergy();

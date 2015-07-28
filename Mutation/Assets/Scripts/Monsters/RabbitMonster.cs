@@ -28,7 +28,7 @@ public class RabbitMonster : Monster {
 		expPointsGained = Random.Range(14,26);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
-
+		victoryText = monsterText[4];
 		strength = Random.Range(2,5);
         speed = Random.Range(60, 90);
         intelligence = 5;

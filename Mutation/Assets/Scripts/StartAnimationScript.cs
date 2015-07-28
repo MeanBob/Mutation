@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class StartAnimationScript : MonoBehaviour {
-	Animator start;
+	public Animator start;
 	// Use this for initialization
 	void Start () {
 		start = GetComponent<Animator> ();
 	}
 	void Awake()
 	{
-		//start.Play ("StartAnimation");
+		start.Play ("StartAnimation");
 	}
 	
 	// Update is called once per frame

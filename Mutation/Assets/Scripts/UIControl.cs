@@ -6,6 +6,7 @@ public class UIControl : MonoBehaviour {
     //If we decided we want a bit more control
 	//GameObject explorationDescription;
 	GameObject mapPanel;
+	public GameObject victoryPanel;
     GameObject explorationPanel;
     GameObject fightPanel;
     GameObject characterSheetPanel;
@@ -20,7 +21,7 @@ public class UIControl : MonoBehaviour {
 	GameObject introStoryPanel;
 
 	CharacterPage playerCharacter;
-	SoundControler sounds;
+	ButtonSoundControler sounds;
 
 	Monster selectedMonster;
 	CombatControl combat;
@@ -46,6 +47,8 @@ public class UIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+
 		playerCharacter = GameObject.Find("Canvas").GetComponent<CharacterPage>();
 		//Buttons
 		hide = GameObject.Find("PreCombatPanel/ChooseHide").gameObject;
@@ -58,10 +61,13 @@ public class UIControl : MonoBehaviour {
 		chooseHideRemoveChoice = explorationDescription = GameObject.Find("PreCombatPanel/ChoiceDescription").gameObject.GetComponent<UnityEngine.UI.Text>();
 
 		combat = GameObject.Find("Canvas").GetComponent<CombatControl>();
-		sounds = GameObject.Find("Canvas").GetComponent<SoundControler>();
+		sounds = GameObject.Find("Canvas/ButtonSound").GetComponent<ButtonSoundControler>();
 		preCombatPanel = transform.FindChild("PreCombatPanel").gameObject;
 		playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
 		deathPanel = transform.FindChild("DeathPanel").gameObject;
+
+		victoryPanel = transform.FindChild ("VictoryPanel").gameObject;
+
 		mapPanel = transform.FindChild("IntroPanel").gameObject;
 		mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
@@ -91,6 +97,7 @@ public class UIControl : MonoBehaviour {
 		hide.SetActive(false);
 		levelUpPanel.SetActive(false);
 		introStoryPanel.SetActive(false);
+		victoryPanel.SetActive (false);
 		//true to creat character stats
 		characterSheetPanel.SetActive(true);
 
