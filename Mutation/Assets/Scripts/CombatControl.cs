@@ -116,6 +116,7 @@ public class CombatControl : MonoBehaviour {
 	{
 		shake.SetTrigger ("AcceptQuest");
 
+
 	}
 
 	public void PlayExplore()
@@ -629,33 +630,28 @@ public class CombatControl : MonoBehaviour {
     public Monster GenerateMonster()
     {
 	int rMonster = Random.Range(1,4);
-		Debug.Log ("Monster Generated");
-	if(rMonster == 1)
-	{
-		//Always create instance of monster and then call start
-		currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
-		currentMonster.Start();
+	Debug.Log ("Attempted monster generated... " + rMonster);
+	if (rMonster == 1) {
+			//Always create instance of monster and then call start
+			currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
+			currentMonster.Start ();
 
-		int rStart	= Random.Range(1,99);
-		currentMonsterReadiness = rStart;
-	}
+			int rStart = Random.Range (1, 99);
+			currentMonsterReadiness = rStart;
+		} else if (rMonster == 2) {
+			//Always create instance of monster and then call start
+			currentMonster = ScriptableObject.CreateInstance<SnakeMonster> ();
+			currentMonster.Start ();
+			int rStart = Random.Range (1, 99);
+			currentMonsterReadiness = rStart;
 
-	else if(rMonster == 2)
-	{
-		//Always create instance of monster and then call start
-		currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
-		currentMonster.Start();
-		int rStart	= Random.Range(1,99);
-		currentMonsterReadiness = rStart;
-
-	}
-	else {
-		//Always create instance of monster and then call start
-		currentMonster = ScriptableObject.CreateInstance<BearMonster>();
-		currentMonster.Start();
-		int rStart	= Random.Range(1,99);
-		currentMonsterReadiness = rStart;
-	}
+		} else if (rMonster == 3) {
+			//Always create instance of monster and then call start
+			currentMonster = ScriptableObject.CreateInstance<CatMonster> ();
+			currentMonster.Start ();
+			int rStart = Random.Range (1, 99);
+			currentMonsterReadiness = rStart;
+		} 
         currentMonster.Init();
 		return currentMonster;
 

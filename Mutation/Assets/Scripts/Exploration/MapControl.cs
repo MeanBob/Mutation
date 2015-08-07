@@ -55,18 +55,18 @@ public class MapControl : MonoBehaviour {
 		verbs = new string[6];
 		
 		verbs [0] = " walk";
-		verbs [1] = " journey";
-		verbs [2] = " move";
+		verbs [1] = " tread";
+		verbs [2] = " stride";
 		verbs [3] = " continue";
 		verbs [4] = " advance";
-		verbs [5] = " persist";
+		verbs [5] = " march";
 		
 		adverbs [0] = " ahead.";
 		adverbs [1] = " forward.";
-		adverbs [2] = " on.";
-		adverbs [3] = " through.";
+		adverbs [2] = " forth.";
+		adverbs [3] = " along.";
 		adverbs [4] = " onward.";
-		adverbs [5] = " beyond.";
+		adverbs [5] = " on.";
 	
 		mapMission = transform.Find ("MapPanel/Quest").GetComponent<UnityEngine.UI.Text> ();
 		mapLocation = transform.Find ("MapPanel/Location").GetComponent<UnityEngine.UI.Text> ();
@@ -99,8 +99,8 @@ public class MapControl : MonoBehaviour {
         combat = GetComponent<CombatControl>();
 
         //Map setup 
-        playerLocation.x = 29;
-        playerLocation.y = 8;
+        playerLocation.x = 28;
+        playerLocation.y = 9;
 
         for (int i = 0; i < xSize; i++)
         {
@@ -242,7 +242,7 @@ public class MapControl : MonoBehaviour {
 
 	public void UpdateMap()
 	{
-		mapLocation.text = "Your current location is:" + playerLocation.x + ", " + playerLocation.y+ "."; 
+		mapLocation.text = "Your current location is: " + playerLocation.x + ", " + playerLocation.y+ "."; 
 
 		if (currentZone.questIsActive) {
 			mapMission.text = "Target is " + currentZone.randomXSpawn + ", " + currentZone.randomYSpawn + ".";
@@ -250,8 +250,8 @@ public class MapControl : MonoBehaviour {
 		} else if (noMission) {
 			mapMission.text = "Get a job.";
 		} else if (introMission) {
-			mapMission.text = "Get back to your office before you starve or die.";
-		} else { mapMission.text = "Get a job2.";
+			mapMission.text = "Head DownTown.";
+		} else { mapMission.text = "You need to earn some money.";
 		}
 
 
@@ -259,8 +259,9 @@ public class MapControl : MonoBehaviour {
 
 	public void ReturnToQuest1Start()
 	{
-		playerLocation.x = 29;
-		playerLocation.y = 10;
+		//Determine a place inside the town!
+		playerLocation.x = 28;
+		playerLocation.y = 7;
 		currentZone.questIsActive = false;
 	}
 
@@ -323,7 +324,6 @@ public class MapControl : MonoBehaviour {
 		if(!tryingToFlee)
 		{
 			//SetMoveDescription();
-
 	        GoDirection(-1, 0);
 			CombatCheck();
 			playerCharacter.DoEnergyDamage(1);
@@ -397,6 +397,14 @@ public class MapControl : MonoBehaviour {
     public void GoDirection(int xDir, int yDir)
     {
 		//for the exploring transitions.
+
+		int tempCombatCheck = Random.Range (1, 100);
+		Debug.Log (tempCombatCheck + "random combat check number");
+		if ( tempCombatCheck < 50) {
+			combat.InitiateCombat (combat.GenerateMonster ());
+		}
+		
+
 		SetMoveDescription ();
 		
 
@@ -475,13 +483,13 @@ public class MapControl : MonoBehaviour {
 		case 0:	
 			int temp = Random.Range(0,4);
 			if (temp==0){
-				sensoryDescription = "You sense a nearby presence.";}
+				sensoryDescription = "Something scurries behind an broken car.";}
 			else if (temp == 1)
-			{	sensoryDescription = "Your ears tingle.";}
+			{	sensoryDescription = "You feel a wave of heat.";}
 			else if (temp == 2)
-			{	sensoryDescription = "What's that smell?";}
+			{	sensoryDescription = "It smells like shit and piss.";}
 			else if (temp == 3)
-			{	sensoryDescription = "Caution washes over you.";}
+			{	sensoryDescription = "You hate it here.";}
 
 			break;
 		case 1:

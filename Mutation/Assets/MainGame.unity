@@ -2785,7 +2785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &171572954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6882,6 +6882,7 @@ GameObject:
   - 222: {fileID: 508924339}
   - 114: {fileID: 508924338}
   - 114: {fileID: 508924337}
+  - 114: {fileID: 508924340}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -6997,6 +6998,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 508924335}
+--- !u!114 &508924340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 508924335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: .5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &509822153
 GameObject:
   m_ObjectHideFlags: 0
@@ -7171,17 +7186,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 828394019}
-        m_MethodName: ReturnToQuest1Start
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 828394019}
         m_MethodName: SetQuestActive
         m_Mode: 1
         m_Arguments:
@@ -7255,7 +7259,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: 0, y: -1152.16003}
+  m_AnchoredPosition: {x: 7, y: 530}
   m_SizeDelta: {x: 0, y: 500}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &528895513
@@ -7899,7 +7903,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 77, y: 170}
+  m_AnchoredPosition: {x: 0, y: 6.5390625}
   m_SizeDelta: {x: -7.81615734, y: -13.09764}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &577405629
@@ -8303,10 +8307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Your office is downtown, your teleporter broke, and that cyborg punk hacked
-    your lunch.
-
-    Bad days happen.'
+  m_Text: Decline!
 --- !u!222 &609809827
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8343,7 +8344,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 994.5, y: 48633.7031}
+  m_AnchoredPosition: {x: 994.5, y: 8340.71289}
   m_SizeDelta: {x: 111, y: 240}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &624089863
@@ -8469,7 +8470,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: 0, y: -624.219971}
+  m_AnchoredPosition: {x: 7, y: 1058}
   m_SizeDelta: {x: 0, y: 600}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &640743046
@@ -10184,8 +10185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .0509803928, g: .0235294122, b: 0, a: 1}
-  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ad27097b7fee6f546bb636a0acf9bb49, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10552,7 +10553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &850416295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15610,10 +15611,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Your office is downtown, your teleporter broke, and that cyborg punk hacked
-    your lunch.
-
-    Bad days happen.'
+  m_Text: Accept!
 --- !u!222 &1276484704
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16510,7 +16508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .345098048, g: .325490206, b: .423529416, a: 1}
+  m_Color: {r: .0509803928, g: .0235294122, b: 0, a: 0}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -19971,8 +19969,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 08935da333e3ea144a0c302856e0c853, type: 3}
+    m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -19982,7 +19980,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Back
 --- !u!222 &1603753219
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24866,7 +24864,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: 0, y: 541.940002}
+  m_AnchoredPosition: {x: 0, y: -335}
   m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1931377895

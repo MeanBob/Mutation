@@ -11,9 +11,9 @@ public class CatMonster : Monster {
 	{
 
 		// index 0,1,2 are for encuontering the monster when you make the fight or hide choice
-		monsterText[0] = "Up in the distance something catches your eye. As it draws near, you see the sharp fangs and glinting eyes of a large feline beast.\n\n";
-		monsterText[1] = "You suddenly hear a crooning roar. Before you know it, a large cat with matted tufts and pointed ears pounces on you from a tree.\n\n";
-		monsterText[2] = "Your eyes catch the glimmer of something mysterious to your left. It steps forth and boasts paws laden with sharp claws. It doesn’t take long for you to deduce, it is a cat!\n\n";
+		monsterText[0] = "An freaky cat jumps out at you!";
+		monsterText[1] = "A cat lurks on top of an old VW.";
+		monsterText[2] = "Your eyes catch the glimmer of something mutated.";
 
 		// index 3 is for hiding
 		monsterText[3] = "You scream and run in circles, confusing the cat and making a lot of noise.";
@@ -24,8 +24,9 @@ public class CatMonster : Monster {
 	}
 	public override void Init()
 	{
+		moneyGained = 4;
 		monsterMeatID = 10;
-		monsterName = "Cat";
+		monsterName = "Stinking Cat";
 		expPointsGained = Random.Range(40,60);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];

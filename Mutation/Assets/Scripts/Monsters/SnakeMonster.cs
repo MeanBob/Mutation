@@ -7,19 +7,20 @@ public class SnakeMonster : Monster {
 	
 	public override void Start()
 	{
-		monsterText[0] = "A rustle in the bushes grabs your attention.\n\n";
-		monsterText[1] = "Snakes are common around here. It might have something to do with all the rabbits.\n\n";
-		monsterText[2] = "You walk and contemplate the cycles of nature... Oh! A snake!\n\n";
+		monsterText[0] = "You hear a hiss like a leaking tire.";
+		monsterText[1] = "A double headed snake slithers nearby.";
+		monsterText[2] = "You barely miss stepping on a snake.";
 		// index 3 is for hiding
 		monsterText[3] = "You sense danger. Rather than fight, you decide to run away.";
 		//index 4 is for victory
-		monsterText[4] = "You mangle the poor snake! It dies. Hoo-ray!";
+		monsterText[4] = "You mangle the snake!";
 
 		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
 	{
-		monsterName = "Snake";
+		moneyGained = 3;
+		monsterName = "Two-headed Snake";
 		expPointsGained = Random.Range(30 , 40);
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Snake"));
 		monsterDescription = monsterText[Random.Range(0,3)];

@@ -229,8 +229,8 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,6] = "Forest";
 		dialogue[25,6] = "Embankment";
 		dialogue[26,6] = "Embankment";
-		dialogue[27,6] = "Embankment";
-		dialogue[28,6] = "River";
+		dialogue[27,6] = "Impassable";
+		dialogue[28,6] = "Quest1";
 		dialogue[29,6] = "River";
 
 		//H row		   
@@ -261,9 +261,9 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,7] = "Impassable";
 		dialogue[25,7] = "Embankment";
 		dialogue[26,7] = "River";
-		dialogue[27,7] = "River";
-		dialogue[28,7] = "River";
-		dialogue[29,7] = "DownTownEntrance";
+		dialogue[27,7] = "Impassable";
+		dialogue[28,7] = "DownTownEntrance";
+		dialogue[29,7] = "Impassable";
 
 		//I row		  
 		dialogue[0,8] = "Impassable";
@@ -293,9 +293,9 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,8] = "Embankment";
 		dialogue[25,8] = "Embankment";
 		dialogue[26,8] = "River";
-		dialogue[27,8] = "Embankment";
-		dialogue[28,8] = "Embankment";
-		dialogue[29,8] = "Embankment";
+		dialogue[27,8] = "Impassable";
+		dialogue[28,8] = "DownTown";
+		dialogue[29,8] = "Impassable";
 
 		//J row		   
 		dialogue[0,9] = "Forest";
@@ -325,9 +325,9 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,9] = "River";
 		dialogue[25,9] = "River";
 		dialogue[26,9] = "River";
-		dialogue[27,9] = "Forest";
-		dialogue[28,9] = "Forest";
-		dialogue[29,9] = "Quest1";
+		dialogue[27,9] = "Impassable";
+		dialogue[28,9] = "DownTown";
+		dialogue[29,9] = "Impassable";
 
 		//10			  
 		dialogue[0,10] = "Forest";
@@ -357,9 +357,9 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,10] = "River";
 		dialogue[25,10] = "Forest";
 		dialogue[26,10] = "Forest";
-		dialogue[27,10] = "Forest";
-		dialogue[28,10] = "Forest";
-		dialogue[29,10] = "Forest";
+		dialogue[27,10] = "Impassable";
+		dialogue[28,10] = "DownTown";
+		dialogue[29,10] = "Impassable";
 
 
 		//11			  
@@ -390,9 +390,9 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,11] = "Embankment";
 		dialogue[25,11] = "Forest";
 		dialogue[26,11] = "Forest";
-		dialogue[27,11] = "Forest";
-		dialogue[28,11] = "Forest";
-		dialogue[29,11] = "Forest";
+		dialogue[27,11] = "Impassable";
+		dialogue[28,11] = "DownTown";
+		dialogue[29,11] = "Impassable";
 						  
 		dialogue[0,12] = "Forest";
 		dialogue[1,12] = "Forest";
@@ -421,7 +421,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,12] = "Forest";
 		dialogue[25,12] = "Forest";
 		dialogue[26,12] = "Forest";
-		dialogue[27,12] = "Forest";
+		dialogue[27,12] = "Impassable";
 		dialogue[28,12] = "Impassable";
 		dialogue[29,12] = "Impassable";
 						  

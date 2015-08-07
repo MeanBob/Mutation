@@ -59,9 +59,9 @@ public class Zone : ScriptableObject {
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description += "After a moment you realise you are back where you started.";}
+			{description += "The streets of L.A. are a labyrinth.  \nYou are back where you started";}
 			else if (tempNumber==1)
-				description += "This looks familiar.  You've looped back.";
+				description += "This looks familiar.  \nYou've looped back.";
 			else
 				description+="You begin to feel sick and disoriented.";
 
@@ -139,31 +139,31 @@ public class Zone : ScriptableObject {
 				description="Trail 3";
 			return true;
 		}
-		else if (pass == "Forest")
+		else if (pass == "DownTown")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "The trees are dead.";}
+			{description = "A tree grows out from the roof of a building.";}
 			else if (tempNumber==1)
-				description = "Broken and lifeless branches litter the way.";
+				description = "Broken glass and debris litters the sidewalk.";
 			else
-				description="A treestump is rotten.";
+				description="Everything is brown and ugly.";
 			return true;
 		}
 		else if (pass == "Quest1")
 		{
 			if (!questIsActive){
-			randomXSpawn = Random.Range(27,28);
-			randomYSpawn = Random.Range(10,14);
+			randomXSpawn = 28;
+			randomYSpawn = Random.Range(10,11);
 			startQuest1=true;
 			description = "\"Nash was last seen at " +randomXSpawn +", "
 				+ randomYSpawn + " on your map's grid.\"";
-			GenerateQuestMonster = true;
-				questIsActive=true;
+			//GenerateQuestMonster = true;
+				//questIsActive=true;
 
 			}
 			else {
-				description = "Akel's shop is a mess. " + "Nash was last seen at " +randomXSpawn +", "
+				description = "Akel's bar is a mess. " + "Nash was last seen at " +randomXSpawn +", "
 					+ randomYSpawn + " on your map's grid.";
 
 			}
@@ -174,7 +174,7 @@ public class Zone : ScriptableObject {
 			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
 			if (!canEnterDT){ 
 
-				description = "come back when you have more money.  You know it costs $10 to enter downtown.";
+				description = "It costs $11 to enter downtown. \nCome back when you have more money.";
 				return false;
 				
 			}
@@ -220,8 +220,6 @@ public class Zone : ScriptableObject {
 	{
 		if (GenerateQuestMonster){ 
 			
-
-
 			AddRandomMonster (randomXSpawn, randomYSpawn);
 		}
 	}

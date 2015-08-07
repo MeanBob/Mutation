@@ -10,21 +10,22 @@ public class RabbitMonster : Monster {
 	{
 
 		//used to initiate combat
-		monsterText[0] = "As you are looking down at where you are walks a small, white rabbit zips across your path in quick hops. Its bushy tail is adorable, you think.\n\n";
-		monsterText[1] = "While you are resting and catching your breath a small, brown bunny pops its head out of a hole. You notice its pink, twitching nose and relentless, bugging eyes. How cute!\n\n";
-		monsterText[2] = "Two white ears protrude from the landscapes ahead. You can’t be certain, but if you were betting, you'd be putting your money on rabbits right about now.\n\n";
+		monsterText[0] = "Brown and matted fur flash before your eyes.";
+		monsterText[1] = "Gnarled whiskers twitch at your approach.";
+		monsterText[2] = "1 ear is perked. The other is a small hand.  This rabbit is messed up.";
 		// index 3 is for hiding
-		monsterText[3] = "You avoid getting too close to the bunny.";
+		monsterText[3] = "You avoid getting too close to the disgusting rabbit.";
 
 		//index 4 is for victory
-		monsterText [4] = "The rabbit’s eyes roll up into its head and it goes limp. Good night.";
+		monsterText [4] = "The rabbit’s eyes roll up into its head and it goes limp.";
 
 		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};
 	}
 	public override void Init()
     {
+		moneyGained = 2;
 		monsterMeatID = 2;
-        monsterName = "Rabbit";
+        monsterName = "Mutated Rabbit";
 		expPointsGained = Random.Range(14,26);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];

@@ -229,7 +229,7 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [25, 6] = "Backgrounds/Embankment";
 		backgroundImage [26, 6] = "Backgrounds/Embankment";
 		backgroundImage [27, 6] = "Backgrounds/Embankment";
-		backgroundImage [28, 6] = "Backgrounds/River";
+		backgroundImage [28, 6] = "Backgrounds/DownTown - BountyBar";
 		backgroundImage [29, 6] = "Backgrounds/River";
 		
 		//H row		   
@@ -261,7 +261,7 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [25, 7] = "Backgrounds/Embankment";
 		backgroundImage [26, 7] = "Backgrounds/River";
 		backgroundImage [27, 7] = "Backgrounds/River";
-		backgroundImage [28, 7] = "Backgrounds/River";
+		backgroundImage [28, 7] = "Backgrounds/DownTown - Entrance";
 		backgroundImage [29, 7] = "Backgrounds/Embankment";
 		
 		//I row		  
@@ -293,7 +293,7 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [25, 8] = "Backgrounds/Embankment";
 		backgroundImage [26, 8] = "Backgrounds/River";
 		backgroundImage [27, 8] = "Backgrounds/Embankment";
-		backgroundImage [28, 8] = "Backgrounds/Embankment";
+		backgroundImage [28, 8] = "Backgrounds/DownTown - NoForwardLeftRight";
 		backgroundImage [29, 8] = "Backgrounds/Embankment";
 		
 		//J row		   
@@ -325,7 +325,7 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [25, 9] = "Backgrounds/River";
 		backgroundImage [26, 9] = "Backgrounds/River";
 		backgroundImage [27, 9] = "Backgrounds/Green";
-		backgroundImage [28, 9] = "Backgrounds/Green";
+		backgroundImage [28, 9] = "Backgrounds/DownTown - NoForwardLeftRight";
 		backgroundImage [29, 9] = "Backgrounds/Green";
 		
 		//10			  
@@ -357,7 +357,7 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [25, 10] = "Backgrounds/Green";
 		backgroundImage [26, 10] = "Backgrounds/Green";
 		backgroundImage [27, 10] = "Backgrounds/Green";
-		backgroundImage [28, 10] = "Backgrounds/Green";
+		backgroundImage [28, 10] = "Backgrounds/DownTown - NoForwardLeftRight";
 		backgroundImage [29, 10] = "Backgrounds/Green";
 		
 		
@@ -390,7 +390,7 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [25, 11] = "Backgrounds/Green";
 		backgroundImage [26, 11] = "Backgrounds/Green";
 		backgroundImage [27, 11] = "Backgrounds/Green";
-		backgroundImage [28, 11] = "Backgrounds/Green";
+		backgroundImage [28, 11] = "Backgrounds/DownTown - NoForwardLeftRight";
 		backgroundImage [29, 11] = "Backgrounds/Green";
 		
 		backgroundImage [0, 12] = "Backgrounds/Green";
