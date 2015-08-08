@@ -17,6 +17,13 @@ public class BirdMeat : Item {
 		hitPointsHealed = 10;
 		tag = 12;
 
+		numberOfMutations = 4;
+		
+		mutationList = new Mutation[]{ScriptableObject.CreateInstance<FloppyEars>(),ScriptableObject.CreateInstance<Whiskers>(),
+			ScriptableObject.CreateInstance<BushyTail>(), ScriptableObject.CreateInstance<RabbitLegs>(),
+		};
+
+
 
 	}
 	

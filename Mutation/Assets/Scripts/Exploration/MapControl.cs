@@ -22,8 +22,8 @@ public class MapControl : MonoBehaviour {
 
     CombatControl combat;
     Point playerLocation;
-    int xSize = 10;
-    int ySize = 11;
+    int xSize = 30;
+    int ySize = 16;
     Zone currentZone;
 	float currentMonsterReadiness = 0;
 	Monster[] sensedMonsters;
@@ -59,8 +59,8 @@ public class MapControl : MonoBehaviour {
         combat = GetComponent<CombatControl>();
 
         //Map setup that will change
-        playerLocation.x = 8;
-        playerLocation.y = 5;
+        playerLocation.x = 29;
+        playerLocation.y = 8;
 
         for (int i = 0; i < xSize; i++)
         {
@@ -89,51 +89,39 @@ public class MapControl : MonoBehaviour {
 	void GenerateZoneMonsters()
 	{
 		//Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
-		currentZone.AddMonster(7,5,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(6,5,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(5,5,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(5,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(29,6,ScriptableObject.CreateInstance<BeaverMonster>());
+		currentZone.AddMonster(29,11,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(29,9,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(4,5,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(3,5,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(2,5,ScriptableObject.CreateInstance<RabbitMonster>());
-		currentZone.AddMonster(1,5,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(28,7,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(28,10,ScriptableObject.CreateInstance<SkunkMonster>());
+		
+		currentZone.AddMonster(27,6,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(27,9,ScriptableObject.CreateInstance<CatMonster>());
+		currentZone.AddMonster(27,12,ScriptableObject.CreateInstance<DogMonster>());
 
-//		currentZone.AddMonster(7,4,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(7,7,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(8,1,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(7,8,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(6,8,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(5,8,ScriptableObject.CreateInstance<SnakeMonster>());
-//
-//		currentZone.AddMonster(8,7,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(8,6,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(8,5,ScriptableObject.CreateInstance<SnakeMonster>());
-//
-//		currentZone.AddMonster(0,1,ScriptableObject.CreateInstance<SnakeMonster>());
-//		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<SnakeMonster>());
-//
-//		currentZone.AddMonster(8,8,ScriptableObject.CreateInstance<GoatMonster>());
-//		currentZone.AddMonster(6,10,ScriptableObject.CreateInstance<GoatMonster>());
-//		currentZone.AddMonster(4,8,ScriptableObject.CreateInstance<GoatMonster>());
-//		currentZone.AddMonster(2,10,ScriptableObject.CreateInstance<GoatMonster>());
-//
-//		currentZone.AddMonster(6,9,ScriptableObject.CreateInstance<BearMonster>());
-//		currentZone.AddMonster(1,4,ScriptableObject.CreateInstance<BearMonster>());
-//
-//		currentZone.AddMonster(5,6,ScriptableObject.CreateInstance<FrogMonster>());
-//		currentZone.AddMonster(6,7,ScriptableObject.CreateInstance<FrogMonster>());
-//		currentZone.AddMonster(7,9,ScriptableObject.CreateInstance<FrogMonster>());
-//		currentZone.AddMonster(5,2,ScriptableObject.CreateInstance<FrogMonster>());
-//		
-//
-//		currentZone.AddMonster(1,3,ScriptableObject.CreateInstance<BeaverMonster>());
-//		currentZone.AddMonster(2,2,ScriptableObject.CreateInstance<BeaverMonster>());
-//
-//		currentZone.AddMonster(9,4,ScriptableObject.CreateInstance<CatMonster>());
-//		currentZone.AddMonster(1,8,ScriptableObject.CreateInstance<CatMonster>());
-//		currentZone.AddMonster(2,7,ScriptableObject.CreateInstance<CatMonster>());
+		currentZone.AddMonster(26,7,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(26,8,ScriptableObject.CreateInstance<BirdMonster>());
+		currentZone.AddMonster(26,11,ScriptableObject.CreateInstance<AnteaterMonster>());
 
+		currentZone.AddMonster(25,5,ScriptableObject.CreateInstance<AnteaterMonster>());
+		currentZone.AddMonster(25,8,ScriptableObject.CreateInstance<BirdMonster>());
+		currentZone.AddMonster(25,12,ScriptableObject.CreateInstance<WolfMonster>());
+
+		currentZone.AddMonster(24,6,ScriptableObject.CreateInstance<GiantAntMonster>());
+		currentZone.AddMonster(24,8,ScriptableObject.CreateInstance<PorcupineMonster>());
+		currentZone.AddMonster(24,10,ScriptableObject.CreateInstance<BeaverMonster>());
+		currentZone.AddMonster(24,13,ScriptableObject.CreateInstance<BirdMonster>());
+
+		currentZone.AddMonster(23,5,ScriptableObject.CreateInstance<MooseMonster>());
+		currentZone.AddMonster(23,8,ScriptableObject.CreateInstance<BirdMonster>());
+		currentZone.AddMonster(23,11,ScriptableObject.CreateInstance<SkunkMonster>());
+		currentZone.AddMonster(23,12,ScriptableObject.CreateInstance<DogMonster>());
+
+		currentZone.AddMonster(22,6,ScriptableObject.CreateInstance<BirdMonster>());
+		currentZone.AddMonster(22,7,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(22,8,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(22,12,ScriptableObject.CreateInstance<PorcupineMonster>());
 
 
 
@@ -141,7 +129,7 @@ public class MapControl : MonoBehaviour {
 
 	void Update()
 	{
-		if (combat.currentPlayerReadiness < combat.maxReadiness)
+	if (combat.currentPlayerReadiness < combat.maxReadiness)
 		{
 			northButton.interactable = false;
 			southButton.interactable = false;
@@ -169,7 +157,7 @@ public class MapControl : MonoBehaviour {
 			combat.InitiateCombat(currentZone.returnMonsterAtLocation(playerLocation.x,playerLocation.y));
 		}
 		else{
-			Debug.Log("No Monster here");
+			Debug.Log(playerLocation.x +","+ playerLocation.y);
 		}
 
 	}

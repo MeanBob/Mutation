@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class CombatControl : MonoBehaviour {
    
 	Animator shake;
+	public AudioSource combatSFX;
+
+	CombatSFXAudioController combatSFXController;
 
 	UIControl ui;
     CharacterPage playerCharacter;
@@ -36,6 +39,10 @@ public class CombatControl : MonoBehaviour {
 	public Button inventoryButton;
 	public Button mapButton;
 
+	public Button armButton;
+	public Button legButton;
+	public Button headButton;
+
 	public bool combatPause=false;
 	public bool MonsterAttackPause = false;
     public bool combatOn = false;
@@ -52,9 +59,16 @@ public class CombatControl : MonoBehaviour {
 		lootGained = transform.Find ("VictoryPanel/LootGained").GetComponent<UnityEngine.UI.Text> ();
 
 
+
+	combatSFX = GetComponent<AudioSource>();
+		
+
 		shake = GetComponent<Animator> ();
         ui = GetComponent<UIControl>();
 		playerCharacter = GameObject.Find("Canvas").GetComponent<CharacterPage>();
+
+		combatSFXController = GameObject.Find ("CombatSound").GetComponent<CombatSFXAudioController> ();
+
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         enemySlider.maxValue = maxReadiness;
@@ -88,6 +102,13 @@ public class CombatControl : MonoBehaviour {
 		//Debug.Log("Combat on value ::::"+combatOn);
 		//shake.Play ("None");
 
+		if (currentPlayerReadiness >= 100) {
+			
+			headButton.interactable = true;
+			armButton.interactable = true;
+			legButton.interactable = true;
+		}
+
 		if (combatOn)
         {
 			characterButton.interactable = false;
@@ -105,7 +126,7 @@ public class CombatControl : MonoBehaviour {
             currentPlayerReadiness += playerCharacter.GetSpeed() * readinessMultiplier * Time.deltaTime;
             currentMonsterReadiness += currentMonster.GetSpeed() * readinessMultiplier * Time.deltaTime;
 			}
-
+	
             playerSlider.value = currentPlayerReadiness;
             enemySlider.value = currentMonsterReadiness;
 
@@ -120,6 +141,8 @@ public class CombatControl : MonoBehaviour {
                         combatLogText.text += "bite ";
                         monsterDamage = currentMonster.RollHeadDamage();
 						currentMonster.DoEnergyDamage(2);
+
+
 					enemyEnergySlider.value = currentMonster.GetEnergy();
 
 
@@ -147,6 +170,7 @@ public class CombatControl : MonoBehaviour {
                 combatLogText.text += "did " + monsterDamage + " damage.\n";
 				shake.Play ("Hit");
                 playerCharacter.DoDamage(monsterDamage);
+				combatSFXController.MonsterAttacking1();
 
             }
         }
@@ -219,6 +243,13 @@ public class CombatControl : MonoBehaviour {
 		int accuracy = playerCharacter.getPlayerAccuracy();
 		if (currentPlayerReadiness >= 100)
 		{
+
+			headButton.interactable = true;
+			armButton.interactable = true;
+			legButton.interactable = true;
+
+
+
 			//this makes the random number we will check our stats algorithm against. It's a 1d100 system...
 			int chanceToHit = Random.Range (0,100);
 
@@ -234,6 +265,8 @@ public class CombatControl : MonoBehaviour {
 					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
+					combatSFXController.PlayerPlayerMissing();
+
 				}
 				break;
 				//arm
@@ -244,6 +277,7 @@ public class CombatControl : MonoBehaviour {
 					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
+					combatSFXController.PlayerPlayerMissing();
 				}
 				break;
 				//arm
@@ -254,6 +288,7 @@ public class CombatControl : MonoBehaviour {
 					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
+					combatSFXController.PlayerPlayerMissing();
 				}
 				break;
 				//leg
@@ -264,6 +299,7 @@ public class CombatControl : MonoBehaviour {
 					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
+					combatSFXController.PlayerPlayerMissing();
 				}
 				break;
 				//leg
@@ -274,6 +310,7 @@ public class CombatControl : MonoBehaviour {
 					combatLogText.text += "You miss! \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
+					combatSFXController.PlayerPlayerMissing();
 				}
 				break;
 				
@@ -282,6 +319,11 @@ public class CombatControl : MonoBehaviour {
 
 		//ADD TEXT FOR WHEN YOU PRESS ATTACK AND YOU ARE NOT READY
 		else {
+
+			headButton.interactable = false;
+			armButton.interactable = false;
+			legButton.interactable = false;
+
 			int waitTextNumber = Random.Range(1,5);
 
 			if (waitTextNumber ==1){
@@ -381,6 +423,7 @@ public class CombatControl : MonoBehaviour {
     void DoDamageToMonster(int damage)
     {
 		shake.Play ("Hitting");
+		combatSFXController.PlayerHitting ();
         if (currentMonster.DoDamage(damage))
         {
             ui.EndCombat();

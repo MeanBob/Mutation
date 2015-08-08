@@ -12,10 +12,16 @@ public class BeaverMeat : Item {
 		speed = 0;
 		intelligence = 0;
 		energy = 0;
-		accuracy = 1;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		accuracy = 0;
+		energyHealed = 20;
+		hitPointsHealed = 20;
 		tag = 9;
+
+		numberOfMutations = 4;
+		
+		mutationList = new Mutation[]{ScriptableObject.CreateInstance<FloppyEars>(),ScriptableObject.CreateInstance<Whiskers>(),
+			ScriptableObject.CreateInstance<BushyTail>(), ScriptableObject.CreateInstance<RabbitLegs>(),
+		};
 
 
 	}

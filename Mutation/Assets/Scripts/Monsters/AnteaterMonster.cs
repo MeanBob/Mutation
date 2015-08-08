@@ -31,7 +31,7 @@ public class AnteaterMonster : Monster {
 
 		victoryText = monsterText[4];
 
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Anteater"));
 
 		strength = Random.Range(13,40);
 		speed = Random.Range(50, 70);

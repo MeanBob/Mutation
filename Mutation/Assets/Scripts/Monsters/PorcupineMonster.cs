@@ -15,7 +15,7 @@ public class PorcupineMonster : Monster {
 		monsterText[2] = "Up ahead, you see dirt being flung into the air- something is digging! You crouch down, so as not to draw attention to yourself, but you’re too clumsy! Beady porcupine eyes fix you in their gaze.\n\n";
 		
 		// index 3 is for hiding
-		monsterText[3] = "";
+		monsterText[3] = "You hide from the porcupine.";
 
 		monsterText[4] = "You deliver the final blow and the porcupine shakes violently before dieing.";
 		//droppedItemsList = new Item[]{ new Daffodil(),new Chloroform(),new RabbitMeat()};

@@ -9,7 +9,7 @@ public class ButtonSoundControler : MonoBehaviour {
 	public AudioClip flute1;
 	public AudioClip flute2;
 	public AudioClip flute3;
-	public AudioClip flute4;
+	public AudioClip openBP;
 
 
 	public AudioSource buttons;
@@ -28,9 +28,9 @@ public class ButtonSoundControler : MonoBehaviour {
 	{
 		buttons.PlayOneShot(flute3, 0.4f);
 	}
-	public void PlayFlute4()
+	public void PlayOpenBP()
 	{
-		buttons.PlayOneShot(flute4, 0.4f);
+		buttons.PlayOneShot(openBP, 1.0f);
 	}
 
 	public void PlayFlute1()
