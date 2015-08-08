@@ -170,6 +170,7 @@ public class CombatControl : MonoBehaviour {
                 combatLogText.text += "did " + monsterDamage + " damage.\n";
 				shake.Play ("Hit");
                 playerCharacter.DoDamage(monsterDamage);
+				//shake.Play ("PlayetHit");
 				combatSFXController.MonsterAttacking1();
 
             }

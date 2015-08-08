@@ -53,24 +53,34 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: -3900
-        outSlope: -3900
+        value: 350
+        inSlope: 2112
+        outSlope: 2112
+        tangentMode: 10
+      - time: .0833333358
+        value: 526
+        inSlope: -3324
+        outSlope: -3324
         tangentMode: 10
       - time: .166666672
-        value: -650
-        inSlope: -974.999939
-        outSlope: -974.999939
+        value: -204
+        inSlope: -5874
+        outSlope: -5874
+        tangentMode: 10
+      - time: .25
+        value: -453
+        inSlope: -588.000122
+        outSlope: -588.000122
         tangentMode: 10
       - time: .5
         value: 0
-        inSlope: 975.000061
-        outSlope: 975.000061
+        inSlope: 3762.00073
+        outSlope: 3762.00073
         tangentMode: 10
       - time: .583333313
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: 476
+        inSlope: 5712.00146
+        outSlope: 5712.00146
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -82,24 +92,34 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: 1224
-        outSlope: 1224
+        value: -350
+        inSlope: 732
+        outSlope: 732
+        tangentMode: 10
+      - time: .0833333358
+        value: -289
+        inSlope: 2748
+        outSlope: 2748
         tangentMode: 10
       - time: .166666672
-        value: 204
-        inSlope: 305.999969
-        outSlope: 305.999969
+        value: 108
+        inSlope: 3834
+        outSlope: 3834
+        tangentMode: 10
+      - time: .25
+        value: 350
+        inSlope: 752.000122
+        outSlope: 752.000122
         tangentMode: 10
       - time: .5
         value: 0
-        inSlope: -306.000031
-        outSlope: -306.000031
+        inSlope: -3226.00049
+        outSlope: -3226.00049
         tangentMode: 10
       - time: .583333313
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: -421
+        inSlope: -5052.00098
+        outSlope: -5052.00098
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -209,6 +229,116 @@ AnimationClip:
     path: AvatarPanel
     classID: 224
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .0833333358
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .25
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .333333343
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_IsActive
+    path: FightPanel/PlayerHit
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .632352948
+        inSlope: -.0882353783
+        outSlope: -.0882353783
+        tangentMode: 10
+      - time: .25
+        value: .610294104
+        inSlope: -.0882353783
+        outSlope: -.0882353783
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.r
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .0790441185
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      - time: .25
+        value: .0717993006
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.g
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .0790441185
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      - time: .25
+        value: .0717993006
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.b
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .25
+        value: 1
+        inSlope: -5.99999952
+        outSlope: -5.99999952
+        tangentMode: 10
+      - time: .333333343
+        value: 0
+        inSlope: -11.999999
+        outSlope: -11.999999
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.a
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_PPtrCurves:
   - curve:
     - time: 0
@@ -258,6 +388,36 @@ AnimationClip:
       attribute: 538195251
       script: {fileID: 0}
       classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1433491951
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1433491951
+      attribute: 2526845255
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1433491951
+      attribute: 4215373228
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1433491951
+      attribute: 2334886179
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1433491951
+      attribute: 304273561
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
       customType: 0
       isPPtrCurve: 0
     - path: 0
@@ -333,24 +493,34 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: -3900
-        outSlope: -3900
+        value: 350
+        inSlope: 2112
+        outSlope: 2112
+        tangentMode: 10
+      - time: .0833333358
+        value: 526
+        inSlope: -3324
+        outSlope: -3324
         tangentMode: 10
       - time: .166666672
-        value: -650
-        inSlope: -974.999939
-        outSlope: -974.999939
+        value: -204
+        inSlope: -5874
+        outSlope: -5874
+        tangentMode: 10
+      - time: .25
+        value: -453
+        inSlope: -588.000122
+        outSlope: -588.000122
         tangentMode: 10
       - time: .5
         value: 0
-        inSlope: 975.000061
-        outSlope: 975.000061
+        inSlope: 3762.00073
+        outSlope: 3762.00073
         tangentMode: 10
       - time: .583333313
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: 476
+        inSlope: 5712.00146
+        outSlope: 5712.00146
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -362,24 +532,34 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: 1224
-        outSlope: 1224
+        value: -350
+        inSlope: 732
+        outSlope: 732
+        tangentMode: 10
+      - time: .0833333358
+        value: -289
+        inSlope: 2748
+        outSlope: 2748
         tangentMode: 10
       - time: .166666672
-        value: 204
-        inSlope: 305.999969
-        outSlope: 305.999969
+        value: 108
+        inSlope: 3834
+        outSlope: 3834
+        tangentMode: 10
+      - time: .25
+        value: 350
+        inSlope: 752.000122
+        outSlope: 752.000122
         tangentMode: 10
       - time: .5
         value: 0
-        inSlope: -306.000031
-        outSlope: -306.000031
+        inSlope: -3226.00049
+        outSlope: -3226.00049
         tangentMode: 10
       - time: .583333313
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: -421
+        inSlope: -5052.00098
+        outSlope: -5052.00098
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -489,6 +669,116 @@ AnimationClip:
     path: AvatarPanel
     classID: 224
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .0833333358
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .25
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: .333333343
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_IsActive
+    path: FightPanel/PlayerHit
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .632352948
+        inSlope: -.0882353783
+        outSlope: -.0882353783
+        tangentMode: 10
+      - time: .25
+        value: .610294104
+        inSlope: -.0882353783
+        outSlope: -.0882353783
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.r
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .0790441185
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      - time: .25
+        value: .0717993006
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.g
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .0790441185
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      - time: .25
+        value: .0717993006
+        inSlope: -.0289792717
+        outSlope: -.0289792717
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.b
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .25
+        value: 1
+        inSlope: -5.99999952
+        outSlope: -5.99999952
+        tangentMode: 10
+      - time: .333333343
+        value: 0
+        inSlope: -11.999999
+        outSlope: -11.999999
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Color.a
+    path: FightPanel/PlayerHit
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
