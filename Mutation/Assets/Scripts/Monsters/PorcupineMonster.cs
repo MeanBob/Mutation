@@ -24,24 +24,24 @@ public class PorcupineMonster : Monster {
 	{
 		monsterMeatID = 16;
 		monsterName = "Porcupine";
-		expPointsGained = Random.Range(75,90);
+		expPointsGained = Random.Range(100,130);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Porcupine"));
 
-		strength = Random.Range(12,30);
-		speed = Random.Range(45, 65);
+		strength = Random.Range(25,27);
+		speed = Random.Range(30, 45);
 		intelligence = 5;
 		energy = 10;
 		
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 5;
 		headMaxDamage = 10;
-		armMinDamage = 13;
-		armMaxDamage = 19;
-		legMinDamage = 15;
-		legMaxDamage = 18;
+		armMinDamage = 15;
+		armMaxDamage = 20;
+		legMinDamage = 20;
+		legMaxDamage = 25;
 		bonusDamage = 0;
 		
 		base.Init();

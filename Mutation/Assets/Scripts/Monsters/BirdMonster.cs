@@ -24,14 +24,14 @@ public class BirdMonster : Monster {
 	public override void Init()
 	{
 		monsterMeatID = 12;
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Bird"));
 		monsterName = "Bird";
 		victoryText = monsterText[4];
-		expPointsGained = Random.Range(18,39);
+		expPointsGained = Random.Range(50,75);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 
-		strength = Random.Range(3,6);
+		strength = Random.Range(6,9);
 		speed = Random.Range(80, 90);
 		intelligence = 5;
 		energy = 10;
@@ -39,10 +39,10 @@ public class BirdMonster : Monster {
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 6;
 		headMaxDamage = 9;
-		armMinDamage = 1;
-		armMaxDamage = 1;
-		legMinDamage = 7;
-		legMaxDamage = 10;
+		armMinDamage = 4;
+		armMaxDamage = 6;
+		legMinDamage = 5;
+		legMaxDamage = 8;
 		bonusDamage = 0;
 		
 		base.Init();

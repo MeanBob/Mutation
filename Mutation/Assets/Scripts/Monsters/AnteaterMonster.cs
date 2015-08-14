@@ -25,7 +25,7 @@ public class AnteaterMonster : Monster {
 	{
 		monsterMeatID = 14;
 		monsterName = "Anteater";
-		expPointsGained = Random.Range(30,89);
+		expPointsGained = Random.Range(85,110);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 
@@ -33,8 +33,8 @@ public class AnteaterMonster : Monster {
 
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Anteater"));
 
-		strength = Random.Range(13,40);
-		speed = Random.Range(50, 70);
+		strength = Random.Range(25,40);
+		speed = Random.Range(45, 65);
 		intelligence = 5;
 		energy = 10;
 		

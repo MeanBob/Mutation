@@ -20,24 +20,24 @@ public class SnakeMonster : Monster {
 	public override void Init()
 	{
 		monsterName = "Snake";
-		expPointsGained = Random.Range(18 , 36);
+		expPointsGained = Random.Range(30 , 40);
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Snake"));
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
 		monsterMeatID = 6;
-		strength = Random.Range(2,9);
-		speed = Random.Range(5, 20);
+		strength = Random.Range(6,11);
+		speed = Random.Range(16, 26);
 		intelligence = 5;
 		energy = 10;
 		
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 10;
+		headMinDamage = 15;
 		headMaxDamage = 20;
-		armMinDamage = 0;
-		armMaxDamage = 0;
-		legMinDamage = 0;
-		legMaxDamage = 0;
+		armMinDamage = 6;
+		armMaxDamage = 12;
+		legMinDamage = 6;
+		legMaxDamage = 12;
 
 		bonusDamage = 0;
 		

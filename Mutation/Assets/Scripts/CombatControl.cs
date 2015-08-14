@@ -51,7 +51,8 @@ public class CombatControl : MonoBehaviour {
 	UnityEngine.UI.Text monsterKilled;
 	UnityEngine.UI.Text lootGained;
 	public bool showVictory = false;
-	
+
+	private bool showingButtons = false;
 	void Start () 
 	{
 		expEarned = transform.Find ("VictoryPanel/ExpEarned").GetComponent<UnityEngine.UI.Text> ();
@@ -60,7 +61,7 @@ public class CombatControl : MonoBehaviour {
 
 
 
-	combatSFX = GetComponent<AudioSource>();
+		combatSFX = GetComponent<AudioSource>();
 		
 
 		shake = GetComponent<Animator> ();
@@ -81,6 +82,29 @@ public class CombatControl : MonoBehaviour {
 		enemyMaxEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/EnemyEnergyMaxText").GetComponent<UnityEngine.UI.Text>();
 		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
 		monsterImage = transform.FindChild("FightPanel/EnemyScenePanel/EnemyImage").GetComponent<UnityEngine.UI.Image>();
+	}
+
+	public void PlayExplore()
+	{
+		shake.Play ("ToExplorePanel");
+	}
+
+	public void ShowButtons()
+	{
+			shake.SetTrigger ("ShowButtons");
+	}
+	public void NoButtons()
+	{
+		shake.SetTrigger ("NoButtons");
+	}
+
+	public void ShowInventory()
+	{
+		shake.SetTrigger ("Inventory");
+	}
+	public void ShowExplore()
+	{
+		shake.SetTrigger ("Explore");
 	}
 
 	public void ShowVictoryState()

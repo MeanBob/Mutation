@@ -26,23 +26,23 @@ public class DogMonster : Monster {
 		monsterMeatID = 11;
 		monsterName = "Dog";
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Dog"));
-		expPointsGained = Random.Range(22,41);
+		expPointsGained = Random.Range(50,75);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
 
-		strength = Random.Range(6,9);
-		speed = Random.Range(45, 75);
+		strength = Random.Range(9,14);
+		speed = Random.Range(65, 85);
 		intelligence = 5;
 		energy = 10;
 		
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 5;
-		headMaxDamage = 10;
-		armMinDamage = 2;
-		armMaxDamage = 4;
-		legMinDamage = 2;
-		legMaxDamage = 5;
+		headMinDamage = 12;
+		headMaxDamage = 17;
+		armMinDamage = 3;
+		armMaxDamage = 8;
+		legMinDamage = 4;
+		legMaxDamage = 8;
 		bonusDamage = 0;
 		
 		base.Init();

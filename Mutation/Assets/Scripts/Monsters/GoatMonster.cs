@@ -28,13 +28,13 @@ public class GoatMonster : Monster {
 	{
 		monsterMeatID = 7;
 		monsterName = "Goat";
-		expPointsGained = Random.Range(18,50);
+		expPointsGained = Random.Range(40,60);
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Goat"));
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
 
-		strength = Random.Range(8,22);
+		strength = Random.Range(12,20);
 		speed = Random.Range(35, 55);
 		intelligence = 5;
 		energy = 10;
@@ -42,9 +42,9 @@ public class GoatMonster : Monster {
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 8;
 		headMaxDamage = 13;
-		armMinDamage = 2;
-		armMaxDamage = 8;
-		legMinDamage = 3;
+		armMinDamage = 7;
+		armMaxDamage = 9;
+		legMinDamage = 5;
 		legMaxDamage = 10;
 		bonusDamage = 0;
 		

@@ -26,27 +26,27 @@ public class SkunkMonster : Monster {
 
 		monsterMeatID = 5;
 		monsterName = "Skunk";
-		expPointsGained = Random.Range(20,44);
+		expPointsGained = Random.Range(50,75);
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		victoryText = monsterText[4];
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Skunk"));
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		
-		strength = Random.Range(4,11);
-		speed = Random.Range(10, 35);
+		strength = Random.Range(8,15);
+		speed = Random.Range(20, 25);
 		intelligence = 5;
 		energy = 10;
 		
 
-		headMinDamage = 3;
-		headMaxDamage = 6;
+		headMinDamage = 7;
+		headMaxDamage = 12;
 
-		armMinDamage = 1;
-		armMaxDamage = 3;
+		armMinDamage = 3;
+		armMaxDamage = 8;
 
-		legMinDamage = 1;
-		legMaxDamage = 4;
+		legMinDamage = 15;
+		legMaxDamage = 20;
 
 		bonusDamage = 0;
 		

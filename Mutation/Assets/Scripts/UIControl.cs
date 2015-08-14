@@ -88,10 +88,10 @@ public class UIControl : MonoBehaviour {
         panelStack = new Stack();
 
         //Don't turn anything off until the game is loaded or else it makes it a pain to find anything :p
-        mapPanel.SetActive(false);
-        explorationPanel.SetActive(false);
-        fightPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
+        mapPanel.SetActive(true);
+        explorationPanel.SetActive(true);
+		fightPanel.SetActive(true);
+		inventoryPanel.SetActive(true);
 		deathPanel.SetActive(false);
 		preCombatPanel.SetActive(false);
 		hide.SetActive(false);
@@ -102,12 +102,14 @@ public class UIControl : MonoBehaviour {
 		characterSheetPanel.SetActive(true);
 
 
-
+		introPanel.SetActive (true);
 		ChangePanel(introPanel);
 
 
 	}
 
+
+	//CHANGE TO ANIMATIoN
 	void Update()
 	{
 		if (playerCharacter.leveledUp == true)
@@ -115,6 +117,12 @@ public class UIControl : MonoBehaviour {
 			AddPanelOnTop(levelUpPanel);
 		}
 	}
+
+	public void PlayNormalState()
+	{
+	
+	}
+
 
 	public void CloseProgram()
 	{
@@ -128,9 +136,11 @@ public class UIControl : MonoBehaviour {
 	public void CloseCharacter()
 	{ characterSheetPanel.SetActive(false);
 
-		
 	}
-
+	public void CloseIntro()
+	{
+		introPanel.SetActive (false);
+	}
 	public void ExplorationPause()
 	{
 		currentPlayerReadiness -= 15;

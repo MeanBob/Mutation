@@ -26,24 +26,24 @@ public class CatMonster : Monster {
 	{
 		monsterMeatID = 10;
 		monsterName = "Cat";
-		expPointsGained = 30;
+		expPointsGained = Random.Range(40,60);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Car"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Car")); ///KEEP IN MIND THE TYPO
 
 		strength = Random.Range(4,7);
-		speed = Random.Range(55, 85);
+		speed = Random.Range(65, 85);
 		intelligence = 5;
 		energy = 10;
 		
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 3;
-		headMaxDamage = 8;
-		armMinDamage = 2;
-		armMaxDamage = 4;
-		legMinDamage = 2;
-		legMaxDamage = 5;
+		headMinDamage = 8;
+		headMaxDamage = 9;
+		armMinDamage = 5;
+		armMaxDamage = 6;
+		legMinDamage = 6;
+		legMaxDamage = 9;
 		bonusDamage = 0;
 		
 		base.Init();

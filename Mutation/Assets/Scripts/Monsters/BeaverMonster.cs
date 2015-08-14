@@ -27,23 +27,23 @@ public class BeaverMonster : Monster {
 		monsterMeatID = 9;
 		
 		monsterName = "Beaver";
-		expPointsGained = Random.Range(25,45);
+		expPointsGained = Random.Range(40,60);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Beaver"));
-		strength = Random.Range(7,17);
-		speed = Random.Range(11, 37);
+		strength = Random.Range(7,13);
+		speed = Random.Range(20, 35);
 		intelligence = 5;
 		energy = 10;
 		
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		headMinDamage = 6;
 		headMaxDamage = 16;
-		armMinDamage = 2;
-		armMaxDamage = 4;
-		legMinDamage = 2;
-		legMaxDamage = 6;
+		armMinDamage = 5;
+		armMaxDamage = 6;
+		legMinDamage = 7;
+		legMaxDamage = 9;
 		bonusDamage = 0;
 		
 		base.Init();

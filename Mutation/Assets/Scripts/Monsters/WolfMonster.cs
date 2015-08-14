@@ -19,8 +19,8 @@ public class WolfMonster : Monster {
 	{
 		monsterMeatID = 3;
 		monsterName = "Wolf";
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
-		strength = Random.Range(15,42);
+		setMonsterImage(Resources.Load <Sprite>("Enemies/Wolf"));
+		strength = Random.Range(22,42);
 		speed = Random.Range (40,75);
 		intelligence = 5;
 
@@ -30,16 +30,16 @@ public class WolfMonster : Monster {
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
 
-		headMinDamage = 1;
+		headMinDamage = 10;
 		headMaxDamage =  25;
 
 		armMinDamage = 5;
-		armMaxDamage = 16;
+		armMaxDamage = 15;
 
 		legMinDamage = 5;
 		legMaxDamage = 20;
 
-		expPointsGained = Random.Range(26, 94);
+		expPointsGained = Random.Range(85, 100);
 
 		bonusDamage = 0;
 		

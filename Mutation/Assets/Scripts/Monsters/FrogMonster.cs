@@ -21,22 +21,22 @@ public class FrogMonster : Monster {
 	{
 		monsterMeatID = 13;
 		monsterName = "Frog";
-		expPointsGained = Random.Range(10 , 20);
+		expPointsGained = Random.Range(20 , 30);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Frog"));
-		strength = Random.Range(1,3);
+		strength = Random.Range(4,8);
 		speed = Random.Range(20, 40);
 		intelligence = 5;
 		energy = 10;
 		
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 2;
-		headMaxDamage = 4;
+		headMinDamage = 4;
+		headMaxDamage = 6;
 		armMinDamage = 1;
 		armMaxDamage = 1;
-		legMinDamage = 2;
+		legMinDamage = 3;
 		legMaxDamage = 4;
 		bonusDamage = 0;
 		

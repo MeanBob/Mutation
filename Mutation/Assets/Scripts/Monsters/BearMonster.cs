@@ -28,9 +28,9 @@ public class BearMonster : Monster {
 
 		monsterMeatID = 4;
 
-		strength = Random.Range (40,56);
+		strength = Random.Range (60,65);
 
-		speed = Random.Range (14,60);
+		speed = Random.Range (35,50);
 		intelligence = 5;
 
 		energy = 10;
@@ -46,9 +46,9 @@ public class BearMonster : Monster {
 		armMaxDamage = 25;
 
 		legMinDamage = 15;
-		legMaxDamage = 20;
+		legMaxDamage = 30;
 
-		expPointsGained = Random.Range(94, 140);
+		expPointsGained = Random.Range(250, 350);
 
 		bonusDamage = 0;
 		

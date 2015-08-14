@@ -25,10 +25,10 @@ public class GiantAntMonster : Monster {
 	{
 		monsterMeatID = 15;
 		monsterName = "Giant Ant";
-		setMonsterImage(Resources.Load <Sprite>("Enemies/Bunny"));
+		setMonsterImage(Resources.Load <Sprite>("Enemies/GiantAnt"));
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
 		
-		expPointsGained = Random.Range(110,300);
+		expPointsGained = Random.Range(200,250);
 		monsterDescription = monsterText[Random.Range(0,3)];
 
 		hideDescription = monsterText[3];

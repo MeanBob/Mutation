@@ -26,7 +26,7 @@ public class MooseMonster : Monster {
 		
 		monsterName = "Moose";
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Moose"));
-		expPointsGained = Random.Range(85,130);
+		expPointsGained = Random.Range(100,130);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
@@ -34,17 +34,17 @@ public class MooseMonster : Monster {
 		monsterMeatID = 8;
 
 		strength = Random.Range(30,49);
-		speed = Random.Range(25, 60);
+		speed = Random.Range(35, 55);
 		intelligence = 5;
 		energy = 10;
 		
 		//itemReleased = droppedItemsList[Random.Range(0,3)];
-		headMinDamage = 10;
-		headMaxDamage = 25;
-		armMinDamage = 2;
-		armMaxDamage = 15;
-		legMinDamage = 5;
-		legMaxDamage = 13;
+		headMinDamage = 25;
+		headMaxDamage = 30;
+		armMinDamage = 10;
+		armMaxDamage = 17;
+		legMinDamage = 15;
+		legMaxDamage = 25;
 		bonusDamage = 0;
 		
 		base.Init();
