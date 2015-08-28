@@ -21,7 +21,7 @@ public class FrogMonster : Monster {
 	{
 		monsterMeatID = 13;
 		monsterName = "Frog";
-		expPointsGained = Random.Range(20 , 30);
+		expPointsGained = Random.Range(30 , 40);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];

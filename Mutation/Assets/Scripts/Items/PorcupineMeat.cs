@@ -13,8 +13,8 @@ public class PorcupineMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 0;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		energyHealed = 50;
+		hitPointsHealed = 32;
 		tag = 16;
 
 		numberOfMutations = 4;

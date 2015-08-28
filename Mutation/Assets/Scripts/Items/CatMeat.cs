@@ -13,8 +13,8 @@ public class CatMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 0;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		energyHealed = 50;
+		hitPointsHealed = 35;
 		tag = 10;
 		numberOfMutations = 4;
 		

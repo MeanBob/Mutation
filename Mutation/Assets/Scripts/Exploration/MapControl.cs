@@ -8,17 +8,20 @@ struct Point
 }
 
 public class MapControl : MonoBehaviour {    
-    
+
 	CharacterPage playerCharacter;
 	ExplorationText explorationText;
     UIControl ui;
 
 	ExplorationImage explorationImage;
-
 	Canvas canvas;
 
 	UnityEngine.UI.Image backgroundImage;
 
+	UnityEngine.UI.Text movingText;
+
+	UnityEngine.UI.Text mapLocation;
+	UnityEngine.UI.Text mapMission;
 
     CombatControl combat;
     Point playerLocation;
@@ -34,8 +37,45 @@ public class MapControl : MonoBehaviour {
 	public Button westButton;
 	bool tryingToFlee;
 
-	// Use this for initialization poop
+	string[] verbs;
+	string[] adverbs;
+
+	public bool noMission;
+	public bool introMission;
+
+
+	// Use this for initialization
 	void Start () {
+		noMission = false;
+		introMission = true;
+	
+
+		//For SetMovement Description
+		adverbs = new string[6];
+		verbs = new string[6];
+		
+		verbs [0] = " walk";
+		verbs [1] = " journey";
+		verbs [2] = " move";
+		verbs [3] = " continue";
+		verbs [4] = " advance";
+		verbs [5] = " persist";
+		
+		adverbs [0] = " ahead.";
+		adverbs [1] = " forward.";
+		adverbs [2] = " on.";
+		adverbs [3] = " through.";
+		adverbs [4] = " onward.";
+		adverbs [5] = " beyond.";
+	
+		mapMission = transform.Find ("MapPanel/Quest").GetComponent<UnityEngine.UI.Text> ();
+		mapLocation = transform.Find ("MapPanel/Location").GetComponent<UnityEngine.UI.Text> ();
+		movingText = transform.Find ("ExploringPanel/Text").GetComponent<UnityEngine.UI.Text> ();
+		//For SetMovement Description
+		
+
+
+		//lootGained = transform.Find ("VictoryPanel/LootGained").GetComponent<UnityEngine.UI.Text> ();
 
 		canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
 
@@ -58,7 +98,7 @@ public class MapControl : MonoBehaviour {
 		ui = GetComponent<UIControl>();
         combat = GetComponent<CombatControl>();
 
-        //Map setup that will change
+        //Map setup 
         playerLocation.x = 29;
         playerLocation.y = 8;
 
@@ -86,27 +126,38 @@ public class MapControl : MonoBehaviour {
 	}
 
 
+	public void MakeQuestMonster()
+	{
+		currentZone.GeneratePlaceMonster ();
+	}
+
 	void GenerateZoneMonsters()
 	{
 		//Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
-		currentZone.AddMonster(29,6,ScriptableObject.CreateInstance<BeaverMonster>());
-		currentZone.AddMonster(29,11,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(29,9,ScriptableObject.CreateInstance<RabbitMonster>());
+		//level 1-4, rabbit, snake, frog
+		//currentZone.AddMonster(29,6,ScriptableObject.CreateInstance<SnakeMonster>());
+		//currentZone.AddMonster(29,9,ScriptableObject.CreateInstance<FrogMeat>());
+		//currentZone.AddMonster(29,11,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(28,7,ScriptableObject.CreateInstance<FrogMonster>());
-		currentZone.AddMonster(28,10,ScriptableObject.CreateInstance<SkunkMonster>());
+		//currentZone.AddMonster(28,7,ScriptableObject.CreateInstance<FrogMonster>());
+		//currentZone.AddMonster(28,10,ScriptableObject.CreateInstance<RabbitMonster>());
 		
-		currentZone.AddMonster(27,6,ScriptableObject.CreateInstance<FrogMonster>());
-		currentZone.AddMonster(27,9,ScriptableObject.CreateInstance<CatMonster>());
-		currentZone.AddMonster(27,12,ScriptableObject.CreateInstance<DogMonster>());
+		//currentZone.AddMonster(27,6,ScriptableObject.CreateInstance<FrogMonster>());
+		//currentZone.AddMonster(27,9,ScriptableObject.CreateInstance<SnakeMonster>());
+		//currentZone.AddMonster(27,12,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(26,7,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(26,8,ScriptableObject.CreateInstance<BirdMonster>());
-		currentZone.AddMonster(26,11,ScriptableObject.CreateInstance<AnteaterMonster>());
+		//currentZone.AddMonster(26,7,ScriptableObject.CreateInstance<SnakeMonster>());
+		//currentZone.AddMonster(26,8,ScriptableObject.CreateInstance<FrogMonster>());
+		//currentZone.AddMonster(26,11,ScriptableObject.CreateInstance<RabbitMonster>());
 
-		currentZone.AddMonster(25,5,ScriptableObject.CreateInstance<AnteaterMonster>());
-		currentZone.AddMonster(25,8,ScriptableObject.CreateInstance<BirdMonster>());
-		currentZone.AddMonster(25,12,ScriptableObject.CreateInstance<WolfMonster>());
+		//currentZone.AddMonster(25,5,ScriptableObject.CreateInstance<CatMonster>());
+		//currentZone.AddMonster(25,8,ScriptableObject.CreateInstance<SnakeMonster>());
+		//currentZone.AddMonster(25,12,ScriptableObject.CreateInstance<CatMonster>());
+
+
+
+		//beaver, cat, dog, goat, skunk, wolf, bird
+
 
 		currentZone.AddMonster(24,6,ScriptableObject.CreateInstance<GiantAntMonster>());
 		currentZone.AddMonster(24,8,ScriptableObject.CreateInstance<PorcupineMonster>());
@@ -123,13 +174,35 @@ public class MapControl : MonoBehaviour {
 		currentZone.AddMonster(22,8,ScriptableObject.CreateInstance<FrogMonster>());
 		currentZone.AddMonster(22,12,ScriptableObject.CreateInstance<PorcupineMonster>());
 
+		//maybe up for 16  anteater, moose, porcupine
+
+
+
+		// from 15- 6 bear, guant ant
 
 
 	}
 
 	void Update()
 	{
-	if (combat.currentPlayerReadiness < combat.maxReadiness)
+		if (currentZone.startQuest1) {
+			PlayQuest1();
+			currentZone.startQuest1 = false;
+		}
+
+		if (currentZone.GenerateQuestMonster) {
+		
+			currentZone.GeneratePlaceMonster();
+		}
+
+		if (playerCharacter.getPlayerMoney () > 10) {
+			currentZone.canEnterDT = true;
+		}
+		else {currentZone.canEnterDT = false;}
+
+
+
+	if (combat.currentPlayerReadiness <= combat.maxReadiness)
 		{
 			northButton.interactable = false;
 			southButton.interactable = false;
@@ -144,8 +217,53 @@ public class MapControl : MonoBehaviour {
 		}
 	}
 
+	public void PlayQuest1()
+	{
 
-	
+			combat.shake.SetTrigger ("Quest1");
+		//playerCharacter.AddMoney (50);
+		//playerCharacter.UpdateMoney ();
+
+	}
+
+	public void SetQuestActive()
+	{
+		currentZone.questIsActive = true;
+		noMission = false;
+		introMission = false;
+	}
+
+	public void SetQuestInactive()
+	{
+		currentZone.questIsActive = false;
+	}
+
+
+
+	public void UpdateMap()
+	{
+		mapLocation.text = "Your current location is:" + playerLocation.x + ", " + playerLocation.y+ "."; 
+
+		if (currentZone.questIsActive) {
+			mapMission.text = "Target is " + currentZone.randomXSpawn + ", " + currentZone.randomYSpawn + ".";
+		
+		} else if (noMission) {
+			mapMission.text = "Get a job.";
+		} else if (introMission) {
+			mapMission.text = "Get back to your office before you starve or die.";
+		} else { mapMission.text = "Get a job2.";
+		}
+
+
+	}
+
+	public void ReturnToQuest1Start()
+	{
+		playerLocation.x = 29;
+		playerLocation.y = 10;
+		currentZone.questIsActive = false;
+	}
+
 	void CombatCheck()
 	{
 
@@ -155,6 +273,9 @@ public class MapControl : MonoBehaviour {
 		if(currentZone.doesMonsterExist(playerLocation.x,playerLocation.y)){
 			Debug.Log("Monster exists at player's current location"+"("+playerLocation.x+","+playerLocation.y+")");
 			combat.InitiateCombat(currentZone.returnMonsterAtLocation(playerLocation.x,playerLocation.y));
+			ui.CloseInventory();
+			ui.OpenInventory();
+		
 		}
 		else{
 			Debug.Log(playerLocation.x +","+ playerLocation.y);
@@ -171,7 +292,7 @@ public class MapControl : MonoBehaviour {
 			tryingToFlee = true;
 
 			int fleeChance = Random.Range (0,99);
-			if (playerCharacter.GetIntelligence() > fleeChance)
+			if (playerCharacter.GetIntelligence()+50 > fleeChance)
 			{
 				combat.combatLogText.text = "You attempted to flee!\n";
 
@@ -195,10 +316,14 @@ public class MapControl : MonoBehaviour {
 
     public void MoveNorth()
     {
-
+		//currentZone.description += "You move North. \n";
+		//explorationText.dialogue += "You move North. \n";
+		
 		Flee(-1,0);
 		if(!tryingToFlee)
 		{
+			//SetMoveDescription();
+
 	        GoDirection(-1, 0);
 			CombatCheck();
 			playerCharacter.DoEnergyDamage(1);
@@ -213,6 +338,8 @@ public class MapControl : MonoBehaviour {
 		Flee(1,0);
 		if(!tryingToFlee)
 		{
+			combat.GenerateMonster();
+			//SetMoveDescription();
 			GoDirection(1, 0);
 			CombatCheck();
 			playerCharacter.DoEnergyDamage(1);
@@ -226,6 +353,8 @@ public class MapControl : MonoBehaviour {
 		Flee(0,1);
 		if(!tryingToFlee)
 		{
+
+			//SetMoveDescription();
 			GoDirection(0, 1);
 			CombatCheck();
 			playerCharacter.DoEnergyDamage(1);
@@ -234,11 +363,18 @@ public class MapControl : MonoBehaviour {
 
     }
 
+	public void QuestIsNotActive()
+	{
+		currentZone.questIsActive = false;
+	}
+
     public void MoveWest()
 {		
 		Flee(0,-1);
 		if(!tryingToFlee)
 		{
+			//SetMoveDescription();
+
 			GoDirection(0, -1);
 			CombatCheck();
 			playerCharacter.DoEnergyDamage(1);
@@ -246,17 +382,30 @@ public class MapControl : MonoBehaviour {
 		tryingToFlee = false;
     }
 
-
+	public string SetMoveDescription()
+	{
+		string tempSentence = "";
+		int rV = Random.Range (0, 6);
+		int rAV = Random.Range (0, 6);
+		tempSentence = "You" +verbs[rV] + adverbs[rAV];
+		movingText.text = tempSentence;
+		combat.ShowExploring();
+		return tempSentence;
+	}
 
 
     public void GoDirection(int xDir, int yDir)
     {
+		//for the exploring transitions.
+		SetMoveDescription ();
+		
+
         //Move Direction
         string nodeDescription = "";
         string oldDescription = "";
 		string sensoryDescription = "";
 
-
+		
 
 		string direction1 = "";
 		string direction2 = "";
@@ -264,8 +413,6 @@ public class MapControl : MonoBehaviour {
 		string direction4 = "";
 
 		int intelligenceCategory=0;
-
-
 
 		//currentZone has the description of each position
         if (currentZone.AttemptPlayerMove(playerLocation.x + xDir, playerLocation.y + yDir, ref nodeDescription))
@@ -318,14 +465,24 @@ public class MapControl : MonoBehaviour {
 		
 	}
 
+
+
 	public string SetSensoryDescription(int intelligenceCategory,string direction1, string direction2,string direction3, string direction4)
 	{		
 		string sensoryDescription = "";
-
 		switch (intelligenceCategory)
 		{
 		case 0:	
-			sensoryDescription = "You sense something nearby";
+			int temp = Random.Range(0,4);
+			if (temp==0){
+				sensoryDescription = "You sense a nearby presence.";}
+			else if (temp == 1)
+			{	sensoryDescription = "Your ears tingle.";}
+			else if (temp == 2)
+			{	sensoryDescription = "What's that smell?";}
+			else if (temp == 3)
+			{	sensoryDescription = "Caution washes over you.";}
+
 			break;
 		case 1:
 			sensoryDescription = "You sense something in the following directions :\n" + direction1 + direction2  + direction3 + direction4;
@@ -337,6 +494,7 @@ public class MapControl : MonoBehaviour {
 			//sensoryDescription = "You sense an "+currentZone.returnMonsterAtLocation() + " nearby to the "+direction;
 			break;
 		}
+		
 		return sensoryDescription;
 	}
 }

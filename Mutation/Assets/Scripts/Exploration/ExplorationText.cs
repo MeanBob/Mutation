@@ -263,7 +263,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[26,7] = "River";
 		dialogue[27,7] = "River";
 		dialogue[28,7] = "River";
-		dialogue[29,7] = "Embankment";
+		dialogue[29,7] = "DownTownEntrance";
 
 		//I row		  
 		dialogue[0,8] = "Impassable";
@@ -327,7 +327,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[26,9] = "River";
 		dialogue[27,9] = "Forest";
 		dialogue[28,9] = "Forest";
-		dialogue[29,9] = "Forest";
+		dialogue[29,9] = "Quest1";
 
 		//10			  
 		dialogue[0,10] = "Forest";

@@ -13,8 +13,8 @@ public class MooseMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 0;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		energyHealed = 60;
+		hitPointsHealed = 50;
 		tag = 8;
 		numberOfMutations = 4;
 		

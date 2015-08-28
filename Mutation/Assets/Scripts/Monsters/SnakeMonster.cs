@@ -26,7 +26,7 @@ public class SnakeMonster : Monster {
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
 		monsterMeatID = 6;
-		strength = Random.Range(6,11);
+		strength = Random.Range(5,7);
 		speed = Random.Range(16, 26);
 		intelligence = 5;
 		energy = 10;

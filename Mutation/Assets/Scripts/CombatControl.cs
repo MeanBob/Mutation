@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CombatControl : MonoBehaviour {
    
-	Animator shake;
+	public	Animator shake;
 	public AudioSource combatSFX;
 
 	CombatSFXAudioController combatSFXController;
@@ -13,7 +13,7 @@ public class CombatControl : MonoBehaviour {
     CharacterPage playerCharacter;
     Monster currentMonster;
 
-
+	string[] victoryVerbs;
 
     UnityEngine.UI.Slider enemySlider;
 	UnityEngine.UI.Slider playerSlider;
@@ -52,17 +52,24 @@ public class CombatControl : MonoBehaviour {
 	UnityEngine.UI.Text lootGained;
 	public bool showVictory = false;
 
-	private bool showingButtons = false;
+	public bool KilledNash = false;
+
+	//MapControl mapControl;
+
 	void Start () 
 	{
+		victoryVerbs = new string[5];
+		VictoryVerbs ();
+		
 		expEarned = transform.Find ("VictoryPanel/ExpEarned").GetComponent<UnityEngine.UI.Text> ();
 		monsterKilled = transform.Find ("VictoryPanel/MonsterKilled").GetComponent<UnityEngine.UI.Text> ();
 		lootGained = transform.Find ("VictoryPanel/LootGained").GetComponent<UnityEngine.UI.Text> ();
 
 
-
 		combatSFX = GetComponent<AudioSource>();
-		
+
+
+		//mapControl = GameObject.Find ("Canvas").GetComponent<MapControl> ();
 
 		shake = GetComponent<Animator> ();
         ui = GetComponent<UIControl>();
@@ -84,6 +91,33 @@ public class CombatControl : MonoBehaviour {
 		monsterImage = transform.FindChild("FightPanel/EnemyScenePanel/EnemyImage").GetComponent<UnityEngine.UI.Image>();
 	}
 
+	void VictoryVerbs()
+	{
+		victoryVerbs[0] = "hack";
+		victoryVerbs[1] = "cut";
+		victoryVerbs[2] = "break";
+		victoryVerbs[3] = "tear";
+		victoryVerbs[4] = "rip";
+	}
+
+	public void PlayTurnInBounty()
+	{
+		shake.SetTrigger ("TurnInBounty");
+		//mapControl.QuestIsNotActive ();
+
+	}
+
+	public void PlayFight()
+	{
+		shake.SetTrigger("Fight");
+	}
+
+	public void PlayAcceptQuest()
+	{
+		shake.SetTrigger ("AcceptQuest");
+
+	}
+
 	public void PlayExplore()
 	{
 		shake.Play ("ToExplorePanel");
@@ -91,33 +125,77 @@ public class CombatControl : MonoBehaviour {
 
 	public void ShowButtons()
 	{
+		if (!combatOn) {
 			shake.SetTrigger ("ShowButtons");
+		} else
+			shake.SetTrigger ("Fight");
 	}
 	public void NoButtons()
 	{
 		shake.SetTrigger ("NoButtons");
 	}
 
-	public void ShowInventory()
+	public void Hide()
 	{
-		shake.SetTrigger ("Inventory");
+		shake.SetTrigger ("Hide");
+	}
+	public void MutationPlay()
+	{
+		shake.Play("Mutations");
+	}
+	public void StatsPlay()
+	{
+		shake.Play("Stats");
+	}
+	public void ShowInventory()
+	{shake.SetTrigger ("Inventory");
 	}
 	public void ShowExplore()
-	{
-		shake.SetTrigger ("Explore");
+	{shake.SetTrigger ("Explore");
 	}
+	public void ShowExploring()
+	{shake.SetTrigger ("Exploring");
+	}
+	public void ShowSelf()
+	{shake.SetTrigger ("Stats");
+	}
+	public void ShowExplored()
+	{shake.SetTrigger ("Explored");
+	}
+	public void PlayIntro1()
+	{shake.SetTrigger ("Line1");
+	}
+	public void PlayIntro2()
+	{shake.SetTrigger ("Line2");
+	}
+	public void PlayIntro3()
+	{shake.SetTrigger ("Line3");
+	}
+
+	public void ShowMap()
+	{shake.SetTrigger ("Map");
+	}
+
 
 	public void ShowVictoryState()
 	{ 
 
+		shake.SetTrigger ("Victory");
 		ui.victoryPanel.SetActive (true);
 			expEarned.text = "";
 			monsterKilled.text = currentMonster.GetVictoryText ();
-			lootGained.text = "You've gained some " + currentMonster.GetName () + " meat!";
+			
+		int tempV = Random.Range (0,6);
+		lootGained.text = "You "+ victoryVerbs[tempV] + " off " + currentMonster.GetName ().ToLower() + " meat, and stuff it in your bag.";
 	}
 	public void CloseVictoryState()
 	{
+
 		ui.victoryPanel.SetActive (false);
+		foreach(Button b in ui.explorationButtons)
+		{
+			b.interactable = true;
+		}
 	}
 
 
@@ -126,8 +204,9 @@ public class CombatControl : MonoBehaviour {
 		//Debug.Log("Combat on value ::::"+combatOn);
 		//shake.Play ("None");
 
+	
+
 		if (currentPlayerReadiness >= 100) {
-			
 			headButton.interactable = true;
 			armButton.interactable = true;
 			legButton.interactable = true;
@@ -173,7 +252,7 @@ public class CombatControl : MonoBehaviour {
                         break;
                     case 1:
                     case 2:
-                        combatLogText.text += "claw ";
+                        combatLogText.text += "strike ";
                         monsterDamage = currentMonster.RollArmDamage();
 						currentMonster.DoEnergyDamage(1);
 					enemyEnergySlider.value = currentMonster.GetEnergy();
@@ -182,7 +261,7 @@ public class CombatControl : MonoBehaviour {
                         break;
                     case 3:
                     case 4:
-                        combatLogText.text += "kick ";
+                        combatLogText.text += "attack ";
                         monsterDamage = currentMonster.RollLegDamage();
 						currentMonster.DoEnergyDamage(1);
 					enemyEnergySlider.value = currentMonster.GetEnergy();
@@ -192,7 +271,7 @@ public class CombatControl : MonoBehaviour {
                 }
                 currentMonsterReadiness = 0;
                 combatLogText.text += "did " + monsterDamage + " damage.\n";
-				shake.Play ("Hit");
+				//shake.Play ("Hit");
                 playerCharacter.DoDamage(monsterDamage);
 				//shake.Play ("PlayetHit");
 				combatSFXController.MonsterAttacking1();
@@ -221,16 +300,15 @@ public class CombatControl : MonoBehaviour {
     public void InitiateCombat(Monster encounteredMonster)
     {
         //Generate monster
-       //	Monster tempMonster = GenerateMonster();
+        //Monster tempMonster = GenerateMonster();
 		currentMonster = encounteredMonster;
 		int readiness = Random.Range (2,89);
 		currentPlayerReadiness = readiness;
-
+		shake.SetTrigger("Fight");
+		
 		int rStart	= Random.Range(1,99);
 		currentMonsterReadiness = rStart;
 
-//		monsterImage = 
-//		monsterImage.LoadImage(currentMonster.GetMonsterImage());
 		monsterImage.sprite = currentMonster.GetMonsterImage();
 
 		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
@@ -243,24 +321,17 @@ public class CombatControl : MonoBehaviour {
 		enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
 		enemyHealthSlider.value = currentMonster.GetHealth();
 
-
 		ui.InitiateCombat(currentMonster);
     }
 
-	public void MutationPlay()
-	{
-		shake.Play("Mutations");
-	}
-	public void StatsPlay()
-	{
-		shake.Play("Stats");
-	}
+
 
 	public void WhenFightIsPressed()
 	{
 
 		combatOn = true;
 		currentPlayerReadiness = playerCharacter.GetSpeed();
+		shake.SetTrigger ("Fight");
 	}
 
 	public void CanAttack(int attackId)
@@ -272,8 +343,6 @@ public class CombatControl : MonoBehaviour {
 			headButton.interactable = true;
 			armButton.interactable = true;
 			legButton.interactable = true;
-
-
 
 			//this makes the random number we will check our stats algorithm against. It's a 1d100 system...
 			int chanceToHit = Random.Range (0,100);
@@ -342,7 +411,7 @@ public class CombatControl : MonoBehaviour {
 			}
 		}
 
-		//ADD TEXT FOR WHEN YOU PRESS ATTACK AND YOU ARE NOT READY
+		//Check if you are ready or not
 		else {
 
 			headButton.interactable = false;
@@ -366,44 +435,64 @@ public class CombatControl : MonoBehaviour {
 	//special attacks
 	void LifeSteal()
 	{
-		int lifeStealChance = Random.Range (1, 3);
-		if (lifeStealChance == 1) {
-			playerCharacter.DoEnergyDamage (1);
-			playerCharacter.HealDamage (2);
-			combatLogText.text += "Your punch steals some life!\n";
-		}
-		else {
-			combatLogText.text += "Your punch fails to steal any life.\n";
-		}
+		if (playerCharacter.hasStealLife) {
+
+			int lifeStealChance = Random.Range (1, 3);
+			if (lifeStealChance == 1) {
+				playerCharacter.DoEnergyDamage (1);
+
+				int rTemp = Random.Range (0, 4);
+				int temp = playerCharacter.GetIntelligence () / 3 + rTemp;
+				playerCharacter.HealDamage (temp);
+
+				combatLogText.text += "Your punch steals " + temp + " life!\n";
+			} else {
+				combatLogText.text += ""; //Your punch fails to steal any life.\n
+			}
+		} 
 	}
+
+
+
 	void Stun()
 	{
-		int stunChance = Random.Range (1, 3);
 
-		if (stunChance == 1) {
-			currentMonsterReadiness = 0;
-			enemySlider.value = currentMonsterReadiness;
-			combatLogText.text += "Your headbutt stuns the beast!\n";
-		} else {
-			combatLogText.text += "Your headbutt fails to stun.\n";
+		if (playerCharacter.hasStun) { 
+			int stunChance = Random.Range (1, 3);
+
+			if (stunChance == 1) {
+				currentMonsterReadiness = 0;
+				enemySlider.value = currentMonsterReadiness;
+				combatLogText.text += "Your headbutt stuns the " + currentMonster.GetName ().ToLower () + "!\n";
+			} else {
+				combatLogText.text += ""; //Your headbutt fails to stun.\n
+			}
 		}
 	}
 
-	//Basic Attacks
+	//Basic Attacks  WORK ON TEXT
     void PlayerAttackHead()
     {
 		Stun ();
+		int temp = Random.Range (1, 10);
 		combatLogText.text += "Your headbutt";
-        DoDamageToMonster(playerCharacter.AttackHead());
-		currentPlayerReadiness = 30;
+        
+		DoDamageToMonster(playerCharacter.AttackHead()/ temp);
+
+		currentPlayerReadiness = 70;
+
+
 		playerCharacter.DoEnergyDamage(5);
     }
-
+	//dont use
     void PlayerAttackLeftArm()
     {
-		LifeSteal ();
+
+		combatLogText.color = Color.red;
 		combatLogText.text += "Your punch";
+		combatLogText.color = Color.black;
         DoDamageToMonster(playerCharacter.AttackLeftArm());
+		LifeSteal ();
 		currentPlayerReadiness = 70;
 
     }
@@ -413,23 +502,26 @@ public class CombatControl : MonoBehaviour {
 		LifeSteal ();
         combatLogText.text += "Your punch";
         DoDamageToMonster(playerCharacter.AttackRightArm());
-		currentPlayerReadiness = 70;
+		currentPlayerReadiness = 60;
+		LifeSteal ();
 		playerCharacter.DoEnergyDamage(1);
     }
-	
+
+	//dont use
     void PlayerAttackLeftLeg()
     {
         combatLogText.text += "Your kick";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
-		currentPlayerReadiness = 50;
+		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
     }
 
     void PlayerAttackRightLeg()
     {
+		int temp = Random.Range (1, 10);
         combatLogText.text += "Your kick";
-        DoDamageToMonster(playerCharacter.AttackRightLeg());
-		currentPlayerReadiness = 50;
+        DoDamageToMonster(playerCharacter.AttackRightLeg()+temp);
+		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
     }
 
@@ -447,34 +539,80 @@ public class CombatControl : MonoBehaviour {
 
     void DoDamageToMonster(int damage)
     {
-		shake.Play ("Hitting");
+		//shake.Play ("Hitting");
 		combatSFXController.PlayerHitting ();
-        if (currentMonster.DoDamage(damage))
+        
+		if (currentMonster.DoDamage(damage))
         {
             ui.EndCombat();
         }
-        enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
+        
+		//for the bars
+		enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
 		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
 
+		//check for monster death
 		if(currentMonster.GetHealth() <= 0 || currentMonster.GetEnergy() <=0 )
 		{
-			playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
-			combatOn = false;
-			//Update Inventory here
-			ItemToolBox.AddItem(currentMonster.GetMonsterMeat());
-			//VictoryWindow
+			if (currentMonster.GetName()=="Nash")
+			{
+				KilledNash = true;
+				playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
+				playerCharacter.UpdateMoney(currentMonster.GetMoneyGained());
+				combatOn = false;
+				ItemToolBox.AddItem(currentMonster.GetMonsterMeat());
+				shake.SetTrigger("NashIsDead");
+				DestroyObject(currentMonster);
 
-			ShowVictoryState();
-			//remove current monster
-			DestroyObject(currentMonster);
+			}
+			else{ 
+				playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
+				playerCharacter.UpdateMoney(currentMonster.GetMoneyGained());
+				combatOn = false;
+				//Update Inventory here
+				ItemToolBox.AddItem(currentMonster.GetMonsterMeat());
+				//VictoryWindow
+				ShowVictoryState();
+				
+				
+				//remove current monster
+				DestroyObject(currentMonster);
+			}
+
 
 
 
 		}
+
+
         enemyHealthSlider.value = currentMonster.GetHealth();
 		enemyEnergySlider.value = currentMonster.GetEnergy();
         ui.DisablePlayerActionPanel();
+
+		//Damage done
         combatLogText.text += " did " + damage + " damage.\n";
+
+		//Animal reactions to damage
+		if (damage <= 10)
+			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " is jarred.\n";
+		else if (damage >= 11 && damage <= 29) {
+			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " stumbles.\n";
+		} else if (damage >= 30) {
+			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " spasisms.\n";
+		}
+
+
+		//animal's reactions to loss of life
+		if (currentMonster.GetHealth () <= currentMonster.GetMaxHealth () / 1.3  && currentMonster.GetHealth() > currentMonster.GetMaxHealth () / 2.4) {
+			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " looks weakened.\n";
+		
+		} else if (currentMonster.GetHealth () < currentMonster.GetMaxHealth () / 2.4 && currentMonster.GetHealth() > currentMonster.GetMaxHealth () / 10) {
+			combatLogText.text += "Pain wrecks the " + currentMonster.GetName ().ToLower() + "!\n";
+			
+		}else if (currentMonster.GetHealth () < currentMonster.GetMaxHealth () / 10) {
+			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " bleeds everywhere.\n";
+			
+		}
 
     }
 
@@ -488,59 +626,51 @@ public class CombatControl : MonoBehaviour {
 
     }
 
-    Monster GenerateMonster()
+    public Monster GenerateMonster()
     {
-        //Randomly choose a monster in the future based on player level?
-		int rMonster = Random.Range(1,4);
-		//int rMonster = 1;
+	int rMonster = Random.Range(1,4);
+		Debug.Log ("Monster Generated");
+	if(rMonster == 1)
+	{
+		//Always create instance of monster and then call start
+		currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
+		currentMonster.Start();
 
-//		if(rMonster == 1)
-//		{
-//			//Always create instance of monster and then call start
-//			currentMonster = ScriptableObject.CreateInstance<RabbitMonster>();
-//			currentMonster.Start();
-//
-//			int rStart	= Random.Range(1,99);
-//			currentMonsterReadiness = rStart;
-//		}
-//
-//		else if(rMonster == 2)
-//		{
-//			//Always create instance of monster and then call start
-//			currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
-//			currentMonster.Start();
-//			int rStart	= Random.Range(1,99);
-//			currentMonsterReadiness = rStart;
-//
-//		}
-//		else {
-//			//Always create instance of monster and then call start
-//			currentMonster = ScriptableObject.CreateInstance<BearMonster>();
-//			currentMonster.Start();
-//			int rStart	= Random.Range(1,99);
-//			currentMonsterReadiness = rStart;
-//
-//		}
+		int rStart	= Random.Range(1,99);
+		currentMonsterReadiness = rStart;
+	}
+
+	else if(rMonster == 2)
+	{
+		//Always create instance of monster and then call start
+		currentMonster = ScriptableObject.CreateInstance<WolfMonster>();
+		currentMonster.Start();
+		int rStart	= Random.Range(1,99);
+		currentMonsterReadiness = rStart;
+
+	}
+	else {
+		//Always create instance of monster and then call start
+		currentMonster = ScriptableObject.CreateInstance<BearMonster>();
+		currentMonster.Start();
+		int rStart	= Random.Range(1,99);
+		currentMonsterReadiness = rStart;
+	}
         currentMonster.Init();
+		return currentMonster;
 
         //If we want to introduce a "surprised" or "ambush" mechanic,
         //we can adjust the readiness values.
-        
-        
-//		int readiness = Random.Range (2,89);
+        //int readiness = Random.Range (2,89);
 //		currentPlayerReadiness = readiness;
-//
 //		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
 //		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
 //		enemyMaxHealthText.text= currentMonster.GetMaxEnergy().ToString();
 //		enemyEnergySlider.value=currentMonster.GetEnergy();
-//
 //        enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
 //        enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
 //        enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
 //        enemyHealthSlider.value = currentMonster.GetHealth();
-
-		return currentMonster;
         //combatLogText.text = "";
     }
 }

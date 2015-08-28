@@ -13,6 +13,7 @@ public class Monster : ScriptableObject {
 
 	//used in victory
 	protected int expPointsGained;
+	protected int moneyGained;
 	protected Item[] droppedItemsList;
 	protected Item itemReleased;
 	protected string victoryText;
@@ -93,6 +94,11 @@ public class Monster : ScriptableObject {
 	public int GetExpPointsGained()
 	{
 		return expPointsGained;
+	}
+
+	public int GetMoneyGained()
+	{
+		return moneyGained;
 	}
 
 	public string GetVictoryText()

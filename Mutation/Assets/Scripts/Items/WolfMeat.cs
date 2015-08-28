@@ -13,8 +13,8 @@ public class WolfMeat : Item {
 		energy = 0;
 		accuracy = 0;
 		tag = 3;
-		hitPointsHealed = 10;
-		energyHealed = 10;
+		hitPointsHealed = 30;
+		energyHealed = 50;
 
 		numberOfMutations = 4;
 		

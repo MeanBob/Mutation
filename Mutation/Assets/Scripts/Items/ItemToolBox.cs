@@ -136,6 +136,14 @@ public class ItemToolBox : MonoBehaviour
 				listOfItems.Add(temp);
 
 			break;
+
+		case 17:
+			temp.AddComponent<NashMeat>();
+			temp.name = "NashMeat";
+			if(!(ItemToolBox.CheckIfItemExistsAtIndex("NashMeat")))
+				listOfItems.Add(temp);
+			
+			break;
 		}
 	}
 

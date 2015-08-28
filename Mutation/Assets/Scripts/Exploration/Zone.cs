@@ -5,16 +5,25 @@ using UnityEngine.UI;
 public class Zone : ScriptableObject {
     string zoneName;
     Node[][] nodeArray;
-
+	public string description;
 	Canvas canvas;
 	UnityEngine.UI.Image backgroundColor;
-	//string colorStringGreen = "RGBA(1,1,0,1)";
+	public string pass;
+	//MapControl mapControl;
+	//CombatControl combatScript;
 
+	//for Bounty Quest1
+	public bool GenerateQuestMonster;
+	public bool startQuest1;
+	public bool questIsActive;
+	public int randomXSpawn;
+	public int randomYSpawn;
+
+	//for Enterance to DownTown
+	public bool canEnterDT = false;
 
 	void Start()
 	{
-		//canvas = GameObject.Find("Canvas").GetComponent<UnityEngine.UI.Image>();
-		//backgroundColor.color = canvas;
 	}
 
     public void SetZoneSize(int xSize, int ySize)
@@ -22,7 +31,6 @@ public class Zone : ScriptableObject {
         nodeArray = new Node[xSize][];
 
     }
-	
     public void AddNodeColumn(Node[] nodeColumn, int xCoordinate)
     {
 		//Boundary check
@@ -34,77 +42,90 @@ public class Zone : ScriptableObject {
 
 
 	//________________________________
-	//________________________________
+	//________________________________ All the descriptions of the Exploration Text
 	//________________________________
 
 
     public bool AttemptPlayerMove(int xDir, int yDir, ref string description)
     {
-		string pass = nodeArray [xDir] [yDir].GetDescription ();
+		pass = nodeArray [xDir] [yDir].GetDescription ();
         if (xDir < 0 || xDir > nodeArray.Length - 1
             || yDir < 0 || 	yDir > nodeArray[xDir].Length - 1)
         {
-            description = "You cannot travel beyond this point... The radiation is too strong.";
+            description += "You cannot travel beyond this point... The radiation is too strong.";
             return false;
         }
 		else if (pass == "Impassable")
 		{
-			description = "The sheer mountain face is too steep to pass.";
+			int tempNumber = Random.Range(0,3);
+			if (tempNumber==0)
+			{description += "After a moment you realise you are back where you started.";}
+			else if (tempNumber==1)
+				description += "This looks familiar.  You've looped back.";
+			else
+				description+="You begin to feel sick and disoriented.";
+
 			return false;
 		}
 		else if (pass == "Embankment")
 		{
 			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "Embankment 1";}
-			else if (tempNumber==1)
-				description = "Embankment 2";
-			else
-				description="Embankment 3";
+			if (tempNumber==0){
+				description+= 
+
+						"Cold stones sit still amungsts the windblown trash flapping.";}
+			else if (tempNumber==1){
+				description+=  
+
+					"You can hear a river.";}
+			else{
+				description+=
+
+					"The air is crisp.";}
 			return true;
 		}
 		else if (pass == "River")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "River 1";}
+			{description = "The current is strong.";}
 			else if (tempNumber==1)
-				description = "River 2";
+				description = "You are waist deep in water; a bottle floats by.";
 			else
-				description="River 3";
+				description="The water is cold and smells acrid.";
 			return true;
 		}
 		else if (pass == "River Bed")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "River Bed 1";}
+			{description = "Sand and water meet; plastic wrappers cling to mossy stones.";}
 			else if (tempNumber==1)
-				description = "River Bed 2";
+				description = "Your feet are wet with dirty water.";
 			else
-				description="River Bed 3";
+				description="This riverbed is quiet; ruined debris rests.";
 			return true;
 		}
 		else if (pass == "Pool")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "Pool 1";}
+			{description = "The gentle pool of water is brown.";}
 			else if (tempNumber==1)
-				description = "Pool 2";
+				description = "Little whirlpools form behind you.";
 			else
-				description="Pool 3";
+				description="The pool is lifeless.";
 			return true;
 		}
 		else if (pass == "Waterfall")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "Waterfall 1";}
+			{description = "Rushing water falls from overhead.";}
 			else if (tempNumber==1)
-				description = "Waterfall 2";
+				description = "Water rages; it's hard to hear anything else.";
 			else
-				description="Waterfall 3";
+				description="Wet moss is indifferent.";
 			return true;
 		}
 		else if (pass == "Trail")
@@ -122,11 +143,46 @@ public class Zone : ScriptableObject {
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "Forest 1";}
+			{description = "The trees are dead.";}
 			else if (tempNumber==1)
-				description = "Forest 2";
+				description = "Broken and lifeless branches litter the way.";
 			else
-				description="Forest 3";
+				description="A treestump is rotten.";
+			return true;
+		}
+		else if (pass == "Quest1")
+		{
+			if (!questIsActive){
+			randomXSpawn = Random.Range(27,28);
+			randomYSpawn = Random.Range(10,14);
+			startQuest1=true;
+			description = "\"Nash was last seen at " +randomXSpawn +", "
+				+ randomYSpawn + " on your map's grid.\"";
+			GenerateQuestMonster = true;
+				questIsActive=true;
+
+			}
+			else {
+				description = "Akel's shop is a mess. " + "Nash was last seen at " +randomXSpawn +", "
+					+ randomYSpawn + " on your map's grid.";
+
+			}
+			return true;
+		}
+		else if (pass == "DownTownEntrance")
+		{
+			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
+			if (!canEnterDT){ 
+
+				description = "come back when you have more money.  You know it costs $10 to enter downtown.";
+				return false;
+				
+			}
+			else {
+				description = "Come on in, buddy.";
+			
+				
+			}
 			return true;
 		}
         else
@@ -139,7 +195,7 @@ public class Zone : ScriptableObject {
 
 
 	//________________________________
-	//________________________________
+	//________________________________ Adding Monsters
 	//________________________________
 
 
@@ -160,6 +216,36 @@ public class Zone : ScriptableObject {
 
 
 
+	public void GeneratePlaceMonster()
+	{
+		if (GenerateQuestMonster){ 
+			
+
+
+			AddRandomMonster (randomXSpawn, randomYSpawn);
+		}
+	}
+
+	void AddRandomMonster(int xMLoc, int yMLoc)
+	{
+		string locdes = nodeArray [xMLoc] [yMLoc].GetDescription ();
+		if (locdes == "Impassable") {
+			//return false;
+			Debug.Log("Didn't spawn Monster at:" +randomXSpawn + " "+ randomYSpawn);
+			GeneratePlaceMonster();
+			GenerateQuestMonster=false;
+		} 
+		else {
+			//return true;
+			AddMonster(randomXSpawn,randomYSpawn,ScriptableObject.CreateInstance<NashMonster>());
+			Debug.Log("Spawned Monster at:" +randomXSpawn + " "+ randomYSpawn);
+			GenerateQuestMonster=false;
+			
+			}
+	}
+
+
+
 	public void AddMonster(int i, int j, Monster nodeMonster)
 	{
 		nodeArray[i][j].AddMonster(nodeMonster);
@@ -172,6 +258,9 @@ public class Zone : ScriptableObject {
 		return nodeArray[i][j].getMonster();
 	}
 
+	//________________________________
+	//________________________________ Image?
+	//________________________________
 	public string returnImageAtLocation(int i, int j)
 	{
 		return nodeArray[i][j].GetBackgroundImage();

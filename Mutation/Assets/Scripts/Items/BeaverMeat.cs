@@ -13,8 +13,8 @@ public class BeaverMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 0;
-		energyHealed = 20;
-		hitPointsHealed = 20;
+		energyHealed = 50;
+		hitPointsHealed = 35;
 		tag = 9;
 
 		numberOfMutations = 4;

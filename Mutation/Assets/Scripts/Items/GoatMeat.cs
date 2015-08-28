@@ -14,8 +14,8 @@ public class GoatMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 0;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		energyHealed = 50;
+		hitPointsHealed = 40;
 
 		tag = 7;
 

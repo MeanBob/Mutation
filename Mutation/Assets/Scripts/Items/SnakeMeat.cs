@@ -13,8 +13,8 @@ public class SnakeMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 0;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		energyHealed = 50;
+		hitPointsHealed = 8;
 //		count = 5;
 		tag = 6;
 

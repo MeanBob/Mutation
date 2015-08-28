@@ -13,8 +13,8 @@ public class AnteaterMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 1;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		energyHealed = 50;
+		hitPointsHealed = 60;
 		tag = 14;
 
 		numberOfMutations = 4;

@@ -23,10 +23,13 @@ public class UIControl : MonoBehaviour {
 	CharacterPage playerCharacter;
 	ButtonSoundControler sounds;
 
+	GameObject statInfoPanel;
+	GameObject stanInfoButton;
+
 	Monster selectedMonster;
 	CombatControl combat;
 	GameObject temp;
-	UnityEngine.UI.Button[] explorationButtons;
+	public UnityEngine.UI.Button[] explorationButtons;
 	UnityEngine.UI.Button[] avatarButtons;
 	public bool hasPopUp;
 	//Buttons
@@ -83,7 +86,9 @@ public class UIControl : MonoBehaviour {
 		introStoryPanel = transform.FindChild("IntroStoryPanel").gameObject;
 		levelUpPanel = transform.FindChild("LevelUp").gameObject;
 
-
+		statInfoPanel = transform.Find ("CharacterSheetPanel/InfoPanel").gameObject;
+		statInfoPanel.SetActive (false);
+		stanInfoButton = transform.Find ("CharacterSheetPanel/StatsInfoButton").gameObject;
 
         panelStack = new Stack();
 
@@ -123,6 +128,25 @@ public class UIControl : MonoBehaviour {
 	
 	}
 
+	public void CloseInfoPanel()
+	{
+		statInfoPanel.SetActive (false);
+	}
+	public void ShowInfoPanel ()
+	{
+		statInfoPanel.SetActive (true);
+	}
+
+
+	public void CloseInfoButton()
+	{
+		stanInfoButton.SetActive (false);
+	}
+	public void ShowInfoButton()
+	{
+		stanInfoButton.SetActive (true);
+	}
+
 
 	public void CloseProgram()
 	{
@@ -133,6 +157,10 @@ public class UIControl : MonoBehaviour {
 	{ inventoryPanel.SetActive(false);
 
 	}
+	public void OpenInventory()
+	{ inventoryPanel.SetActive(true);
+	}
+
 	public void CloseCharacter()
 	{ characterSheetPanel.SetActive(false);
 

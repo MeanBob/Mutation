@@ -13,8 +13,8 @@ public class DogMeat : Item {
 		intelligence = 0;
 		energy = 0;
 		accuracy = 0;
-		energyHealed = 10;
-		hitPointsHealed = 10;
+		energyHealed = 50;
+		hitPointsHealed = 45;
 		tag = 11;
 		numberOfMutations = 4;
 		

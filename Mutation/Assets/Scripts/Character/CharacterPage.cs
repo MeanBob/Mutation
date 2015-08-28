@@ -8,7 +8,14 @@ public class CharacterPage : MonoBehaviour {
 	
 	UIControl ui;
 	GameObject levelPanel;
-	
+	Button stealLifeButton;
+	Button stunButton;
+	GameObject powerUpPanel;
+	GameObject StubButtonObject;
+	GameObject LifeStealButtonObject;
+	public bool hasStun;
+	public bool hasStealLife;
+
 	public GameObject Death;
 	//stats
 	int strength;
@@ -22,6 +29,9 @@ public class CharacterPage : MonoBehaviour {
 	int oldEnergy;  
 	int maxEnergy;
 	int currentEnergy;
+
+	int money;
+	UnityEngine.UI.Text currentMoney;
 	
 	int currentExpPoints;
 	int currentLevel;
@@ -88,7 +98,7 @@ public class CharacterPage : MonoBehaviour {
 	UnityEngine.UI.Text accuracyText;
 	UnityEngine.UI.Text allocatablePointsText;
 	
-	
+
 	
 	public UnityEngine.UI.Text earsText;
 	public UnityEngine.UI.Text eyesText;
@@ -110,18 +120,33 @@ public class CharacterPage : MonoBehaviour {
 	public bool leveledUp;
 	bool IncreasedLevel = false;
 	int previous= 0;
+
+
 	void Start ()
 	{
-		
+		hasStun = false;
+		hasStealLife = false;
+		stealLifeButton = transform.Find ("LevelUp/PowerUpPanel/StealLife").GetComponent<Button> ();
+		stunButton = transform.Find ("LevelUp/PowerUpPanel/StealLife").GetComponent<Button> ();
+		powerUpPanel = transform.Find ("LevelUp/PowerUpPanel").gameObject;
+		StubButtonObject = transform.Find ("LevelUp/PowerUpPanel/Stun").gameObject;
+		LifeStealButtonObject = transform.Find ("LevelUp/PowerUpPanel/StealLife").gameObject;
+
+		//transform.FindChild("FightPanel").gameObject;
+
 		leveledUp = false;
-		
-		//We'll want to have this customizeable, once character creation is in
-		energy = 11;
+			//We'll want to have this customizeable, once character creation is in
+		energy = 4;
 		maxEnergy = 10 * energy;
 		tempEnergy = energy;
 		oldEnergy = 1;
 		currentEnergy = maxEnergy;
-		
+
+		money = 3;
+		currentMoney = GameObject.Find("CurrentMoney").GetComponent<UnityEngine.UI.Text>();
+		//currentMoney.text = money.ToString();
+
+
 		strength = 7;
 		maxHP = 10 * strength;
 		tempStrength = strength;
@@ -208,6 +233,8 @@ public class CharacterPage : MonoBehaviour {
 		speedText.text = speed.ToString();
 		intelligenceText.text = intelligence.ToString();
 		allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
+
+		UpdateMoney (money);
 		
 	}
 	
@@ -277,18 +304,42 @@ public class CharacterPage : MonoBehaviour {
 	public void AwareOfLevelUp()
 	{
 		leveledUp = false;
+		powerUpPanel.SetActive (false);
 	}
-	
+
+	public void LearnLifeSteal()
+	{
+		hasStealLife = true;
+		stealLifeButton.enabled = false;
+		powerUpPanel.SetActive (false);
+	}
+	public void LearnStun()
+	{
+		hasStun = true;
+		stunButton.enabled = false;
+		powerUpPanel.SetActive (false);
+	}
+
 	void LevelUp()
 	{
 		if(currentLevel > previous)
 		{
 			leveledUp = true;
-			//Debug.Log("Level up");
-			//ui.AddPanelOnTop(levelPanel);
 			currentNumberOfAllocatablePoints += numberOfPointsPerLevel;
 			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 			previous = currentLevel;
+			if (currentLevel == 2) {
+				powerUpPanel.SetActive(true);
+				stealLifeButton.enabled = true;
+				stunButton.enabled = true;
+			}
+			if (currentLevel == 3) {
+				powerUpPanel.SetActive(true);
+				if (hasStealLife)
+				{LifeStealButtonObject.SetActive(false);}//stealLifeButton. = false;}
+				else if (hasStun){
+					StubButtonObject.SetActive(false);}
+			}
 		}
 	}
 	public void UpdateExpPoints(int monsterExpPoints)
@@ -304,13 +355,34 @@ public class CharacterPage : MonoBehaviour {
 		LevelUp();
 	}
 	
-	
+	public void UpdateMoney(int monsterMoney)
+	{
+		money += monsterMoney;
+
+		currentMoney.text = money.ToString ();
+	}
 	public int getPlayerAccuracy()
 	{
 		return accuracy;
 	}
+
+
+	public void AddMoney(int addMoney)
+	{
+		money += addMoney;
+	}
 	
-	
+	public void RemoveMoney(int removeMoney)
+	{
+		money -= removeMoney;
+	}
+
+	public int getPlayerMoney()
+	{
+		return money;
+	}
+
+
 	void UpdateHealthMeter()
 	{
 		maxHPText.text = maxHP.ToString();
@@ -345,8 +417,9 @@ public class CharacterPage : MonoBehaviour {
 	{
 		Application.LoadLevel(0);
 	}
-	
-	
+
+
+
 	public void DoEnergyDamage(int energyDamage)
 	{
 		currentEnergy -= energyDamage;
@@ -375,27 +448,37 @@ public class CharacterPage : MonoBehaviour {
 	{
 		return  strength;
 	}
-	
-	public int AttackLeftArm()
-	{
-		return  strength;
-	}
-	
+
 	public int AttackRightArm()
 	{
 		return  strength;
 	}
-	
-	public int AttackLeftLeg()
-	{
-		return  strength;
-	}
+
 	
 	public int AttackRightLeg()
 	{
 		return  strength;
 	}
+
+
+
+
+
+
 	
+	//dont use
+	public int AttackLeftArm()
+	{
+		return  strength;
+	}
+	//dont use
+	public int AttackLeftLeg()
+	{
+		return  strength;
+	}
+
+
+
 	public void IncreaseEnergy()
 	{
 		if (currentNumberOfAllocatablePoints > 0)

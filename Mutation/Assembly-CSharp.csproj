@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\Items\ItemToolBox.cs" />
      <Compile Include="Assets\Scripts\Items\MooseMeat.cs" />
+     <Compile Include="Assets\Scripts\Items\NashMeat.cs" />
      <Compile Include="Assets\Scripts\Items\PorcupineMeat.cs" />
      <Compile Include="Assets\Scripts\Items\RabbitMeat.cs" />
      <Compile Include="Assets\Scripts\Items\SkunkMeat.cs" />
@@ -94,6 +95,7 @@
      <Compile Include="Assets\Scripts\Monsters\GoatMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\Monster.cs" />
      <Compile Include="Assets\Scripts\Monsters\MooseMonster.cs" />
+     <Compile Include="Assets\Scripts\Monsters\NashMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\PorcupineMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\RabbitMonster.cs" />
      <Compile Include="Assets\Scripts\Monsters\SkunkMonster.cs" />

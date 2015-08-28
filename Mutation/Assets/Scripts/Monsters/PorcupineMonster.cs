@@ -10,9 +10,9 @@ public class PorcupineMonster : Monster {
 	{
 		
 		// index 0,1,2 are for encuontering the monster when you make the fight or hide choice
-		monsterText[0] = "You make out snorting just off to the left. You crane your head just in time to see an spiked animal jump at you. Stepping back, you dodge the animals attack! But not for long… This porcupine seems pissed!\n\n";
-		monsterText[1] = "You notice the distinct black and white spines of porcupine quills. It’s not long before the porcupine smells you and starts running in your direction.\n\n";
-		monsterText[2] = "Up ahead, you see dirt being flung into the air- something is digging! You crouch down, so as not to draw attention to yourself, but you’re too clumsy! Beady porcupine eyes fix you in their gaze.\n\n";
+		monsterText[0] = "You make out snorting just off to the left. You crane your head just in time to see an spiked animal jump at you.\n\n";
+		monsterText[1] = "You notice the distinct black and white spines of porcupine quills.\n\n";
+		monsterText[2] = "Up ahead dirt is flung into the air. \n\n";
 		
 		// index 3 is for hiding
 		monsterText[3] = "You hide from the porcupine.";
