@@ -153,18 +153,26 @@ public class Zone : ScriptableObject {
 		else if (pass == "Quest1")
 		{
 			if (!questIsActive){
-			randomXSpawn = 28;
-			randomYSpawn = Random.Range(10,11);
+			
 			startQuest1=true;
-			description = "\"Nash was last seen at " +randomXSpawn +", "
-				+ randomYSpawn + " on your map's grid.\"";
-			//GenerateQuestMonster = true;
-				//questIsActive=true;
+				//ADD AN ANIMATION TO TALK?? OR A TIMER OR SOMETHIONG SO IT DOESN:T POP UP EVERY TIME
+			description = "Ankel's bar is a mess, but it feels like home.";
+				int tempCatCallNumer = Random.Range(1,3);
+				if (tempCatCallNumer ==1)
+				{description += "\"My tit has a face,\" says one of the locals.";}
+				else if (tempCatCallNumer ==2){
+					description += "\"Fuck off,\" says one of the locals.";
+				}
+				//goes down to the generateplacedmonster 
+			GenerateQuestMonster = true;
+				questIsActive=true;
 
 			}
 			else {
-				description = "Akel's bar is a mess. " + "Nash was last seen at " +randomXSpawn +", "
-					+ randomYSpawn + " on your map's grid.";
+				description = "Ankles bar.  \nYou decide not to enter.";
+
+				//description = "Akel's bar is a mess. " + "Nash was last seen at " +randomXSpawn +", "
+				//	+ randomYSpawn + " on your map's grid.";
 
 			}
 			return true;
@@ -215,11 +223,13 @@ public class Zone : ScriptableObject {
 	}
 
 
-
+	//PIT RANDOME NiMBERS HERE
 	public void GeneratePlaceMonster()
 	{
 		if (GenerateQuestMonster){ 
-			
+
+			randomXSpawn = 28;
+			randomYSpawn = Random.Range(10,11);
 			AddRandomMonster (randomXSpawn, randomYSpawn);
 		}
 	}

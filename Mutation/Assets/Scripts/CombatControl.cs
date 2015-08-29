@@ -116,7 +116,6 @@ public class CombatControl : MonoBehaviour {
 	{
 		shake.SetTrigger ("AcceptQuest");
 
-
 	}
 
 	public void PlayExplore()

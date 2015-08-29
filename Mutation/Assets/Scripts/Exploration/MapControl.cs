@@ -126,9 +126,15 @@ public class MapControl : MonoBehaviour {
 	}
 
 
+	/// <summary>
+	/// Should Spawn NASH
+	/// </summary>
 	public void MakeQuestMonster()
 	{
-		currentZone.GeneratePlaceMonster ();
+		//currentZone.GeneratePlaceMonster ();
+		currentZone.questIsActive = true;
+		noMission = false;
+		introMission = false;
 	}
 
 	void GenerateZoneMonsters()
@@ -195,7 +201,7 @@ public class MapControl : MonoBehaviour {
 			currentZone.GeneratePlaceMonster();
 		}
 
-		if (playerCharacter.getPlayerMoney () > 10) {
+		if (playerCharacter.getPlayerMoney () >= 6) {
 			currentZone.canEnterDT = true;
 		}
 		else {currentZone.canEnterDT = false;}
@@ -217,10 +223,13 @@ public class MapControl : MonoBehaviour {
 		}
 	}
 
+
+	//generateQuestMonster?
 	public void PlayQuest1()
 	{
 
 			combat.shake.SetTrigger ("Quest1");
+
 		//playerCharacter.AddMoney (50);
 		//playerCharacter.UpdateMoney ();
 
@@ -228,9 +237,7 @@ public class MapControl : MonoBehaviour {
 
 	public void SetQuestActive()
 	{
-		currentZone.questIsActive = true;
-		noMission = false;
-		introMission = false;
+
 	}
 
 	public void SetQuestInactive()
