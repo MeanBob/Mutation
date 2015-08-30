@@ -228,8 +228,8 @@ public class Zone : ScriptableObject {
 	{
 		if (GenerateQuestMonster){ 
 
-			randomXSpawn = 28;
-			randomYSpawn = Random.Range(10,11);
+			randomXSpawn = Random.Range(26,29);
+			randomYSpawn = Random.Range(6,12);
 			AddRandomMonster (randomXSpawn, randomYSpawn);
 		}
 	}

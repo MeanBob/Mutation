@@ -165,22 +165,21 @@ public class MapControl : MonoBehaviour {
 		//beaver, cat, dog, goat, skunk, wolf, bird
 
 
-		currentZone.AddMonster(24,6,ScriptableObject.CreateInstance<GiantAntMonster>());
-		currentZone.AddMonster(24,8,ScriptableObject.CreateInstance<PorcupineMonster>());
-		currentZone.AddMonster(24,10,ScriptableObject.CreateInstance<BeaverMonster>());
-		currentZone.AddMonster(24,13,ScriptableObject.CreateInstance<BirdMonster>());
-
-		currentZone.AddMonster(23,5,ScriptableObject.CreateInstance<MooseMonster>());
-		currentZone.AddMonster(23,8,ScriptableObject.CreateInstance<BirdMonster>());
-		currentZone.AddMonster(23,11,ScriptableObject.CreateInstance<SkunkMonster>());
-		currentZone.AddMonster(23,12,ScriptableObject.CreateInstance<DogMonster>());
-
-		currentZone.AddMonster(22,6,ScriptableObject.CreateInstance<BirdMonster>());
-		currentZone.AddMonster(22,7,ScriptableObject.CreateInstance<SnakeMonster>());
-		currentZone.AddMonster(22,8,ScriptableObject.CreateInstance<FrogMonster>());
-		currentZone.AddMonster(22,12,ScriptableObject.CreateInstance<PorcupineMonster>());
-
-		//maybe up for 16  anteater, moose, porcupine
+		//currentZone.AddMonster(24,6,ScriptableObject.CreateInstance<GiantAntMonster>());
+//	currentZone.AddMonster(24,8,ScriptableObject.CreateInstance<PorcupineMonster>());
+//	currentZone.AddMonster(24,10,ScriptableObject.CreateInstance<BeaverMonster>());
+//	currentZone.AddMonster(24,13,ScriptableObject.CreateInstance<BirdMonster>());
+//
+//	currentZone.AddMonster(23,5,ScriptableObject.CreateInstance<MooseMonster>());
+//	currentZone.AddMonster(23,8,ScriptableObject.CreateInstance<BirdMonster>());
+//	currentZone.AddMonster(23,11,ScriptableObject.CreateInstance<SkunkMonster>());
+//	currentZone.AddMonster(23,12,ScriptableObject.CreateInstance<DogMonster>());
+//
+//	currentZone.AddMonster(22,6,ScriptableObject.CreateInstance<BirdMonster>());
+//	currentZone.AddMonster(22,7,ScriptableObject.CreateInstance<SnakeMonster>());
+//	currentZone.AddMonster(22,8,ScriptableObject.CreateInstance<FrogMonster>());
+//	currentZone.AddMonster(22,12,ScriptableObject.CreateInstance<PorcupineMonster>());
+	//maybe up for 16  anteater, moose, porcupine
 
 
 
