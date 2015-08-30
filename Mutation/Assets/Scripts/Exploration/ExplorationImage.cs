@@ -100,7 +100,7 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [25, 2] = "Impassable";
 		backgroundImage [26, 2] = "Impassable";
 		backgroundImage [27, 2] = "Backgrounds/DownTown - BountyBar";
-		backgroundImage [28, 2] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [28, 2] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 2] = "Impassable";
 		
 		
@@ -132,8 +132,8 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [24, 3] = "Impassable";
 		backgroundImage [25, 3] = "Impassable";
 		backgroundImage [26, 3] = "Impassable";
-		backgroundImage [27, 3] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [28, 3] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [27, 3] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [28, 3] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 3] = "Impassable";
 		
 		//E row		   "   ;
@@ -164,8 +164,8 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [24, 4] = "Impassable";
 		backgroundImage [25, 4] = "Impassable";
 		backgroundImage [26, 4] = "Impassable";
-		backgroundImage [27, 4] = "Backgrounds/DownTown - NoForwardLeftRight"; //Make Teleporter!
-		backgroundImage [28, 4] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [27, 4] = "Backgrounds/DownTown - DesolateBrown"; //Make Teleporter!
+		backgroundImage [28, 4] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 4] = "Impassable";
 		
 		//F Row		   "   ;
@@ -227,9 +227,9 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [23, 6] = "Backgrounds/Green";
 		backgroundImage [24, 6] = "Backgrounds/Green";
 		backgroundImage [25, 6] = "Backgrounds/Embankment";
-		backgroundImage [26, 6] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [27, 6] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [28, 6] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [26, 6] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [27, 6] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [28, 6] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 6] = "Backgrounds/River";
 		
 		//H row		   
@@ -259,9 +259,9 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [23, 7] = "Impassable";
 		backgroundImage [24, 7] = "Impassable";
 		backgroundImage [25, 7] = "Backgrounds/Embankment";
-		backgroundImage [26, 7] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [27, 7] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [28, 7] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [26, 7] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [27, 7] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [28, 7] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 7] = "Backgrounds/Embankment";
 		
 		//I row		  
@@ -291,9 +291,9 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [23, 8] = "Backgrounds/Green";
 		backgroundImage [24, 8] = "Backgrounds/Embankment";
 		backgroundImage [25, 8] = "Backgrounds/Embankment";
-		backgroundImage [26, 8] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [27, 8] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [28, 8] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [26, 8] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [27, 8] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [28, 8] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 8] = "Backgrounds/Embankment";
 		
 		//J row		   
@@ -323,9 +323,9 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [23, 9] = "Backgrounds/Embankment";
 		backgroundImage [24, 9] = "Backgrounds/River";
 		backgroundImage [25, 9] = "Backgrounds/River";
-		backgroundImage [26, 9] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [27, 9] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [28, 9] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [26, 9] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [27, 9] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [28, 9] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 9] = "Backgrounds/Green";
 		
 		//10			  
@@ -355,9 +355,9 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [23, 10] = "Backgrounds/River";
 		backgroundImage [24, 10] = "Backgrounds/River";
 		backgroundImage [25, 10] = "Backgrounds/Green";
-		backgroundImage [26, 10] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [27, 10] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [28, 10] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [26, 10] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [27, 10] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [28, 10] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 10] = "Backgrounds/Green";
 		
 		
@@ -388,9 +388,9 @@ public class ExplorationImage  : ScriptableObject
 		backgroundImage [23, 11] = "Backgrounds/Embankment";
 		backgroundImage [24, 11] = "Backgrounds/Embankment";
 		backgroundImage [25, 11] = "Backgrounds/Green";
-		backgroundImage [26, 11] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [27, 11] = "Backgrounds/DownTown - NoForwardLeftRight";
-		backgroundImage [28, 11] = "Backgrounds/DownTown - NoForwardLeftRight";
+		backgroundImage [26, 11] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [27, 11] = "Backgrounds/DownTown - DesolateBrown";
+		backgroundImage [28, 11] = "Backgrounds/DownTown - DesolateBrown";
 		backgroundImage [29, 11] = "Backgrounds/Green";
 		
 		backgroundImage [0, 12] = "Backgrounds/Green";
