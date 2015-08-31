@@ -8333,7 +8333,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 994.5, y: 55085.5742}
+  m_AnchoredPosition: {x: 994.5, y: 67149.0312}
   m_SizeDelta: {x: 111, y: 240}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &624089863
@@ -9211,6 +9211,7 @@ GameObject:
   - 114: {fileID: 776585467}
   - 114: {fileID: 776585470}
   - 114: {fileID: 776585471}
+  - 114: {fileID: 776585472}
   m_Layer: 0
   m_Name: IncreaseStrength
   m_TagString: Untagged
@@ -9253,7 +9254,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -9286,8 +9287,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: PlayDrum2
+      - m_Target: {fileID: 776585472}
+        m_MethodName: ButtonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9354,6 +9355,17 @@ MonoBehaviour:
   m_EffectColor: {r: .0509803928, g: .286274523, b: .34117648, a: 1}
   m_EffectDistance: {x: 8, y: 8}
   m_UseGraphicAlpha: 1
+--- !u!114 &776585472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776585465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44dd8486fa1d4aeb81b91cb8add2b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &788864688
 GameObject:
   m_ObjectHideFlags: 0
