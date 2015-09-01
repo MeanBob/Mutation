@@ -5,26 +5,35 @@ using UnityEngine.UI;
 public class UIControl : MonoBehaviour {
     //If we decided we want a bit more control
 	//GameObject explorationDescription;
+
+	GameObject explorationPanel;
 	GameObject mapPanel;
-	public GameObject victoryPanel;
-    GameObject explorationPanel;
-    GameObject fightPanel;
-    GameObject characterSheetPanel;
     GameObject inventoryPanel;
-    GameObject avatarPanel;
-    GameObject playerActionPanel;
-    GameObject lastPanel;
-	GameObject deathPanel;
+    GameObject characterSheetPanel;
 	GameObject preCombatPanel;
+    GameObject avatarPanel;
+    GameObject fightPanel;
+	GameObject deathPanel;
+	public GameObject victoryPanel;
 	GameObject levelUpPanel;
 	GameObject introPanel;
 	GameObject introStoryPanel;
+    
+    GameObject playerActionPanel;
+	GameObject statInfoPanel;
+	GameObject stanInfoButton;
+
+	GameObject questPanel;
+	GameObject nashDeadPanel;
+	GameObject exploringPanel;
+
+	GameObject lastPanel;
+	
+
 
 	CharacterPage playerCharacter;
 	ButtonSoundControler sounds;
 
-	GameObject statInfoPanel;
-	GameObject stanInfoButton;
 
 	Monster selectedMonster;
 	CombatControl combat;
@@ -71,7 +80,7 @@ public class UIControl : MonoBehaviour {
 
 		victoryPanel = transform.FindChild ("VictoryPanel").gameObject;
 
-		mapPanel = transform.FindChild("IntroPanel").gameObject;
+		//mapPanel = transform.FindChild("IntroPanel").gameObject;
 		mapPanel = transform.FindChild("MapPanel").gameObject;
         explorationPanel = transform.FindChild("ExplorationPanel").gameObject;
         fightPanel = transform.FindChild("FightPanel").gameObject;
@@ -83,9 +92,12 @@ public class UIControl : MonoBehaviour {
 		explorationDescription = GameObject.Find("DescriptionPanel/Text").gameObject.GetComponent<UnityEngine.UI.Text>();
 		preCombatDescription = GameObject.Find("PreCombatPanel/PreCombatDescriptionText").gameObject.GetComponent<UnityEngine.UI.Text>();
 		introPanel = transform.FindChild("IntroPanel").gameObject;
-		introStoryPanel = transform.FindChild("IntroStoryPanel").gameObject;
+		//introStoryPanel = transform.FindChild("IntroStoryPanel").gameObject;
 		levelUpPanel = transform.FindChild("LevelUp").gameObject;
+		questPanel = transform.FindChild ("QuestPanel").gameObject;
+		exploringPanel = transform.Find ("ExploringPanel").gameObject;
 
+		nashDeadPanel = transform.FindChild ("NashIsDeadPanel").gameObject;
 		statInfoPanel = transform.Find ("CharacterSheetPanel/InfoPanel").gameObject;
 		statInfoPanel.SetActive (false);
 		stanInfoButton = transform.Find ("CharacterSheetPanel/StatsInfoButton").gameObject;
@@ -93,20 +105,20 @@ public class UIControl : MonoBehaviour {
         panelStack = new Stack();
 
         //Don't turn anything off until the game is loaded or else it makes it a pain to find anything :p
-        mapPanel.SetActive(true);
-        explorationPanel.SetActive(true);
-		fightPanel.SetActive(true);
-		inventoryPanel.SetActive(true);
+        mapPanel.SetActive(false);
+        explorationPanel.SetActive(false);
+		fightPanel.SetActive(false);
+		inventoryPanel.SetActive(false);
 		deathPanel.SetActive(false);
 		preCombatPanel.SetActive(false);
-		hide.SetActive(false);
+		//hide.SetActive(false);
 		levelUpPanel.SetActive(false);
-		introStoryPanel.SetActive(false);
+		//introStoryPanel.SetActive(false);
 		victoryPanel.SetActive (false);
-		//true to creat character stats
+		questPanel.SetActive (false);
+		nashDeadPanel.SetActive (false);
+		exploringPanel.SetActive (false);
 		characterSheetPanel.SetActive(true);
-
-
 		introPanel.SetActive (true);
 		ChangePanel(introPanel);
 

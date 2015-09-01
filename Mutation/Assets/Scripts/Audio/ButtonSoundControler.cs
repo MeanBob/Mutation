@@ -10,9 +10,13 @@ public class ButtonSoundControler : MonoBehaviour {
 	public AudioClip flute2;
 	public AudioClip flute3;
 	public AudioClip openBP;
-
+	public AudioClip openBook;
+	public AudioClip closeBook;
+	public AudioClip compasOpen;
 
 	public AudioSource buttons;
+
+	public bool bookIsOpen = false;
 
 
 
@@ -20,9 +24,25 @@ public class ButtonSoundControler : MonoBehaviour {
 		buttons = GetComponent<AudioSource>();
 	}
 
-	public void PlayFlute2()
+	public void OpenBook(float volume)
 	{
-		buttons.PlayOneShot(flute2, 0.4f);
+			buttons.PlayOneShot (openBook, volume);
+	}
+
+	public void CompasOpen(float volume)
+	{
+		buttons.PlayOneShot (compasOpen, volume);
+	}
+
+	public void CloseBook(float volume)
+	{
+		buttons.PlayOneShot (closeBook, volume);
+	}
+
+
+	public void PlayFlute2(float volume)
+	{
+		buttons.PlayOneShot(flute2, volume);
 	}
 	public void PlayFlute3()
 	{
@@ -33,9 +53,9 @@ public class ButtonSoundControler : MonoBehaviour {
 		buttons.PlayOneShot(openBP, 1.0f);
 	}
 
-	public void PlayFlute1()
+	public void PlayFlute1(float volume)
 	{
-		buttons.PlayOneShot(flute1, 0.4f);
+		buttons.PlayOneShot(flute1, volume);
 	}
 
 	public void PlayDrum3()
