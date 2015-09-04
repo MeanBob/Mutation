@@ -26,7 +26,7 @@ public class MapControl : MonoBehaviour {
     CombatControl combat;
     Point playerLocation;
     int xSize = 30;
-    int ySize = 16;
+    int ySize = 29;
     Zone currentZone;
 	float currentMonsterReadiness = 0;
 	Monster[] sensedMonsters;
@@ -99,8 +99,8 @@ public class MapControl : MonoBehaviour {
         combat = GetComponent<CombatControl>();
 
         //Map setup 
-        playerLocation.x = 28;
-        playerLocation.y = 9;
+        playerLocation.x = 15;
+        playerLocation.y = 26;
 
         for (int i = 0; i < xSize; i++)
         {
@@ -188,6 +188,16 @@ public class MapControl : MonoBehaviour {
 
 	}
 
+	public void NavButtonsOn()
+	{
+		northButton.interactable = true;
+		southButton.interactable = true;
+		eastButton.interactable =  true;
+		westButton.interactable =  true;
+	}
+
+	//CCHEK HERE!!
+
 	void Update()
 	{
 		if (currentZone.startQuest1) {
@@ -200,10 +210,17 @@ public class MapControl : MonoBehaviour {
 			currentZone.GeneratePlaceMonster();
 		}
 
+
+
+		//USED IN ZONE for Access!
 		if (playerCharacter.getPlayerMoney () >= 6) {
 			currentZone.canEnterDT = true;
 		}
 		else {currentZone.canEnterDT = false;}
+
+		if (playerCharacter.getPlayerMoney () >= 25) {
+			currentZone.canCrossBridge = true;
+		} else { currentZone.canCrossBridge = false;}
 
 
 
@@ -214,7 +231,7 @@ public class MapControl : MonoBehaviour {
 			eastButton.interactable = false;
 			westButton.interactable = false;
 		}
-		else if(!ui.hasPopUp){
+		else {
 			northButton.interactable = true;
 			southButton.interactable = true;
 			eastButton.interactable =  true;
@@ -256,7 +273,7 @@ public class MapControl : MonoBehaviour {
 		} else if (noMission) {
 			mapMission.text = "Get a job.";
 		} else if (introMission) {
-			mapMission.text = "Head DownTown.";
+			mapMission.text = "Head Downtown: 19, 19.";
 		} else { mapMission.text = "You need to earn some money.";
 		}
 
@@ -448,9 +465,26 @@ public class MapControl : MonoBehaviour {
 			intelligenceCategory = 2;
 		if(playerCharacter.GetIntelligence()>=76)
 			intelligenceCategory = 3;
-		if ((currentZone.doesMonsterExist(playerLocation.x-2,playerLocation.y) || currentZone.doesMonsterExist(playerLocation.x-1,playerLocation.y) || currentZone.doesMonsterExist(playerLocation.x+2,playerLocation.y)|| currentZone.doesMonsterExist(playerLocation.x+1,playerLocation.y) || currentZone.doesMonsterExist(playerLocation.x-2,playerLocation.y) || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y-2) || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y -1)|| currentZone.doesMonsterExist(playerLocation.x,playerLocation.y + 1) || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+2)) == false)
+
+		if ((currentZone.doesMonsterExist(playerLocation.x-2,playerLocation.y) 
+		     || currentZone.doesMonsterExist(playerLocation.x-1,playerLocation.y) 
+		     || currentZone.doesMonsterExist(playerLocation.x+2,playerLocation.y)
+		     || currentZone.doesMonsterExist(playerLocation.x+1,playerLocation.y) 
+		     || currentZone.doesMonsterExist(playerLocation.x-2,playerLocation.y) 
+		     || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y-2) 
+		     || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y -1)
+		     || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y + 1) 
+		     || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+2)) == false)
 		{
-			sensoryDescription ="";
+
+			int tempSenceNumber = Random.Range(0,3);
+			if (tempSenceNumber == 0)
+			{
+			sensoryDescription = "You feel alone.";
+			}
+			else
+				sensoryDescription = "";
+
 		}
 		else {
 			if(currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+2) || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+1)){

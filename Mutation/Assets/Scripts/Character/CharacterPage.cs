@@ -121,6 +121,7 @@ public class CharacterPage : MonoBehaviour {
 	bool IncreasedLevel = false;
 	int previous= 0;
 
+	CombatControl combatControl;
 
 	void Start ()
 	{
@@ -132,6 +133,7 @@ public class CharacterPage : MonoBehaviour {
 		StubButtonObject = transform.Find ("LevelUp/PowerUpPanel/Stun").gameObject;
 		LifeStealButtonObject = transform.Find ("LevelUp/PowerUpPanel/StealLife").gameObject;
 
+		combatControl = GetComponent<CombatControl>();
 		//transform.FindChild("FightPanel").gameObject;
 
 		leveledUp = false;
@@ -304,6 +306,7 @@ public class CharacterPage : MonoBehaviour {
 	public void AwareOfLevelUp()
 	{
 		leveledUp = false;
+		combatControl.shake.SetTrigger ("AwareOfLevel");
 		powerUpPanel.SetActive (false);
 	}
 
@@ -322,9 +325,13 @@ public class CharacterPage : MonoBehaviour {
 
 	void LevelUp()
 	{
+
+		//ADD ANIMATION FOR LEVEL UP
 		if(currentLevel > previous)
 		{
+			combatControl.shake.Play("LevelUp");
 			leveledUp = true;
+
 			currentNumberOfAllocatablePoints += numberOfPointsPerLevel;
 			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 			previous = currentLevel;

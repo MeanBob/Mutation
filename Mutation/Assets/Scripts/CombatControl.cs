@@ -176,12 +176,15 @@ public class CombatControl : MonoBehaviour {
 	{shake.SetTrigger ("Map");
 	}
 
+	public void TurnCombatOff()
+	{
 
+	}
 	public void ShowVictoryState()
 	{ 
-
+		//combatOn = false;
 		shake.SetTrigger ("Victory");
-		ui.victoryPanel.SetActive (true);
+		//ui.victoryPanel.SetActive (true);
 			expEarned.text = "";
 			monsterKilled.text = currentMonster.GetVictoryText ();
 			
@@ -191,11 +194,9 @@ public class CombatControl : MonoBehaviour {
 	public void CloseVictoryState()
 	{
 
-		ui.victoryPanel.SetActive (false);
-		foreach(Button b in ui.explorationButtons)
-		{
-			b.interactable = true;
-		}
+		//ui.victoryPanel.SetActive (false);
+		//foreach(Button b in ui.explorationButtons)
+		//{			b.interactable = true;		}
 	}
 
 
@@ -204,7 +205,11 @@ public class CombatControl : MonoBehaviour {
 		//Debug.Log("Combat on value ::::"+combatOn);
 		//shake.Play ("None");
 
-	
+	if (playerCharacter.GetHitPoints () <= 0||playerCharacter.GetEnergyPoints()<=0 ){
+			//Debug.Log("DEAD!");
+			shake.Play("Death");
+		
+		}
 
 		if (currentPlayerReadiness >= 100) {
 			headButton.interactable = true;
@@ -214,10 +219,10 @@ public class CombatControl : MonoBehaviour {
 
 		if (combatOn)
         {
-			characterButton.interactable = false;
-			exploreButton.interactable = false;
-			inventoryButton.interactable = false;
-			mapButton.interactable = false;
+			//characterButton.interactable = false;
+			//exploreButton.interactable = false;
+			//inventoryButton.interactable = false;
+			//mapButton.interactable = false;
 			//**
 			if (currentPlayerReadiness > maxReadiness)
 			{
@@ -425,9 +430,9 @@ public class CombatControl : MonoBehaviour {
 			else if (waitTextNumber ==2){
 				combatLogText.text += "You need more time. \n";}
 			else if (waitTextNumber ==3){
-				combatLogText.text += "You cannot move yet. \n";}
+				combatLogText.text += "Wait. \n";}
 			else{
-				combatLogText.text += "You are almost ready. \n";}
+				combatLogText.text += "Not yet. \n";}
 	}
 	}
 
@@ -623,7 +628,9 @@ public class CombatControl : MonoBehaviour {
 
     public void DEBUGKILLPLAYER()
     {
-
+		shake.ResetTrigger ("Victory");
+		shake.ResetTrigger ("Exploring");
+		//shake.ResetTrigger ("");
     }
 
     public Monster GenerateMonster()
@@ -639,14 +646,14 @@ public class CombatControl : MonoBehaviour {
 			currentMonsterReadiness = rStart;
 		} else if (rMonster == 2) {
 			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<SnakeMonster> ();
+			currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
 			currentMonster.Start ();
 			int rStart = Random.Range (1, 99);
 			currentMonsterReadiness = rStart;
 
 		} else if (rMonster == 3) {
 			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<CatMonster> ();
+			currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
 			currentMonster.Start ();
 			int rStart = Random.Range (1, 99);
 			currentMonsterReadiness = rStart;

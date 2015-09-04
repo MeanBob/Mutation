@@ -98,26 +98,26 @@ public class UIControl : MonoBehaviour {
 		exploringPanel = transform.Find ("ExploringPanel").gameObject;
 
 		nashDeadPanel = transform.FindChild ("NashIsDeadPanel").gameObject;
-		statInfoPanel = transform.Find ("CharacterSheetPanel/InfoPanel").gameObject;
+		statInfoPanel = transform.Find ("InfoPanel").gameObject;
 		statInfoPanel.SetActive (false);
 		stanInfoButton = transform.Find ("CharacterSheetPanel/StatsInfoButton").gameObject;
 
         panelStack = new Stack();
 
         //Don't turn anything off until the game is loaded or else it makes it a pain to find anything :p
-        mapPanel.SetActive(false);
-        explorationPanel.SetActive(false);
-		fightPanel.SetActive(false);
-		inventoryPanel.SetActive(false);
-		deathPanel.SetActive(false);
-		preCombatPanel.SetActive(false);
+        mapPanel.SetActive(true);
+		explorationPanel.SetActive(true);
+		fightPanel.SetActive(true);
+		inventoryPanel.SetActive(true);
+		deathPanel.SetActive(true);
+		preCombatPanel.SetActive(true);
 		//hide.SetActive(false);
-		levelUpPanel.SetActive(false);
+		levelUpPanel.SetActive(true);
 		//introStoryPanel.SetActive(false);
-		victoryPanel.SetActive (false);
-		questPanel.SetActive (false);
-		nashDeadPanel.SetActive (false);
-		exploringPanel.SetActive (false);
+		victoryPanel.SetActive (true);
+		questPanel.SetActive (true);
+		nashDeadPanel.SetActive (true);
+		exploringPanel.SetActive (true);
 		characterSheetPanel.SetActive(true);
 		introPanel.SetActive (true);
 		ChangePanel(introPanel);
@@ -279,12 +279,12 @@ public class UIControl : MonoBehaviour {
 
     public void EndCombat()
     {
-        ChangePanel(explorationPanel);
+       // ChangePanel(explorationPanel);
     }
 
     public void EnablePlayerActionPanel()
     {
-        AddPanelOnTop(playerActionPanel);
+        //AddPanelOnTop(playerActionPanel);
     }
 
 	public void ChooseHide()
@@ -301,8 +301,8 @@ public class UIControl : MonoBehaviour {
 
 	public void ChooseFight()
 	{
-		RemovePanelFromTop();
-		ChangePanel(fightPanel);
+		//RemovePanelFromTop();
+		//ChangePanel(fightPanel);
 
 	}
 

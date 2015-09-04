@@ -19,8 +19,11 @@ public class Zone : ScriptableObject {
 	public int randomXSpawn;
 	public int randomYSpawn;
 
-	//for Enterance to DownTown
+	//for Enterance to DownTown  Used in MapControl Update
 	public bool canEnterDT = false;
+
+	//for Crossing Bridge at Mnt WA  Used in MapControl Update
+	public bool canCrossBridge = false;
 
 	void Start()
 	{
@@ -49,94 +52,116 @@ public class Zone : ScriptableObject {
     public bool AttemptPlayerMove(int xDir, int yDir, ref string description)
     {
 		pass = nodeArray [xDir] [yDir].GetDescription ();
-        if (xDir < 0 || xDir > nodeArray.Length - 1
-            || yDir < 0 || 	yDir > nodeArray[xDir].Length - 1)
-        {
-            description += "You cannot travel beyond this point... The radiation is too strong.";
-            return false;
-        }
-		else if (pass == "Impassable")
-		{
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description += "The streets of L.A. are a labyrinth.  \nYou are back where you started";}
-			else if (tempNumber==1)
-				description += "This looks familiar.  \nYou've looped back.";
-			else
-				description+="You begin to feel sick and disoriented.";
-
+		if (xDir < 0 || xDir > nodeArray.Length - 1
+			|| yDir < 0 || yDir > nodeArray [xDir].Length - 1) {
+			description += "You cannot travel beyond this point... The radiation is too strong.";
 			return false;
+		} 
+
+//else if (pass == "Impassable") {
+//	int tempNumber = Random.Range (0, 3);
+//	if (tempNumber == 0) {
+//		description += "You cannot go that direction.";
+//	} else if (tempNumber == 1)
+//		description += "You've looped back.";
+//	else
+//		description += "You feel disoriented.";
+//
+//	return false;
+//}
+		//BridgeToll
+
+		else if (pass == "BridgeToll") 
+		{
+			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
+			if (!canCrossBridge) { 
+				
+				description = "The gondola is operated by a yellow and black person. \"It costs $25 to cross the bridge.\"";
+				return false;
+				
+			} else {
+				//Propose Check!!!
+				//PLAY ANIMATION
+				//REMOVE $25
+				//if left side, if right side??
+				//RELOCATE TO 20, 10, or 22, 10
+				//BOOL?
+				//description = nodeArray [xDir] [yDir].GetDescription ();
+				description += "The gondola properly operates. You cross the chasm.";
+				return true;
+			}		 
+
 		}
-		else if (pass == "Embankment")
+		else if (pass == "Chasm")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0){
 				description+= 
 
-						"Cold stones sit still amungsts the windblown trash flapping.";}
+						"Fables tell of mole people.";}
 			else if (tempNumber==1){
 				description+=  
 
-					"You can hear a river.";}
+					"The earth was torn.";}
 			else{
 				description+=
 
-					"The air is crisp.";}
-			return true;
+					"You don't want to go down there.";}
+			return false;
 		}
-		else if (pass == "River")
+		else if (pass == "Freeway")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "The current is strong.";}
+			{description = "This used to be clean and clear.";}
 			else if (tempNumber==1)
-				description = "You are waist deep in water; a bottle floats by.";
+				description = "The freeway is too broken to navigate";
 			else
-				description="The water is cold and smells acrid.";
-			return true;
+				description="What a mess of rubble.";
+			return false;
 		}
-		else if (pass == "River Bed")
+		else if (pass == "MtWa")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "Sand and water meet; plastic wrappers cling to mossy stones.";}
+			{description = "Mt Wa";}
 			else if (tempNumber==1)
-				description = "Your feet are wet with dirty water.";
+				description = "Mt Wa";
 			else
-				description="This riverbed is quiet; ruined debris rests.";
+				description="Mt Wa";
 			return true;
 		}
-		else if (pass == "Pool")
+		else if (pass == "CarStack")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "The gentle pool of water is brown.";}
+			{description = "No getting over this wall of cars";}
 			else if (tempNumber==1)
-				description = "Little whirlpools form behind you.";
+				description = "No getting over this wall of cars";
 			else
-				description="The pool is lifeless.";
-			return true;
+				description="No getting over this wall of cars";
+			return false;
 		}
-		else if (pass == "Waterfall")
+		else if (pass == "Road")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "Rushing water falls from overhead.";}
+			{description = "Blacktop";}
 			else if (tempNumber==1)
-				description = "Water rages; it's hard to hear anything else.";
+				description = "Blacktop";
 			else
-				description="Wet moss is indifferent.";
+				description="Blacktop";
 			return true;
 		}
-		else if (pass == "Trail")
+		else if (pass == "Bridge")
 		{
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "Trail 1";}
+			{description = "Bridge is dangerous";}
 			else if (tempNumber==1)
-				description = "Trail 2";
+				description = "Bridge";
 			else
-				description="Trail 3";
+				description="Bridge";
 			return true;
 		}
 		else if (pass == "DownTown")
@@ -234,6 +259,7 @@ public class Zone : ScriptableObject {
 		}
 	}
 
+	//DONT FORGET THE CHECKS!!!
 	void AddRandomMonster(int xMLoc, int yMLoc)
 	{
 		string locdes = nodeArray [xMLoc] [yMLoc].GetDescription ();
