@@ -20,7 +20,7 @@ public class SnakeMonster : Monster {
 	public override void Init()
 	{
 		moneyGained = 3;
-		monsterName = "Two-headed Snake";
+		monsterName = "Snake";
 		expPointsGained = Random.Range(30 , 40);
 		setMonsterImage(Resources.Load <Sprite>("Enemies/Snake"));
 		monsterDescription = monsterText[Random.Range(0,3)];

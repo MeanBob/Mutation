@@ -200,7 +200,7 @@ public class CombatControl : MonoBehaviour {
 			monsterKilled.text = currentMonster.GetVictoryText ();
 			
 		int tempV = Random.Range (0,6);
-		lootGained.text = "You "+ victoryVerbs[tempV] + " off " + currentMonster.GetName ().ToLower() + " meat, and stuff it in your bag.";
+		lootGained.text = "You "+ victoryVerbs[tempV] + " off <color=#EE3854>" + currentMonster.GetName ().ToLower() + " meat</color>, and stuff it in your bag.";
 	}
 	public void CloseVictoryState()
 	{
@@ -253,7 +253,7 @@ public class CombatControl : MonoBehaviour {
             {
                 int monsterDamage = 0;
                 int choice = Random.Range(0, 5);
-                combatLogText.text += currentMonster.GetName() + "'s ";
+				combatLogText.text += "<color=#EE3854>"+currentMonster.GetName() + "'s </color>";
                 switch (choice)
                 {
                     case 0:
@@ -286,7 +286,7 @@ public class CombatControl : MonoBehaviour {
                         break;
                 }
                 currentMonsterReadiness = 0;
-				combatLogText.text += "did " + monsterDamage + " <color=#EE3854>damage.</color>\n";
+				combatLogText.text += "<color=#EE3854>did " + monsterDamage + " damage.</color>\n";
 				//shake.Play ("Hit");
                 playerCharacter.DoDamage(monsterDamage);
 				//shake.Play ("PlayetHit");
@@ -350,6 +350,9 @@ public class CombatControl : MonoBehaviour {
 		shake.SetTrigger ("Fight");
 	}
 
+
+
+
 	public void CanAttack(int attackId)
 	{
 		int accuracy = playerCharacter.getPlayerAccuracy();
@@ -363,6 +366,11 @@ public class CombatControl : MonoBehaviour {
 			//this makes the random number we will check our stats algorithm against. It's a 1d100 system...
 			int chanceToHit = Random.Range (0,100);
 
+
+
+
+
+
 			//Switch is called on the Buttons Arm, Leg, Head
 			//Add better text??
 			switch(attackId)
@@ -372,7 +380,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (30 - accuracy))
 					PlayerAttackHead();
 				else {
-					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
+					combatLogText.text += "You miss!\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -384,7 +392,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackLeftArm();
 				else {
-					combatLogText.text += "<color=#A1162B>You miss!</color> \n";
+					combatLogText.text += "You miss!\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -395,7 +403,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackRightArm();
 				else {
-					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
+					combatLogText.text += "You miss!\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -406,7 +414,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackLeftLeg();
 				else {
-					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
+					combatLogText.text += "You miss!\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -417,7 +425,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackRightLeg();
 				else {
-					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
+					combatLogText.text += "You miss!\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -426,6 +434,9 @@ public class CombatControl : MonoBehaviour {
 				
 			}
 		}
+
+
+
 
 		//Check if you are ready or not
 		else {
@@ -446,6 +457,9 @@ public class CombatControl : MonoBehaviour {
 				combatLogText.text += "<color=#625F21>Not yet.</color> \n";}
 	}
 	}
+
+
+
 
 
 	//special attacks
@@ -486,12 +500,18 @@ public class CombatControl : MonoBehaviour {
 		}
 	}
 
+
+
+
+
+
+
 	//Basic Attacks  WORK ON TEXT
     void PlayerAttackHead()
     {
 		Stun ();
 		int temp = Random.Range (1, 10);
-		combatLogText.text += "<color=#06A124>Your headbutt</color>";
+		combatLogText.text += "<color=#126488>Your headbutt</color>";
         
 		DoDamageToMonster(playerCharacter.AttackHead()/ temp);
 
@@ -505,7 +525,7 @@ public class CombatControl : MonoBehaviour {
     {
 
 		combatLogText.color = Color.red;
-		combatLogText.text += "<color=#06A124>Your punch</color>";
+		combatLogText.text += "<color=#126488>Your punch</color>";
 		combatLogText.color = Color.black;
         DoDamageToMonster(playerCharacter.AttackLeftArm());
 		LifeSteal ();
@@ -516,7 +536,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightArm()
     {
 		LifeSteal ();
-		combatLogText.text += "<color=#06A124>Your punch</color>";
+		combatLogText.text += "<color=#126488>Your punch</color>";
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 60;
 		LifeSteal ();
@@ -526,7 +546,7 @@ public class CombatControl : MonoBehaviour {
 	//dont use
     void PlayerAttackLeftLeg()
     {
-		combatLogText.text += "<color=#06A124>Your kick</color>";
+		combatLogText.text += "<color=#126488>Your kick</color>";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
 		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
@@ -535,7 +555,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightLeg()
     {
 		int temp = Random.Range (1, 10);
-		combatLogText.text += "<color=#06A124>Your kick</color>";
+		combatLogText.text += "<color=#126488>Your kick</color>";
         DoDamageToMonster(playerCharacter.AttackRightLeg()+temp);
 		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
@@ -606,7 +626,7 @@ public class CombatControl : MonoBehaviour {
         ui.DisablePlayerActionPanel();
 
 		//Damage done
-		combatLogText.text += " did " + damage + "<color=#06A124> damage.</color>\n";
+		combatLogText.text += "<color=#126488> did " + damage + " damage.</color>\n";
 
 		//Animal reactions to damage
 //if (damage <= 10 && damage >= 11)

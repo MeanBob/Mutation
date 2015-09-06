@@ -492,10 +492,22 @@ public class MapControl : MonoBehaviour {
 		     || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+2)) == false)
 		{
 
-			int tempSenceNumber = Random.Range(0,3);
+			int tempSenceNumber = Random.Range(0,10);
 			if (tempSenceNumber == 0)
 			{
 			sensoryDescription = "You feel alone.";
+			}
+			else if (tempSenceNumber == 1)
+			{
+				sensoryDescription = "There is always noise.";
+			}
+			else if (tempSenceNumber == 2)
+			{
+				sensoryDescription = "You take a sip of water.";
+			}
+			else if (tempSenceNumber == 3)
+			{
+				sensoryDescription = "You stretch you arms.";
 			}
 			else
 				sensoryDescription = "";
@@ -538,13 +550,13 @@ public class MapControl : MonoBehaviour {
 		case 0:	
 			int temp = Random.Range(0,4);
 			if (temp==0){
-				sensoryDescription = "Something scurries behind an broken car.";}
+				sensoryDescription = "Something scurries nearby.";}
 			else if (temp == 1)
 			{	sensoryDescription = "You feel a wave of heat.";}
 			else if (temp == 2)
-			{	sensoryDescription = "It smells like shit and piss.";}
+			{	sensoryDescription = "Did that junkpile move?";}
 			else if (temp == 3)
-			{	sensoryDescription = "You hate it here.";}
+			{	sensoryDescription = "That shadow looks different.";}
 
 			break;
 		case 1:

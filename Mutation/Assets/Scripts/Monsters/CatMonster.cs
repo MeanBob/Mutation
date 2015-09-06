@@ -26,7 +26,7 @@ public class CatMonster : Monster {
 	{
 		moneyGained = 4;
 		monsterMeatID = 10;
-		monsterName = "Stinking Cat";
+		monsterName = "Cat";
 		expPointsGained = Random.Range(40,60);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];

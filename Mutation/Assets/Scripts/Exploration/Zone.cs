@@ -86,15 +86,15 @@ public class Zone : ScriptableObject {
 			if (tempNumber==0){
 				description+= 
 
-					"<color=#3B0E15>Blocked</color>\nThe chasm does not want you.\n";}
+					"<color=#3B0E15>Blocked Chasm</color>\nThe chasm is full of radiation.\n";}
 			else if (tempNumber==1){
 				description+=  
 
-					"<color=#3B0E15>Blocked</color>\nThe earth was torn ahead.\n";}
+					"<color=#3B0E15>Blocked Chasm</color>\nThe earth was torn and out came radiation.\n";}
 			else{
 				description+=
 
-					"<color=#3B0E15>Blocked</color>\nThe path is too dangerous <i>that</i> way.\n";}
+					"<color=#3B0E15>Blocked Chasm</color>\nIt's not worth the repercussions.\n";}
 			return false;
 		}
 
@@ -103,11 +103,11 @@ public class Zone : ScriptableObject {
 		{onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "<color=#3B0E15>Blocked</color>\nThe path is filled with rubble.\n";}
+			{description = "<color=#3B0E15>Blocked Freeway</color>\nBroken concrete and wild rebar make for a dangerous path.\n";}
 			else if (tempNumber==1)
-				description = "<color=#3B0E15>Blocked</color>\nThis freeway is ruined.\n";
+				description = "<color=#3B0E15>Blocked Freeway</color>\nThis freeway is falling apart.\n";
 			else
-				description="<color=#3B0E15>Blocked</color>\nLarge, concrete blocks impede travel.\n";
+				description="<color=#3B0E15>Blocked Freeway</color>\nLarge, concrete blocks impede travel.\n";
 			return false;
 		}
 		else if (pass == "CarStack")
@@ -117,7 +117,7 @@ public class Zone : ScriptableObject {
 			if (tempNumber==0)
 			{description = "<color=#3B0E15>Blocked</color>\nNo getting over this wall of cars.\n";}
 			else if (tempNumber==1)
-				description = "<color=#3B0E15>Blocked</color>\nMany cars.\n";
+				description = "<color=#3B0E15>Blocked</color>\nToo many cars.\n";
 			else
 				description="<color=#3B0E15>Blocked</color>\nA wall of cars.\n";
 			return false;
@@ -130,11 +130,11 @@ public class Zone : ScriptableObject {
 			onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "<color=#06A124>Mt. Washington</color>\nThe hills are winding.";}
+			{description = "<color=#06A124>Mt. Washington</color>\nYou tear through foliage growing from rubble.";}
 			else if (tempNumber==1)
-				description = "<color=#06A124>Mt. Washington</color>\nYou are always almost lost.";
+				description = "<color=#06A124>Mt. Washington</color>\nYou are always close to lost around here.";
 			else
-				description="<color=#06A124>Mt. Washington</color>\nOn the edge...";
+				description="<color=#06A124>Mt. Washington</color>\nYou duck under wires and vines.";
 			return true;
 		}
 
@@ -154,11 +154,11 @@ public class Zone : ScriptableObject {
 		{onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "Bridge is dangerous";}
+			{description = "<color=#625F21>Bridge</color>\nYou carefully walk on.";}
 			else if (tempNumber==1)
-				description = "Bridge";
+				description = "<color=#625F21>Bridge</color>\nSlow and steady.";
 			else
-				description="Bridge";
+				description="<color=#625F21>Bridge</color>\nLittle rocks tumble into the green water below.";
 			return true;
 		}
 		else if (pass == "DownTown")
@@ -181,7 +181,7 @@ public class Zone : ScriptableObject {
 			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
 			if (!canCrossBridge) { 
 				
-				description = "<color=#1E79A1>Gondola</color>The gondola is operated by a yellow and black person. <color=#625F21>\"It costs $15 to cross.\"</color>";
+				description = "<color=#1E79A1>Gondola</color>\nThe gondola is operated by a yellow and black person. <color=#625F21>\"It costs $15 to cross.\"</color>";
 				return false;
 				
 			} else {
@@ -192,7 +192,7 @@ public class Zone : ScriptableObject {
 				//RELOCATE TO 20, 10, or 22, 10
 				//BOOL?
 				//description = nodeArray [xDir] [yDir].GetDescription ();
-				description += "<color=#1E79A1>Gondola</color>The gondola properly operates. <color=#1E79A1>You cross the chasm.</color>";
+				description += "<color=#1E79A1>Gondola</color>\nThe gondola properly operates. <color=#1E79A1>You cross the chasm.</color>";
 				
 				return true;
 			}		 
