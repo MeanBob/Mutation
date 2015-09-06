@@ -630,11 +630,11 @@ public class ExplorationText  : ScriptableObject
 		dialogue[16,19] = "Impassable";
 		dialogue[17,19] = "Impassable";
 		dialogue[18,19] = "Impassable";
-		dialogue[19,19] = "Impassable";
+		dialogue[19,19] = "DownTownEntrance";  //Entrance
 		dialogue[20,19] = "Impassable";
 		dialogue[21,19] = "Impassable";
 		dialogue[22,19] = "Impassable";
-		dialogue[23,19] = "Impassable";
+		dialogue[23,19] = "The teleporter machine seems to be operating.";	
 		dialogue[24,19] = "Impassable";
 		dialogue[25,19] = "Impassable";
 		dialogue[26,19] = "Impassable";
@@ -652,7 +652,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[7,20] = "Building";
 		dialogue[8,20] = "Building";
 		dialogue[9,20] = "Chasm";
-		dialogue[10,20] = "Bridge";
+		dialogue[10,20] = "Healer";
 		dialogue[11,20] = "Chasm";
 		dialogue[12,20] = "Chasm";
 		dialogue[13,20] = "Chasm";
@@ -714,9 +714,9 @@ public class ExplorationText  : ScriptableObject
 		dialogue[7,22] = "MtWa";
 		dialogue[8,22] = "MtWa";
 		dialogue[9,22] = "Chasm";
-		dialogue[10,22] = "BridgeToll";
+		dialogue[10,22] = "<color=#625F21>A sign</color>\nAcross the bridge, to the West is the Park, and Downtown.";
 		dialogue[11,22] = "BridgeToll";
-		dialogue[12,22] = "MtWa";
+		dialogue[12,22] = "<color=#126488>Toll</color>\nTo the North there a large rip in the earth... a gondola is strung between two points.";
 		dialogue[13,22] = "MtWa";
 		dialogue[14,22] = "MtWa";
 		dialogue[15,22] = "Freeway";

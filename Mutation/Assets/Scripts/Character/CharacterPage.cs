@@ -138,7 +138,7 @@ public class CharacterPage : MonoBehaviour {
 
 		leveledUp = false;
 			//We'll want to have this customizeable, once character creation is in
-		energy = 4;
+		energy = 6;
 		maxEnergy = 10 * energy;
 		tempEnergy = energy;
 		oldEnergy = 1;
@@ -323,6 +323,21 @@ public class CharacterPage : MonoBehaviour {
 		powerUpPanel.SetActive (false);
 	}
 
+
+	//HEALER BUTTON  ADD ANIMATION
+	public void PayForHealing()
+	{
+		if (getPlayerMoney() > 1) {
+		
+			currentEnergy += 20;
+			HealDamage(50);
+			RemoveMoney(1);
+
+			UpdateHealthMeter();
+			UpdateEnergyMeter();
+		}
+	}
+
 	void LevelUp()
 	{
 
@@ -382,6 +397,8 @@ public class CharacterPage : MonoBehaviour {
 	public void RemoveMoney(int removeMoney)
 	{
 		money -= removeMoney;
+		//(int)currentMoney = money;
+		currentMoney.text = money.ToString ();
 	}
 
 	public int getPlayerMoney()
@@ -399,10 +416,14 @@ public class CharacterPage : MonoBehaviour {
 	}
 	void UpdateEnergyMeter()
 	{
+		if (GetEnergyPoints () > maxEnergy) {
+			currentEnergy = maxEnergy;
+		}
 		maxEnergyText.text = maxEnergy.ToString();
 		energySlider.maxValue = maxEnergy;
 		currentEnergyText.text = currentEnergy.ToString();
 		energySlider.value = currentEnergy;
+
 	}
 	
 	

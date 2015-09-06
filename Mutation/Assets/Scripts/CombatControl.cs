@@ -7,6 +7,7 @@ public class CombatControl : MonoBehaviour {
 	public	Animator shake;
 	public AudioSource combatSFX;
 
+	ButtonSoundControler buttonSFX;
 	CombatSFXAudioController combatSFXController;
 
 	UIControl ui;
@@ -67,6 +68,7 @@ public class CombatControl : MonoBehaviour {
 
 
 		combatSFX = GetComponent<AudioSource>();
+		buttonSFX = GameObject.Find ("Canvas/ButtonSound").GetComponent<ButtonSoundControler> ();
 
 
 		//mapControl = GameObject.Find ("Canvas").GetComponent<MapControl> ();
@@ -153,9 +155,18 @@ public class CombatControl : MonoBehaviour {
 	public void ShowExplore()
 	{shake.SetTrigger ("Explore");
 	}
+
+
+	//ADD FOOTSTEPS??
 	public void ShowExploring()
 	{shake.SetTrigger ("Exploring");
+		//buttonSFX.PlayOneShot ("footsteps");
+		//buttonSFX.FootSteps (0.5);
+		buttonSFX.FootSteps (0.5f);
 	}
+
+
+
 	public void ShowSelf()
 	{shake.SetTrigger ("Stats");
 	}
@@ -246,7 +257,7 @@ public class CombatControl : MonoBehaviour {
                 switch (choice)
                 {
                     case 0:
-                        combatLogText.text += "bite ";
+					combatLogText.text += "<color=#EE3854>bite </color>";
                         monsterDamage = currentMonster.RollHeadDamage();
 						currentMonster.DoEnergyDamage(2);
 
@@ -257,7 +268,7 @@ public class CombatControl : MonoBehaviour {
                         break;
                     case 1:
                     case 2:
-                        combatLogText.text += "strike ";
+					combatLogText.text += "<color=#EE3854>strike </color>";
                         monsterDamage = currentMonster.RollArmDamage();
 						currentMonster.DoEnergyDamage(1);
 					enemyEnergySlider.value = currentMonster.GetEnergy();
@@ -266,7 +277,7 @@ public class CombatControl : MonoBehaviour {
                         break;
                     case 3:
                     case 4:
-                        combatLogText.text += "attack ";
+					combatLogText.text += "<color=#EE3854>attack </color>";
                         monsterDamage = currentMonster.RollLegDamage();
 						currentMonster.DoEnergyDamage(1);
 					enemyEnergySlider.value = currentMonster.GetEnergy();
@@ -275,7 +286,7 @@ public class CombatControl : MonoBehaviour {
                         break;
                 }
                 currentMonsterReadiness = 0;
-                combatLogText.text += "did " + monsterDamage + " damage.\n";
+				combatLogText.text += "did " + monsterDamage + " <color=#EE3854>damage.</color>\n";
 				//shake.Play ("Hit");
                 playerCharacter.DoDamage(monsterDamage);
 				//shake.Play ("PlayetHit");
@@ -361,7 +372,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (30 - accuracy))
 					PlayerAttackHead();
 				else {
-					combatLogText.text += "You miss! \n";
+					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -373,7 +384,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackLeftArm();
 				else {
-					combatLogText.text += "You miss! \n";
+					combatLogText.text += "<color=#A1162B>You miss!</color> \n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -384,7 +395,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (60 - accuracy))
 				PlayerAttackRightArm();
 				else {
-					combatLogText.text += "You miss! \n";
+					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -395,7 +406,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackLeftLeg();
 				else {
-					combatLogText.text += "You miss! \n";
+					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -406,7 +417,7 @@ public class CombatControl : MonoBehaviour {
 				if (chanceToHit > (40 - accuracy))
 				PlayerAttackRightLeg();
 				else {
-					combatLogText.text += "You miss! \n";
+					combatLogText.text += "<color=#A1162B>You miss! </color>\n";
 					currentPlayerReadiness = 80;
 					playerCharacter.DoEnergyDamage(1);
 					combatSFXController.PlayerPlayerMissing();
@@ -426,13 +437,13 @@ public class CombatControl : MonoBehaviour {
 			int waitTextNumber = Random.Range(1,5);
 
 			if (waitTextNumber ==1){
-			combatLogText.text += "You are not ready. \n";}
+				combatLogText.text += "<color=#625F21>You are not ready. </color>\n";}
 			else if (waitTextNumber ==2){
-				combatLogText.text += "You need more time. \n";}
+				combatLogText.text += "<color=#625F21>You need more time.</color> \n";}
 			else if (waitTextNumber ==3){
-				combatLogText.text += "Wait. \n";}
+				combatLogText.text += "<color=#625F21>Wait.</color> \n";}
 			else{
-				combatLogText.text += "Not yet. \n";}
+				combatLogText.text += "<color=#625F21>Not yet.</color> \n";}
 	}
 	}
 
@@ -450,7 +461,7 @@ public class CombatControl : MonoBehaviour {
 				int temp = playerCharacter.GetIntelligence () / 3 + rTemp;
 				playerCharacter.HealDamage (temp);
 
-				combatLogText.text += "Your punch steals " + temp + " life!\n";
+				combatLogText.text += "<color=#5B1262>Your punch steals " + temp + " life!</color>\n";
 			} else {
 				combatLogText.text += ""; //Your punch fails to steal any life.\n
 			}
@@ -468,7 +479,7 @@ public class CombatControl : MonoBehaviour {
 			if (stunChance == 1) {
 				currentMonsterReadiness = 0;
 				enemySlider.value = currentMonsterReadiness;
-				combatLogText.text += "Your headbutt stuns the " + currentMonster.GetName ().ToLower () + "!\n";
+				combatLogText.text += "<color=#5B1262>Your headbutt stuns the " + currentMonster.GetName ().ToLower () + "!</color>\n";
 			} else {
 				combatLogText.text += ""; //Your headbutt fails to stun.\n
 			}
@@ -480,7 +491,7 @@ public class CombatControl : MonoBehaviour {
     {
 		Stun ();
 		int temp = Random.Range (1, 10);
-		combatLogText.text += "Your headbutt";
+		combatLogText.text += "<color=#06A124>Your headbutt</color>";
         
 		DoDamageToMonster(playerCharacter.AttackHead()/ temp);
 
@@ -494,7 +505,7 @@ public class CombatControl : MonoBehaviour {
     {
 
 		combatLogText.color = Color.red;
-		combatLogText.text += "Your punch";
+		combatLogText.text += "<color=#06A124>Your punch</color>";
 		combatLogText.color = Color.black;
         DoDamageToMonster(playerCharacter.AttackLeftArm());
 		LifeSteal ();
@@ -505,7 +516,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightArm()
     {
 		LifeSteal ();
-        combatLogText.text += "Your punch";
+		combatLogText.text += "<color=#06A124>Your punch</color>";
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 60;
 		LifeSteal ();
@@ -515,7 +526,7 @@ public class CombatControl : MonoBehaviour {
 	//dont use
     void PlayerAttackLeftLeg()
     {
-        combatLogText.text += "Your kick";
+		combatLogText.text += "<color=#06A124>Your kick</color>";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
 		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
@@ -524,7 +535,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightLeg()
     {
 		int temp = Random.Range (1, 10);
-        combatLogText.text += "Your kick";
+		combatLogText.text += "<color=#06A124>Your kick</color>";
         DoDamageToMonster(playerCharacter.AttackRightLeg()+temp);
 		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
@@ -595,27 +606,27 @@ public class CombatControl : MonoBehaviour {
         ui.DisablePlayerActionPanel();
 
 		//Damage done
-        combatLogText.text += " did " + damage + " damage.\n";
+		combatLogText.text += " did " + damage + "<color=#06A124> damage.</color>\n";
 
 		//Animal reactions to damage
-		if (damage <= 10)
-			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " is jarred.\n";
-		else if (damage >= 11 && damage <= 29) {
-			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " stumbles.\n";
-		} else if (damage >= 30) {
-			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " spasisms.\n";
-		}
-
+//if (damage <= 10 && damage >= 11)
+//	combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " is jarred.</color>\n";
+//else if (damage >= 11 && damage <= 29) {
+//	combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " stumbles.</color>\n";
+//} else if (damage >= 30) {
+//	combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " spasisms.</color>\n";
+//}
+//
 
 		//animal's reactions to loss of life
 		if (currentMonster.GetHealth () <= currentMonster.GetMaxHealth () / 1.3  && currentMonster.GetHealth() > currentMonster.GetMaxHealth () / 2.4) {
-			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " looks weakened.\n";
+			combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " looks weakened.</color>\n";
 		
 		} else if (currentMonster.GetHealth () < currentMonster.GetMaxHealth () / 2.4 && currentMonster.GetHealth() > currentMonster.GetMaxHealth () / 10) {
-			combatLogText.text += "Pain wrecks the " + currentMonster.GetName ().ToLower() + "!\n";
+			combatLogText.text += "<color=#55141E>Pain wrecks the " + currentMonster.GetName ().ToLower() + "!</color>\n";
 			
 		}else if (currentMonster.GetHealth () < currentMonster.GetMaxHealth () / 10) {
-			combatLogText.text += "The " + currentMonster.GetName ().ToLower() + " bleeds everywhere.\n";
+			combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " bleeds everywhere.</color>\n";
 			
 		}
 
@@ -626,6 +637,8 @@ public class CombatControl : MonoBehaviour {
         ui.EndCombat();
     }
 
+
+	//USED FOR REMOVING TRIGGERS  RENAME???
     public void DEBUGKILLPLAYER()
     {
 		shake.ResetTrigger ("Victory");
@@ -635,9 +648,9 @@ public class CombatControl : MonoBehaviour {
 
     public Monster GenerateMonster()
     {
-	int rMonster = Random.Range(1,4);
-	Debug.Log ("Attempted monster generated... " + rMonster);
-	if (rMonster == 1) {
+		int rMonster = Random.Range (1, 4);
+		Debug.Log ("Attempted monster generated... " + rMonster);
+		if (rMonster == 1) {
 			//Always create instance of monster and then call start
 			currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
 			currentMonster.Start ();
@@ -658,9 +671,12 @@ public class CombatControl : MonoBehaviour {
 			int rStart = Random.Range (1, 99);
 			currentMonsterReadiness = rStart;
 		} 
-        currentMonster.Init();
+		currentMonster.Init ();
 		return currentMonster;
-
+		}
+		
+	
+	}
         //If we want to introduce a "surprised" or "ambush" mechanic,
         //we can adjust the readiness values.
         //int readiness = Random.Range (2,89);
@@ -674,5 +690,5 @@ public class CombatControl : MonoBehaviour {
 //        enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
 //        enemyHealthSlider.value = currentMonster.GetHealth();
         //combatLogText.text = "";
-    }
-}
+    
+

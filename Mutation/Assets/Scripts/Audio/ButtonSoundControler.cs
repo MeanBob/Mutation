@@ -13,6 +13,7 @@ public class ButtonSoundControler : MonoBehaviour {
 	public AudioClip openBook;
 	public AudioClip closeBook;
 	public AudioClip compasOpen;
+	public AudioClip footsteps;
 
 	public AudioSource buttons;
 
@@ -27,6 +28,11 @@ public class ButtonSoundControler : MonoBehaviour {
 	public void OpenBook(float volume)
 	{
 			buttons.PlayOneShot (openBook, volume);
+	}
+
+	public void FootSteps(float volume)
+	{
+		buttons.PlayOneShot (footsteps, volume);
 	}
 
 	public void CompasOpen(float volume)

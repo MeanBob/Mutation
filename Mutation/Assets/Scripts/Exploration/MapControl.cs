@@ -44,6 +44,8 @@ public class MapControl : MonoBehaviour {
 	public bool introMission;
 
 
+	GameObject healButton;
+
 	// Use this for initialization
 	void Start () {
 		noMission = false;
@@ -71,6 +73,8 @@ public class MapControl : MonoBehaviour {
 		mapMission = transform.Find ("MapPanel/Quest").GetComponent<UnityEngine.UI.Text> ();
 		mapLocation = transform.Find ("MapPanel/Location").GetComponent<UnityEngine.UI.Text> ();
 		movingText = transform.Find ("ExploringPanel/Text").GetComponent<UnityEngine.UI.Text> ();
+
+		healButton = transform.FindChild ("HealButton").gameObject;
 		//For SetMovement Description
 		
 
@@ -141,9 +145,9 @@ public class MapControl : MonoBehaviour {
 	{
 		//Monster temp = ScriptableObject.CreateInstance<RabbitMonster>();
 		//level 1-4, rabbit, snake, frog
-		//currentZone.AddMonster(29,6,ScriptableObject.CreateInstance<SnakeMonster>());
-		//currentZone.AddMonster(29,9,ScriptableObject.CreateInstance<FrogMeat>());
-		//currentZone.AddMonster(29,11,ScriptableObject.CreateInstance<RabbitMonster>());
+		currentZone.AddMonster(14,27,ScriptableObject.CreateInstance<SnakeMonster>());
+		currentZone.AddMonster(16,27,ScriptableObject.CreateInstance<FrogMonster>());
+		currentZone.AddMonster(16,24,ScriptableObject.CreateInstance<CatMonster>());
 
 		//currentZone.AddMonster(28,7,ScriptableObject.CreateInstance<FrogMonster>());
 		//currentZone.AddMonster(28,10,ScriptableObject.CreateInstance<RabbitMonster>());
@@ -198,6 +202,11 @@ public class MapControl : MonoBehaviour {
 
 	//CCHEK HERE!!
 
+	public void PressedHealedTurnedOffBool()
+	{
+		currentZone.onHealer = false;
+	}
+
 	void Update()
 	{
 		if (currentZone.startQuest1) {
@@ -211,6 +220,12 @@ public class MapControl : MonoBehaviour {
 		}
 
 
+		if (currentZone.onHealer == true) {
+			healButton.SetActive (true);
+		} else
+			healButton.SetActive (false);
+
+
 
 		//USED IN ZONE for Access!
 		if (playerCharacter.getPlayerMoney () >= 6) {
@@ -218,7 +233,7 @@ public class MapControl : MonoBehaviour {
 		}
 		else {currentZone.canEnterDT = false;}
 
-		if (playerCharacter.getPlayerMoney () >= 25) {
+		if (playerCharacter.getPlayerMoney () >= 15) {
 			currentZone.canCrossBridge = true;
 		} else { currentZone.canCrossBridge = false;}
 
@@ -423,7 +438,7 @@ public class MapControl : MonoBehaviour {
 
 		int tempCombatCheck = Random.Range (1, 100);
 		Debug.Log (tempCombatCheck + "random combat check number");
-		if ( tempCombatCheck < 50) {
+		if ( tempCombatCheck < 10) {
 			combat.InitiateCombat (combat.GenerateMonster ());
 		}
 		

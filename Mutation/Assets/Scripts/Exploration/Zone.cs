@@ -19,14 +19,23 @@ public class Zone : ScriptableObject {
 	public int randomXSpawn;
 	public int randomYSpawn;
 
+	//Image healButton;
+
 	//for Enterance to DownTown  Used in MapControl Update
 	public bool canEnterDT = false;
 
 	//for Crossing Bridge at Mnt WA  Used in MapControl Update
 	public bool canCrossBridge = false;
 
+	//For Healer!
+	public bool onHealer = false;
+
 	void Start()
 	{
+		//healButton = GameObject.Find ("Canvas/HealButton").GetComponent<Image> ();
+		//healButton.interactable = false;
+		//healButton.IsActive ();
+			//transform.Find ("CharacterSheetPanel/StatsInfoButton").gameObject;
 	}
 
     public void SetZoneSize(int xSize, int ySize)
@@ -69,81 +78,69 @@ public class Zone : ScriptableObject {
 //
 //	return false;
 //}
-		//BridgeToll
 
-		else if (pass == "BridgeToll") 
-		{
-			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
-			if (!canCrossBridge) { 
-				
-				description = "The gondola is operated by a yellow and black person. \"It costs $25 to cross the bridge.\"";
-				return false;
-				
-			} else {
-				//Propose Check!!!
-				//PLAY ANIMATION
-				//REMOVE $25
-				//if left side, if right side??
-				//RELOCATE TO 20, 10, or 22, 10
-				//BOOL?
-				//description = nodeArray [xDir] [yDir].GetDescription ();
-				description += "The gondola properly operates. You cross the chasm.";
-				return true;
-			}		 
-
-		}
+		//BLOCKS
 		else if (pass == "Chasm")
-		{
+		{onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0){
 				description+= 
 
-						"Fables tell of mole people.";}
+					"<color=#3B0E15>Blocked</color>\nThe chasm does not want you.\n";}
 			else if (tempNumber==1){
 				description+=  
 
-					"The earth was torn.";}
+					"<color=#3B0E15>Blocked</color>\nThe earth was torn ahead.\n";}
 			else{
 				description+=
 
-					"You don't want to go down there.";}
+					"<color=#3B0E15>Blocked</color>\nThe path is too dangerous <i>that</i> way.\n";}
 			return false;
 		}
+
+
 		else if (pass == "Freeway")
-		{
+		{onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "This used to be clean and clear.";}
+			{description = "<color=#3B0E15>Blocked</color>\nThe path is filled with rubble.\n";}
 			else if (tempNumber==1)
-				description = "The freeway is too broken to navigate";
+				description = "<color=#3B0E15>Blocked</color>\nThis freeway is ruined.\n";
 			else
-				description="What a mess of rubble.";
+				description="<color=#3B0E15>Blocked</color>\nLarge, concrete blocks impede travel.\n";
 			return false;
-		}
-		else if (pass == "MtWa")
-		{
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "Mt Wa";}
-			else if (tempNumber==1)
-				description = "Mt Wa";
-			else
-				description="Mt Wa";
-			return true;
 		}
 		else if (pass == "CarStack")
 		{
+			onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
-			{description = "No getting over this wall of cars";}
+			{description = "<color=#3B0E15>Blocked</color>\nNo getting over this wall of cars.\n";}
 			else if (tempNumber==1)
-				description = "No getting over this wall of cars";
+				description = "<color=#3B0E15>Blocked</color>\nMany cars.\n";
 			else
-				description="No getting over this wall of cars";
+				description="<color=#3B0E15>Blocked</color>\nA wall of cars.\n";
 			return false;
 		}
+
+
+		//PLACES
+		else if (pass == "MtWa")
+		{
+			onHealer = false;
+			int tempNumber = Random.Range(0,3);
+			if (tempNumber==0)
+			{description = "<color=#06A124>Mt. Washington</color>\nThe hills are winding.";}
+			else if (tempNumber==1)
+				description = "<color=#06A124>Mt. Washington</color>\nYou are always almost lost.";
+			else
+				description="<color=#06A124>Mt. Washington</color>\nOn the edge...";
+			return true;
+		}
+
 		else if (pass == "Road")
 		{
+			onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
 			{description = "Blacktop";}
@@ -154,7 +151,7 @@ public class Zone : ScriptableObject {
 			return true;
 		}
 		else if (pass == "Bridge")
-		{
+		{onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
 			{description = "Bridge is dangerous";}
@@ -166,6 +163,7 @@ public class Zone : ScriptableObject {
 		}
 		else if (pass == "DownTown")
 		{
+			onHealer = false;
 			int tempNumber = Random.Range(0,3);
 			if (tempNumber==0)
 			{description = "A tree grows out from the roof of a building.";}
@@ -175,8 +173,53 @@ public class Zone : ScriptableObject {
 				description="Everything is brown and ugly.";
 			return true;
 		}
-		else if (pass == "Quest1")
+
+
+		//EVENTS
+		else if (pass == "BridgeToll") 
+		{onHealer = false;
+			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
+			if (!canCrossBridge) { 
+				
+				description = "<color=#1E79A1>Gondola</color>The gondola is operated by a yellow and black person. <color=#625F21>\"It costs $15 to cross.\"</color>";
+				return false;
+				
+			} else {
+				//Propose Check!!!
+				//PLAY ANIMATION
+				//REMOVE $25
+				//if left side, if right side??
+				//RELOCATE TO 20, 10, or 22, 10
+				//BOOL?
+				//description = nodeArray [xDir] [yDir].GetDescription ();
+				description += "<color=#1E79A1>Gondola</color>The gondola properly operates. <color=#1E79A1>You cross the chasm.</color>";
+				
+				return true;
+			}		 
+			
+		}
+		else if (pass == "Healer")
 		{
+			onHealer = true;
+			
+			int tempNumber = Random.Range(0,3);
+			if (tempNumber==0){
+				description+= 
+					
+					"<color=#1E79A1>Healer</color>\nWires and dim lights fill the room. The healer asks, \"Need something?\"";}
+			else if (tempNumber==1){
+				description+=  
+					
+					"<color=#1E79A1>Healer</color>\n\"Hurry up and talk.\"";}
+			else{
+				description+=
+					
+					"<color=#1E79A1>Healer</color>\n\"What do you want?\"";}
+			return true;
+		}
+
+		else if (pass == "Quest1")
+		{onHealer = false;
 			if (!questIsActive){
 			
 			startQuest1=true;
@@ -203,7 +246,7 @@ public class Zone : ScriptableObject {
 			return true;
 		}
 		else if (pass == "DownTownEntrance")
-		{
+		{onHealer = false;
 			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
 			if (!canEnterDT){ 
 

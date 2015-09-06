@@ -23,10 +23,10 @@ public class RabbitMonster : Monster {
 	}
 	public override void Init()
     {
-		moneyGained = 25;
+		moneyGained = 2;
 		monsterMeatID = 2;
         monsterName = "Mutated Rabbit";
-		expPointsGained = Random.Range(64,66);
+		expPointsGained = Random.Range(24,36);
 		monsterDescription = monsterText[Random.Range(0,3)];
 		hideDescription = monsterText[3];
 		victoryText = monsterText[4];
