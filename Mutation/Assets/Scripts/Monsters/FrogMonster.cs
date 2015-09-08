@@ -9,9 +9,9 @@ public class FrogMonster : Monster {
 	{
 		
 		// index 0,1,2 are for encuontering the monster when you make the fight or hide choice
-		monsterText [0] = "Two bugging eyes catch your attention. Lo and behold, a giant, green frog!\n\n";
-		monsterText [1] = "You suddenly feel a wet <i>thwat</i> against your neck! What could it be!?\n\n";
-		monsterText [2] = "Suddenly a booming croak blasts right behind you!\n\n";	
+		monsterText [0] = "Two bugging eyes catch your attention. Lo and behold, a giant, green frog!";
+		monsterText [1] = "You suddenly feel a wet <i>thwat</i> against your neck! What could it be!?";
+		monsterText [2] = "Suddenly a booming croak blasts right behind you!";	
 		// index 3 is for hiding
 		monsterText [3] = "You take a few step back and are suddenly very far from the frog.";
 		monsterText [4] = "The frog collapses in exhaustion and defeat! You won!";

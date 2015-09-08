@@ -638,7 +638,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[24,19] = "Impassable";
 		dialogue[25,19] = "Impassable";
 		dialogue[26,19] = "Impassable";
-		dialogue[27,19] = "Impassable";
+		dialogue[27,19] = "Quest1";
 		dialogue[28,19] = "Impassable";
 		dialogue[29,19] = "Impassable";
 
@@ -812,7 +812,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[12,25] = "Impassable";
 		dialogue[13,25] = "Chasm";
 		dialogue[14,25] = "MtWa";
-		dialogue[15,25] = "MtWa";
+		dialogue[15,25] = "Quest1";
 		dialogue[16,25] = "MtWa";
 		dialogue[17,25] = "Freeway";
 		dialogue[18,25] = "Impassable";

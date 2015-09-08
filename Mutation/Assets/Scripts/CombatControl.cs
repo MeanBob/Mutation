@@ -93,6 +93,12 @@ public class CombatControl : MonoBehaviour {
 		monsterImage = transform.FindChild("FightPanel/EnemyScenePanel/EnemyImage").GetComponent<UnityEngine.UI.Image>();
 	}
 
+	public void RELOADGAME()
+	{
+		Application.LoadLevel ("FuckthisAnimationon");
+		shake.SetTrigger ("RestartGame");
+	}
+
 	void VictoryVerbs()
 	{
 		victoryVerbs[0] = "hack";
@@ -511,7 +517,7 @@ public class CombatControl : MonoBehaviour {
     {
 		Stun ();
 		int temp = Random.Range (1, 10);
-		combatLogText.text += "<color=#126488>Your headbutt</color>";
+		combatLogText.text += "<color=#1E79A1>Your headbutt</color>";
         
 		DoDamageToMonster(playerCharacter.AttackHead()/ temp);
 
@@ -525,7 +531,7 @@ public class CombatControl : MonoBehaviour {
     {
 
 		combatLogText.color = Color.red;
-		combatLogText.text += "<color=#126488>Your punch</color>";
+		combatLogText.text += "<color=#1E79A1>Your punch</color>";
 		combatLogText.color = Color.black;
         DoDamageToMonster(playerCharacter.AttackLeftArm());
 		LifeSteal ();
@@ -536,7 +542,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightArm()
     {
 		LifeSteal ();
-		combatLogText.text += "<color=#126488>Your punch</color>";
+		combatLogText.text += "<color=#1E79A1>Your punch</color>";
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 60;
 		LifeSteal ();
@@ -546,7 +552,7 @@ public class CombatControl : MonoBehaviour {
 	//dont use
     void PlayerAttackLeftLeg()
     {
-		combatLogText.text += "<color=#126488>Your kick</color>";
+		combatLogText.text += "<color=#1E79A1>Your kick</color>";
         DoDamageToMonster(playerCharacter.AttackLeftLeg());
 		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
@@ -555,7 +561,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightLeg()
     {
 		int temp = Random.Range (1, 10);
-		combatLogText.text += "<color=#126488>Your kick</color>";
+		combatLogText.text += "<color=#1E79A1>Your kick</color>";
         DoDamageToMonster(playerCharacter.AttackRightLeg()+temp);
 		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
@@ -626,7 +632,7 @@ public class CombatControl : MonoBehaviour {
         ui.DisablePlayerActionPanel();
 
 		//Damage done
-		combatLogText.text += "<color=#126488> did " + damage + " damage.</color>\n";
+		combatLogText.text += "<color=#1E79A1> did " + damage + " damage.</color>\n";
 
 		//Animal reactions to damage
 //if (damage <= 10 && damage >= 11)
