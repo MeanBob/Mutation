@@ -18,6 +18,8 @@ public class UIControl : MonoBehaviour {
 	GameObject levelUpPanel;
 	GameObject introPanel;
 	GameObject introStoryPanel;
+
+	//public GameObject winDescriptionPanel;
     
     GameObject playerActionPanel;
 	GameObject statInfoPanel;
@@ -97,6 +99,8 @@ public class UIControl : MonoBehaviour {
 		questPanel = transform.FindChild ("QuestPanel").gameObject;
 		exploringPanel = transform.Find ("ExploringPanel").gameObject;
 
+		//winDescriptionPanel = transform.FindChild ("LevelUp/WinPopup").gameObject;
+
 		nashDeadPanel = transform.FindChild ("NashIsDeadPanel").gameObject;
 		statInfoPanel = transform.Find ("InfoPanel").gameObject;
 		statInfoPanel.SetActive (false);
@@ -125,20 +129,31 @@ public class UIControl : MonoBehaviour {
 
 	}
 
+	public void CloseWinPopUp()
+	{
+		//winDescriptionPanel.SetActive(false);
+		//playerCharacter.AwareOfLevelUp ();
+		//combat.shake.SetTrigger ("AwareOfLevel");
+	}
 
 	//CHANGE TO ANIMATIoN
 	void Update()
 	{
 		if (playerCharacter.leveledUp == true)
 		{
-			AddPanelOnTop(levelUpPanel);
+			//AddPanelOnTop(levelUpPanel);
+			//combat.shake.Play("LevelUp");
 		}
+
 	}
 
 	public void PlayNormalState()
 	{
 	
 	}
+
+
+
 
 	public void CloseInfoPanel()
 	{

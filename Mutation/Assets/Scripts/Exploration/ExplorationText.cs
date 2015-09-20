@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 public class ExplorationText  : ScriptableObject
@@ -845,7 +845,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[14,26] = "MtWa";
 		dialogue[15,26] = "MtWa";
 		dialogue[16,26] = "MtWa";
-		dialogue[17,26] = "Freeway";
+		dialogue[17,26] = "NeatBen";
 		dialogue[18,26] = "Freeway";
 		dialogue[19,26] = "Freeway";
 		dialogue[20,26] = "Chasm";
@@ -874,7 +874,7 @@ public class ExplorationText  : ScriptableObject
 		dialogue[12,27] = "Impassable";
 		dialogue[13,27] = "Chasm";
 		dialogue[14,27] = "MtWa";
-		dialogue[15,27] = "MtWa";
+		dialogue[15,27] = "Quest2";
 		dialogue[16,27] = "MtWa";
 		dialogue[17,27] = "Freeway";
 		dialogue[18,27] = "Freeway";

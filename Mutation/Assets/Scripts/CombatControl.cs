@@ -7,14 +7,20 @@ public class CombatControl : MonoBehaviour {
 	public	Animator shake;
 	public AudioSource combatSFX;
 
+	public bool tier1Monsters;
+	public bool tier2Monsters;
+	public bool tier3Monsters;
+
 	ButtonSoundControler buttonSFX;
 	CombatSFXAudioController combatSFXController;
 
 	UIControl ui;
     CharacterPage playerCharacter;
     Monster currentMonster;
+	MapControl mapControl;
 
 	string[] victoryVerbs;
+	string[] victoryVerbs2;
 
     UnityEngine.UI.Slider enemySlider;
 	UnityEngine.UI.Slider playerSlider;
@@ -44,6 +50,10 @@ public class CombatControl : MonoBehaviour {
 	public Button legButton;
 	public Button headButton;
 
+	public Button forageButton;
+	public Button repairButton;
+	public Button trapButton;
+
 	public bool combatPause=false;
 	public bool MonsterAttackPause = false;
     public bool combatOn = false;
@@ -59,8 +69,15 @@ public class CombatControl : MonoBehaviour {
 
 	void Start () 
 	{
+		tier1Monsters = true;
+		tier2Monsters = false;
+		tier2Monsters = false;
 		victoryVerbs = new string[5];
 		VictoryVerbs ();
+
+		victoryVerbs2 = new string[5];
+		VictoryVerbs2 ();
+
 		
 		expEarned = transform.Find ("VictoryPanel/ExpEarned").GetComponent<UnityEngine.UI.Text> ();
 		monsterKilled = transform.Find ("VictoryPanel/MonsterKilled").GetComponent<UnityEngine.UI.Text> ();
@@ -76,8 +93,14 @@ public class CombatControl : MonoBehaviour {
 		shake = GetComponent<Animator> ();
         ui = GetComponent<UIControl>();
 		playerCharacter = GameObject.Find("Canvas").GetComponent<CharacterPage>();
+		mapControl = GetComponent<MapControl> ();
 
 		combatSFXController = GameObject.Find ("CombatSound").GetComponent<CombatSFXAudioController> ();
+
+		forageButton.gameObject.SetActive(false);
+		trapButton.gameObject.SetActive(false);
+		repairButton.gameObject.SetActive (false);
+
 
         enemySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
         playerSlider = transform.FindChild("PlayerReadinessSlider").GetComponent<UnityEngine.UI.Slider>();
@@ -99,6 +122,19 @@ public class CombatControl : MonoBehaviour {
 		shake.SetTrigger ("RestartGame");
 	}
 
+	public void CheckToSeeIfSkillsAreLearned()
+	{
+		if (playerCharacter.canForage) {
+			forageButton.gameObject.SetActive(true);
+		}
+		if (playerCharacter.canRepair) {
+			repairButton.gameObject.SetActive(true);
+		}
+		if (playerCharacter.canTrack) {
+			trapButton.gameObject.SetActive(true);
+		}
+	}
+
 	void VictoryVerbs()
 	{
 		victoryVerbs[0] = "hack";
@@ -108,11 +144,30 @@ public class CombatControl : MonoBehaviour {
 		victoryVerbs[4] = "rip";
 	}
 
+	void VictoryVerbs2()
+	{
+		victoryVerbs2 [0] = "stuff";
+		victoryVerbs2 [1] = "pack";
+		victoryVerbs2 [2] = "load";
+		victoryVerbs2 [3] = "fill";
+		victoryVerbs2 [4] = "place";
+	}
+
 	public void PlayTurnInBounty()
 	{
 		shake.SetTrigger ("TurnInBounty");
 		//mapControl.QuestIsNotActive ();
 
+	}
+
+	public void PlayNashIsDead3()
+	{
+		shake.SetTrigger ("NashIsDead3");
+	}
+
+	public void PlayAwareOfLevel()
+	{
+		shake.SetTrigger ("AwareOfLevel");
 	}
 
 	public void PlayFight()
@@ -124,6 +179,21 @@ public class CombatControl : MonoBehaviour {
 	{
 		shake.SetTrigger ("AcceptQuest");
 
+	}
+
+	public void NashIsDead2()
+	{
+		shake.SetTrigger ("NashIsDead2");
+	}
+
+	public void PlayQuest1Step2()
+	{
+		shake.SetTrigger ("Quest1Step2");
+	}
+
+	public void PlayQuest1Step3()
+	{
+		shake.SetTrigger ("Quest1Step3");
 	}
 
 	public void PlayExplore()
@@ -200,13 +270,16 @@ public class CombatControl : MonoBehaviour {
 	public void ShowVictoryState()
 	{ 
 		//combatOn = false;
-		shake.SetTrigger ("Victory");
-		//ui.victoryPanel.SetActive (true);
+		 
+			shake.SetTrigger ("Victory");
+			//ui.victoryPanel.SetActive (true);
 			expEarned.text = "";
 			monsterKilled.text = currentMonster.GetVictoryText ();
 			
-		int tempV = Random.Range (0,6);
-		lootGained.text = "You "+ victoryVerbs[tempV] + " off <color=#EE3854>" + currentMonster.GetName ().ToLower() + " meat</color>, and stuff it in your bag.";
+			int tempV = Random.Range (0, 5);
+			int tempV2 = Random.Range (0, 5);
+			lootGained.text = "You " + victoryVerbs [tempV] + " off <color=#EE3854>" + currentMonster.GetName ().ToLower () + " meat</color>, then " + victoryVerbs2 [tempV2] + " it in your cooler.";
+
 	}
 	public void CloseVictoryState()
 	{
@@ -217,10 +290,40 @@ public class CombatControl : MonoBehaviour {
 	}
 
 
+	public void UpdateSkillsPage()
+	{
+		playerCharacter.skillsList.text = "";
 
+		if (!playerCharacter.canForage && !playerCharacter.canTrack && 
+		    !playerCharacter.canRepair && !playerCharacter.hasStun && !playerCharacter.hasStealLife)
+		{
+			playerCharacter.skillsList.text = "Animal Mutation.\nScrapping.";
+		}
+		else {
+
+			//playerCharacter.skillsList.text = "";
+			if (playerCharacter.canForage) {
+				playerCharacter.skillsList.text += "Junkyard Rummage.\n"; //dumpster diving
+			}
+			if (playerCharacter.canTrack) {
+				playerCharacter.skillsList.text += "Provoke Mutant.\n"; 
+			}
+			if (playerCharacter.canRepair) {
+				playerCharacter.skillsList.text += "Meditative Regeneration.\n"; //
+			}
+			if (playerCharacter.hasStun) {
+				playerCharacter.skillsList.text += "Cranium Stunt.\n";
+			}
+			if (playerCharacter.hasStealLife) {
+				playerCharacter.skillsList.text += "Appropriate Essence."; 
+			}
+		}
+	}
 	void Update () {
 		//Debug.Log("Combat on value ::::"+combatOn);
 		//shake.Play ("None");
+
+
 
 	if (playerCharacter.GetHitPoints () <= 0||playerCharacter.GetEnergyPoints()<=0 ){
 			//Debug.Log("DEAD!");
@@ -454,13 +557,13 @@ public class CombatControl : MonoBehaviour {
 			int waitTextNumber = Random.Range(1,5);
 
 			if (waitTextNumber ==1){
-				combatLogText.text += "<color=#625F21>You are not ready. </color>\n";}
+				combatLogText.text += "<color=#EEE750>You are not ready. </color>\n";}
 			else if (waitTextNumber ==2){
-				combatLogText.text += "<color=#625F21>You need more time.</color> \n";}
+				combatLogText.text += "<color=#EEE750>You need more time.</color> \n";}
 			else if (waitTextNumber ==3){
-				combatLogText.text += "<color=#625F21>Wait.</color> \n";}
+				combatLogText.text += "<color=#EEE750>Wait.</color> \n";}
 			else{
-				combatLogText.text += "<color=#625F21>Not yet.</color> \n";}
+				combatLogText.text += "<color=#EEE750>Not yet.</color> \n";}
 	}
 	}
 
@@ -481,7 +584,7 @@ public class CombatControl : MonoBehaviour {
 				int temp = playerCharacter.GetIntelligence () / 3 + rTemp;
 				playerCharacter.HealDamage (temp);
 
-				combatLogText.text += "<color=#5B1262>Your punch steals " + temp + " life!</color>\n";
+				combatLogText.text += "<color=#A220AE>You grapple the " + currentMonster.GetName().ToLower()+ ", place a hand on its face then suck it's essence for " +temp+" life.\n</color>"; 
 			} else {
 				combatLogText.text += ""; //Your punch fails to steal any life.\n
 			}
@@ -499,7 +602,7 @@ public class CombatControl : MonoBehaviour {
 			if (stunChance == 1) {
 				currentMonsterReadiness = 0;
 				enemySlider.value = currentMonsterReadiness;
-				combatLogText.text += "<color=#5B1262>Your headbutt stuns the " + currentMonster.GetName ().ToLower () + "!</color>\n";
+				combatLogText.text += "<color=#A220AE>You bunt the " + currentMonster.GetName ().ToLower () + " with your head! It looks dazed.</color>\n";
 			} else {
 				combatLogText.text += ""; //Your headbutt fails to stun.\n
 			}
@@ -517,7 +620,7 @@ public class CombatControl : MonoBehaviour {
     {
 		Stun ();
 		int temp = Random.Range (1, 10);
-		combatLogText.text += "<color=#1E79A1>Your headbutt</color>";
+		combatLogText.text += "<color=#30C0FF>Your headbutt</color>";
         
 		DoDamageToMonster(playerCharacter.AttackHead()/ temp);
 
@@ -530,9 +633,9 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackLeftArm()
     {
 
-		combatLogText.color = Color.red;
-		combatLogText.text += "<color=#1E79A1>Your punch</color>";
-		combatLogText.color = Color.black;
+		//combatLogText.color = Color.red;
+		combatLogText.text += "<color=#30C0FF>Your punch</color>";
+		//combatLogText.color = Color.black;
         DoDamageToMonster(playerCharacter.AttackLeftArm());
 		LifeSteal ();
 		currentPlayerReadiness = 70;
@@ -542,7 +645,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightArm()
     {
 		LifeSteal ();
-		combatLogText.text += "<color=#1E79A1>Your punch</color>";
+		combatLogText.text += "<color=#30C0FF>Your punch</color>";
         DoDamageToMonster(playerCharacter.AttackRightArm());
 		currentPlayerReadiness = 60;
 		LifeSteal ();
@@ -561,7 +664,7 @@ public class CombatControl : MonoBehaviour {
     void PlayerAttackRightLeg()
     {
 		int temp = Random.Range (1, 10);
-		combatLogText.text += "<color=#1E79A1>Your kick</color>";
+		combatLogText.text += "<color=#30C0FF>Your kick</color>";
         DoDamageToMonster(playerCharacter.AttackRightLeg()+temp);
 		currentPlayerReadiness = 45;
 		playerCharacter.DoEnergyDamage(3);
@@ -632,7 +735,7 @@ public class CombatControl : MonoBehaviour {
         ui.DisablePlayerActionPanel();
 
 		//Damage done
-		combatLogText.text += "<color=#1E79A1> did " + damage + " damage.</color>\n";
+		combatLogText.text += "<color=#30C0FF> did " + damage + " damage.</color>\n";
 
 		//Animal reactions to damage
 //if (damage <= 10 && damage >= 11)
@@ -646,17 +749,44 @@ public class CombatControl : MonoBehaviour {
 
 		//animal's reactions to loss of life
 		if (currentMonster.GetHealth () <= currentMonster.GetMaxHealth () / 1.3  && currentMonster.GetHealth() > currentMonster.GetMaxHealth () / 2.4) {
-			combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " looks weakened.</color>\n";
+			combatLogText.text += "<color=#E151DC>The " + currentMonster.GetName ().ToLower() + " looks weakened.</color>\n";
 		
 		} else if (currentMonster.GetHealth () < currentMonster.GetMaxHealth () / 2.4 && currentMonster.GetHealth() > currentMonster.GetMaxHealth () / 10) {
-			combatLogText.text += "<color=#55141E>Pain wrecks the " + currentMonster.GetName ().ToLower() + "!</color>\n";
+			combatLogText.text += "<color=#E151DC>Pain wrecks the " + currentMonster.GetName ().ToLower() + "!</color>\n";
 			
 		}else if (currentMonster.GetHealth () < currentMonster.GetMaxHealth () / 10) {
-			combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " bleeds everywhere.</color>\n";
+			combatLogText.text += "<color=#E151DC>The " + currentMonster.GetName ().ToLower() + " bleeds everywhere.</color>\n";
 			
 		}
 
     }
+
+	public void RestWhileExploring()
+	{
+		playerCharacter.DoEnergyDamage (10);
+		playerCharacter.HealDamage (25);
+		mapControl.movingText.text = "You rest for a while and revocer some health.  You are hungry.";
+		shake.SetTrigger ("Resting");
+	}
+
+	public void ForageWhileExploring()
+	{
+		playerCharacter.DoEnergyDamage (5);
+		int tempIntCheck = Random.Range (0, 100);
+		if (playerCharacter.GetIntelligence () > tempIntCheck) {
+			mapControl.movingText.text = "You find food and eat it!";
+			playerCharacter.HealEnergyDamage(25);
+		} else {
+			mapControl.movingText.text = "You search but find nothing.";
+		}
+	}
+
+
+
+	public void PlayForage()
+	{
+		shake.SetTrigger ("Foarging");
+	}
 
     public void DEBUGKILLENEMY()
     {
@@ -672,35 +802,160 @@ public class CombatControl : MonoBehaviour {
 		//shake.ResetTrigger ("");
     }
 
-    public Monster GenerateMonster()
-    {
-		int rMonster = Random.Range (1, 4);
-		Debug.Log ("Attempted monster generated... " + rMonster);
-		if (rMonster == 1) {
-			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
-			currentMonster.Start ();
-
-			int rStart = Random.Range (1, 99);
-			currentMonsterReadiness = rStart;
-		} else if (rMonster == 2) {
-			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
-			currentMonster.Start ();
-			int rStart = Random.Range (1, 99);
-			currentMonsterReadiness = rStart;
-
-		} else if (rMonster == 3) {
-			//Always create instance of monster and then call start
-			currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
-			currentMonster.Start ();
-			int rStart = Random.Range (1, 99);
-			currentMonsterReadiness = rStart;
-		} 
-		currentMonster.Init ();
-		return currentMonster;
+	public void TrapFight()
+	{
+		shake.SetTrigger ("TrapFight");
+		mapControl.movingText.text = "";
+	}
+	public void MakeTrappingMonster()
+	{
+		//GenerateMonster ();
+		int tempIntCheck = Random.Range (0, 25);
+		if (playerCharacter.GetIntelligence () > tempIntCheck) {
+			InitiateCombat (GenerateMonster ());
+			combatOn = true;
+			shake.SetTrigger ("TrapSuccess");
+			shake.ResetTrigger ("Fight");
+			mapControl.movingText.text = "A mutant shows its face!";
+		} else {
+			mapControl.movingText.text = "Shouts and jeers conjure little in the way of agressive mutants.";
+			shake.SetTrigger("TrapFail");
 		}
-		
+	}
+
+			//Always create instance of monster and then call start
+	
+    public Monster GenerateMonster()
+	    {
+		if (tier1Monsters) {
+			Debug.Log ("tier1");
+			int rMonster = Random.Range (1, 4);
+			if (rMonster == 1) {
+				currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			} else if (rMonster == 2) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<SnakeMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+
+			} else if (rMonster == 3) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<FrogMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			}
+			currentMonster.Init ();
+			return currentMonster;
+		} else if (tier2Monsters) {
+			Debug.Log ("tier2");
+			int rMonster = Random.Range (1, 10);
+			if (rMonster == 1) {
+				currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			} else if (rMonster == 2) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<SnakeMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+				
+			} else if (rMonster == 3) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<FrogMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			}
+			else if (rMonster == 4) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<CatMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			} else if (rMonster == 5) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<DogMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			} else if (rMonster == 6) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<BeaverMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			} else if (rMonster == 7) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<GoatMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			}
+			else if (rMonster == 8) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<SkunkMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			}
+			else if (rMonster == 9) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<BirdMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			}
+
+
+
+
+			currentMonster.Init ();
+			return currentMonster;
+		} else if (tier3Monsters) {
+			int rMonster = Random.Range (1, 4);
+			if (rMonster == 1) {
+				currentMonster = ScriptableObject.CreateInstance<RabbitMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			} else if (rMonster == 2) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<SnakeMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+				
+			} else if (rMonster == 3) {
+				//Always create instance of monster and then call start
+				currentMonster = ScriptableObject.CreateInstance<FrogMonster> ();
+				currentMonster.Start ();
+				int rStart = Random.Range (1, 99);
+				currentMonsterReadiness = rStart;
+			}
+
+
+
+
+			currentMonster.Init ();
+			return currentMonster;
+			
+		} else {
+			Debug.Log ("tierDEFAULT");
+			currentMonster = ScriptableObject.CreateInstance<PorcupineMonster> ();
+			currentMonster.Start ();
+			int rStart = Random.Range (1, 99);
+			currentMonsterReadiness = rStart;
+			currentMonster.Init ();
+			return currentMonster;
+		}
+	}
 	
 	}
         //If we want to introduce a "surprised" or "ambush" mechanic,

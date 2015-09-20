@@ -11,6 +11,7 @@ public class CharacterPage : MonoBehaviour {
 	Button stealLifeButton;
 	Button stunButton;
 	GameObject powerUpPanel;
+	GameObject winPopUpPanel;
 	GameObject StubButtonObject;
 	GameObject LifeStealButtonObject;
 	public bool hasStun;
@@ -34,7 +35,7 @@ public class CharacterPage : MonoBehaviour {
 	UnityEngine.UI.Text currentMoney;
 	
 	int currentExpPoints;
-	int currentLevel;
+	public int currentLevel;
 	
 	int speed;
 	int tempSpeed;
@@ -52,7 +53,17 @@ public class CharacterPage : MonoBehaviour {
 	//	int currExpPoints;
 	//	int currtLevel ;
 	int nextLevelExpPoints;
+
+
+	public int skillTrainingLevel1;
+	public int skillTrainingLevel2;
+	public int skillTrainingLevel3;
+	public int skillTrainingLevel4;
+	public int skillTrainingLevel5;
 	
+	public bool canTrack;
+	public bool canForage;
+	public bool canRepair;
 	
 	public Mutation ears;
 	public Mutation eyes;
@@ -78,7 +89,9 @@ public class CharacterPage : MonoBehaviour {
 	public UnityEngine.UI.Image legsImage;
 	
 	public Mutation[] currentMutationList;
-	
+
+	public UnityEngine.UI.Text skillsList;
+
 	UnityEngine.UI.Text currentHPText; 
 	UnityEngine.UI.Text maxHPText;
 	UnityEngine.UI.Slider healthSlider;
@@ -116,23 +129,34 @@ public class CharacterPage : MonoBehaviour {
 	int numberOfPointsPerLevel = 5;
 	
 	Item tempItem;
+
 	public bool YouHaveDied ;
+
 	public bool leveledUp;
 	bool IncreasedLevel = false;
 	int previous= 0;
 
 	CombatControl combatControl;
 
+	
+	public Button learnForageButton;
+	public Button learnTrapButton;
+	public Button learnRepairButton;
+
 	void Start ()
 	{
+
 		hasStun = false;
 		hasStealLife = false;
+
+		nextLevelExpPoints = 64;
+
 		stealLifeButton = transform.Find ("LevelUp/PowerUpPanel/StealLife").GetComponent<Button> ();
 		stunButton = transform.Find ("LevelUp/PowerUpPanel/StealLife").GetComponent<Button> ();
 		powerUpPanel = transform.Find ("LevelUp/PowerUpPanel").gameObject;
 		StubButtonObject = transform.Find ("LevelUp/PowerUpPanel/Stun").gameObject;
 		LifeStealButtonObject = transform.Find ("LevelUp/PowerUpPanel/StealLife").gameObject;
-
+		winPopUpPanel = transform.Find ("LevelUp/WinPopup").gameObject;
 		combatControl = GetComponent<CombatControl>();
 		//transform.FindChild("FightPanel").gameObject;
 
@@ -147,6 +171,8 @@ public class CharacterPage : MonoBehaviour {
 		money = 3;
 		currentMoney = GameObject.Find("CurrentMoney").GetComponent<UnityEngine.UI.Text>();
 		//currentMoney.text = money.ToString();
+
+		skillsList = GameObject.Find ("CharacterSheetPanel/Skills/Text").GetComponent<UnityEngine.UI.Text> ();
 
 
 		strength = 7;
@@ -237,6 +263,12 @@ public class CharacterPage : MonoBehaviour {
 		allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 
 		UpdateMoney (money);
+		UpdateExpPoints (9);
+		LevelUp ();
+		//previous = currentLevel;
+
+
+		combatControl.shake.ResetTrigger ("HasLeveledUp");
 		
 	}
 	
@@ -303,23 +335,48 @@ public class CharacterPage : MonoBehaviour {
 		legs.Init();
 	}
 	
-	public void AwareOfLevelUp()
+
+
+	public void learnForage()
 	{
-		leveledUp = false;
-		combatControl.shake.SetTrigger ("AwareOfLevel");
+		canForage = true;
+		combatControl.shake.Play ("FadeFromWhite");
+		combatControl.forageButton.gameObject.SetActive (true);
+		learnForageButton.gameObject.SetActive(false);
 		powerUpPanel.SetActive (false);
 	}
 
+
+	public void LearnTrap()
+	{
+		canTrack = true;
+
+		combatControl.shake.Play ("FadeFromWhite");
+		combatControl.trapButton.gameObject.SetActive (true);
+		learnTrapButton.gameObject.SetActive(false);
+		powerUpPanel.SetActive (false);
+	}
+
+	public void LearnRepair()
+	{
+		canRepair = true;
+		combatControl.shake.Play ("FadeFromWhite");
+		combatControl.repairButton.gameObject.SetActive (true);
+		learnRepairButton.gameObject.SetActive(false);
+		powerUpPanel.SetActive (false);
+	}
 	public void LearnLifeSteal()
 	{
 		hasStealLife = true;
-		stealLifeButton.enabled = false;
+		combatControl.shake.Play ("FadeFromWhite");
+		stealLifeButton.gameObject.SetActive(false);
 		powerUpPanel.SetActive (false);
 	}
 	public void LearnStun()
 	{
 		hasStun = true;
-		stunButton.enabled = false;
+		combatControl.shake.Play ("FadeFromWhite");
+		stunButton.gameObject.SetActive(false);
 		powerUpPanel.SetActive (false);
 	}
 
@@ -338,32 +395,118 @@ public class CharacterPage : MonoBehaviour {
 		}
 	}
 
+
+	void CheckForAbilitiesWhenLeveledUp()
+	{
+		if (hasStealLife)
+		{LifeStealButtonObject.SetActive(false);}
+		else if (hasStun){
+			StubButtonObject.SetActive(false);}
+		else if (canForage)
+		{
+			combatControl.forageButton.gameObject.SetActive(false);
+		}
+		else if (canTrack)
+		{
+			combatControl.trapButton.gameObject.SetActive(false);
+		}
+		else if (canRepair)
+		{
+			combatControl.repairButton.gameObject.SetActive(false);
+		}
+
+	}
+	 public void CheckToSeeIfYouKnowAnAbility()
+	{
+
+	}
+
+	//INTS FOR LEVEL IP LEVELS
+
+	public void AwareOfLevelUp()
+	{
+		//winPopUpPanel.SetActive (true);
+		//powerUpPanel.SetActive(true);
+		if (currentLevel != skillTrainingLevel1 || currentLevel!=skillTrainingLevel2 || currentLevel!=skillTrainingLevel3
+		|| currentLevel!=skillTrainingLevel4 || currentLevel!=skillTrainingLevel5) {
+			Debug.Log ("not level2");
+			powerUpPanel.SetActive(false);
+			//winPopUpPanel.SetActive (false);
+			leveledUp = false;
+			combatControl.shake.SetTrigger ("AwareOfLevel");
+		} 
+		else {
+			winPopUpPanel.SetActive(false);
+			powerUpPanel.SetActive(false);
+			leveledUp = false;
+			combatControl.shake.SetTrigger("AwareOfLevel");
+		} 
+		//combatControl.shake.SetTrigger ("AwareOfLevel");
+		//winPopUpPanel.SetActive (true);
+		
+		//ui.winDescriptionPanel.SetActive (false);
+		//Debug.Log ("PPressedCLose");
+	}
 	void LevelUp()
 	{
+		//levelPanel.SetActive (true);
+		winPopUpPanel.SetActive (true);
+		powerUpPanel.SetActive(false);
 
 		//ADD ANIMATION FOR LEVEL UP
 		if(currentLevel > previous)
 		{
+			//ui.winDescriptionPanel.SetActive (true);
 			combatControl.shake.Play("LevelUp");
+			//combatControl.shake.SetTrigger("HasLeveledUp");
 			leveledUp = true;
 
+
+			CheckForAbilitiesWhenLeveledUp();
 			currentNumberOfAllocatablePoints += numberOfPointsPerLevel;
 			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
-			previous = currentLevel;
-			if (currentLevel == 2) {
+
+			if (currentLevel==skillTrainingLevel1) {
 				powerUpPanel.SetActive(true);
-				stealLifeButton.enabled = true;
-				stunButton.enabled = true;
+				CheckForAbilitiesWhenLeveledUp();
 			}
-			if (currentLevel == 3) {
+			else if (currentLevel==skillTrainingLevel2) {
 				powerUpPanel.SetActive(true);
-				if (hasStealLife)
-				{LifeStealButtonObject.SetActive(false);}//stealLifeButton. = false;}
-				else if (hasStun){
-					StubButtonObject.SetActive(false);}
+				CheckForAbilitiesWhenLeveledUp();
+
 			}
+			else if (currentLevel==skillTrainingLevel3)
+			{
+				combatControl.tier1Monsters = false;
+				combatControl.tier2Monsters = true;
+
+				powerUpPanel.SetActive(true);
+				CheckForAbilitiesWhenLeveledUp();
+			}
+			else if (currentLevel==skillTrainingLevel4)
+			{
+				
+				//combatControl.tier2Monsters=false;
+				//combatControl.tier3Monsters=true;
+				powerUpPanel.SetActive(true);
+				CheckForAbilitiesWhenLeveledUp();
+			}
+			else if (currentLevel==skillTrainingLevel5)
+			{
+				
+				//combatControl.tier2Monsters=false;
+				//combatControl.tier3Monsters=true;
+				powerUpPanel.SetActive(true);
+				CheckForAbilitiesWhenLeveledUp();
+			}
+			else 
+			{powerUpPanel.SetActive(false);}
 		}
+			previous = currentLevel;
+		
 	}
+
+
 	public void UpdateExpPoints(int monsterExpPoints)
 	{
 		currentExpPoints += monsterExpPoints;
@@ -459,6 +602,12 @@ public class CharacterPage : MonoBehaviour {
 		}
 		
 		UpdateEnergyMeter();
+	}
+
+	public void HealEnergyDamage(int energyHeal)
+	{
+		currentEnergy += energyHeal;
+		UpdateEnergyMeter ();
 	}
 	
 	public void HealDamage(int heal)

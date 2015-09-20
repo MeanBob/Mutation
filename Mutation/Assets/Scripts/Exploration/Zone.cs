@@ -16,6 +16,11 @@ public class Zone : ScriptableObject {
 	public bool GenerateQuestMonster;
 	public bool startQuest1;
 	public bool questIsActive;
+
+	public bool GenerateQuest2Monster;
+	public bool startQuest2;
+	public bool quest2IsActive;
+
 	public int randomXSpawn;
 	public int randomYSpawn;
 
@@ -220,16 +225,17 @@ public class Zone : ScriptableObject {
 
 		else if (pass == "Quest1")
 		{onHealer = false;
-			if (!questIsActive){
+			if (!questIsActive && !quest2IsActive){
 			
+				//Add this to the Accept button
 			startQuest1=true;
 				//ADD AN ANIMATION TO TALK?? OR A TIMER OR SOMETHIONG SO IT DOESN:T POP UP EVERY TIME
 			description = "Ankel's bar is a mess, but it feels like home.";
 				int tempCatCallNumer = Random.Range(1,3);
 				if (tempCatCallNumer ==1)
-				{description += "\"My tit has a face,\" says one of the locals.";}
+				{description += "\"You look busier than a mole,\" says one of the locals.";}
 				else if (tempCatCallNumer ==2){
-					description += "\"Fuck off,\" says one of the locals.";
+					description += "\"Fuck off, but return when you are no so busy,\" says one of the locals.";
 				}
 				//goes down to the generateplacedmonster 
 			GenerateQuestMonster = true;
@@ -242,6 +248,36 @@ public class Zone : ScriptableObject {
 				//description = "Akel's bar is a mess. " + "Nash was last seen at " +randomXSpawn +", "
 				//	+ randomYSpawn + " on your map's grid.";
 
+			}
+			return true;
+		}
+		else if (pass == "Quest2")
+		{onHealer = false;
+			if (!questIsActive && !quest2IsActive){
+				
+				//Add this to the Accept button
+				startQuest2=true;
+				//ADD AN ANIMATION TO TALK?? OR A TIMER OR SOMETHIONG SO IT DOESN:T POP UP EVERY TIME
+				description = "A Diva approaches you!";
+
+				int tempCatCallNumer = Random.Range(1,3);
+				if (tempCatCallNumer ==1)
+				{description += "\"Come back when you are not so busy,\" says one of the locals.";}
+				else if (tempCatCallNumer ==2){
+					description += "\"Fuck off, but keep me in mind when you are not so busy,\" says one of the locals.";
+				}
+
+				//goes down to the generateplacedmonster 
+				GenerateQuest2Monster = true;
+				quest2IsActive=true;
+				
+			}
+			else {
+				description = "Just a cloud of smoke.  \nYou walk on.";
+				
+				//description = "Akel's bar is a mess. " + "Nash was last seen at " +randomXSpawn +", "
+				//	+ randomYSpawn + " on your map's grid.";
+				
 			}
 			return true;
 		}
@@ -261,6 +297,15 @@ public class Zone : ScriptableObject {
 			}
 			return true;
 		}
+		else if (pass == "NeatBen")
+		{onHealer = false;
+			//new bool canEnterDT  if(canEnterDT){description = "Welcome back, Jack. Here is the entrance to DownTown L.A."}else{"That will be "}
+
+				description = "A fence!";
+				return false;
+
+		}
+
         else
         {
 			description = nodeArray[xDir][yDir].GetDescription();
@@ -291,7 +336,7 @@ public class Zone : ScriptableObject {
 	}
 
 
-	//PIT RANDOME NiMBERS HERE
+	//Used for Quest1  Adjust random numbers for the spawn location
 	public void GeneratePlaceMonster()
 	{
 		if (GenerateQuestMonster){ 
@@ -300,6 +345,16 @@ public class Zone : ScriptableObject {
 			randomYSpawn = Random.Range(24,25);
 			AddRandomMonster (randomXSpawn, randomYSpawn);
 		}
+	}
+
+	public void GeneratePlace2Monster()
+	{	if (GenerateQuest2Monster) 
+		{
+			randomXSpawn = Random.Range(14,15);
+			randomYSpawn = Random.Range(24,25);
+			AddRandomMonster (randomXSpawn, randomYSpawn);
+		}
+
 	}
 
 	//DONT FORGET THE CHECKS!!!
@@ -319,6 +374,24 @@ public class Zone : ScriptableObject {
 			GenerateQuestMonster=false;
 			
 			}
+	}
+
+	void AddRandomMonster2(int xMLoc, int yMLoc)
+	{
+		string locdes = nodeArray [xMLoc] [yMLoc].GetDescription ();
+		if (locdes == "Impassable") {
+			//return false;
+			Debug.Log("Didn't spawn Monster at:" +randomXSpawn + " "+ randomYSpawn);
+			GeneratePlaceMonster();
+			GenerateQuest2Monster=false;
+		} 
+		else {
+			//return true;
+			AddMonster(randomXSpawn,randomYSpawn,ScriptableObject.CreateInstance<NashMonster>());
+			Debug.Log("Spawned Monster at:" +randomXSpawn + " "+ randomYSpawn);
+			GenerateQuest2Monster=false;
+			
+		}
 	}
 
 

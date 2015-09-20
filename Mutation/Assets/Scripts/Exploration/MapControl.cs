@@ -18,7 +18,7 @@ public class MapControl : MonoBehaviour {
 
 	UnityEngine.UI.Image backgroundImage;
 
-	UnityEngine.UI.Text movingText;
+	public UnityEngine.UI.Text movingText;
 
 	UnityEngine.UI.Text mapLocation;
 	UnityEngine.UI.Text mapMission;
@@ -214,6 +214,11 @@ public class MapControl : MonoBehaviour {
 			currentZone.startQuest1 = false;
 		}
 
+		if (currentZone.startQuest2) {
+			PlayQuest2();
+			currentZone.startQuest2 = false;
+		}
+
 		if (currentZone.GenerateQuestMonster) {
 		
 			currentZone.GeneratePlaceMonster();
@@ -266,14 +271,17 @@ public class MapControl : MonoBehaviour {
 
 	}
 
-	public void SetQuestActive()
+	public void PlayQuest2()
 	{
-
+		combat.shake.SetTrigger ("Quest2");
 	}
+
 
 	public void SetQuestInactive()
 	{
 		currentZone.questIsActive = false;
+		currentZone.quest2IsActive = false;
+	
 	}
 
 
@@ -282,7 +290,7 @@ public class MapControl : MonoBehaviour {
 	{
 		mapLocation.text = "Your current location is: " + playerLocation.x + ", " + playerLocation.y+ "."; 
 
-		if (currentZone.questIsActive) {
+		if (currentZone.questIsActive||currentZone.quest2IsActive) {
 			mapMission.text = "Target is " + currentZone.randomXSpawn + ", " + currentZone.randomYSpawn + ".";
 		
 		} else if (noMission) {
@@ -295,6 +303,8 @@ public class MapControl : MonoBehaviour {
 
 	}
 
+
+	//??!! for QUEST1
 	public void ReturnToQuest1Start()
 	{
 		//Determine a place inside the town!
@@ -302,6 +312,8 @@ public class MapControl : MonoBehaviour {
 		playerLocation.y = 7;
 		currentZone.questIsActive = false;
 	}
+
+
 
 	void CombatCheck()
 	{
@@ -434,9 +446,8 @@ public class MapControl : MonoBehaviour {
 
     public void GoDirection(int xDir, int yDir)
     {
-		//for the exploring transitions.
-
-		int tempCombatCheck = Random.Range (1, 100);
+		//used to check if there is a random monster spawn when you move
+		int tempCombatCheck = Random.Range (1, 9);
 		Debug.Log (tempCombatCheck + "random combat check number");
 		if ( tempCombatCheck < 10) {
 			combat.InitiateCombat (combat.GenerateMonster ());
