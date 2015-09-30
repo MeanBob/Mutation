@@ -59,7 +59,7 @@ public class CharacterPage : MonoBehaviour {
 	public int skillTrainingLevel2;
 	public int skillTrainingLevel3;
 	public int skillTrainingLevel4;
-	public int skillTrainingLevel5;
+	//public int skillTrainingLevel5;
 	
 	public bool canTrack;
 	public bool canForage;
@@ -265,6 +265,7 @@ public class CharacterPage : MonoBehaviour {
 		UpdateMoney (money);
 		UpdateExpPoints (9);
 		LevelUp ();
+		leveledUp = false;
 		//previous = currentLevel;
 
 
@@ -404,15 +405,15 @@ public class CharacterPage : MonoBehaviour {
 			StubButtonObject.SetActive(false);}
 		else if (canForage)
 		{
-			combatControl.forageButton.gameObject.SetActive(false);
+			learnForageButton.gameObject.SetActive(false);
 		}
 		else if (canTrack)
 		{
-			combatControl.trapButton.gameObject.SetActive(false);
+			learnTrapButton.gameObject.SetActive(false);
 		}
 		else if (canRepair)
 		{
-			combatControl.repairButton.gameObject.SetActive(false);
+			learnRepairButton.gameObject.SetActive(false);
 		}
 
 	}
@@ -425,15 +426,14 @@ public class CharacterPage : MonoBehaviour {
 
 	public void AwareOfLevelUp()
 	{
-		//winPopUpPanel.SetActive (true);
-		//powerUpPanel.SetActive(true);
-		if (currentLevel != skillTrainingLevel1 || currentLevel!=skillTrainingLevel2 || currentLevel!=skillTrainingLevel3
-		|| currentLevel!=skillTrainingLevel4 || currentLevel!=skillTrainingLevel5) {
-			Debug.Log ("not level2");
-			powerUpPanel.SetActive(false);
-			//winPopUpPanel.SetActive (false);
+
+		if (currentLevel == skillTrainingLevel1 || currentLevel== skillTrainingLevel2|| currentLevel==skillTrainingLevel3
+		|| currentLevel==skillTrainingLevel4) {
+		
+			powerUpPanel.SetActive(true);
+			winPopUpPanel.SetActive(false);
 			leveledUp = false;
-			combatControl.shake.SetTrigger ("AwareOfLevel");
+
 		} 
 		else {
 			winPopUpPanel.SetActive(false);
@@ -441,11 +441,7 @@ public class CharacterPage : MonoBehaviour {
 			leveledUp = false;
 			combatControl.shake.SetTrigger("AwareOfLevel");
 		} 
-		//combatControl.shake.SetTrigger ("AwareOfLevel");
-		//winPopUpPanel.SetActive (true);
-		
-		//ui.winDescriptionPanel.SetActive (false);
-		//Debug.Log ("PPressedCLose");
+
 	}
 	void LevelUp()
 	{
@@ -457,7 +453,7 @@ public class CharacterPage : MonoBehaviour {
 		if(currentLevel > previous)
 		{
 			//ui.winDescriptionPanel.SetActive (true);
-			combatControl.shake.Play("LevelUp");
+
 			//combatControl.shake.SetTrigger("HasLeveledUp");
 			leveledUp = true;
 
@@ -467,40 +463,37 @@ public class CharacterPage : MonoBehaviour {
 			allocatablePointsText.text = currentNumberOfAllocatablePoints.ToString();
 
 			if (currentLevel==skillTrainingLevel1) {
-				powerUpPanel.SetActive(true);
+				combatControl.shake.Play("KilledMonster");
+				//powerUpPanel.SetActive(true);
 				CheckForAbilitiesWhenLeveledUp();
+
 			}
 			else if (currentLevel==skillTrainingLevel2) {
-				powerUpPanel.SetActive(true);
+				combatControl.shake.Play("KilledMonster");
+				//powerUpPanel.SetActive(true);
 				CheckForAbilitiesWhenLeveledUp();
 
 			}
 			else if (currentLevel==skillTrainingLevel3)
-			{
+			{combatControl.shake.Play("KilledMonster");
 				combatControl.tier1Monsters = false;
 				combatControl.tier2Monsters = true;
 
-				powerUpPanel.SetActive(true);
+				//powerUpPanel.SetActive(true);
 				CheckForAbilitiesWhenLeveledUp();
 			}
 			else if (currentLevel==skillTrainingLevel4)
 			{
-				
+				combatControl.shake.Play("KilledMonster");
 				//combatControl.tier2Monsters=false;
 				//combatControl.tier3Monsters=true;
-				powerUpPanel.SetActive(true);
-				CheckForAbilitiesWhenLeveledUp();
-			}
-			else if (currentLevel==skillTrainingLevel5)
-			{
-				
-				//combatControl.tier2Monsters=false;
-				//combatControl.tier3Monsters=true;
-				powerUpPanel.SetActive(true);
+				//powerUpPanel.SetActive(true);
 				CheckForAbilitiesWhenLeveledUp();
 			}
 			else 
-			{powerUpPanel.SetActive(false);}
+			{powerUpPanel.SetActive(false);
+			
+			}
 		}
 			previous = currentLevel;
 		

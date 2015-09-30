@@ -269,8 +269,24 @@ public class CombatControl : MonoBehaviour {
 	}
 	public void ShowVictoryState()
 	{ 
-		//combatOn = false;
-		 
+			//combatOn = false;
+			//shake.Play("KilledMonster");
+			if (playerCharacter.leveledUp == true) 
+			{
+			Debug.Log("LeveledUp");
+			shake.Play("KilledMonster");
+			shake.SetTrigger ("Victory");
+			expEarned.text = "";
+			monsterKilled.text = currentMonster.GetVictoryText ();
+
+			
+			int tempV = Random.Range (0, 5);
+			int tempV2 = Random.Range (0, 5);
+			lootGained.text = "You " + victoryVerbs [tempV] + " off <color=#EE3854>" + currentMonster.GetName ().ToLower () + " meat</color>, then " + victoryVerbs2 [tempV2] + " it in your cooler.";
+			//shake.ResetTrigger ("AwareOfLevel");
+			} 
+			else {
+			Debug.Log("NotLeveledUp");
 			shake.SetTrigger ("Victory");
 			//ui.victoryPanel.SetActive (true);
 			expEarned.text = "";
@@ -279,8 +295,10 @@ public class CombatControl : MonoBehaviour {
 			int tempV = Random.Range (0, 5);
 			int tempV2 = Random.Range (0, 5);
 			lootGained.text = "You " + victoryVerbs [tempV] + " off <color=#EE3854>" + currentMonster.GetName ().ToLower () + " meat</color>, then " + victoryVerbs2 [tempV2] + " it in your cooler.";
-
+		}
 	}
+
+
 	public void CloseVictoryState()
 	{
 
@@ -315,7 +333,7 @@ public class CombatControl : MonoBehaviour {
 				playerCharacter.skillsList.text += "Cranium Stunt.\n";
 			}
 			if (playerCharacter.hasStealLife) {
-				playerCharacter.skillsList.text += "Appropriate Essence."; 
+				playerCharacter.skillsList.text += "Appropriate Essence.\n"; 
 			}
 		}
 	}
@@ -711,12 +729,14 @@ public class CombatControl : MonoBehaviour {
 
 			}
 			else{ 
+
 				playerCharacter.UpdateExpPoints(currentMonster.GetExpPointsGained());
 				playerCharacter.UpdateMoney(currentMonster.GetMoneyGained());
 				combatOn = false;
 				//Update Inventory here
 				ItemToolBox.AddItem(currentMonster.GetMonsterMeat());
 				//VictoryWindow
+
 				ShowVictoryState();
 				
 				

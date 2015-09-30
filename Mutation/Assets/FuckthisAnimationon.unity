@@ -4089,17 +4089,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828394020}
-        m_MethodName: PlayAwareOfLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 828394025}
         m_MethodName: LearnTrap
         m_Mode: 1
@@ -7565,7 +7554,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 988230281}
   m_HandleRect: {fileID: 988230280}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8394,17 +8383,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828394020}
-        m_MethodName: PlayAwareOfLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 828394025}
         m_MethodName: LearnStun
         m_Mode: 1
@@ -8837,19 +8815,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 960.000061
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -367.499878
+      value: -366.846802
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 1870.00012
+      value: 1870
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 122.199959
+      value: 121.938713
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchorMin.x
@@ -10022,17 +10000,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828394020}
-        m_MethodName: PlayAwareOfLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 828394025}
         m_MethodName: LearnLifeSteal
         m_Mode: 1
@@ -10184,17 +10151,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828394020}
-        m_MethodName: PlayAwareOfLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 828394025}
         m_MethodName: learnForage
         m_Mode: 1
@@ -10952,17 +10908,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828394020}
-        m_MethodName: PlayAwareOfLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 828394025}
         m_MethodName: LearnRepair
         m_Mode: 1
@@ -12812,7 +12757,6 @@ MonoBehaviour:
   skillTrainingLevel2: 3
   skillTrainingLevel3: 4
   skillTrainingLevel4: 5
-  skillTrainingLevel5: 6
   canTrack: 0
   canForage: 0
   canRepair: 0
