@@ -9,6 +9,7 @@ public class Zone : ScriptableObject {
 	Canvas canvas;
 	UnityEngine.UI.Image backgroundColor;
 	public string pass;
+	public string passBlock;
 	//MapControl mapControl;
 	//CombatControl combatScript;
 
@@ -71,18 +72,6 @@ public class Zone : ScriptableObject {
 			description += "You cannot travel beyond this point... The radiation is too strong.";
 			return false;
 		} 
-
-//else if (pass == "Impassable") {
-//	int tempNumber = Random.Range (0, 3);
-//	if (tempNumber == 0) {
-//		description += "You cannot go that direction.";
-//	} else if (tempNumber == 1)
-//		description += "You've looped back.";
-//	else
-//		description += "You feel disoriented.";
-//
-//	return false;
-//}
 
 		//BLOCKS
 		else if (pass == "Chasm")
@@ -334,6 +323,33 @@ public class Zone : ScriptableObject {
 				return false;
 		}
 	}
+
+	public bool CarsInThatDirection (int xD, int yD)
+	{
+			if( nodeArray[xD][yD].GetDescription()=="CarStack")
+				return true;
+			else 
+				return false;
+	}
+
+	public bool ChasmInThatDirection (int xD, int yD)
+	{
+		if(nodeArray[xD][yD].GetDescription()=="Chasm")
+			return true;
+		else 
+			return false;
+	}
+
+	public bool FreewayInThatDirection (int xD, int yD)
+	{
+		if(nodeArray[xD][yD].GetDescription()=="Freeway")
+			return true;
+		else 
+			return false;
+	}
+
+
+
 
 
 	//Used for Quest1  Adjust random numbers for the spawn location

@@ -7554,7 +7554,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 988230281}
   m_HandleRect: {fileID: 988230280}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8815,19 +8815,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -366.846802
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 1870
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 121.938713
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchorMin.x
@@ -8835,7 +8835,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchorMax.x
@@ -8843,7 +8843,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22453476, guid: f61d55ed4e73b0e4fbf8de0199370ae1, type: 2}
       propertyPath: m_Pivot.x
@@ -12648,6 +12648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingText: {fileID: 0}
   northButton: {fileID: 860729039}
+  canMoveNorth: 1
   southButton: {fileID: 1502732621}
   eastButton: {fileID: 328838397}
   westButton: {fileID: 1954859604}

@@ -32,9 +32,14 @@ public class MapControl : MonoBehaviour {
 	Monster[] sensedMonsters;
 
 	public Button northButton;
+	public bool canMoveNorth = true;
 	public Button southButton;
+	bool canMoveSouth = true;
 	public Button eastButton;
+	bool canMoveEast = true;
 	public Button westButton;
+	bool canMoveWest = true;
+
 	bool tryingToFlee;
 
 	string[] verbs;
@@ -122,6 +127,7 @@ public class MapControl : MonoBehaviour {
             currentZone.AddNodeColumn(tempNodeArray, i);
         }
 		GenerateZoneMonsters();
+
 	}
 
 	void SetBackgroundImage(string temp)
@@ -194,10 +200,18 @@ public class MapControl : MonoBehaviour {
 
 	public void NavButtonsOn()
 	{
-		northButton.interactable = true;
-		southButton.interactable = true;
-		eastButton.interactable =  true;
-		westButton.interactable =  true;
+		if (canMoveNorth) {
+			northButton.interactable = true;
+		}
+		if (canMoveSouth) {
+			southButton.interactable = true;
+		}
+		if (canMoveEast) {
+			eastButton.interactable = true;
+		}
+		if (canMoveWest) {
+			westButton.interactable = true;
+		}
 	}
 
 	//CCHEK HERE!!
@@ -244,20 +258,43 @@ public class MapControl : MonoBehaviour {
 
 
 
-	if (combat.currentPlayerReadiness <= combat.maxReadiness)
+	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveNorth) 
 		{
+			northButton.interactable = true;
+
+		} 
+		else {
 			northButton.interactable = false;
+			Debug.Log("CANNOT MOVE NORTH");
+		}
+	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveSouth) 
+		{
+			southButton.interactable = true;
+		} 
+		else {
 			southButton.interactable = false;
+		}
+	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveEast) 
+		{
+			eastButton.interactable = true;
+		} 
+		else {
 			eastButton.interactable = false;
+		}
+	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveWest) 
+		{
+			westButton.interactable = true;
+		} 
+		else {
 			westButton.interactable = false;
 		}
-		else {
-			northButton.interactable = true;
-			southButton.interactable = true;
-			eastButton.interactable =  true;
-			westButton.interactable =  true;
-		}
 	}
+
+	
+
+
+
+
 
 
 	//generateQuestMonster?
@@ -492,6 +529,134 @@ public class MapControl : MonoBehaviour {
 		if(playerCharacter.GetIntelligence()>=76)
 			intelligenceCategory = 3;
 
+
+		//DISABLES MOVEMENT ARROWS for CarStacksWalls
+		if (currentZone.CarsInThatDirection (playerLocation.x - 1, playerLocation.y) == true) {
+			canMoveNorth = false;
+			northButton.interactable = false;
+
+			movingText.text += "\nThe North is blocked by large cars.";
+		} else {
+			canMoveNorth= true;
+			northButton.interactable = true;
+		}
+
+		if (currentZone.CarsInThatDirection (playerLocation.x + 1, playerLocation.y) == true) {
+
+			canMoveSouth = false;
+			southButton.interactable = false;
+			movingText.text += "\nThe South is blocked by large cars.";
+		} else {
+			canMoveSouth = true;
+			southButton.interactable=true;
+		}
+
+		if (currentZone.CarsInThatDirection (playerLocation.x, playerLocation.y+1) == true) {
+			canMoveEast = false;
+			eastButton.interactable = false;
+			movingText.text += "\nThe East is blocked by large cars.";
+		} else {
+			canMoveEast=true;
+			eastButton.interactable=true;
+		}
+		if (currentZone.CarsInThatDirection (playerLocation.x, playerLocation.y -1) == true) {
+			canMoveWest=false;
+			westButton.interactable=false;
+			movingText.text += "\nThe West is blocked by large cars.";
+		} else {
+			canMoveWest=true;
+			westButton.interactable=true;
+		}
+
+		//DISABLES MOVE ARROWS FOR CHASM
+
+		if (currentZone.ChasmInThatDirection (playerLocation.x - 1, playerLocation.y) == true) {
+			canMoveNorth = false;
+			northButton.interactable = false;
+
+			canMoveNorth = false;
+			Debug.Log("CANNOT MOVE NORTH");
+			movingText.text += "\nThe North is blocked by a chasm.";
+		} else {
+
+			canMoveNorth= true;
+			northButton.interactable = true;
+		}
+		
+		if (currentZone.ChasmInThatDirection (playerLocation.x + 1, playerLocation.y) == true) {
+			
+			canMoveSouth = false;
+			southButton.interactable = false;
+			movingText.text += "\nThe South is blocked by a chasm.";
+		} else {
+			canMoveSouth = true;
+			southButton.interactable=true;
+		}
+		
+		if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y+1) == true) {
+			canMoveEast = false;
+			eastButton.interactable = false;
+			movingText.text += "\nThe East is blocked by a chasm.";
+		} else {
+			canMoveEast=true;
+			eastButton.interactable=true;
+		}
+		if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y -1) == true) {
+			canMoveWest=false;
+			westButton.interactable=false;
+			movingText.text += "\nThe West is blocked by a chasm.";
+		} else {
+			canMoveWest=true;
+			westButton.interactable=true;
+		}
+
+		//DISABLES MOVE ARROWS FOR FREEWAY
+		
+		if (currentZone.FreewayInThatDirection (playerLocation.x - 1, playerLocation.y) == true) {
+			canMoveNorth = false;
+			northButton.interactable = false;
+			movingText.text += "\nThe North is blocked by a chasm.";
+		} else {
+			canMoveNorth= true;
+			northButton.interactable = true;
+		}
+		
+		if (currentZone.FreewayInThatDirection (playerLocation.x + 1, playerLocation.y) == true) {
+			
+			canMoveSouth = false;
+			southButton.interactable = false;
+			movingText.text += "\nThe South is blocked by a chasm.";
+		} else {
+			canMoveSouth = true;
+			southButton.interactable=true;
+		}
+		
+		if (currentZone.FreewayInThatDirection (playerLocation.x, playerLocation.y+1) == true) {
+			canMoveEast = false;
+			eastButton.interactable = false;
+			movingText.text += "\nThe East is blocked by a chasm.";
+		} else {
+			canMoveEast=true;
+			eastButton.interactable=true;
+		}
+		if (currentZone.FreewayInThatDirection (playerLocation.x, playerLocation.y -1) == true) {
+			canMoveWest=false;
+			westButton.interactable=false;
+			movingText.text += "\nThe West is blocked by a chasm.";
+		} else {
+			canMoveWest=true;
+			westButton.interactable=true;
+		}
+
+
+
+
+
+
+
+
+
+
 		if ((currentZone.doesMonsterExist(playerLocation.x-2,playerLocation.y) 
 		     || currentZone.doesMonsterExist(playerLocation.x-1,playerLocation.y) 
 		     || currentZone.doesMonsterExist(playerLocation.x+2,playerLocation.y)
@@ -552,6 +717,11 @@ public class MapControl : MonoBehaviour {
 	}
 
 
+
+	void CheckingForPossibleMovement()
+	{
+
+	}
 
 	public string SetSensoryDescription(int intelligenceCategory,string direction1, string direction2,string direction3, string direction4)
 	{		
