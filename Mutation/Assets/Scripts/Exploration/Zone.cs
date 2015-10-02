@@ -7,6 +7,7 @@ public class Zone : ScriptableObject {
     Node[][] nodeArray;
 	public string description;
 	Canvas canvas;
+	MapControl mapControl;
 	UnityEngine.UI.Image backgroundColor;
 	public string pass;
 	public string passBlock;
@@ -66,7 +67,9 @@ public class Zone : ScriptableObject {
 
     public bool AttemptPlayerMove(int xDir, int yDir, ref string description)
     {
-		pass = nodeArray [xDir] [yDir].GetDescription ();
+		pass = nodeArray [xDir] [yDir].GetDescription();
+
+
 		if (xDir < 0 || xDir > nodeArray.Length - 1
 			|| yDir < 0 || yDir > nodeArray [xDir].Length - 1) {
 			description += "You cannot travel beyond this point... The radiation is too strong.";
@@ -76,44 +79,23 @@ public class Zone : ScriptableObject {
 		//BLOCKS
 		else if (pass == "Chasm")
 		{onHealer = false;
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0){
-				description+= 
-
-					"<color=#3B0E15>Blocked Chasm</color>\nThe chasm is full of radiation.\n";}
-			else if (tempNumber==1){
-				description+=  
-
-					"<color=#3B0E15>Blocked Chasm</color>\nThe earth was torn and out came radiation.\n";}
-			else{
-				description+=
-
-					"<color=#3B0E15>Blocked Chasm</color>\nIt's not worth the repercussions.\n";}
 			return false;
 		}
 
 
 		else if (pass == "Freeway")
 		{onHealer = false;
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "<color=#3B0E15>Blocked Freeway</color>\nBroken concrete and wild rebar make for a dangerous path.\n";}
-			else if (tempNumber==1)
-				description = "<color=#3B0E15>Blocked Freeway</color>\nThis freeway is falling apart.\n";
-			else
-				description="<color=#3B0E15>Blocked Freeway</color>\nLarge, concrete blocks impede travel.\n";
+
+			return false;
+		}
+		else if (pass == "Building")
+		{onHealer = false;
+
 			return false;
 		}
 		else if (pass == "CarStack")
 		{
 			onHealer = false;
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "<color=#3B0E15>Blocked</color>\nNo getting over this wall of cars.\n";}
-			else if (tempNumber==1)
-				description = "<color=#3B0E15>Blocked</color>\nToo many cars.\n";
-			else
-				description="<color=#3B0E15>Blocked</color>\nA wall of cars.\n";
 			return false;
 		}
 
@@ -122,49 +104,25 @@ public class Zone : ScriptableObject {
 		else if (pass == "MtWa")
 		{
 			onHealer = false;
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "<color=#06A124>Mt. Washington</color>\nYou tear through foliage growing from rubble.";}
-			else if (tempNumber==1)
-				description = "<color=#06A124>Mt. Washington</color>\nYou are always close to lost around here.";
-			else
-				description="<color=#06A124>Mt. Washington</color>\nYou duck under wires and vines.";
+			description += "<color=#06A124><size=130>Mt. Washington\n</size></color>";
 			return true;
 		}
 
 		else if (pass == "Road")
 		{
 			onHealer = false;
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "Blacktop";}
-			else if (tempNumber==1)
-				description = "Blacktop";
-			else
-				description="Blacktop";
+			description += "<color=#FFFBD8>Road\n</color>";
 			return true;
 		}
 		else if (pass == "Bridge")
 		{onHealer = false;
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "<color=#625F21>Bridge</color>\nYou carefully walk on.";}
-			else if (tempNumber==1)
-				description = "<color=#625F21>Bridge</color>\nSlow and steady.";
-			else
-				description="<color=#625F21>Bridge</color>\nLittle rocks tumble into the green water below.";
+			description="<color=#625F21>Bridge</color>\n";
 			return true;
 		}
 		else if (pass == "DownTown")
 		{
 			onHealer = false;
-			int tempNumber = Random.Range(0,3);
-			if (tempNumber==0)
-			{description = "A tree grows out from the roof of a building.";}
-			else if (tempNumber==1)
-				description = "Broken glass and debris litters the sidewalk.";
-			else
-				description="Everything is brown and ugly.";
+			description="<color=#625F21>Downtown</color>\n";
 			return true;
 		}
 
@@ -324,14 +282,23 @@ public class Zone : ScriptableObject {
 		}
 	}
 
-	public bool CarsInThatDirection (int xD, int yD)
+	//PLACES
+	public bool MtWaInThatDirection (int xD, int yD)
 	{
-			if( nodeArray[xD][yD].GetDescription()=="CarStack")
-				return true;
-			else 
-				return false;
+		if( nodeArray[xD][yD].GetDescription()=="MtWa")
+			return true;
+		else 
+			return false;
+	}
+	public bool RoadInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Road")
+			return true;
+		else 
+			return false;
 	}
 
+	//BLOCKS
 	public bool ChasmInThatDirection (int xD, int yD)
 	{
 		if(nodeArray[xD][yD].GetDescription()=="Chasm")
@@ -339,15 +306,6 @@ public class Zone : ScriptableObject {
 		else 
 			return false;
 	}
-
-	public bool FreewayInThatDirection (int xD, int yD)
-	{
-		if(nodeArray[xD][yD].GetDescription()=="Freeway")
-			return true;
-		else 
-			return false;
-	}
-
 
 
 

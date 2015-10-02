@@ -9,6 +9,8 @@ struct Point
 
 public class MapControl : MonoBehaviour {    
 
+	public bool showCurrentLocation = false;
+
 	CharacterPage playerCharacter;
 	ExplorationText explorationText;
     UIControl ui;
@@ -202,6 +204,7 @@ public class MapControl : MonoBehaviour {
 	{
 		if (canMoveNorth) {
 			northButton.interactable = true;
+
 		}
 		if (canMoveSouth) {
 			southButton.interactable = true;
@@ -223,6 +226,14 @@ public class MapControl : MonoBehaviour {
 
 	void Update()
 	{
+
+		if (showCurrentLocation) 
+		{
+			Debug.Log(playerLocation.x +","+ playerLocation.y);
+
+			showCurrentLocation=false;
+		}
+
 		if (currentZone.startQuest1) {
 			PlayQuest1();
 			currentZone.startQuest1 = false;
@@ -261,11 +272,9 @@ public class MapControl : MonoBehaviour {
 	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveNorth) 
 		{
 			northButton.interactable = true;
-
 		} 
 		else {
 			northButton.interactable = false;
-			Debug.Log("CANNOT MOVE NORTH");
 		}
 	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveSouth) 
 		{
@@ -484,14 +493,14 @@ public class MapControl : MonoBehaviour {
     public void GoDirection(int xDir, int yDir)
     {
 		//used to check if there is a random monster spawn when you move
-		int tempCombatCheck = Random.Range (1, 9);
-		Debug.Log (tempCombatCheck + "random combat check number");
+		int tempCombatCheck = Random.Range (1, 99);
+
 		if ( tempCombatCheck < 10) {
 			combat.InitiateCombat (combat.GenerateMonster ());
 		}
 		
 
-		SetMoveDescription ();
+		//SetMoveDescription ();
 		
 
         //Move Direction
@@ -513,6 +522,186 @@ public class MapControl : MonoBehaviour {
         {
             playerLocation.x += xDir;
             playerLocation.y += yDir;
+
+			//MTWA
+			if (currentZone.MtWaInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "Hills to the left.\n";}
+				else if (rN==1)
+				{nodeDescription += "A steep hill is to the left.\n";}
+				else if (rN==2)
+				{nodeDescription += "The hills to the left look like a little mountian.\n";}
+				else if (rN==3)
+				{nodeDescription += "Hills on the left.\n";}
+			}
+			if (currentZone.MtWaInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "Hills to the right.\n";}
+				else if (rN==1)
+				{nodeDescription += "A steep hill is to the right.\n";}
+				else if (rN==2)
+				{nodeDescription += "The hills to the right look like a little mountian.\n";}
+				else if (rN==3)
+				{nodeDescription += "Hills on the right.\n";}
+			}
+			if (currentZone.MtWaInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "Hills behind you.\n";}
+				else if (rN==1)
+				{nodeDescription += "A steep hill is behind you.\n";}
+				else if (rN==2)
+				{nodeDescription += "The hills behind you look like a little mountian.\n";}
+				else if (rN==3)
+				{nodeDescription += "Hills roll out behind you.\n";}
+			}
+			if (currentZone.MtWaInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "Hills up ahead.\n";}
+				else if (rN==1)
+				{nodeDescription += "A steep hill is in front of you.\n";}
+				else if (rN==2)
+				{nodeDescription += "The hills ahead look like a little mountian.\n";}
+				else if (rN==3)
+				{nodeDescription += "You are approaching hills.\n";}
+			}
+			//ROAD
+			if (currentZone.RoadInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "A road is to your left.\n";}
+				else if (rN==1)
+				{nodeDescription += "A dirty street is left.\n";}
+				else if (rN==2)
+				{nodeDescription += "To your left is a road.\n";}
+				else if (rN==3)
+				{nodeDescription += "Left of you is a road.\n";}
+			}
+			if (currentZone.RoadInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "A road is to your right.\n";}
+				else if (rN==1)
+				{nodeDescription += "A dirty street is right.\n";}
+				else if (rN==2)
+				{nodeDescription += "To your right is a road.\n";}
+				else if (rN==3)
+				{nodeDescription += "Right of you is a road.\n";}
+			}
+			if (currentZone.RoadInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "A road is up ahead.\n";}
+				else if (rN==1)
+				{nodeDescription += "A dirty street is ahead.\n";}
+				else if (rN==2)
+				{nodeDescription += "Up ahead is a road.\n";}
+				else if (rN==3)
+				{nodeDescription += "Ahead of you is a road.\n";}
+			}
+			if (currentZone.RoadInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
+				int rN = Random.Range(0,4);
+				if (rN==0)
+				{nodeDescription += "A road is behind you.\n";}
+				else if (rN==1)
+				{nodeDescription += "A dirty street is behind you.\n";}
+				else if (rN==2)
+				{nodeDescription += "Behind you is a road.\n";}
+				else if (rN==3)
+				{nodeDescription += "Behind is a street.\n";}
+			}
+
+
+
+
+				//FOR BLOCKING
+				if (currentZone.ChasmInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
+					{
+						canMoveSouth = false;
+						southButton.interactable = false;
+				
+						if(currentZone.ChasmInThatDirection(playerLocation.x + 1, playerLocation.y))
+						{
+							int rN = Random.Range(0,4);
+							if (rN==0)
+							{nodeDescription += "South is blocked by a chasm.\n";}
+							else if (rN==1)
+							{nodeDescription += "A chasm spans the south.\n";}
+							else if (rN==2)
+							{nodeDescription += "A large hole to the south is too dangerous to cross.\n";}
+							else if (rN==3)
+							{nodeDescription += "Going south is impossible because of a large chasm.\n";}
+						}	
+					} 
+					else {
+						canMoveSouth = true;
+						southButton.interactable=true;
+					}
+
+				if (currentZone.ChasmInThatDirection (playerLocation.x - 1, playerLocation.y)
+				    == true) {
+					canMoveNorth = false;
+					northButton.interactable = false;
+					
+					if(currentZone.ChasmInThatDirection(playerLocation.x - 1, playerLocation.y)){
+					int rN = Random.Range(0,4);
+					if (rN==0)
+					{nodeDescription += "North is blocked by a chasm.\n";}
+					else if (rN==1)
+					{nodeDescription += "A chasm spans the north.\n";}
+					else if (rN==2)
+					{nodeDescription += "A large hole to the north is too dangerous to cross.\n";}
+					else if (rN==3)
+					{nodeDescription += "Going north is impossible because of a large chasm.\n";}
+				}
+					
+				} else {
+					canMoveNorth = true;
+					northButton.interactable=true;
+				}
+
+				if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y+1)
+				    == true) {
+					canMoveEast = false;
+					eastButton.interactable = false;
+				if(currentZone.ChasmInThatDirection(playerLocation.x, playerLocation.y+1)){
+					int rN = Random.Range(0,4);
+					if (rN==0)
+					{nodeDescription += "East is blocked by a chasm.\n";}
+					else if (rN==1)
+					{nodeDescription += "A chasm spans the east.\n";}
+					else if (rN==2)
+					{nodeDescription += "A large hole to the east is too dangerous to cross.\n";}
+					else if (rN==3)
+					{nodeDescription += "Going east is impossible because of a large chasm.\n";}
+				}
+					
+				} else {
+					canMoveEast=true;
+					eastButton.interactable=true;
+				}
+				if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y-1)
+				    == true) {
+					canMoveWest=false;
+					westButton.interactable=false;
+				if(currentZone.ChasmInThatDirection(playerLocation.x , playerLocation.y- 1)){
+					int rN = Random.Range(0,4);
+					if (rN==0)
+					{nodeDescription += "West is blocked by a chasm.\n";}
+					else if (rN==1)
+					{nodeDescription += "A chasm spans the west.\n";}
+					else if (rN==2)
+					{nodeDescription += "A large hole to the west is too dangerous to cross.\n";}
+					else if (rN==3)
+					{nodeDescription += "Going west is impossible because of a large chasm.\n";}
+				}					
+				} else {
+					canMoveWest=true;
+					westButton.interactable=true;
+				}
         }
         else
         {
@@ -520,6 +709,63 @@ public class MapControl : MonoBehaviour {
         }
 
 
+
+
+		//FOR MOVE TEXT
+		if (currentZone.MtWaInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#06A124>You move through some vines and bushes</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#06A124>The gravel is loose as you walk.</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#06A124>You head up the hill.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#06A124>You head down the hillside.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#06A124>You push aside some branches.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#06A124>You hop over a bush.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#06A124>You slip a bit on the loose dirt.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#06A124>The heat of the day is relentless.</color>\n";
+			else
+				movingText.text ="<color=#06A124>A palm tree looks like it's been cut by claws.</color>\n";
+		}
+
+		if (currentZone.RoadInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#FFFBD8>You stick to the sidewalk.</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#FFFBD8>The gravel is loose as you walk.</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#FFFBD8>You avoid a trash pile.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#FFFBD8>You step up a curb.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#FFFBD8>Trash flutters by.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#FFFBD8>You hop over a pothole.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#FFFBD8>You slip a bit on the loose dirt.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#FFFBD8>The heat of the day is relentless.</color>\n";
+			else
+				movingText.text ="<color=#FFFBD8>A palm tree looks like it's been cut by claws.</color>\n";
+		}
+
+
+
+
+
+
+
+
+		//For INT TRACKING
 		if(playerCharacter.GetIntelligence()>=1 && playerCharacter.GetIntelligence()<=25)
 			intelligenceCategory = 0;
 		if(playerCharacter.GetIntelligence()>=26 && playerCharacter.GetIntelligence()<=50)
@@ -528,134 +774,6 @@ public class MapControl : MonoBehaviour {
 			intelligenceCategory = 2;
 		if(playerCharacter.GetIntelligence()>=76)
 			intelligenceCategory = 3;
-
-
-		//DISABLES MOVEMENT ARROWS for CarStacksWalls
-		if (currentZone.CarsInThatDirection (playerLocation.x - 1, playerLocation.y) == true) {
-			canMoveNorth = false;
-			northButton.interactable = false;
-
-			movingText.text += "\nThe North is blocked by large cars.";
-		} else {
-			canMoveNorth= true;
-			northButton.interactable = true;
-		}
-
-		if (currentZone.CarsInThatDirection (playerLocation.x + 1, playerLocation.y) == true) {
-
-			canMoveSouth = false;
-			southButton.interactable = false;
-			movingText.text += "\nThe South is blocked by large cars.";
-		} else {
-			canMoveSouth = true;
-			southButton.interactable=true;
-		}
-
-		if (currentZone.CarsInThatDirection (playerLocation.x, playerLocation.y+1) == true) {
-			canMoveEast = false;
-			eastButton.interactable = false;
-			movingText.text += "\nThe East is blocked by large cars.";
-		} else {
-			canMoveEast=true;
-			eastButton.interactable=true;
-		}
-		if (currentZone.CarsInThatDirection (playerLocation.x, playerLocation.y -1) == true) {
-			canMoveWest=false;
-			westButton.interactable=false;
-			movingText.text += "\nThe West is blocked by large cars.";
-		} else {
-			canMoveWest=true;
-			westButton.interactable=true;
-		}
-
-		//DISABLES MOVE ARROWS FOR CHASM
-
-		if (currentZone.ChasmInThatDirection (playerLocation.x - 1, playerLocation.y) == true) {
-			canMoveNorth = false;
-			northButton.interactable = false;
-
-			canMoveNorth = false;
-			Debug.Log("CANNOT MOVE NORTH");
-			movingText.text += "\nThe North is blocked by a chasm.";
-		} else {
-
-			canMoveNorth= true;
-			northButton.interactable = true;
-		}
-		
-		if (currentZone.ChasmInThatDirection (playerLocation.x + 1, playerLocation.y) == true) {
-			
-			canMoveSouth = false;
-			southButton.interactable = false;
-			movingText.text += "\nThe South is blocked by a chasm.";
-		} else {
-			canMoveSouth = true;
-			southButton.interactable=true;
-		}
-		
-		if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y+1) == true) {
-			canMoveEast = false;
-			eastButton.interactable = false;
-			movingText.text += "\nThe East is blocked by a chasm.";
-		} else {
-			canMoveEast=true;
-			eastButton.interactable=true;
-		}
-		if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y -1) == true) {
-			canMoveWest=false;
-			westButton.interactable=false;
-			movingText.text += "\nThe West is blocked by a chasm.";
-		} else {
-			canMoveWest=true;
-			westButton.interactable=true;
-		}
-
-		//DISABLES MOVE ARROWS FOR FREEWAY
-		
-		if (currentZone.FreewayInThatDirection (playerLocation.x - 1, playerLocation.y) == true) {
-			canMoveNorth = false;
-			northButton.interactable = false;
-			movingText.text += "\nThe North is blocked by a chasm.";
-		} else {
-			canMoveNorth= true;
-			northButton.interactable = true;
-		}
-		
-		if (currentZone.FreewayInThatDirection (playerLocation.x + 1, playerLocation.y) == true) {
-			
-			canMoveSouth = false;
-			southButton.interactable = false;
-			movingText.text += "\nThe South is blocked by a chasm.";
-		} else {
-			canMoveSouth = true;
-			southButton.interactable=true;
-		}
-		
-		if (currentZone.FreewayInThatDirection (playerLocation.x, playerLocation.y+1) == true) {
-			canMoveEast = false;
-			eastButton.interactable = false;
-			movingText.text += "\nThe East is blocked by a chasm.";
-		} else {
-			canMoveEast=true;
-			eastButton.interactable=true;
-		}
-		if (currentZone.FreewayInThatDirection (playerLocation.x, playerLocation.y -1) == true) {
-			canMoveWest=false;
-			westButton.interactable=false;
-			movingText.text += "\nThe West is blocked by a chasm.";
-		} else {
-			canMoveWest=true;
-			westButton.interactable=true;
-		}
-
-
-
-
-
-
-
-
-
 
 		if ((currentZone.doesMonsterExist(playerLocation.x-2,playerLocation.y) 
 		     || currentZone.doesMonsterExist(playerLocation.x-1,playerLocation.y) 
@@ -667,19 +785,18 @@ public class MapControl : MonoBehaviour {
 		     || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y + 1) 
 		     || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+2)) == false)
 		{
-
 			int tempSenceNumber = Random.Range(0,10);
 			if (tempSenceNumber == 0)
 			{
-			sensoryDescription = "You feel alone.";
+			sensoryDescription = "You hear a branch snap in the distance.";
 			}
 			else if (tempSenceNumber == 1)
 			{
-				sensoryDescription = "There is always noise.";
+				sensoryDescription = "A low hum resonates.";
 			}
 			else if (tempSenceNumber == 2)
 			{
-				sensoryDescription = "You take a sip of water.";
+				sensoryDescription = "You brush dirt off your shoulder.";
 			}
 			else if (tempSenceNumber == 3)
 			{
@@ -687,7 +804,6 @@ public class MapControl : MonoBehaviour {
 			}
 			else
 				sensoryDescription = "";
-
 		}
 		else {
 			if(currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+2) || currentZone.doesMonsterExist(playerLocation.x,playerLocation.y+1)){
@@ -704,10 +820,9 @@ public class MapControl : MonoBehaviour {
 				direction4 = "south\n";
 			}
 			sensoryDescription = SetSensoryDescription(intelligenceCategory, direction1, direction2, direction3, direction4);
-
 		}
 
-
+		//REVIEW
 		string temp = currentZone.returnImageAtLocation(playerLocation.x,playerLocation.y);
 		SetBackgroundImage(temp);
 		nodeDescription += "\n" + oldDescription;
@@ -718,10 +833,18 @@ public class MapControl : MonoBehaviour {
 
 
 
-	void CheckingForPossibleMovement()
+	void CheckingForMtWaEast(string hills)
 	{
 
 	}
+
+
+
+
+
+
+
+
 
 	public string SetSensoryDescription(int intelligenceCategory,string direction1, string direction2,string direction3, string direction4)
 	{		
@@ -735,9 +858,9 @@ public class MapControl : MonoBehaviour {
 			else if (temp == 1)
 			{	sensoryDescription = "You feel a wave of heat.";}
 			else if (temp == 2)
-			{	sensoryDescription = "Did that junkpile move?";}
+			{	sensoryDescription = "You feel a tingle in your neck.";}
 			else if (temp == 3)
-			{	sensoryDescription = "That shadow looks different.";}
+			{	sensoryDescription = "A shadow suddenly shifts.";}
 
 			break;
 		case 1:

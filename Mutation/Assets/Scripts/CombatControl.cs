@@ -65,6 +65,8 @@ public class CombatControl : MonoBehaviour {
 
 	public bool KilledNash = false;
 
+
+
 	//MapControl mapControl;
 
 	void Start () 

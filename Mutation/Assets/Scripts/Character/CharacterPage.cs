@@ -143,6 +143,8 @@ public class CharacterPage : MonoBehaviour {
 	public Button learnTrapButton;
 	public Button learnRepairButton;
 
+
+
 	void Start ()
 	{
 
