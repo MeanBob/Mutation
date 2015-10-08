@@ -172,6 +172,11 @@ public class CombatControl : MonoBehaviour {
 		shake.SetTrigger ("AwareOfLevel");
 	}
 
+	public void PlayPing()
+	{
+		shake.Play ("PingingOutCircle");
+	}
+
 	public void PlayFight()
 	{
 		shake.SetTrigger("Fight");

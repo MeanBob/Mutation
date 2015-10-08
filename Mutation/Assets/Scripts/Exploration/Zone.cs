@@ -77,13 +77,13 @@ public class Zone : ScriptableObject {
 		} 
 
 		//BLOCKS
-		else if (pass == "Chasm")
+		else if (pass == "Fence")
 		{onHealer = false;
 			return false;
 		}
 
 
-		else if (pass == "Freeway")
+		else if (pass == "Wall")
 		{onHealer = false;
 
 			return false;
@@ -93,7 +93,7 @@ public class Zone : ScriptableObject {
 
 			return false;
 		}
-		else if (pass == "CarStack")
+		else if (pass == "Stack") //carstack
 		{
 			onHealer = false;
 			return false;
@@ -101,25 +101,25 @@ public class Zone : ScriptableObject {
 
 
 		//PLACES
-		else if (pass == "MtWa")
+		else if (pass == "Alleyway") //MtWa
 		{
 			onHealer = false;
-			description += "<color=#06A124><size=130>Mt. Washington\n</size></color>";
+			description += "<color=#FFFBD8><size=130>Downtown Alley\n</size></color>";
 			return true;
 		}
 
-		else if (pass == "Road")
+		else if (pass == "Street") //road
 		{
-			onHealer = false;
-			description += "<color=#FFFBD8>Road\n</color>";
+			onHealer = false;//add road names??
+			description += "<color=#FFFBD8><size=130>City Streets\n</size></color>";
 			return true;
 		}
-		else if (pass == "Bridge")
+		else if (pass == "Bridge")//bridge
 		{onHealer = false;
 			description="<color=#625F21>Bridge</color>\n";
 			return true;
 		}
-		else if (pass == "DownTown")
+		else if (pass == "DownTown")//downtown
 		{
 			onHealer = false;
 			description="<color=#625F21>Downtown</color>\n";
@@ -299,9 +299,33 @@ public class Zone : ScriptableObject {
 	}
 
 	//BLOCKS
-	public bool ChasmInThatDirection (int xD, int yD)
+	public bool FenceInThatDirection (int xD, int yD)
 	{
-		if(nodeArray[xD][yD].GetDescription()=="Chasm")
+		if(nodeArray[xD][yD].GetDescription()=="Fence")
+			return true;
+		else 
+			return false;
+	}
+
+	public bool WallInThatDirection (int xD, int yD)
+	{
+		if(nodeArray[xD][yD].GetDescription()=="Wall")
+			return true;
+		else 
+			return false;
+	}
+
+	public bool StackInThatDirection (int xD, int yD)
+	{
+		if(nodeArray[xD][yD].GetDescription()=="Stack")
+			return true;
+		else 
+			return false;
+	}
+
+	public bool BuildingInThatDirection (int xD, int yD)
+	{
+		if(nodeArray[xD][yD].GetDescription()=="Building")
 			return true;
 		else 
 			return false;

@@ -22,6 +22,17 @@ public class MapControl : MonoBehaviour {
 
 	public UnityEngine.UI.Text movingText;
 
+	UnityEngine.UI.Text nArrowText;
+	UnityEngine.UI.Text sArrowText;
+	UnityEngine.UI.Text eArrowText;
+	UnityEngine.UI.Text wArrowText;
+
+
+	UnityEngine.UI.Text northText;
+	UnityEngine.UI.Text southText;
+	UnityEngine.UI.Text eastText;
+	UnityEngine.UI.Text westText;
+
 	UnityEngine.UI.Text mapLocation;
 	UnityEngine.UI.Text mapMission;
 
@@ -51,6 +62,7 @@ public class MapControl : MonoBehaviour {
 	public bool introMission;
 
 
+
 	GameObject healButton;
 
 	// Use this for initialization
@@ -77,9 +89,19 @@ public class MapControl : MonoBehaviour {
 		adverbs [4] = " onward.";
 		adverbs [5] = " on.";
 	
-		mapMission = transform.Find ("MapPanel/Quest").GetComponent<UnityEngine.UI.Text> ();
-		mapLocation = transform.Find ("MapPanel/Location").GetComponent<UnityEngine.UI.Text> ();
+		mapMission = transform.Find ("ExplorationPanel/NavigationPanel/DescriptionPanel/Quest").GetComponent<UnityEngine.UI.Text> ();
+		mapLocation = transform.Find ("ExplorationPanel/NavigationPanel/DescriptionPanel/Location").GetComponent<UnityEngine.UI.Text> ();
 		movingText = transform.Find ("ExploringPanel/Text").GetComponent<UnityEngine.UI.Text> ();
+		northText = transform.Find ("ExplorationPanel/NavigationPanel/DescriptionPanel/NorthText").GetComponent<UnityEngine.UI.Text> ();
+		southText = transform.Find ("ExplorationPanel/NavigationPanel/DescriptionPanel/SouthText").GetComponent<UnityEngine.UI.Text> ();
+		eastText  = transform.Find ("ExplorationPanel/NavigationPanel/DescriptionPanel/EastText").GetComponent<UnityEngine.UI.Text> ();
+		westText = transform.Find ("ExplorationPanel/NavigationPanel/DescriptionPanel/WestText").GetComponent<UnityEngine.UI.Text> ();
+
+		nArrowText = transform.Find ("ExplorationPanel/ButtonPanel/NorthButton/Text").GetComponent<UnityEngine.UI.Text> ();
+		sArrowText = transform.Find ("ExplorationPanel/ButtonPanel/SouthButton/Text").GetComponent<UnityEngine.UI.Text> ();
+		eArrowText = transform.Find ("ExplorationPanel/ButtonPanel/EastButton/Text").GetComponent<UnityEngine.UI.Text> ();
+		wArrowText = transform.Find ("ExplorationPanel/ButtonPanel/WestButton/Text").GetComponent<UnityEngine.UI.Text> ();
+		
 
 		healButton = transform.FindChild ("HealButton").gameObject;
 		//For SetMovement Description
@@ -119,6 +141,7 @@ public class MapControl : MonoBehaviour {
             for (int j = 0; j < ySize; j++)
             {
                 Node newNode = ScriptableObject.CreateInstance<Node>();
+
 				newNode.AddDescription(explorationText.dialogue[i,j]);
 
 				newNode.AddBackgroundImage(explorationImage.backgroundImage[i,j]);
@@ -128,6 +151,9 @@ public class MapControl : MonoBehaviour {
             }
             currentZone.AddNodeColumn(tempNodeArray, i);
         }
+
+
+
 		GenerateZoneMonsters();
 
 	}
@@ -204,16 +230,20 @@ public class MapControl : MonoBehaviour {
 	{
 		if (canMoveNorth) {
 			northButton.interactable = true;
+			nArrowText.text = "^";
 
 		}
 		if (canMoveSouth) {
 			southButton.interactable = true;
+			sArrowText.text = "^";
 		}
 		if (canMoveEast) {
 			eastButton.interactable = true;
+			eArrowText.text = "^";
 		}
 		if (canMoveWest) {
 			westButton.interactable = true;
+			wArrowText.text = "^";
 		}
 	}
 
@@ -272,30 +302,38 @@ public class MapControl : MonoBehaviour {
 	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveNorth) 
 		{
 			northButton.interactable = true;
+			nArrowText.text = "^";
 		} 
 		else {
 			northButton.interactable = false;
+			nArrowText.text = ".";
 		}
 	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveSouth) 
 		{
 			southButton.interactable = true;
+			sArrowText.text = "^";
 		} 
 		else {
 			southButton.interactable = false;
+			sArrowText.text = ".";
 		}
 	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveEast) 
 		{
 			eastButton.interactable = true;
+			eArrowText.text = "^";
 		} 
 		else {
 			eastButton.interactable = false;
+			eArrowText.text = ".";
 		}
 	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveWest) 
 		{
 			westButton.interactable = true;
+			wArrowText.text = "^";
 		} 
 		else {
 			westButton.interactable = false;
+			wArrowText.text = ".";
 		}
 	}
 
@@ -334,15 +372,15 @@ public class MapControl : MonoBehaviour {
 
 	public void UpdateMap()
 	{
-		mapLocation.text = "Your current location is: " + playerLocation.x + ", " + playerLocation.y+ "."; 
+		mapLocation.text = "Your location: " + playerLocation.x + ", " + playerLocation.y+ "."; 
 
 		if (currentZone.questIsActive||currentZone.quest2IsActive) {
-			mapMission.text = "Target is " + currentZone.randomXSpawn + ", " + currentZone.randomYSpawn + ".";
+			mapMission.text = "Target: " + currentZone.randomXSpawn + ", " + currentZone.randomYSpawn + ".";
 		
 		} else if (noMission) {
 			mapMission.text = "Get a job.";
 		} else if (introMission) {
-			mapMission.text = "Head Downtown: 19, 19.";
+			mapMission.text = "Target: 25,29";
 		} else { mapMission.text = "You need to earn some money.";
 		}
 
@@ -525,184 +563,259 @@ public class MapControl : MonoBehaviour {
 
 			//MTWA
 			if (currentZone.MtWaInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "Hills to the left.\n";}
-				else if (rN==1)
-				{nodeDescription += "A steep hill is to the left.\n";}
-				else if (rN==2)
-				{nodeDescription += "The hills to the left look like a little mountian.\n";}
-				else if (rN==3)
-				{nodeDescription += "Hills on the left.\n";}
+				westText.text = "<color=#06A124>hills</color>";
 			}
 			if (currentZone.MtWaInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "Hills to the right.\n";}
-				else if (rN==1)
-				{nodeDescription += "A steep hill is to the right.\n";}
-				else if (rN==2)
-				{nodeDescription += "The hills to the right look like a little mountian.\n";}
-				else if (rN==3)
-				{nodeDescription += "Hills on the right.\n";}
+				eastText.text = "<color=#06A124>hills</color>";
 			}
 			if (currentZone.MtWaInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "Hills behind you.\n";}
-				else if (rN==1)
-				{nodeDescription += "A steep hill is behind you.\n";}
-				else if (rN==2)
-				{nodeDescription += "The hills behind you look like a little mountian.\n";}
-				else if (rN==3)
-				{nodeDescription += "Hills roll out behind you.\n";}
+				southText.text = "<color=#06A124>hills</color>";
 			}
 			if (currentZone.MtWaInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "Hills up ahead.\n";}
-				else if (rN==1)
-				{nodeDescription += "A steep hill is in front of you.\n";}
-				else if (rN==2)
-				{nodeDescription += "The hills ahead look like a little mountian.\n";}
-				else if (rN==3)
-				{nodeDescription += "You are approaching hills.\n";}
+				northText.text = "<color=#06A124>hills</color>";
 			}
+
 			//ROAD
 			if (currentZone.RoadInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "A road is to your left.\n";}
-				else if (rN==1)
-				{nodeDescription += "A dirty street is left.\n";}
-				else if (rN==2)
-				{nodeDescription += "To your left is a road.\n";}
-				else if (rN==3)
-				{nodeDescription += "Left of you is a road.\n";}
+				westText.text = "<color=#FFFBD8>road</color>";
 			}
 			if (currentZone.RoadInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "A road is to your right.\n";}
-				else if (rN==1)
-				{nodeDescription += "A dirty street is right.\n";}
-				else if (rN==2)
-				{nodeDescription += "To your right is a road.\n";}
-				else if (rN==3)
-				{nodeDescription += "Right of you is a road.\n";}
+				eastText.text = "<color=#FFFBD8>road</color>";
 			}
 			if (currentZone.RoadInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "A road is up ahead.\n";}
-				else if (rN==1)
-				{nodeDescription += "A dirty street is ahead.\n";}
-				else if (rN==2)
-				{nodeDescription += "Up ahead is a road.\n";}
-				else if (rN==3)
-				{nodeDescription += "Ahead of you is a road.\n";}
+				northText.text = "<color=#FFFBD8>road</color>";
 			}
 			if (currentZone.RoadInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
-				int rN = Random.Range(0,4);
-				if (rN==0)
-				{nodeDescription += "A road is behind you.\n";}
-				else if (rN==1)
-				{nodeDescription += "A dirty street is behind you.\n";}
-				else if (rN==2)
-				{nodeDescription += "Behind you is a road.\n";}
-				else if (rN==3)
-				{nodeDescription += "Behind is a street.\n";}
+				southText.text = "<color=#FFFBD8>road</color>";
 			}
 
 
 
 
 				//FOR BLOCKING
-				if (currentZone.ChasmInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
+		
+        
+			if (currentZone.FenceInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
 					{
 						canMoveSouth = false;
 						southButton.interactable = false;
-				
-						if(currentZone.ChasmInThatDirection(playerLocation.x + 1, playerLocation.y))
-						{
-							int rN = Random.Range(0,4);
-							if (rN==0)
-							{nodeDescription += "South is blocked by a chasm.\n";}
-							else if (rN==1)
-							{nodeDescription += "A chasm spans the south.\n";}
-							else if (rN==2)
-							{nodeDescription += "A large hole to the south is too dangerous to cross.\n";}
-							else if (rN==3)
-							{nodeDescription += "Going south is impossible because of a large chasm.\n";}
-						}	
+				southText.text = "fence";
 					} 
 					else {
 						canMoveSouth = true;
 						southButton.interactable=true;
 					}
 
-				if (currentZone.ChasmInThatDirection (playerLocation.x - 1, playerLocation.y)
+			if (currentZone.FenceInThatDirection (playerLocation.x - 1, playerLocation.y)
 				    == true) {
 					canMoveNorth = false;
 					northButton.interactable = false;
-					
-					if(currentZone.ChasmInThatDirection(playerLocation.x - 1, playerLocation.y)){
-					int rN = Random.Range(0,4);
-					if (rN==0)
-					{nodeDescription += "North is blocked by a chasm.\n";}
-					else if (rN==1)
-					{nodeDescription += "A chasm spans the north.\n";}
-					else if (rN==2)
-					{nodeDescription += "A large hole to the north is too dangerous to cross.\n";}
-					else if (rN==3)
-					{nodeDescription += "Going north is impossible because of a large chasm.\n";}
-				}
-					
+				northText.text="fence";
 				} else {
 					canMoveNorth = true;
 					northButton.interactable=true;
 				}
 
-				if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y+1)
+			if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y+1)
 				    == true) {
 					canMoveEast = false;
 					eastButton.interactable = false;
-				if(currentZone.ChasmInThatDirection(playerLocation.x, playerLocation.y+1)){
-					int rN = Random.Range(0,4);
-					if (rN==0)
-					{nodeDescription += "East is blocked by a chasm.\n";}
-					else if (rN==1)
-					{nodeDescription += "A chasm spans the east.\n";}
-					else if (rN==2)
-					{nodeDescription += "A large hole to the east is too dangerous to cross.\n";}
-					else if (rN==3)
-					{nodeDescription += "Going east is impossible because of a large chasm.\n";}
-				}
+				eastText.text = "fence";
 					
 				} else {
 					canMoveEast=true;
 					eastButton.interactable=true;
 				}
-				if (currentZone.ChasmInThatDirection (playerLocation.x, playerLocation.y-1)
+			if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y-1)
 				    == true) {
 					canMoveWest=false;
 					westButton.interactable=false;
-				if(currentZone.ChasmInThatDirection(playerLocation.x , playerLocation.y- 1)){
-					int rN = Random.Range(0,4);
-					if (rN==0)
-					{nodeDescription += "West is blocked by a chasm.\n";}
-					else if (rN==1)
-					{nodeDescription += "A chasm spans the west.\n";}
-					else if (rN==2)
-					{nodeDescription += "A large hole to the west is too dangerous to cross.\n";}
-					else if (rN==3)
-					{nodeDescription += "Going west is impossible because of a large chasm.\n";}
-				}					
+				westText.text="fence";				
 				} else {
 					canMoveWest=true;
 					westButton.interactable=true;
 				}
-        }
+			////
+			/// 
+			/// 
+			if (currentZone.WallInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
+			{
+				canMoveSouth = false;
+				southButton.interactable = false;
+				southText.text = "wall";
+			} 
+			else {
+				canMoveSouth = true;
+				southButton.interactable=true;
+			}
+			
+			if (currentZone.WallInThatDirection (playerLocation.x - 1, playerLocation.y)
+			    == true) {
+				canMoveNorth = false;
+				northButton.interactable = false;
+				northText.text="wall";
+				
+			} else {
+				canMoveNorth = true;
+				northButton.interactable=true;
+			}
+			
+			if (currentZone.WallInThatDirection (playerLocation.x, playerLocation.y+1)
+			    == true) {
+				canMoveEast = false;
+				eastButton.interactable = false;
+				eastText.text = "wall";
+				
+			} else {
+				canMoveEast=true;
+				eastButton.interactable=true;
+			}
+			if (currentZone.WallInThatDirection (playerLocation.x, playerLocation.y-1)
+			    == true) {
+				canMoveWest=false;
+				westButton.interactable=false;
+				westText.text="wall";
+
+			} else {
+				canMoveWest=true;
+				westButton.interactable=true;
+			}
+
+			////
+			/// 
+			/// 
+			if (currentZone.StackInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
+			{
+				canMoveSouth = false;
+				southButton.interactable = false;
+				southText.text = "piles";
+			} 
+			else {
+				canMoveSouth = true;
+				southButton.interactable=true;
+			}
+			
+			if (currentZone.StackInThatDirection (playerLocation.x - 1, playerLocation.y)
+			    == true) {
+				canMoveNorth = false;
+				northButton.interactable = false;
+				northText.text="piles";
+				
+			} else {
+				canMoveNorth = true;
+				northButton.interactable=true;
+			}
+			
+			if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y+1)
+			    == true) {
+				canMoveEast = false;
+				eastButton.interactable = false;
+				eastText.text = "piles";
+				
+			} else {
+				canMoveEast=true;
+				eastButton.interactable=true;
+			}
+			if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y-1)
+			    == true) {
+				canMoveWest=false;
+				westButton.interactable=false;
+				westText.text="piles";				
+			} else {
+				canMoveWest=true;
+				westButton.interactable=true;
+			}
+			////
+			/// 
+			/// 
+			if (currentZone.BuildingInThatDirection (playerLocation.x + 1, playerLocation.y)
+			    ||currentZone.FenceInThatDirection (playerLocation.x + 1, playerLocation.y) 
+			    ||currentZone.StackInThatDirection (playerLocation.x + 1, playerLocation.y)
+			    || currentZone.WallInThatDirection (playerLocation.x + 1, playerLocation.y)
+			    == true) 
+			{
+				canMoveSouth = false;
+				southButton.interactable = false;
+				if (currentZone.BuildingInThatDirection (playerLocation.x + 1, playerLocation.y))
+				{southText.text = "building";}
+				else if (currentZone.FenceInThatDirection (playerLocation.x + 1, playerLocation.y))
+				{southText.text = "fence";}
+				else if (currentZone.StackInThatDirection (playerLocation.x + 1, playerLocation.y))
+				{southText.text = "pile";}
+				else if(currentZone.WallInThatDirection (playerLocation.x + 1, playerLocation.y))
+				{southText.text = "wall";}
+			} 
+			else {
+				canMoveSouth = true;
+				southButton.interactable=true;
+			}
+			
+			if (currentZone.BuildingInThatDirection (playerLocation.x - 1, playerLocation.y)
+			    ||currentZone.FenceInThatDirection (playerLocation.x - 1, playerLocation.y) 
+			    ||currentZone.StackInThatDirection (playerLocation.x - 1, playerLocation.y)
+			    || currentZone.WallInThatDirection (playerLocation.x - 1, playerLocation.y)
+			    == true) {
+				canMoveNorth = false;
+				northButton.interactable = false;
+				if (currentZone.BuildingInThatDirection (playerLocation.x - 1, playerLocation.y))
+				{northText.text = "building";}
+				else if (currentZone.FenceInThatDirection (playerLocation.x - 1, playerLocation.y))
+				{northText.text = "fence";}
+				else if (currentZone.StackInThatDirection (playerLocation.x - 1, playerLocation.y))
+				{northText.text = "pile";}
+				else if(currentZone.WallInThatDirection (playerLocation.x - 1, playerLocation.y))
+				{northText.text = "wall";}
+				
+			} 
+			else {
+				canMoveNorth = true;
+				northButton.interactable=true;
+			}
+			
+			if (currentZone.BuildingInThatDirection (playerLocation.x, playerLocation.y+1)
+			    ||currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y+1) 
+			    ||currentZone.StackInThatDirection (playerLocation.x, playerLocation.y+1)
+			    || currentZone.WallInThatDirection (playerLocation.x, playerLocation.y+1)
+			    == true) {
+				canMoveEast = false;
+				eastButton.interactable = false;
+				if (currentZone.BuildingInThatDirection (playerLocation.x , playerLocation.y+1))
+				{northText.text = "building";}
+				else if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y+1))
+				{northText.text = "fence";}
+				else if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y+1))
+				{northText.text = "pile";}
+				else if(currentZone.WallInThatDirection (playerLocation.x, playerLocation.y+1))
+				{northText.text = "wall";}
+
+				
+			} else {
+				canMoveEast=true;
+				eastButton.interactable=true;
+			}
+			if (currentZone.BuildingInThatDirection (playerLocation.x, playerLocation.y-1)
+			    ||currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y-1) 
+			    ||currentZone.StackInThatDirection (playerLocation.x, playerLocation.y-1)
+			    || currentZone.WallInThatDirection (playerLocation.x, playerLocation.y-1)
+			    == true){
+				canMoveWest=false;
+				westButton.interactable=false;
+				if (currentZone.BuildingInThatDirection (playerLocation.x , playerLocation.y-1))
+				{northText.text = "building";}
+				else if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y-1))
+				{northText.text = "fence";}
+				else if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y-1))
+				{northText.text = "pile";}
+				else if(currentZone.WallInThatDirection (playerLocation.x, playerLocation.y-1))
+				{northText.text = "wall";}
+
+			} else {
+				canMoveWest=true;
+				westButton.interactable=true;
+			}
+		
+		
+		}// MAIN BRACKET
         else
         {
             currentZone.AttemptPlayerMove(playerLocation.x, playerLocation.y, ref oldDescription);
@@ -792,15 +905,27 @@ public class MapControl : MonoBehaviour {
 			}
 			else if (tempSenceNumber == 1)
 			{
-				sensoryDescription = "A low hum resonates.";
+				sensoryDescription = "A low hum resonates nearby.";
 			}
 			else if (tempSenceNumber == 2)
 			{
-				sensoryDescription = "You brush dirt off your shoulder.";
+				sensoryDescription = "You take note of your surroundings";
 			}
 			else if (tempSenceNumber == 3)
 			{
-				sensoryDescription = "You stretch you arms.";
+				sensoryDescription = "A hint of something is in the air.";
+			}
+			else if (tempSenceNumber == 4)
+			{
+				sensoryDescription = "Your interest rises.";
+			}
+			else if (tempSenceNumber == 5)
+			{
+				sensoryDescription = "You pay attention to the environment.";
+			}
+			else if (tempSenceNumber == 6)
+			{
+				sensoryDescription = "You are enjoying this.";
 			}
 			else
 				sensoryDescription = "";

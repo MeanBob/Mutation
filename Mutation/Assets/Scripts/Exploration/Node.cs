@@ -7,18 +7,20 @@ public class Node : ScriptableObject {
 	Monster nodeMonster;
 	string backgroundImage;
 
+
     //Special event?
     //Random chance?
 
 	void Start () 
 	{
-		
+
 	}
 	
 	void Update () 
 	{
 	
 	}
+
 
 
 	public void AddBackgroundImage(string newBackgroundImage)
