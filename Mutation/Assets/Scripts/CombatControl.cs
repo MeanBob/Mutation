@@ -71,6 +71,7 @@ public class CombatControl : MonoBehaviour {
 
 	void Start () 
 	{
+
 		tier1Monsters = true;
 		tier2Monsters = false;
 		tier2Monsters = false;
@@ -116,6 +117,8 @@ public class CombatControl : MonoBehaviour {
 		enemyMaxEnergyText = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider/EnemyEnergyMaxText").GetComponent<UnityEngine.UI.Text>();
 		enemyEnergySlider = transform.FindChild("FightPanel/EnemyScenePanel/EnemyEnergySlider").GetComponent<UnityEngine.UI.Slider>();
 		monsterImage = transform.FindChild("FightPanel/EnemyScenePanel/EnemyImage").GetComponent<UnityEngine.UI.Image>();
+
+		shake.Play("Film");
 	}
 
 	public void RELOADGAME()
@@ -348,13 +351,10 @@ public class CombatControl : MonoBehaviour {
 		//Debug.Log("Combat on value ::::"+combatOn);
 		//shake.Play ("None");
 
-
+		 
 
 	if (playerCharacter.GetHitPoints () <= 0||playerCharacter.GetEnergyPoints()<=0 ){
-			//Debug.Log("DEAD!");
-			shake.Play("Death");
-		
-		}
+			shake.Play("Death");}
 
 		if (currentPlayerReadiness >= 100) {
 			headButton.interactable = true;
@@ -364,11 +364,6 @@ public class CombatControl : MonoBehaviour {
 
 		if (combatOn)
         {
-			//characterButton.interactable = false;
-			//exploreButton.interactable = false;
-			//inventoryButton.interactable = false;
-			//mapButton.interactable = false;
-			//**
 			if (currentPlayerReadiness > maxReadiness)
 			{
 				currentMonsterReadiness = currentMonsterReadiness;
@@ -695,17 +690,7 @@ public class CombatControl : MonoBehaviour {
 		playerCharacter.DoEnergyDamage(3);
     }
 
-
-	//Exploring
-	public bool DoSpeedDamageForExploring(int damage)
-	{
-		currentPlayerReadiness -= 96;
-		if (currentPlayerReadiness <= 0)
-		{
-			return true;
-		}
-		return false;
-	}
+	
 
     void DoDamageToMonster(int damage)
     {
@@ -772,8 +757,6 @@ public class CombatControl : MonoBehaviour {
 //} else if (damage >= 30) {
 //	combatLogText.text += "<color=#55141E>The " + currentMonster.GetName ().ToLower() + " spasisms.</color>\n";
 //}
-//
-
 		//animal's reactions to loss of life
 		if (currentMonster.GetHealth () <= currentMonster.GetMaxHealth () / 1.3  && currentMonster.GetHealth() > currentMonster.GetMaxHealth () / 2.4) {
 			combatLogText.text += "<color=#E151DC>The " + currentMonster.GetName ().ToLower() + " looks weakened.</color>\n";
@@ -785,8 +768,18 @@ public class CombatControl : MonoBehaviour {
 			combatLogText.text += "<color=#E151DC>The " + currentMonster.GetName ().ToLower() + " bleeds everywhere.</color>\n";
 			
 		}
-
     }
+
+	//Exploring
+	public bool DoSpeedDamageForExploring(int damage)
+	{
+		currentPlayerReadiness -= 96;
+		if (currentPlayerReadiness <= 0)
+		{
+			return true;
+		}
+		return false;
+	}
 
 	public void RestWhileExploring()
 	{
@@ -985,18 +978,3 @@ public class CombatControl : MonoBehaviour {
 	}
 	
 	}
-        //If we want to introduce a "surprised" or "ambush" mechanic,
-        //we can adjust the readiness values.
-        //int readiness = Random.Range (2,89);
-//		currentPlayerReadiness = readiness;
-//		enemyEnergySlider.maxValue = currentMonster.GetMaxEnergy();
-//		enemyCurrentEnergyText.text = currentMonster.GetEnergy().ToString();
-//		enemyMaxHealthText.text= currentMonster.GetMaxEnergy().ToString();
-//		enemyEnergySlider.value=currentMonster.GetEnergy();
-//        enemyHealthSlider.maxValue = currentMonster.GetMaxHealth();
-//        enemyCurrentHealthText.text = currentMonster.GetHealth().ToString();
-//        enemyMaxHealthText.text = currentMonster.GetMaxHealth().ToString();
-//        enemyHealthSlider.value = currentMonster.GetHealth();
-        //combatLogText.text = "";
-    
-

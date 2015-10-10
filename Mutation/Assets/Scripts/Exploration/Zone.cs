@@ -104,16 +104,56 @@ public class Zone : ScriptableObject {
 		else if (pass == "Alleyway") //MtWa
 		{
 			onHealer = false;
-			description += "<color=#FFFBD8><size=130>Downtown Alley\n</size></color>";
+			description += "<color=#2070AA><size=130>Downtown Alley\n</size></color>";
 			return true;
 		}
 
 		else if (pass == "Street") //road
 		{
 			onHealer = false;//add road names??
-			description += "<color=#FFFBD8><size=130>City Streets\n</size></color>";
+			description += "<color=#2070AA><size=130>City Streets\n</size></color>";
 			return true;
 		}
+		else if (pass == "Sidewalk") 
+		{
+			onHealer = false;
+			description += "<color=#2070AA><size=130>Cracked Sidewalk\n</size></color>";
+			return true;
+		}
+		else if (pass == "Rubble") 
+		{
+			onHealer = false;//add road names??
+			description += "<color=#2070AA><size=130>Building Rubble\n</size></color>";
+			return true;
+		}
+		else if (pass == "Garbage") //road
+		{
+			onHealer = false;//add road names??
+			description += "<color=#2070AA><size=130>Trash Piles\n</size></color>";
+			return true;
+		}
+		else if (pass == "Office") //road
+		{
+			onHealer = false;//add road names??
+			description += "<color=#2070AA><size=130>Downtown Office\n</size></color>";
+			return true;
+		}
+		else if (pass == "Nightclub") //road
+		{
+			onHealer = false;//add road names??
+			description += "<color=#2070AA><size=130>Club Exposed\n</size></color>";
+			return true;
+		}
+		else if (pass == "Door") //road
+		{
+			onHealer = false;//add road names??
+			description += "<color=#2070AA><size=130>Building Entrance\n</size></color>";
+			return true;
+		}
+
+
+
+
 		else if (pass == "Bridge")//bridge
 		{onHealer = false;
 			description="<color=#625F21>Bridge</color>\n";
@@ -293,6 +333,63 @@ public class Zone : ScriptableObject {
 	public bool RoadInThatDirection (int xD, int yD)
 	{
 		if( nodeArray[xD][yD].GetDescription()=="Road")
+			return true;
+		else 
+			return false;
+	}
+	public bool AlleywayInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Alleyway")
+			return true;
+		else 
+			return false;
+	}
+	public bool SidewalkInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Sidewalk")
+			return true;
+		else 
+			return false;
+	}
+	public bool RubbleInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Rubble")
+			return true;
+		else 
+			return false;
+	}
+	public bool GarbageInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Garbage")
+			return true;
+		else 
+			return false;
+	}
+	public bool OfficeInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Office")
+			return true;
+		else 
+			return false;
+	}
+	public bool StreetInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Street")
+			return true;
+		else 
+			return false;
+	}
+	public bool NightclubInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Nightclub")
+			return true;
+		else 
+			return false;
+	}
+
+	public bool DoorInThatDirection (int xD, int yD)
+	{
+		if( nodeArray[xD][yD].GetDescription()=="Door")
 			return true;
 		else 
 			return false;

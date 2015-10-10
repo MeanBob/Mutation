@@ -256,7 +256,7 @@ public class MapControl : MonoBehaviour {
 
 	void Update()
 	{
-
+		NavButtonsOn ();
 		if (showCurrentLocation) 
 		{
 			Debug.Log(playerLocation.x +","+ playerLocation.y);
@@ -308,6 +308,7 @@ public class MapControl : MonoBehaviour {
 			northButton.interactable = false;
 			nArrowText.text = ".";
 		}
+
 	if (combat.currentPlayerReadiness >= combat.maxReadiness && canMoveSouth) 
 		{
 			southButton.interactable = true;
@@ -330,6 +331,7 @@ public class MapControl : MonoBehaviour {
 		{
 			westButton.interactable = true;
 			wArrowText.text = "^";
+
 		} 
 		else {
 			westButton.interactable = false;
@@ -592,227 +594,230 @@ public class MapControl : MonoBehaviour {
 
 
 
+			//ACTIVE ONES
+			//Alleyway
+			if (currentZone.AlleywayInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#1B7CC4>alley</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.AlleywayInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#1B7CC4>alley</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.AlleywayInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#1B7CC4>alley</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.AlleywayInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#1B7CC4>alley</color>";
+				canMoveSouth = true;
+			}
+			//Sidewalk
+			if (currentZone.SidewalkInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#1B7CC4>sidewalk</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.SidewalkInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#1B7CC4>sidewalk</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.SidewalkInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#1B7CC4>sidewalk</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.SidewalkInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#1B7CC4>sidewalk</color>";
+				canMoveSouth = true;
+			}
+			//street
+			if (currentZone.StreetInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#1B7CC4>street</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.StreetInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#1B7CC4>street</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.StreetInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#1B7CC4>street</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.StreetInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#1B7CC4>street</color>";
+				canMoveSouth = true;
+			}
+			//rubble
+			if (currentZone.RubbleInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#1B7CC4>rubble</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.RubbleInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#1B7CC4>rubble</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.RubbleInThatDirection (playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#1B7CC4>rubble</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.RubbleInThatDirection (playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#1B7CC4>rubble</color>";
+				canMoveSouth = true;
+			}
+			//garbage
+			if (currentZone.GarbageInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#1B7CC4>garbage</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.GarbageInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#1B7CC4>garbage</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.GarbageInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#1B7CC4>garbage</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.GarbageInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#1B7CC4>garbage</color>";
+				canMoveSouth = true;
+			}
+			//office
+			if (currentZone.OfficeInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#E02A78>office</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.OfficeInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#E02A78>office</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.OfficeInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#E02A78>office</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.OfficeInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#E02A78>office</color>";
+				canMoveSouth = true;
+			}
+			//nightclub
+			if (currentZone.NightclubInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#FB2FED>club</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.NightclubInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#FB2FED>club</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.NightclubInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#FB2FED>club</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.NightclubInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#FB2FED>club</color>";
+				canMoveSouth = true;
+			}
+			//door
+			if (currentZone.DoorInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#E02A78>door</color>";
+				canMoveWest=true;
+			}
+			if (currentZone.DoorInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#E02A78>door</color>";
+				canMoveEast=true;
+			}
+			if (currentZone.DoorInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#E02A78>door</color>";
+				canMoveNorth = true;
+			}
+			if (currentZone.DoorInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#E02A78>door</color>";
+				canMoveSouth = true;
+			}
+
 				//FOR BLOCKING
-		
-        
-			if (currentZone.FenceInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
-					{
-						canMoveSouth = false;
-						southButton.interactable = false;
-				southText.text = "fence";
-					} 
-					else {
-						canMoveSouth = true;
-						southButton.interactable=true;
-					}
-
-			if (currentZone.FenceInThatDirection (playerLocation.x - 1, playerLocation.y)
-				    == true) {
-					canMoveNorth = false;
-					northButton.interactable = false;
-				northText.text="fence";
-				} else {
-					canMoveNorth = true;
-					northButton.interactable=true;
-				}
-
-			if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y+1)
-				    == true) {
-					canMoveEast = false;
-					eastButton.interactable = false;
-				eastText.text = "fence";
-					
-				} else {
-					canMoveEast=true;
-					eastButton.interactable=true;
-				}
-			if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y-1)
-				    == true) {
-					canMoveWest=false;
-					westButton.interactable=false;
-				westText.text="fence";				
-				} else {
-					canMoveWest=true;
-					westButton.interactable=true;
-				}
-			////
-			/// 
-			/// 
-			if (currentZone.WallInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
-			{
-				canMoveSouth = false;
-				southButton.interactable = false;
-				southText.text = "wall";
-			} 
-			else {
-				canMoveSouth = true;
-				southButton.interactable=true;
-			}
-			
-			if (currentZone.WallInThatDirection (playerLocation.x - 1, playerLocation.y)
-			    == true) {
-				canMoveNorth = false;
-				northButton.interactable = false;
-				northText.text="wall";
-				
-			} else {
-				canMoveNorth = true;
-				northButton.interactable=true;
-			}
-			
-			if (currentZone.WallInThatDirection (playerLocation.x, playerLocation.y+1)
-			    == true) {
-				canMoveEast = false;
-				eastButton.interactable = false;
-				eastText.text = "wall";
-				
-			} else {
-				canMoveEast=true;
-				eastButton.interactable=true;
-			}
-			if (currentZone.WallInThatDirection (playerLocation.x, playerLocation.y-1)
-			    == true) {
+		//Fence
+			if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#3BF778>fence</color>";
 				canMoveWest=false;
 				westButton.interactable=false;
-				westText.text="wall";
-
-			} else {
-				canMoveWest=true;
-				westButton.interactable=true;
 			}
-
-			////
-			/// 
-			/// 
-			if (currentZone.StackInThatDirection (playerLocation.x + 1, playerLocation.y) == true) 
-			{
-				canMoveSouth = false;
-				southButton.interactable = false;
-				southText.text = "piles";
-			} 
-			else {
-				canMoveSouth = true;
-				southButton.interactable=true;
+			if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#3BF778>fence</color>";
+				canMoveEast=false;
+				eastButton.interactable = false;
 			}
-			
-			if (currentZone.StackInThatDirection (playerLocation.x - 1, playerLocation.y)
-			    == true) {
+			if (currentZone.FenceInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#3BF778>fence</color>";
 				canMoveNorth = false;
 				northButton.interactable = false;
-				northText.text="piles";
-				
-			} else {
-				canMoveNorth = true;
-				northButton.interactable=true;
 			}
-			
-			if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y+1)
-			    == true) {
-				canMoveEast = false;
-				eastButton.interactable = false;
-				eastText.text = "piles";
-				
-			} else {
-				canMoveEast=true;
-				eastButton.interactable=true;
-			}
-			if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y-1)
-			    == true) {
-				canMoveWest=false;
-				westButton.interactable=false;
-				westText.text="piles";				
-			} else {
-				canMoveWest=true;
-				westButton.interactable=true;
-			}
-			////
-			/// 
-			/// 
-			if (currentZone.BuildingInThatDirection (playerLocation.x + 1, playerLocation.y)
-			    ||currentZone.FenceInThatDirection (playerLocation.x + 1, playerLocation.y) 
-			    ||currentZone.StackInThatDirection (playerLocation.x + 1, playerLocation.y)
-			    || currentZone.WallInThatDirection (playerLocation.x + 1, playerLocation.y)
-			    == true) 
-			{
+			if (currentZone.FenceInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#3BF778>fence</color>";
 				canMoveSouth = false;
 				southButton.interactable = false;
-				if (currentZone.BuildingInThatDirection (playerLocation.x + 1, playerLocation.y))
-				{southText.text = "building";}
-				else if (currentZone.FenceInThatDirection (playerLocation.x + 1, playerLocation.y))
-				{southText.text = "fence";}
-				else if (currentZone.StackInThatDirection (playerLocation.x + 1, playerLocation.y))
-				{southText.text = "pile";}
-				else if(currentZone.WallInThatDirection (playerLocation.x + 1, playerLocation.y))
-				{southText.text = "wall";}
-			} 
-			else {
-				canMoveSouth = true;
-				southButton.interactable=true;
 			}
-			
-			if (currentZone.BuildingInThatDirection (playerLocation.x - 1, playerLocation.y)
-			    ||currentZone.FenceInThatDirection (playerLocation.x - 1, playerLocation.y) 
-			    ||currentZone.StackInThatDirection (playerLocation.x - 1, playerLocation.y)
-			    || currentZone.WallInThatDirection (playerLocation.x - 1, playerLocation.y)
-			    == true) {
-				canMoveNorth = false;
-				northButton.interactable = false;
-				if (currentZone.BuildingInThatDirection (playerLocation.x - 1, playerLocation.y))
-				{northText.text = "building";}
-				else if (currentZone.FenceInThatDirection (playerLocation.x - 1, playerLocation.y))
-				{northText.text = "fence";}
-				else if (currentZone.StackInThatDirection (playerLocation.x - 1, playerLocation.y))
-				{northText.text = "pile";}
-				else if(currentZone.WallInThatDirection (playerLocation.x - 1, playerLocation.y))
-				{northText.text = "wall";}
-				
-			} 
-			else {
-				canMoveNorth = true;
-				northButton.interactable=true;
-			}
-			
-			if (currentZone.BuildingInThatDirection (playerLocation.x, playerLocation.y+1)
-			    ||currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y+1) 
-			    ||currentZone.StackInThatDirection (playerLocation.x, playerLocation.y+1)
-			    || currentZone.WallInThatDirection (playerLocation.x, playerLocation.y+1)
-			    == true) {
-				canMoveEast = false;
-				eastButton.interactable = false;
-				if (currentZone.BuildingInThatDirection (playerLocation.x , playerLocation.y+1))
-				{northText.text = "building";}
-				else if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y+1))
-				{northText.text = "fence";}
-				else if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y+1))
-				{northText.text = "pile";}
-				else if(currentZone.WallInThatDirection (playerLocation.x, playerLocation.y+1))
-				{northText.text = "wall";}
-
-				
-			} else {
-				canMoveEast=true;
-				eastButton.interactable=true;
-			}
-			if (currentZone.BuildingInThatDirection (playerLocation.x, playerLocation.y-1)
-			    ||currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y-1) 
-			    ||currentZone.StackInThatDirection (playerLocation.x, playerLocation.y-1)
-			    || currentZone.WallInThatDirection (playerLocation.x, playerLocation.y-1)
-			    == true){
+			//Wall
+			if (currentZone.WallInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#3BF778>wall</color>";
 				canMoveWest=false;
 				westButton.interactable=false;
-				if (currentZone.BuildingInThatDirection (playerLocation.x , playerLocation.y-1))
-				{northText.text = "building";}
-				else if (currentZone.FenceInThatDirection (playerLocation.x, playerLocation.y-1))
-				{northText.text = "fence";}
-				else if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y-1))
-				{northText.text = "pile";}
-				else if(currentZone.WallInThatDirection (playerLocation.x, playerLocation.y-1))
-				{northText.text = "wall";}
-
-			} else {
-				canMoveWest=true;
-				westButton.interactable=true;
 			}
+			if (currentZone.WallInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#3BF778>wall</color>";
+				canMoveEast=false;
+				eastButton.interactable = false;
+			}
+			if (currentZone.WallInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#3BF778>wall</color>";
+				canMoveNorth = false;
+				northButton.interactable = false;
+			}
+			if (currentZone.StackInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#3BF778>pile</color>";
+				canMoveSouth = false;
+				southButton.interactable = false;
+			}
+			//stack
+			if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#3BF778>pile</color>";
+				canMoveWest=false;
+				westButton.interactable=false;
+			}
+			if (currentZone.StackInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#3BF778>pile</color>";
+				canMoveEast=false;
+				eastButton.interactable = false;
+			}
+			if (currentZone.StackInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#3BF778>pile</color>";
+				canMoveNorth = false;
+				northButton.interactable = false;
+			}
+			if (currentZone.StackInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#3BF778>pile</color>";
+				canMoveSouth = false;
+				southButton.interactable = false;
+			}
+			//building
+			if (currentZone.BuildingInThatDirection (playerLocation.x, playerLocation.y - 1) == true) {
+				westText.text = "<color=#3BF778>building</color>";
+				canMoveWest=false;
+				westButton.interactable=false;
+			}
+			if (currentZone.BuildingInThatDirection (playerLocation.x, playerLocation.y + 1) == true) {
+				eastText.text = "<color=#3BF778>building</color>";
+				canMoveEast=false;
+				eastButton.interactable = false;
+			}
+			if (currentZone.BuildingInThatDirection(playerLocation.x-1, playerLocation.y) == true) {
+				northText.text = "<color=#3BF778>building</color>";
+				canMoveNorth = false;
+				northButton.interactable = false;
+			}
+			if (currentZone.BuildingInThatDirection(playerLocation.x+1, playerLocation.y) == true) {
+				southText.text = "<color=#3BF778>building</color>";
+				canMoveSouth = false;
+				southButton.interactable = false;
+			}
+
 		
 		
 		}// MAIN BRACKET
@@ -825,6 +830,231 @@ public class MapControl : MonoBehaviour {
 
 
 		//FOR MOVE TEXT
+		if (currentZone.StreetInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+				"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");;
+			}
+			else if (tempNumber==1){
+				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");}
+			else if (tempNumber==2){
+				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");;}
+			else if (tempNumber==3){
+				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");;}
+			else if (tempNumber==4){
+				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");}
+			else if (tempNumber==5){
+				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");;}
+			else if (tempNumber==6){
+				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");}
+			else if (tempNumber==7){
+				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");}
+			else{
+				movingText.text ="<color=#F88886>A car slams on its brakes as you walk into the street. " +
+					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";playerCharacter.DoDamage(4);
+				combat.shake.SetTrigger("Hit");}
+		}
+		if (currentZone.AlleywayInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else
+				movingText.text ="<color=#2070AA>you push past a mutant.</color>\n";
+		}
+		if (currentZone.SidewalkInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else
+				movingText.text ="<color=#2070AA>you push past a mutant.</color>\n";
+		}
+
+		if (currentZone.RubbleInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else
+				movingText.text ="<color=#2070AA>you push past a mutant.</color>\n";
+		}
+
+		if (currentZone.GarbageInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#2070AA>Piles of garbage fill the air with a stench you call home.</color>\n";}
+			else if (tempNumber==1){
+				movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.Play("Hit");
+			}
+			else if (tempNumber==2){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.Play("Hit");}
+			else if (tempNumber==3){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.Play("Hit");}
+			else if (tempNumber==4){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.Play("Hit");}
+			else if (tempNumber==5){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.Play("Hit");}
+			else if (tempNumber==6){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.Play("Hit");}
+			else if (tempNumber==7){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
+				playerCharacter.DoDamage(4);
+				combat.shake.Play("Hit");}
+			else
+				movingText.text ="<color=#2070AA>you push past a mutant.</color>\n";
+		}
+
+
+		if (currentZone.DoorInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#2070AA>you open the door</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#2070AA>you open the door</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#2070AA>you open the doort.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#2070AA>you open the door.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#2070AA>you open the door.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#2070AA>you open the door.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#2070AA>you open the door.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#2070AA>you open the door.</color>\n";
+			else
+				movingText.text ="<color=#2070AA>you open the door.</color>\n";
+		}
+
+
+		if (currentZone.OfficeInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else
+				movingText.text ="<color=#2070AA>you push past a mutant.</color>\n";
+		}
+
+
+
+		if (currentZone.NightclubInThatDirection (playerLocation.x, playerLocation.y) == true) {
+			//MAKE MANY
+			int tempNumber = Random.Range(0,8);
+			if (tempNumber==0)
+			{movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";}
+			else if (tempNumber==1)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==2)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==3)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==4)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==5)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==6)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else if (tempNumber==7)
+				movingText.text = "<color=#2070AA>you push past a mutant.</color>\n";
+			else
+				movingText.text ="<color=#2070AA>you push past a mutant.</color>\n";
+		}
+
+
+
+
+
 		if (currentZone.MtWaInThatDirection (playerLocation.x, playerLocation.y) == true) {
 			//MAKE MANY
 			int tempNumber = Random.Range(0,8);
@@ -949,7 +1179,7 @@ public class MapControl : MonoBehaviour {
 
 		//REVIEW
 		string temp = currentZone.returnImageAtLocation(playerLocation.x,playerLocation.y);
-		SetBackgroundImage(temp);
+		//SetBackgroundImage(temp);
 		nodeDescription += "\n" + oldDescription;
 		ui.GoToDescription(nodeDescription,sensoryDescription);
 
