@@ -836,43 +836,28 @@ public class MapControl : MonoBehaviour {
 			if (tempNumber==0)
 			{movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
 				"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.SetTrigger("Hit");;
 			}
 			else if (tempNumber==1){
-				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
-					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
+				movingText.text = "<color=#F88886>A car slams on its brakes but still manages to collide with you!</color>\n";
 				playerCharacter.DoDamage(4);
 				combat.shake.SetTrigger("Hit");}
 			else if (tempNumber==2){
-				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
-					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.SetTrigger("Hit");;}
+				movingText.text = "<color=#F88886>You jump out of the way of a speeding car. Drivers...</color>\n";
+				}
 			else if (tempNumber==3){
-				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
-					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";playerCharacter.DoDamage(4);
-				combat.shake.SetTrigger("Hit");;}
+				movingText.text = "<color=#F88886>The traffic is terrible!</color>\n";}
 			else if (tempNumber==4){
-				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
-					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.SetTrigger("Hit");}
+				movingText.text = "<color=#F88886>You jump out of the way of a speeding car. Drivers...</color>\n";
+			}
 			else if (tempNumber==5){
-				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
-					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.SetTrigger("Hit");;}
+				movingText.text = "<color=#F88886>You jump out of the way of a speeding car. Drivers...</color>\n";
+			}
 			else if (tempNumber==6){
-				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
-					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.SetTrigger("Hit");}
+				movingText.text = "<color=#F88886>You jump out of the way of a speeding car. Drivers...</color>\n";
+			}
 			else if (tempNumber==7){
-				movingText.text = "<color=#F88886>A car slams on its brakes as you walk into the street. " +
-					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.SetTrigger("Hit");}
+				movingText.text = "<color=#F88886>You jump out of the way of a speeding car. Drivers...</color>\n";
+			}
 			else{
 				movingText.text ="<color=#F88886>A car slams on its brakes as you walk into the street. " +
 					"\"What the fuck are you doing? Get out of the road,\" he yells.</color>\n";playerCharacter.DoDamage(4);
@@ -956,21 +941,11 @@ public class MapControl : MonoBehaviour {
 				playerCharacter.DoDamage(4);
 				combat.shake.Play("Hit");
 			}
-			else if (tempNumber==2){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.Play("Hit");}
-			else if (tempNumber==3){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.Play("Hit");}
-			else if (tempNumber==4){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.Play("Hit");}
-			else if (tempNumber==5){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.Play("Hit");}
-			else if (tempNumber==6){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
-				playerCharacter.DoDamage(4);
-				combat.shake.Play("Hit");}
+			else if (tempNumber==2){movingText.text = "<color=#2070AA>Piles of garbage fill the air with a stench you call home.</color>\n";}
+			else if (tempNumber==3){movingText.text = "<color=#2070AA>Piles of garbage fill the air with a stench you call home.</color>\n";}
+			else if (tempNumber==4){movingText.text = "<color=#2070AA>Piles of garbage fill the air with a stench you call home.</color>\n";}
+			else if (tempNumber==5){movingText.text = "<color=#2070AA>Piles of garbage fill the air with a stench you call home.</color>\n";}
+			else if (tempNumber==6){movingText.text = "<color=#2070AA>Piles of garbage fill the air with a stench you call home.</color>\n";}
 			else if (tempNumber==7){movingText.text = "<color=#2070AA>Something sharp stabs your foot as you step through the garbage.  That's just part of living here.</color>\n";
 				playerCharacter.DoDamage(4);
 				combat.shake.Play("Hit");}
